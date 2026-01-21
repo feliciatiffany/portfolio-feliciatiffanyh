@@ -76,6 +76,21 @@
                     "alt": "Rube Goldberg Café"
                 }
             ]
+        },{
+            "slug": "redDoors",
+            "title": "Red Doors",
+            "category": "tech",
+            "num": 2025,
+            "label": "Educational Game",
+            "media": [
+                {
+                    "type": "image",
+                    "src": "/media/techdesign/redDoors/Slide1.jpeg",
+                    "alt": "Red Doors"
+                }
+            ]
         }
+        
     ]
+    
 }

@@ -191,17 +191,34 @@ export default function ProjectTemplate({ project }) {
     }
 
     if (kind === "twoCol") {
-      const left = s.left || getByPath(project, s.leftPath);
-      const right = s.right || getByPath(project, s.rightPath);
-      if (!left && !right) return null;
+  const left = s.left || getByPath(project, s.leftPath);
+  const right = s.right || getByPath(project, s.rightPath);
+  if (!left && !right) return null;
 
-      return (
-        <section key={i} className="proj-row5">
-          <div className="proj-col">{left ? <DescriptionProject1 data={left} /> : null}</div>
-          <div className="proj-col">{right ? <DescriptionProject1 data={right} /> : null}</div>
-        </section>
+  const renderCol = (data, layout = "gallery") => {
+    if (!data) return null;
+
+    // ✅ if the data is a media array, render images directly
+    if (Array.isArray(data)) {
+      const isSlider = layout === "slider";
+      return isSlider ? (
+        <ImagesSlider items={data} onOpen={openLightbox} showTitle={false} />
+      ) : (
+        <ImagesRow media={data} onOpen={openLightbox} />
       );
     }
+
+    return <DescriptionProject1 data={data} />;
+  };
+
+  return (
+    <section key={i} className="proj-row5">
+      <div className="proj-col">{renderCol(left, s.leftLayout)}</div>
+      <div className="proj-col">{renderCol(right, s.rightLayout)}</div>
+    </section>
+  );
+}
+
 
     if (kind === "youtube") {
       const videoId = s.videoId || getByPath(project, s.videoIdPath);
