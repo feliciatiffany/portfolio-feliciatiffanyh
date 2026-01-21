@@ -39,9 +39,9 @@ export default function Home() {
       <p className="intro">
         <span className="line">
           <span className="mono">Hi, I’m</span>{" "}
-          <Link to="/About" className="grow-band name" data-role="fany">Fany!</Link>{" "}
+          <Link to="/about" className="grow-band name" data-role="fany">Fany!</Link>{" "}
           <span className="mono">a</span>{" "}
-          <Link to="/Tech" className="grow-band" data-role="tech">tech designer</Link>
+          <Link to="/tech" className="grow-band" data-role="tech">tech designer</Link>
           <span className="comma">,</span>
         </span>
         <span className="line">
