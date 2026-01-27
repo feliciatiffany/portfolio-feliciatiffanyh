@@ -24,7 +24,7 @@ export default function About() {
         <p className="intro">
           <span className="line">
             <span className="mono">Hi, I’m</span>{" "}
-            <Link to="/about" className="grow-band name" data-role="fany">
+            <Link to="/about" className="grow-band is-current" data-role="fany">
               Fany!
             </Link>{" "}
             <span className="mono">a</span>{" "}

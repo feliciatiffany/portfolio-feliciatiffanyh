@@ -1,6 +1,7 @@
 // src/pages/Home.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 
 /* --- tiny media box (image/gif/video), with placeholder fallback --- */
 function Thumb({ item }) {
@@ -51,7 +52,7 @@ export default function Home() {
           <Link to="/others" className="grow-band" data-role="others">solutions</Link>
         </span>
       </p>
-     
+
 
       <p className="kicker" style={{ maxWidth: 880 }}>
         When I’m not designing, I’m traveling, going to concerts, or exploring life's side quests. Ghibli and matcha are also my small obsessions. Nice to meet you!

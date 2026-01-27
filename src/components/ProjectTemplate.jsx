@@ -10,6 +10,25 @@ import Lightbox from "./Lightbox.jsx";
 import LogoUrl from "../assets/logosmall.png";
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
+function AutoVideo({ src, alt, poster }) {
+  return (
+    <video
+      className="proj-videoWide__video"
+      src={src}
+      aria-label={alt || "Project video"}
+      poster={poster}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      controls={false}
+      disablePictureInPicture
+      controlsList="nodownload noplaybackrate noremoteplayback"
+    />
+  );
+}
+
 
 // dot-path helper: "row6.items" -> project.row6.items
 function getByPath(obj, path) {
@@ -162,23 +181,44 @@ export default function ProjectTemplate({ project }) {
     }
 
     if (kind === "media") {
-      const items = s.items || getByPath(project, s.itemsPath);
-      const title = s.title ?? null;
-      const layout = s.layout || "gallery";
-      if (!Array.isArray(items) || !items.length) return null;
+  const items = s.items || getByPath(project, s.itemsPath);
+  const title = s.title ?? null;
+  const layout = s.layout || "gallery";
+  if (!Array.isArray(items) || !items.length) return null;
 
-      const isSlider = layout === "slider";
-      return (
-        <section key={i} className={isSlider ? "proj-slider" : "proj-section"}>
-          {title ? <h3 className="proj-minihead">{title}</h3> : null}
-          {isSlider ? (
-            <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
-          ) : (
-            <ImagesRow media={items} onOpen={openLightbox} />
-          )}
-        </section>
-      );
-    }
+  // ✅ NEW: full-width autoplay mp4 (no controls)
+  if (layout === "video") {
+    return (
+      <section key={i} className="proj-section proj-videoWide">
+        {title ? <h3 className="proj-minihead">{title}</h3> : null}
+
+        <div className="proj-videoWide__wrap">
+          {items.map((v, idx) => (
+            <AutoVideo
+              key={idx}
+              src={v.src}
+              alt={v.alt}
+              poster={v.poster}
+            />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  const isSlider = layout === "slider";
+  return (
+    <section key={i} className={isSlider ? "proj-slider" : "proj-section"}>
+      {title ? <h3 className="proj-minihead">{title}</h3> : null}
+      {isSlider ? (
+        <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
+      ) : (
+        <ImagesRow media={items} onOpen={openLightbox} />
+      )}
+    </section>
+  );
+}
+
 
     if (kind === "desc") {
       const data = s.data || getByPath(project, s.dataPath);

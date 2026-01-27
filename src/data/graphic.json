@@ -4,6 +4,34 @@
   ],
   "projects": [
     {
+      "slug": "nusa-penida",
+      "title": "Nusa Penida",
+      "category": "graphic",
+      "num": 2025,
+      "label": "Brand Design",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/graphicdesign/nusaPenida/thumbnail.mp4",
+          "alt": "Nusa Penida Brand Design"
+        }
+      ]
+    },
+    {
+      "slug": "cilok",
+      "title": "Cilok",
+      "category": "graphic",
+      "num": 2025,
+      "label": "Brand Design",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/graphicdesign/cilok/thumbnail.mp4",
+          "alt": "Cilok Brand Design"
+        }
+      ]
+    },
+    {
       "slug": "personal-logo-design",
       "title": "Personal Logo Design",
       "category": "graphic",

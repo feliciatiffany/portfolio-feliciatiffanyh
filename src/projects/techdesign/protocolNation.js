@@ -29,7 +29,8 @@ export default {
 
   intro:
     "This project explores how current social phenomena and emerging technologies might evolve, using design to extrapolate a plausible future scenario. The timeframe is intentionally open-ended, allowing the work to extend as far into the future as needed to support the concept.\n\n" +
-    "The goal is to design a fully formed “world”—a coherent system that can immerse an audience through conceptual worlding. Rather than focusing only on individual tools, interfaces, or prototypes, the project emphasizes the broader networks those artifacts belong to: the relationships, infrastructures, behaviors, and rules that make the world function as a living ecosystem.",
+    "The goal of Protocol Nation is to portray a fully formed world where a human physical self can be transferred into a digital world on a screen (The full world description is in the project abstract). The projection mapping installation illustrates a day in the life of a “Surver” (a human who lives on a screen), showing how they can manipulate the digital world and coexist within it. The website acts as a prologue to the installation, setting the mood, introducing the world, and standing on its own as an interactive React experience. It also includes live documentation at the end."+"\n\n" +
+    "Rather than focusing only on individual tools, interfaces, or prototypes, the project emphasizes the broader networks those artifacts belong to: the relationships, infrastructures, behaviors, and rules that make the world function as a living ecosystem.",
 
   media: [
     { type: "image", src: "/media/techdesign/protocolNation/documentation1.JPG", alt: "Documentation 1" },
