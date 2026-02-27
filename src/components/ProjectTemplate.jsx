@@ -1,5 +1,5 @@
 // src/components/ProjectTemplate.jsx
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect} from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import ImagesRow from "./ImagesRow.jsx";
@@ -29,6 +29,73 @@ function AutoVideo({ src, alt, poster }) {
   );
 }
 
+const IG_SCRIPT_ID = "instagram-embed-script";
+
+function ensureInstagramScript() {
+  if (typeof window === "undefined") return Promise.resolve();
+
+  // already loaded
+  if (window.instgrm?.Embeds?.process) return Promise.resolve();
+
+  // already injected, wait a tick
+  const existing = document.getElementById(IG_SCRIPT_ID);
+  if (existing) {
+    return new Promise((resolve) => setTimeout(resolve, 80));
+  }
+
+  return new Promise((resolve) => {
+    const s = document.createElement("script");
+    s.id = IG_SCRIPT_ID;
+    s.async = true;
+    s.defer = true;
+    s.src = "https://www.instagram.com/embed.js";
+    s.onload = () => resolve();
+    s.onerror = () => resolve(); // fail silently, we’ll show fallback link
+    document.body.appendChild(s);
+  });
+}
+
+function InstagramEmbed({ url, captioned = false }) {
+  useEffect(() => {
+    let cancelled = false;
+
+    ensureInstagramScript().then(() => {
+      if (cancelled) return;
+      // Ask Instagram to parse any new blockquotes we rendered
+      window.instgrm?.Embeds?.process?.();
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [url]);
+
+  if (!url) return null;
+
+  return (
+    <div style={{ display: "grid", gap: 10 }}>
+      <blockquote
+        className="instagram-media"
+        data-instgrm-permalink={url}
+        data-instgrm-version="14"
+        // Instagram uses this attr to show captions when present
+        data-instgrm-captioned={captioned ? "true" : undefined}
+        style={{
+          background: "#fff",
+          border: 0,
+          margin: 0,
+          padding: 0,
+          width: "100%",
+          maxWidth: 540,
+        }}
+      />
+      {/* Fallback if embeds are blocked */}
+      <a href={url} target="_blank" rel="noreferrer" className="proj-row6__link">
+        Open on Instagram
+      </a>
+    </div>
+  );
+}
 
 // dot-path helper: "row6.items" -> project.row6.items
 function getByPath(obj, path) {
@@ -186,6 +253,7 @@ export default function ProjectTemplate({ project }) {
   const layout = s.layout || "gallery";
   if (!Array.isArray(items) || !items.length) return null;
 
+  
   // ✅ NEW: full-width autoplay mp4 (no controls)
   if (layout === "video") {
     return (
@@ -205,6 +273,8 @@ export default function ProjectTemplate({ project }) {
       </section>
     );
   }
+
+  
 
   const isSlider = layout === "slider";
   return (
@@ -236,20 +306,70 @@ export default function ProjectTemplate({ project }) {
   if (!left && !right) return null;
 
   const renderCol = (data, layout = "gallery") => {
-    if (!data) return null;
+  if (!data) return null;
 
-    // ✅ if the data is a media array, render images directly
-    if (Array.isArray(data)) {
-      const isSlider = layout === "slider";
-      return isSlider ? (
-        <ImagesSlider items={data} onOpen={openLightbox} showTitle={false} />
-      ) : (
-        <ImagesRow media={data} onOpen={openLightbox} />
-      );
-    }
+  // ✅ Inline Instagram block inside twoCol
+  if (data?.kind === "instagram") {
+    const title = data.title ?? null;
+    const raw =
+      data.items ||
+      getByPath(project, data.itemsPath) ||
+      (data.url ? [{ url: data.url }] : null);
 
-    return <DescriptionProject1 data={data} />;
-  };
+    const items = Array.isArray(raw) ? raw : null;
+    if (!items?.length) return null;
+
+    return (
+      <div style={{ display: "grid", gap: 12 }}>
+        {title ? <h3 className="proj-minihead">{title}</h3> : null}
+        <div style={{ display: "grid", gap: 18 }}>
+          {items.map((it, idx) => {
+            const url = typeof it === "string" ? it : it?.url;
+            const captioned =
+              typeof it === "object" ? !!it.captioned : !!data.captioned;
+
+            return (
+              <InstagramEmbed key={url || idx} url={url} captioned={captioned} />
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // ✅ Inline Media block inside twoCol (slider/gallery)
+  if (data?.kind === "media") {
+    const items = data.items || getByPath(project, data.itemsPath);
+    if (!Array.isArray(items) || !items.length) return null;
+
+    const title = data.title ?? null;
+    const lay = data.layout || layout || "gallery";
+    const isSlider = lay === "slider";
+
+    return (
+      <div style={{ display: "grid", gap: 12 }}>
+        {title ? <h3 className="proj-minihead">{title}</h3> : null}
+        {isSlider ? (
+          <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
+        ) : (
+          <ImagesRow media={items} onOpen={openLightbox} />
+        )}
+      </div>
+    );
+  }
+
+  if (Array.isArray(data)) {
+    const isSlider = layout === "slider";
+    return isSlider ? (
+      <ImagesSlider items={data} onOpen={openLightbox} showTitle={false} />
+    ) : (
+      <ImagesRow media={data} onOpen={openLightbox} />
+    );
+  }
+
+  
+  return <DescriptionProject1 data={data} />;
+};
 
   return (
     <section key={i} className="proj-row5">
@@ -280,6 +400,7 @@ export default function ProjectTemplate({ project }) {
       );
     }
 
+
     if (kind === "youtubes") {
       const ys = s.items || getByPath(project, s.itemsPath);
       if (!Array.isArray(ys) || !ys.length) return null;
@@ -305,6 +426,30 @@ export default function ProjectTemplate({ project }) {
       );
     }
 
+        if (kind === "instagram") {
+      const title = s.title ?? null;
+
+      // Accept:
+      // - s.items (array)
+      // - s.itemsPath (dot-path)
+      // - s.url (single)
+      const raw = s.items || getByPath(project, s.itemsPath) || (s.url ? [{ url: s.url }] : null);
+      const items = Array.isArray(raw) ? raw : null;
+      if (!items || !items.length) return null;
+
+      return (
+        <section key={i} className="proj-row6" style={{ marginTop: 18 }}>
+          {title ? <h3 className="proj-minihead">{title}</h3> : null}
+          <div style={{ display: "grid", gap: 18 }}>
+            {items.map((it, idx) => {
+              const url = typeof it === "string" ? it : it?.url;
+              const captioned = typeof it === "object" ? !!it.captioned : !!s.captioned;
+              return <InstagramEmbed key={url || idx} url={url} captioned={captioned} />;
+            })}
+          </div>
+        </section>
+      );
+    }
     if (kind === "references") {
       const refs = s.items || getByPath(project, s.itemsPath);
       if (!Array.isArray(refs) || !refs.length) return null;

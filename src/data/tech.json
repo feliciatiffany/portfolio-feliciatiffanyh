@@ -8,6 +8,34 @@
     ],
     "projects": [
         {
+            "slug": "ThunderTD",
+            "title": "“Thunder” TouchDesigner ",
+            "category": "tech",
+            "num": 2025,
+            "label": "TouchDesigner",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/protocolNation/thumbnail.mp4",
+                    "alt": "Lighting TouchDesigner Visuals"
+                }
+            ]
+        },
+        {
+            "slug": "a-week-of-blender",
+            "title": "A Week of Blender",
+            "category": "tech",
+            "num": 2025,
+            "label": "3D Modeling",
+            "media": [
+                {
+                    "type": "image",
+                    "src": "/media/techdesign/weekofBlender/3_1.png",
+                    "alt": "A Week of Blender"
+                }
+            ]
+        },
+        {
             "slug": "protocol-nation",
             "title": "Protocol Nation",
             "category": "tech",
@@ -80,13 +108,26 @@
             "slug": "redDoors",
             "title": "Red Doors",
             "category": "tech",
-            "num": 2025,
+            "num": 2023,
             "label": "Educational Game",
             "media": [
                 {
                     "type": "image",
                     "src": "/media/techdesign/redDoors/Slide1.jpeg",
                     "alt": "Red Doors"
+                }
+            ]
+        },{
+            "slug": "ppe-cooler-box",
+            "title": "PPE Cooler Box",
+            "category": "tech",
+            "num": 2021,
+            "label": "Health Tech",
+            "media": [
+                {
+                    "type": "image",
+                    "src": "/media/techdesign/ppeCooler/ppeCooler.png",
+                    "alt": "PPE Cooler Box"
                 }
             ]
         }
