@@ -24,12 +24,12 @@ export default {
 
   youtube: {
     title: "YouTube",
-    videoId: "7Mz7gm41abA",
-    url: "https://youtu.be/7Mz7gm41abA",
+    videoId: "KHj4C1o3eOw",
+    url: "https://youtu.be/KHj4C1o3eOw",
   },
 
   instagramEmbeds: [
-    { url: "https://www.instagram.com/reel/REPLACE_WITH_SHORTCODE_1/", captioned: false },
+    { url: "https://www.instagram.com/p/DVSoafCjmPs/?igsh=MXdkdDVwMTkwNDNkbw==", captioned: false },
   ],
 
   // ✅ left column: instagram embed (inline)
