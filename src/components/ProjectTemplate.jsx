@@ -1,5 +1,5 @@
 // src/components/ProjectTemplate.jsx
-import React, { useMemo, useState, useEffect} from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import ImagesRow from "./ImagesRow.jsx";
@@ -10,11 +10,19 @@ import Lightbox from "./Lightbox.jsx";
 import LogoUrl from "../assets/logosmall.png";
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
+
+// Better video compatibility (MOV sometimes fails in Chrome depending on codec)
 function AutoVideo({ src, alt, poster }) {
+  const type =
+    src?.endsWith(".mp4")
+      ? "video/mp4"
+      : src?.endsWith(".mov")
+        ? "video/quicktime"
+        : undefined;
+
   return (
     <video
       className="proj-videoWide__video"
-      src={src}
       aria-label={alt || "Project video"}
       poster={poster}
       autoPlay
@@ -25,7 +33,9 @@ function AutoVideo({ src, alt, poster }) {
       controls={false}
       disablePictureInPicture
       controlsList="nodownload noplaybackrate noremoteplayback"
-    />
+    >
+      <source src={src} type={type} />
+    </video>
   );
 }
 
@@ -34,14 +44,10 @@ const IG_SCRIPT_ID = "instagram-embed-script";
 function ensureInstagramScript() {
   if (typeof window === "undefined") return Promise.resolve();
 
-  // already loaded
   if (window.instgrm?.Embeds?.process) return Promise.resolve();
 
-  // already injected, wait a tick
   const existing = document.getElementById(IG_SCRIPT_ID);
-  if (existing) {
-    return new Promise((resolve) => setTimeout(resolve, 80));
-  }
+  if (existing) return new Promise((resolve) => setTimeout(resolve, 80));
 
   return new Promise((resolve) => {
     const s = document.createElement("script");
@@ -50,7 +56,7 @@ function ensureInstagramScript() {
     s.defer = true;
     s.src = "https://www.instagram.com/embed.js";
     s.onload = () => resolve();
-    s.onerror = () => resolve(); // fail silently, we’ll show fallback link
+    s.onerror = () => resolve();
     document.body.appendChild(s);
   });
 }
@@ -61,7 +67,6 @@ function InstagramEmbed({ url, captioned = false }) {
 
     ensureInstagramScript().then(() => {
       if (cancelled) return;
-      // Ask Instagram to parse any new blockquotes we rendered
       window.instgrm?.Embeds?.process?.();
     });
 
@@ -78,7 +83,6 @@ function InstagramEmbed({ url, captioned = false }) {
         className="instagram-media"
         data-instgrm-permalink={url}
         data-instgrm-version="14"
-        // Instagram uses this attr to show captions when present
         data-instgrm-captioned={captioned ? "true" : undefined}
         style={{
           background: "#fff",
@@ -89,7 +93,6 @@ function InstagramEmbed({ url, captioned = false }) {
           maxWidth: 540,
         }}
       />
-      {/* Fallback if embeds are blocked */}
       <a href={url} target="_blank" rel="noreferrer" className="proj-row6__link">
         Open on Instagram
       </a>
@@ -97,7 +100,6 @@ function InstagramEmbed({ url, captioned = false }) {
   );
 }
 
-// dot-path helper: "row6.items" -> project.row6.items
 function getByPath(obj, path) {
   if (!path) return undefined;
   return String(path)
@@ -131,21 +133,16 @@ export default function ProjectTemplate({ project }) {
   };
   const closeLightbox = () => setLbItem(null);
 
-  // --------- legacy blocks builder (your current behavior) ----------
   const legacySections = useMemo(() => {
     if (!project) return [];
-
     const out = [];
 
-    // intro/meta
     out.push({ kind: "intro" });
 
-    // gallery media
     if (Array.isArray(project.media) && project.media.length) {
       out.push({ kind: "media", title: null, layout: "gallery", itemsPath: "media" });
     }
 
-    // optional top slider
     if (project.slider?.items?.length) {
       out.push({
         kind: "media",
@@ -155,12 +152,10 @@ export default function ProjectTemplate({ project }) {
       });
     }
 
-    // 2-col descriptions
     if (project.descLeft || project.descRight) {
       out.push({ kind: "twoCol", leftPath: "descLeft", rightPath: "descRight" });
     }
 
-    // row6 flexible: (supports items, websiteScreens, row6.youtube, row6.youtubes)
     const r6 = project.row6;
     if (r6) {
       if (r6.websiteScreens?.media?.length) {
@@ -187,12 +182,10 @@ export default function ProjectTemplate({ project }) {
       }
     }
 
-    // row7 (2-col text)
     if (project.row7?.left || project.row7?.right) {
       out.push({ kind: "twoCol", leftPath: "row7.left", rightPath: "row7.right" });
     }
 
-    // row8 (media + desc)
     if (project.row8?.media?.length) {
       out.push({
         kind: "media",
@@ -205,12 +198,10 @@ export default function ProjectTemplate({ project }) {
       out.push({ kind: "desc", dataPath: "row8.desc" });
     }
 
-    // top-level youtube
     if (project.youtube?.videoId) {
       out.push({ kind: "youtube", title: project.youtube.title || "Project Video", videoIdPath: "youtube.videoId" });
     }
 
-    // references
     if (Array.isArray(project.references) && project.references.length) {
       out.push({ kind: "references", title: "References", itemsPath: "references" });
     }
@@ -218,7 +209,6 @@ export default function ProjectTemplate({ project }) {
     return out;
   }, [project]);
 
-  // --------- main “sections” source ----------
   const sections = useMemo(() => {
     if (!project) return [];
     return Array.isArray(project.sections) && project.sections.length ? project.sections : legacySections;
@@ -235,7 +225,6 @@ export default function ProjectTemplate({ project }) {
     );
   }
 
-  // --------- renderer ----------
   const renderSection = (s, i) => {
     const kind = s?.kind;
 
@@ -248,47 +237,36 @@ export default function ProjectTemplate({ project }) {
     }
 
     if (kind === "media") {
-  const items = s.items || getByPath(project, s.itemsPath);
-  const title = s.title ?? null;
-  const layout = s.layout || "gallery";
-  if (!Array.isArray(items) || !items.length) return null;
+      const items = s.items || getByPath(project, s.itemsPath);
+      const title = s.title ?? null;
+      const layout = s.layout || "gallery";
+      if (!Array.isArray(items) || !items.length) return null;
 
-  
-  // ✅ NEW: full-width autoplay mp4 (no controls)
-  if (layout === "video") {
-    return (
-      <section key={i} className="proj-section proj-videoWide">
-        {title ? <h3 className="proj-minihead">{title}</h3> : null}
+      if (layout === "video") {
+        return (
+          <section key={i} className="proj-section proj-videoWide">
+            {title ? <h3 className="proj-minihead">{title}</h3> : null}
+            <div className="proj-videoWide__wrap">
+              {items.map((v, idx) => (
+                <AutoVideo key={idx} src={v.src} alt={v.alt} poster={v.poster} />
+              ))}
+            </div>
+          </section>
+        );
+      }
 
-        <div className="proj-videoWide__wrap">
-          {items.map((v, idx) => (
-            <AutoVideo
-              key={idx}
-              src={v.src}
-              alt={v.alt}
-              poster={v.poster}
-            />
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  
-
-  const isSlider = layout === "slider";
-  return (
-    <section key={i} className={isSlider ? "proj-slider" : "proj-section"}>
-      {title ? <h3 className="proj-minihead">{title}</h3> : null}
-      {isSlider ? (
-        <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
-      ) : (
-        <ImagesRow media={items} onOpen={openLightbox} />
-      )}
-    </section>
-  );
-}
-
+      const isSlider = layout === "slider";
+      return (
+        <section key={i} className={isSlider ? "proj-slider" : "proj-section"}>
+          {title ? <h3 className="proj-minihead">{title}</h3> : null}
+          {isSlider ? (
+            <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
+          ) : (
+            <ImagesRow media={items} onOpen={openLightbox} />
+          )}
+        </section>
+      );
+    }
 
     if (kind === "desc") {
       const data = s.data || getByPath(project, s.dataPath);
@@ -301,84 +279,89 @@ export default function ProjectTemplate({ project }) {
     }
 
     if (kind === "twoCol") {
-  const left = s.left || getByPath(project, s.leftPath);
-  const right = s.right || getByPath(project, s.rightPath);
-  if (!left && !right) return null;
+      const left = s.left || getByPath(project, s.leftPath);
+      const right = s.right || getByPath(project, s.rightPath);
+      if (!left && !right) return null;
 
-  const renderCol = (data, layout = "gallery") => {
-  if (!data) return null;
+      const renderCol = (data, layout = "gallery") => {
+        if (!data) return null;
 
-  // ✅ Inline Instagram block inside twoCol
-  if (data?.kind === "instagram") {
-    const title = data.title ?? null;
-    const raw =
-      data.items ||
-      getByPath(project, data.itemsPath) ||
-      (data.url ? [{ url: data.url }] : null);
+        // ✅ Inline Instagram inside twoCol
+        if (data?.kind === "instagram") {
+          const title = data.title ?? null;
+          const raw =
+            data.items || getByPath(project, data.itemsPath) || (data.url ? [{ url: data.url }] : null);
+          const items = Array.isArray(raw) ? raw : null;
+          if (!items?.length) return null;
 
-    const items = Array.isArray(raw) ? raw : null;
-    if (!items?.length) return null;
+          return (
+            <div style={{ display: "grid", gap: 12 }}>
+              {title ? <h3 className="proj-minihead">{title}</h3> : null}
+              <div style={{ display: "grid", gap: 18 }}>
+                {items.map((it, idx) => {
+                  const url = typeof it === "string" ? it : it?.url;
+                  const captioned = typeof it === "object" ? !!it.captioned : !!data.captioned;
+                  return <InstagramEmbed key={url || idx} url={url} captioned={captioned} />;
+                })}
+              </div>
+            </div>
+          );
+        }
 
-    return (
-      <div style={{ display: "grid", gap: 12 }}>
-        {title ? <h3 className="proj-minihead">{title}</h3> : null}
-        <div style={{ display: "grid", gap: 18 }}>
-          {items.map((it, idx) => {
-            const url = typeof it === "string" ? it : it?.url;
-            const captioned =
-              typeof it === "object" ? !!it.captioned : !!data.captioned;
+        if (data?.kind === "media") {
+          const items = data.items || getByPath(project, data.itemsPath);
+          if (!Array.isArray(items) || !items.length) return null;
 
+          const title = data.title ?? null;
+          const lay = data.layout || layout || "gallery";
+
+          // ✅ ADD THIS: video support inside twoCol
+          if (lay === "video") {
             return (
-              <InstagramEmbed key={url || idx} url={url} captioned={captioned} />
+              <div style={{ display: "grid", gap: 12 }}>
+                {title ? <h3 className="proj-minihead">{title}</h3> : null}
+                <div className="proj-videoWide__wrap">
+                  {items.map((v, idx) => (
+                    <AutoVideo key={idx} src={v.src} alt={v.alt} poster={v.poster} />
+                  ))}
+                </div>
+              </div>
             );
-          })}
-        </div>
-      </div>
-    );
-  }
+          }
 
-  // ✅ Inline Media block inside twoCol (slider/gallery)
-  if (data?.kind === "media") {
-    const items = data.items || getByPath(project, data.itemsPath);
-    if (!Array.isArray(items) || !items.length) return null;
+          const isSlider = lay === "slider";
+          return (
+            <div style={{ display: "grid", gap: 12 }}>
+              {title ? <h3 className="proj-minihead">{title}</h3> : null}
+              {isSlider ? (
+                <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
+              ) : (
+                <ImagesRow media={items} onOpen={openLightbox} />
+              )}
+            </div>
+          );
+        }
+        // Arrays = images
+        if (Array.isArray(data)) {
+          const isSlider = layout === "slider";
+          return isSlider ? (
+            <ImagesSlider items={data} onOpen={openLightbox} showTitle={false} />
+          ) : (
+            <ImagesRow media={data} onOpen={openLightbox} />
+          );
+        }
 
-    const title = data.title ?? null;
-    const lay = data.layout || layout || "gallery";
-    const isSlider = lay === "slider";
+        // Objects = description blocks
+        return <DescriptionProject1 data={data} />;
+      };
 
-    return (
-      <div style={{ display: "grid", gap: 12 }}>
-        {title ? <h3 className="proj-minihead">{title}</h3> : null}
-        {isSlider ? (
-          <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
-        ) : (
-          <ImagesRow media={items} onOpen={openLightbox} />
-        )}
-      </div>
-    );
-  }
-
-  if (Array.isArray(data)) {
-    const isSlider = layout === "slider";
-    return isSlider ? (
-      <ImagesSlider items={data} onOpen={openLightbox} showTitle={false} />
-    ) : (
-      <ImagesRow media={data} onOpen={openLightbox} />
-    );
-  }
-
-  
-  return <DescriptionProject1 data={data} />;
-};
-
-  return (
-    <section key={i} className="proj-row5">
-      <div className="proj-col">{renderCol(left, s.leftLayout)}</div>
-      <div className="proj-col">{renderCol(right, s.rightLayout)}</div>
-    </section>
-  );
-}
-
+      return (
+        <section key={i} className="proj-row5">
+          <div className="proj-col">{renderCol(left, s.leftLayout)}</div>
+          <div className="proj-col">{renderCol(right, s.rightLayout)}</div>
+        </section>
+      );
+    }
 
     if (kind === "youtube") {
       const videoId = s.videoId || getByPath(project, s.videoIdPath);
@@ -399,7 +382,6 @@ export default function ProjectTemplate({ project }) {
         </section>
       );
     }
-
 
     if (kind === "youtubes") {
       const ys = s.items || getByPath(project, s.itemsPath);
@@ -426,16 +408,11 @@ export default function ProjectTemplate({ project }) {
       );
     }
 
-        if (kind === "instagram") {
+    if (kind === "instagram") {
       const title = s.title ?? null;
-
-      // Accept:
-      // - s.items (array)
-      // - s.itemsPath (dot-path)
-      // - s.url (single)
       const raw = s.items || getByPath(project, s.itemsPath) || (s.url ? [{ url: s.url }] : null);
       const items = Array.isArray(raw) ? raw : null;
-      if (!items || !items.length) return null;
+      if (!items?.length) return null;
 
       return (
         <section key={i} className="proj-row6" style={{ marginTop: 18 }}>
@@ -450,6 +427,7 @@ export default function ProjectTemplate({ project }) {
         </section>
       );
     }
+
     if (kind === "references") {
       const refs = s.items || getByPath(project, s.itemsPath);
       if (!Array.isArray(refs) || !refs.length) return null;
@@ -475,7 +453,6 @@ export default function ProjectTemplate({ project }) {
 
   return (
     <div className="project-template" data-layout={layoutAttr}>
-      {/* ROW 1 */}
       <header className="proj-head">
         <Link to="/" className="proj-logo" aria-label="Home">
           <img src={LogoUrl} alt="Logo" />
@@ -484,7 +461,6 @@ export default function ProjectTemplate({ project }) {
         <h1 className="proj-head__title">{project.title}</h1>
       </header>
 
-      {/* ROW 2 */}
       <nav className="proj-nav" aria-label="Main navigation">
         <NavItem to="/about">About</NavItem>
         <NavItem to="/tech">Tech Designer</NavItem>
@@ -492,7 +468,6 @@ export default function ProjectTemplate({ project }) {
         <NavItem to="/others">Others</NavItem>
       </nav>
 
-      {/* REORDERABLE BODY */}
       <main className="proj-body">{sections.map(renderSection)}</main>
 
       <Lightbox open={!!lbItem} item={lbItem} onClose={closeLightbox} />

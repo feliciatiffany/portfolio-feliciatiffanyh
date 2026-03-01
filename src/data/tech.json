@@ -16,7 +16,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/protocolNation/thumbnail.mp4",
+                    "src": "/media/techdesign/thunder/documentation trim.mov",
                     "alt": "Lighting TouchDesigner Visuals"
                 }
             ]
@@ -77,6 +77,21 @@
                 }
             ]
         },
+        
+        {
+            "slug": "p5js-portfolio",
+            "title": "p5js",
+            "category": "tech",
+            "num": 2025,
+            "label": "Interactive Visualization",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/p5js/design2.mp4",
+                    "alt": "p5js Portfolio"
+                }
+            ]
+        },
         {
             "slug": "dialogue-with-the-wind",
             "title": "Dialogue with the Wind",
@@ -115,19 +130,6 @@
                     "type": "image",
                     "src": "/media/techdesign/redDoors/Slide1.jpeg",
                     "alt": "Red Doors"
-                }
-            ]
-        },{
-            "slug": "ppe-cooler-box",
-            "title": "PPE Cooler Box",
-            "category": "tech",
-            "num": 2021,
-            "label": "Health Tech",
-            "media": [
-                {
-                    "type": "image",
-                    "src": "/media/techdesign/ppeCooler/ppeCooler.png",
-                    "alt": "PPE Cooler Box"
                 }
             ]
         }

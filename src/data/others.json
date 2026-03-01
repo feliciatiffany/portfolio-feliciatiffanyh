@@ -16,6 +16,19 @@
           "alt": "The True Light"
         }
       ]
-    }
+    },{
+            "slug": "ppeCoolerBox",
+            "title": "PPE Cooler Box",
+            "category": "others",
+            "num": 2021,
+            "label": "Health Tech",
+            "media": [
+                {
+                    "type": "image",
+                    "src": "/media/techdesign/ppeCooler/ppeCooler.png",
+                    "alt": "PPE Cooler Box"
+                }
+            ]
+        }
   ]
 }
