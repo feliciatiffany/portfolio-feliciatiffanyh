@@ -1,69 +1,11 @@
 // src/pages/TechDesigner.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { byCategory } from "../lib/projects";
-
-
-/* Reusable media node (img/video) */
-function Media({ item, autoPlay = false }) {
-  if (item?.type === "video") {
-    return (
-      <video
-        src={item.src}
-        poster={item.poster || undefined}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        {...(autoPlay ? { autoPlay: true } : {})}
-      />
-    );
-  }
-  return <img src={item?.src} alt={item?.alt || ""} loading="lazy" />;
-}
-
-/* Thumb only (the same media grows via CSS on card hover) */
-function ThumbWrap({ item }) {
-  return (
-    <span className="thumb-wrap">
-      <span className="thumb">
-        <Media item={item} autoPlay={item?.type === "video"} />
-      </span>
-    </span>
-  );
-}
-
-/* Card (box) — hover anywhere on this card triggers stretch + image growth */
-function ProjectCard({ row }) {
-  return (
-    <Link to={`/work/${row.slug}`} className="proj-card-link">
-      <article className="proj-card">
-        <div className="proj-row">
-          <div className="row-top">
-            <span className="title">{row.title}</span>
-            <span className="meta-block">
-              <span className="num">{row.num}</span>
-              <span className="label">{row.label}</span>
-            </span>
-
-            {(row.media || []).map((m, j) => (
-              <ThumbWrap key={j} item={m} />
-            ))}
-
-            <span className="punct">;</span>
-          </div>
-        </div>
-      </article>
-    </Link>
-  );
-}
+import ProjectList from "../components/ProjectList.jsx";
 
 export default function TechDesigner() {
-  const projects = byCategory("tech");
-
   return (
     <>
-      {/* INTRO — maps to grid-area:intro (see style.css) */}
       <section className="hero">
         <p className="intro">
           <span className="line">
@@ -90,12 +32,8 @@ export default function TechDesigner() {
         </p>
       </section>
 
-      {/* PROJECT LIST — maps to grid-area:content (see style.css) */}
-      <section className="projects projects--tiny projects--block projects--side projects--grid techdesigner-page">
-        {projects.map((row) => (
-          <ProjectCard key={row.slug || row.title} row={row} />
-        ))}
-      </section>
+      {/* IMPORTANT: ProjectList must be direct child (no wrapper) */}
+      <ProjectList categorySlug="tech" className="techdesigner-page" />
     </>
   );
 }

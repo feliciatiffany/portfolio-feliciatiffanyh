@@ -26,7 +26,7 @@
             "title": "A Week of Blender",
             "category": "tech",
             "num": 2025,
-            "label": "3D Modeling",
+            "label": "3D",
             "media": [
                 {
                     "type": "image",
@@ -40,7 +40,7 @@
             "title": "Protocol Nation",
             "category": "tech",
             "num": 2025,
-            "label": "Projection Mapping + React",
+            "label": "Mapping + Web",
             "media": [
                 {
                     "type": "video",
@@ -68,7 +68,7 @@
             "title": "Seeing The Unseen City",
             "category": "tech",
             "num": 2025,
-            "label": "Data Visualization",
+            "label": "Data Vis",
             "media": [
                 {
                     "type": "image",
@@ -83,7 +83,7 @@
             "title": "p5js",
             "category": "tech",
             "num": 2025,
-            "label": "Interactive Visualization",
+            "label": "Javascript",
             "media": [
                 {
                     "type": "video",
@@ -97,7 +97,7 @@
             "title": "Dialogue with the Wind",
             "category": "tech",
             "num": 2024,
-            "label": "Interactive Installation",
+            "label": "Installation",
             "media": [
                 {
                     "type": "image",
@@ -111,7 +111,7 @@
             "title": "Indonesian Café ",
             "category": "tech",
             "num": 2025,
-            "label": "Unity:Rube Goldberg",
+            "label": "Unity",
             "media": [
                 {
                     "type": "video",
@@ -124,7 +124,7 @@
             "title": "Red Doors",
             "category": "tech",
             "num": 2023,
-            "label": "Educational Game",
+            "label": "Edu Game",
             "media": [
                 {
                     "type": "image",

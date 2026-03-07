@@ -2,29 +2,36 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Media from "./Media.jsx";
 
-export default function ProjectRow({ p }) {
+export default function ProjectRow({ p, onHover }) {
+  const firstMedia = (p.media || [])[0] || null;
+
   return (
-    <article className="proj-row" tabIndex={0}>
-      <div className="row-top">
-        <Link to={`/work/${p.slug}`} className="title">{p.title}</Link>
-        <sup className="meta-sup">
-          <span className="num">{p.num}</span>
-          <span className="label">{p.label}</span>
-        </sup>
+    <Link
+      to={`/work/${p.slug}`}
+      className="proj-card-link"
+      onMouseEnter={() => onHover?.(p, firstMedia)}
+      onFocus={() => onHover?.(p, firstMedia)}
+    >
+      <article className="proj-card">
+        <div className="proj-row">
+          <div className="row-top">
+            <span className="title">{p.title}</span>
 
-        {(p.media || []).map((m, i) => (
-          <span className="thumb-wrap" key={i}>
-            <span className="thumb">
-              <Media item={m} autoPlay={m?.type === "video"} />
+            <span className="meta-block">
+              <span className="num">{p.num}</span>
+              <span className="label">{p.label}</span>
             </span>
-            <span className="preview">
-              <Media item={m} autoPlay />
-            </span>
-          </span>
-        ))}
 
-        <span className="punct">;</span>
-      </div>
-    </article>
+            <span className="thumb-wrap">
+              <span className="thumb">
+                <Media item={firstMedia} autoPlay={firstMedia?.type === "video"} controls={false} />
+              </span>
+            </span>
+
+            <span className="punct">;</span>
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 }

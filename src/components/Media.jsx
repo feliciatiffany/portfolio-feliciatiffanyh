@@ -1,7 +1,6 @@
-// src/components/Media.jsx
 import React from "react";
 
-export default function Media({ item, className, autoPlay = false }) {
+export default function Media({ item, className, autoPlay = false, controls = false }) {
   if (!item?.src) return null;
 
   const cls = className || "proj-media";
@@ -12,10 +11,12 @@ export default function Media({ item, className, autoPlay = false }) {
       <video
         className={cls}
         src={item.src}
-        controls
         autoPlay={autoPlay}
         muted={autoPlay}
         playsInline
+        loop={autoPlay}
+        controls={controls}
+        preload="metadata"
       />
     );
   }
