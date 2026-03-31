@@ -11,7 +11,6 @@ import LogoUrl from "../assets/logosmall.png";
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
 
-// Better video compatibility (MOV sometimes fails in Chrome depending on codec)
 function AutoVideo({ src, alt, poster }) {
   const type =
     src?.endsWith(".mp4")
@@ -107,6 +106,10 @@ function getByPath(obj, path) {
     .reduce((acc, key) => (acc && acc[key] != null ? acc[key] : undefined), obj);
 }
 
+function joinClasses(...parts) {
+  return parts.filter(Boolean).join(" ");
+}
+
 function NavItem({ to, children }) {
   return (
     <NavLink
@@ -131,6 +134,7 @@ export default function ProjectTemplate({ project }) {
       caption: item.alt || "",
     });
   };
+
   const closeLightbox = () => setLbItem(null);
 
   const legacySections = useMemo(() => {
@@ -178,7 +182,11 @@ export default function ProjectTemplate({ project }) {
         out.push({ kind: "youtubes", title: r6.title || "Videos", itemsPath: "row6.youtubes" });
       }
       if (r6.youtube?.videoId) {
-        out.push({ kind: "youtube", title: r6.youtube.title || "Video", videoIdPath: "row6.youtube.videoId" });
+        out.push({
+          kind: "youtube",
+          title: r6.youtube.title || "Video",
+          videoIdPath: "row6.youtube.videoId",
+        });
       }
     }
 
@@ -194,12 +202,17 @@ export default function ProjectTemplate({ project }) {
         itemsPath: "row8.media",
       });
     }
+
     if (project.row8?.desc) {
       out.push({ kind: "desc", dataPath: "row8.desc" });
     }
 
     if (project.youtube?.videoId) {
-      out.push({ kind: "youtube", title: project.youtube.title || "Project Video", videoIdPath: "youtube.videoId" });
+      out.push({
+        kind: "youtube",
+        title: project.youtube.title || "Project Video",
+        videoIdPath: "youtube.videoId",
+      });
     }
 
     if (Array.isArray(project.references) && project.references.length) {
@@ -230,7 +243,7 @@ export default function ProjectTemplate({ project }) {
 
     if (kind === "intro") {
       return (
-        <section key={i} className="proj-section">
+        <section key={i} className={joinClasses("proj-section", s.className)}>
           <Introduction intro={project.intro} meta={project.meta} />
         </section>
       );
@@ -244,11 +257,13 @@ export default function ProjectTemplate({ project }) {
 
       if (layout === "video") {
         return (
-          <section key={i} className="proj-section proj-videoWide">
+          <section key={i} className={joinClasses("proj-section", s.className)}>
             {title ? <h3 className="proj-minihead">{title}</h3> : null}
-            <div className="proj-videoWide__wrap">
+            <div className={joinClasses("proj-videoGrid", s.videoGridClassName)}>
               {items.map((v, idx) => (
-                <AutoVideo key={idx} src={v.src} alt={v.alt} poster={v.poster} />
+                <div key={idx} className="proj-videoGrid__item">
+                  <AutoVideo src={v.src} alt={v.alt} poster={v.poster} />
+                </div>
               ))}
             </div>
           </section>
@@ -257,7 +272,7 @@ export default function ProjectTemplate({ project }) {
 
       const isSlider = layout === "slider";
       return (
-        <section key={i} className={isSlider ? "proj-slider" : "proj-section"}>
+        <section key={i} className={joinClasses(isSlider ? "proj-slider" : "proj-section", s.className)}>
           {title ? <h3 className="proj-minihead">{title}</h3> : null}
           {isSlider ? (
             <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
@@ -272,7 +287,7 @@ export default function ProjectTemplate({ project }) {
       const data = s.data || getByPath(project, s.dataPath);
       if (!data) return null;
       return (
-        <section key={i} className="proj-section">
+        <section key={i} className={joinClasses("proj-section", s.className)}>
           <DescriptionProject1 data={data} />
         </section>
       );
@@ -286,7 +301,6 @@ export default function ProjectTemplate({ project }) {
       const renderCol = (data, layout = "gallery") => {
         if (!data) return null;
 
-        // ✅ Inline Instagram inside twoCol
         if (data?.kind === "instagram") {
           const title = data.title ?? null;
           const raw =
@@ -315,14 +329,15 @@ export default function ProjectTemplate({ project }) {
           const title = data.title ?? null;
           const lay = data.layout || layout || "gallery";
 
-          // ✅ ADD THIS: video support inside twoCol
           if (lay === "video") {
             return (
               <div style={{ display: "grid", gap: 12 }}>
                 {title ? <h3 className="proj-minihead">{title}</h3> : null}
-                <div className="proj-videoWide__wrap">
+                <div className="proj-videoGrid">
                   {items.map((v, idx) => (
-                    <AutoVideo key={idx} src={v.src} alt={v.alt} poster={v.poster} />
+                    <div key={idx} className="proj-videoGrid__item">
+                      <AutoVideo src={v.src} alt={v.alt} poster={v.poster} />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -341,7 +356,7 @@ export default function ProjectTemplate({ project }) {
             </div>
           );
         }
-        // Arrays = images
+
         if (Array.isArray(data)) {
           const isSlider = layout === "slider";
           return isSlider ? (
@@ -351,12 +366,11 @@ export default function ProjectTemplate({ project }) {
           );
         }
 
-        // Objects = description blocks
         return <DescriptionProject1 data={data} />;
       };
 
       return (
-        <section key={i} className="proj-row5">
+        <section key={i} className={joinClasses("proj-row5", s.className)}>
           <div className="proj-col">{renderCol(left, s.leftLayout)}</div>
           <div className="proj-col">{renderCol(right, s.rightLayout)}</div>
         </section>
@@ -368,7 +382,7 @@ export default function ProjectTemplate({ project }) {
       if (!videoId) return null;
 
       return (
-        <section key={i} className="proj-row6" style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
           <h3 className="proj-minihead">{s.title || "Video"}</h3>
           <div className="yt-wrap">
             <iframe
@@ -388,7 +402,7 @@ export default function ProjectTemplate({ project }) {
       if (!Array.isArray(ys) || !ys.length) return null;
 
       return (
-        <section key={i} className="proj-row6" style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
           <h3 className="proj-minihead">{s.title || "Videos"}</h3>
           {ys.map((y) => (
             <div key={y.videoId} style={{ display: "grid", gap: 10, marginBottom: 18 }}>
@@ -415,7 +429,7 @@ export default function ProjectTemplate({ project }) {
       if (!items?.length) return null;
 
       return (
-        <section key={i} className="proj-row6" style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
           {title ? <h3 className="proj-minihead">{title}</h3> : null}
           <div style={{ display: "grid", gap: 18 }}>
             {items.map((it, idx) => {
@@ -433,7 +447,7 @@ export default function ProjectTemplate({ project }) {
       if (!Array.isArray(refs) || !refs.length) return null;
 
       return (
-        <section key={i} className="proj-row6" style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
           <h3 className="proj-minihead">{s.title || "References"}</h3>
           <ul className="proj-references">
             {refs.map((r) => (

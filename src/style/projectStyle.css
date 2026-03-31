@@ -1,5 +1,4 @@
-/* src/style/projectStyle.css */
-/* Project Template CSS — fully scoped, won't overwrite other pages */
+/* Project Template CSS â€” fully scoped, won't overwrite other pages */
 
 .project-template{
   --salmon:#DE826D;
@@ -184,12 +183,14 @@
   position: relative;
   padding-right: 14px;
 }
+
 .project-template .proj-meta dt::after{
   content: ":";
   position: absolute;
   right: 4px;
   opacity: .9;
 }
+
 .project-template .proj-meta dd{
   margin: 0;
 }
@@ -203,7 +204,7 @@
   flex-wrap: wrap;
   gap: 22px;
 
-  align-items: flex-start;   /* top aligned */
+  align-items: flex-start;
   justify-content: flex-start;
 }
 
@@ -213,7 +214,7 @@
   flex: 0 1 auto;
   max-width: 100%;
 
-  background: transparent;   /* remove grey background */
+  background: transparent;
   overflow: hidden;
 
   display: flex;
@@ -221,7 +222,6 @@
   justify-content: center;
 }
 
-/* clickable wrapper should NOT force full width (keeps your old sizing behavior) */
 .project-template .proj-media-btn{
   appearance: none;
   border: 0;
@@ -239,7 +239,6 @@
   cursor: zoom-in;
 }
 
-/* Full image shown (no crop), consistent height, ratio preserved */
 .project-template .proj-gallery__cell img,
 .project-template .proj-gallery__cell video,
 .project-template .proj-media{
@@ -252,13 +251,11 @@
   object-position: center;
 }
 
-/* Responsive height tweak (same as before) */
 @media (max-width: 900px){
   .project-template .proj-gallery__cell{
     height: min(50vh, 280px);
   }
 }
-
 
 /* ========= ROW 5 ========= */
 .project-template .proj-row5{
@@ -268,10 +265,14 @@
   align-items: start;
 }
 
-.project-template .proj-col{ min-width: 0; }
+.project-template .proj-col{
+  min-width: 0;
+}
 
 /* ===== Rich content ===== */
-.project-template .proj-desc-section{ margin-bottom: 14px; }
+.project-template .proj-desc-section{
+  margin-bottom: 14px;
+}
 
 .project-template .proj-minihead{
   margin: 0 0 8px 0;
@@ -286,17 +287,23 @@
   margin: 0;
 }
 
-.project-template .proj-desc + .proj-desc{ margin-top: 12px; }
+.project-template .proj-desc + .proj-desc{
+  margin-top: 12px;
+}
 
 .project-template .proj-bullets{
   margin: 10px 0 0 18px;
   padding: 0;
 }
 
-.project-template .proj-bullets li{ margin: 6px 0; }
+.project-template .proj-bullets li{
+  margin: 6px 0;
+}
 
 /* ===== Slider ===== */
-.project-template .proj-slider{ margin-top: 22px; }
+.project-template .proj-slider{
+  margin-top: 22px;
+}
 
 .project-template .slider-container{
   position: relative;
@@ -400,10 +407,8 @@
   object-fit: cover;
   display: block;
   border-radius: 12px;
-    pointer-events: none;
-
+  pointer-events: none;
 }
-
 
 /* ===== fullpage-stack (Past Work) ===== */
 .project-template[data-layout="fullpage-stack"] .proj-section--4{
@@ -534,7 +539,7 @@
 @media (max-width: 900px){
   .project-template{
     --proj-head-h: 64px;
-    --proj-nav-h:  44px;
+    --proj-nav-h: 44px;
   }
 
   .project-template .proj-head{
@@ -568,9 +573,181 @@
   .project-template .proj-nav__link{
     transition: none;
   }
+
   .project-template .proj-nav__link:hover,
   .project-template .proj-nav__link:focus-visible{
     letter-spacing: normal;
     filter: none;
+  }
+}
+
+/* =========================================================
+   Blossom project custom layout
+   ========================================================= */
+
+.project-template[data-layout="blossom-grid"] .proj-body{
+  gap: 28px;
+}
+
+/* make blossom video blocks behave like layout containers */
+.project-template[data-layout="blossom-grid"] .proj-videoWide{
+  display: grid;
+  width: 100%;
+}
+
+.project-template[data-layout="blossom-grid"] .proj-videoWide__wrap{
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.project-template[data-layout="blossom-grid"] .proj-videoWide__video{
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* section order:
+   --5 side views
+   --6 wide views
+   --7 close-ups
+*/
+
+/* 1) Side videos: all in one row, side by side, no gap */
+.project-template[data-layout="blossom-grid"] .proj-section--5 .proj-videoWide{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.project-template[data-layout="blossom-grid"] .proj-section--5 .proj-videoWide__video{
+  aspect-ratio: 9 / 16;
+  height: 100%;
+}
+
+/* 2) Wide videos: 2 columns x 2 rows */
+.project-template[data-layout="blossom-grid"] .proj-section--6 .proj-videoWide{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.project-template[data-layout="blossom-grid"] .proj-section--6 .proj-videoWide__video{
+  aspect-ratio: 16 / 9;
+}
+
+/* 3) Close-up videos: all in one row */
+.project-template[data-layout="blossom-grid"] .proj-section--7 .proj-videoWide{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.project-template[data-layout="blossom-grid"] .proj-section--7 .proj-videoWide__video{
+  aspect-ratio: 1 / 1;
+}
+
+/* cleaner section spacing */
+.project-template[data-layout="blossom-grid"] .proj-section--5 .proj-minihead,
+.project-template[data-layout="blossom-grid"] .proj-section--6 .proj-minihead,
+.project-template[data-layout="blossom-grid"] .proj-section--7 .proj-minihead{
+  margin-bottom: 12px;
+}
+
+/* responsive fallbacks */
+@media (max-width: 1100px){
+  .project-template[data-layout="blossom-grid"] .proj-section--5 .proj-videoWide,
+  .project-template[data-layout="blossom-grid"] .proj-section--7 .proj-videoWide{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px){
+  .project-template[data-layout="blossom-grid"] .proj-section--5 .proj-videoWide,
+  .project-template[data-layout="blossom-grid"] .proj-section--6 .proj-videoWide,
+  .project-template[data-layout="blossom-grid"] .proj-section--7 .proj-videoWide{
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================================
+   Added update for Blossom without changing existing styles
+   Requires the updated ProjectTemplate.jsx + blossom.js version
+   ========================================================= */
+
+/* generic video grid for project detail pages */
+.project-template .proj-videoGrid{
+  display: grid;
+  width: 100%;
+  gap: 14px;
+}
+
+.project-template .proj-videoGrid__item{
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.project-template .proj-videoGrid__item .proj-videoWide__video{
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Blossom layout hooks */
+.project-template[data-layout="blossom-grid"] .proj-body{
+  gap: 28px;
+}
+
+/* 1) side videos: 1 2 3 4 in one row, no gap */
+.project-template[data-layout="blossom-grid"] .blossom-side .proj-videoGrid{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.project-template[data-layout="blossom-grid"] .blossom-side .proj-videoWide__video{
+  aspect-ratio: 9 / 16;
+  height: 100%;
+}
+
+/* 2) wide videos: 2 columns x 2 rows */
+.project-template[data-layout="blossom-grid"] .blossom-wide .proj-videoGrid{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.project-template[data-layout="blossom-grid"] .blossom-wide .proj-videoWide__video{
+  aspect-ratio: 16 / 9;
+}
+
+/* 3) close-ups: 1 2 3 4 in one row */
+.project-template[data-layout="blossom-grid"] .blossom-closeups .proj-videoGrid{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 12px;
+}
+
+.project-template[data-layout="blossom-grid"] .blossom-closeups .proj-videoWide__video{
+  aspect-ratio: 9 / 16;
+}
+
+/* optional heading spacing */
+.project-template[data-layout="blossom-grid"] .blossom-side .proj-minihead,
+.project-template[data-layout="blossom-grid"] .blossom-wide .proj-minihead,
+.project-template[data-layout="blossom-grid"] .blossom-closeups .proj-minihead{
+  margin-bottom: 12px;
+}
+
+/* responsive fallback */
+@media (max-width: 1100px){
+  .project-template[data-layout="blossom-grid"] .blossom-side .proj-videoGrid,
+  .project-template[data-layout="blossom-grid"] .blossom-closeups .proj-videoGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px){
+  .project-template[data-layout="blossom-grid"] .blossom-side .proj-videoGrid,
+  .project-template[data-layout="blossom-grid"] .blossom-wide .proj-videoGrid,
+  .project-template[data-layout="blossom-grid"] .blossom-closeups .proj-videoGrid{
+    grid-template-columns: 1fr;
   }
 }

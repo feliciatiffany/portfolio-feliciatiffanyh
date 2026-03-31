@@ -8,30 +8,42 @@
     ],
     "projects": [
         {
+            "slug": "tdvj",
+            "title": "Audio-reactive Album Art",
+            "category": "tech",
+            "num": 2026,
+            "label": "DJ/VJ",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/tdvj/thumbnail_tdvj.mp4",
+                    "alt": "Audio-reactive DJ/VJ Album Art"
+                }
+            ]
+        },{
+            "slug": "blossom",
+            "title": "Out-of-Place Blossom",
+            "category": "tech",
+            "num": 2026,
+            "label": "3D",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/blossom/thumbnail_blossom.mp4",
+                    "alt": "3D Environment Design and Modeling"
+                }
+            ]
+        },{
             "slug": "ThunderTD",
             "title": "“Thunder” TouchDesigner ",
             "category": "tech",
-            "num": 2025,
+            "num": 2026,
             "label": "TouchDesigner",
             "media": [
                 {
                     "type": "video",
                     "src": "/media/techdesign/thunder/documentation trim.mov",
                     "alt": "Lighting TouchDesigner Visuals"
-                }
-            ]
-        },
-        {
-            "slug": "a-week-of-blender",
-            "title": "A Week of Blender",
-            "category": "tech",
-            "num": 2025,
-            "label": "3D",
-            "media": [
-                {
-                    "type": "image",
-                    "src": "/media/techdesign/weekofBlender/3_1.png",
-                    "alt": "A Week of Blender"
                 }
             ]
         },
@@ -46,6 +58,20 @@
                     "type": "video",
                     "src": "/media/techdesign/protocolNation/thumbnail.mp4",
                     "alt": "Protocol Nation"
+                }
+            ]
+        },
+        {
+            "slug": "a-week-of-blender",
+            "title": "A Week of Blender",
+            "category": "tech",
+            "num": 2026,
+            "label": "3D",
+            "media": [
+                {
+                    "type": "image",
+                    "src": "/media/techdesign/weekofBlender/3_1.png",
+                    "alt": "A Week of Blender"
                 }
             ]
         },
