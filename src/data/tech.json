@@ -35,7 +35,7 @@
             ]
         },{
             "slug": "ThunderTD",
-            "title": "“Thunder” TouchDesigner ",
+            "title": "Thunder VJ ",
             "category": "tech",
             "num": 2026,
             "label": "TouchDesigner",
@@ -84,7 +84,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/wehearyou/wehearyou_thumbnail.mp4",
+                    "src": "/media/techdesign/wehearyou/wehearyou_thumbnail2.mp4",
                     "alt": "We Hear You"
                 }
             ]
@@ -103,7 +103,20 @@
                 }
             ]
         },
-        
+        {
+            "slug": "poet",
+            "title": "Poet Guy",
+            "category": "tech",
+            "num": 2025,
+            "label": "API + JavaScript",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/poet/thumbnail_poet.mp4",
+                    "alt": "Poet Guy"
+                }
+            ]
+        },
         {
             "slug": "p5js-portfolio",
             "title": "p5js",
@@ -115,6 +128,19 @@
                     "type": "video",
                     "src": "/media/techdesign/p5js/design2.mp4",
                     "alt": "p5js Portfolio"
+                }
+            ]
+        },{
+            "slug": "sunney",
+            "title": "Sunney Game",
+            "category": "tech",
+            "num": 2026,
+            "label": "Game Design",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/sunney/thumbnail_sunney.mp4",
+                    "alt": "Sunney Game"
                 }
             ]
         },
@@ -146,19 +172,20 @@
                 }
             ]
         },{
-            "slug": "redDoors",
-            "title": "Red Doors",
+            "slug": "caress",
+            "title": "Caress A Bear",
             "category": "tech",
-            "num": 2023,
-            "label": "Edu Game",
+            "num": 2025,
+            "label": "Arduino",
             "media": [
                 {
                     "type": "image",
-                    "src": "/media/techdesign/redDoors/Slide1.jpeg",
-                    "alt": "Red Doors"
+                    "src": "/media/techdesign/caress/Caress_main 2.jpeg",
+                    "alt": "Caress A Bear"
                 }
             ]
         }
+        
         
     ]
     

@@ -4,6 +4,20 @@
   ],
   "projects": [
     {
+            "slug": "redDoors",
+            "title": "Red Doors",
+            "category": "others",
+            "num": 2023,
+            "label": "Edu Game",
+            "media": [
+                {
+                    "type": "image",
+                    "src": "/media/techdesign/redDoors/Slide1.jpeg",
+                    "alt": "Red Doors"
+                }
+            ]
+        },
+    {
       "slug": "theTrueLight",
       "title": "The True Light",
       "category": "others",

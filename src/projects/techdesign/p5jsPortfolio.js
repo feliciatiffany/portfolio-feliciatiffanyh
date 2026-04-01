@@ -1,12 +1,10 @@
-// src/projects/techdesign/p5jsPortfolio.js
-
 export default {
   slug: "p5js-portfolio",
   title: "Visual + Interactive (p5.js & JavaScript)",
 
   meta: {
     category: ["Personal project", "p5.js", "JavaScript", "Interactive Visuals"],
-    year: "2024",
+    year: "2026",
     tools: ["p5.js", "JavaScript"],
   },
 
@@ -19,12 +17,9 @@ export default {
 
   sections: [
     { kind: "intro" },
-
     { kind: "desc", dataPath: "linksBlock" },
+    { kind: "youtube", title: "Showreel", videoIdPath: "youtube.videoId" },
 
-    { kind: "youtube", title: "Showreel (YouTube)", videoIdPath: "youtube.videoId" },
-
-    // Highlights: video left + description right
     { kind: "twoCol", leftPath: "faceLeft", rightPath: "faceRight" },
     { kind: "twoCol", leftPath: "clockLeft", rightPath: "clockRight" },
     { kind: "twoCol", leftPath: "opticalLeft", rightPath: "opticalRight" },
@@ -47,15 +42,16 @@ export default {
   youtube: {
     title: "Showreel",
     videoId: "e528IqqUoOQ",
-    url: "https://youtu.be/e528IqqUoOQ",
+    url: "https://youtu.be/e528IqqUoOQ?si=iTQGllAlOO_57CaO",
   },
 
-  // -------- Face Generator --------
   faceLeft: {
     kind: "media",
     title: "Face Generator",
     layout: "video",
-    items: [{ src: "/media/techdesign/p5js/faceGenerator.mov", alt: "Face Generator (p5.js)" }],
+    items: [
+      { src: "/media/techdesign/p5js/faceGenerator.mp4", alt: "Face Generator (p5.js)" },
+    ],
   },
   faceRight: {
     title: "Face Generator",
@@ -65,12 +61,13 @@ export default {
     ],
   },
 
-  // -------- Experimental Clock --------
   clockLeft: {
     kind: "media",
     title: "Experimental Clock: Climate Clock",
     layout: "video",
-    items: [{ src: "/media/techdesign/p5js/experimentalClock.mov", alt: "Experimental Clock (Climate Clock)" }],
+    items: [
+      { src: "/media/techdesign/p5js/experimentalClock.mp4", alt: "Experimental Clock: Climate Clock" },
+    ],
   },
   clockRight: {
     title: "Experimental Clock: Climate Clock",
@@ -80,12 +77,13 @@ export default {
     ],
   },
 
-  // -------- Optical Illusion --------
   opticalLeft: {
     kind: "media",
     title: "Optical Illusion",
     layout: "video",
-    items: [{ src: "/media/techdesign/p5js/optical.mov", alt: "Optical Illusion (p5.js)" }],
+    items: [
+      { src: "/media/techdesign/p5js/optical.mp4", alt: "Optical Illusion (p5.js)" },
+    ],
   },
   opticalRight: {
     title: "Optical Illusion",
@@ -95,12 +93,13 @@ export default {
     ],
   },
 
-  // -------- Data Portrait --------
   dataLeft: {
     kind: "media",
     title: "Data Portrait",
     layout: "video",
-    items: [{ src: "/media/techdesign/p5js/dataPortrait.mov", alt: "Data Portrait (p5.js)" }],
+    items: [
+      { src: "/media/techdesign/p5js/dataPortrait.mp4", alt: "Data Portrait (p5.js)" },
+    ],
   },
   dataRight: {
     title: "Data Portrait",
@@ -110,12 +109,13 @@ export default {
     ],
   },
 
-  // -------- Oops --------
   oopsLeft: {
     kind: "media",
     title: "Interactive Typography 1: Oops",
     layout: "video",
-    items: [{ src: "/media/techdesign/p5js/oops.mov", alt: "Interactive Typography: Oops" }],
+    items: [
+      { src: "/media/techdesign/p5js/oops.mp4", alt: "Interactive Typography 1: Oops" },
+    ],
   },
   oopsRight: {
     title: "Interactive Typography 1: Oops",
@@ -125,14 +125,12 @@ export default {
     ],
   },
 
-  // -------- Design (you have design.mov + design2.mov) --------
   designLeft: {
     kind: "media",
     title: "Interactive Typography 2: Design",
     layout: "video",
     items: [
-      { src: "/media/techdesign/p5js/design.mov", alt: "Interactive Typography: Design (version 1)" },
-      { src: "/media/techdesign/p5js/design2.mp4", alt: "Interactive Typography: Design (version 2)" },
+      { src: "/media/techdesign/p5js/design.mp4", alt: "Interactive Typography 2: Design (version 1)" },
     ],
   },
   designRight: {
@@ -143,12 +141,13 @@ export default {
     ],
   },
 
-  // -------- Urup --------
   urupLeft: {
     kind: "media",
     title: "Interactive Typography 3: Urup",
     layout: "video",
-    items: [{ src: "/media/techdesign/p5js/urup.mov", alt: "Interactive Typography: Urup" }],
+    items: [
+      { src: "/media/techdesign/p5js/urup.mp4", alt: "Interactive Typography 3: Urup" },
+    ],
   },
   urupRight: {
     title: "Interactive Typography 3: Urup",
@@ -158,8 +157,14 @@ export default {
     ],
   },
 
-  // keep optional fields
-  media: [],
+  media: [
+    {
+      type: "video",
+      src: "/media/techdesign/p5js/faceGenerator.mp4",
+      alt: "Visual + Interactive (p5.js & JavaScript) preview",
+    },
+  ],
+
   row6: null,
   references: [],
 };
