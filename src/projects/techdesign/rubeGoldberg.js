@@ -14,6 +14,8 @@ export default {
   sections: [
     { kind: "intro" },
 
+    { kind: "desc", dataPath: "linksBlock" },
+
     { kind: "youtube", title: "Project Video", videoIdPath: "youtube.videoId" },
 
     { kind: "twoCol", leftPath: "descLeft", rightPath: "descRight" },
@@ -27,6 +29,20 @@ export default {
   intro:
     "This project designs and builds a physics-driven Rube Goldberg Machine in Unity, using chained interactions to unfold a personal narrative. " +
     "It integrates 3D models, materials, sound, motion, camera framing, and lighting to create a cohesive, story-led experience.",
+
+  linksBlock: {
+    title: "Links",
+    links: [
+      {
+        label: "GitHub repo",
+        href: "https://github.com/feliciatiffany/indonesiancafe-corelab-unity",
+      },
+      {
+        label: "WebGL",
+        href: "https://feliciatiffany.github.io/indonesiancafe-corelab-unity/",
+      },
+    ],
+  },
 
   youtube: {
     title: "Rube Goldberg Machine — Unity Demo",

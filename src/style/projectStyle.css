@@ -722,7 +722,8 @@
 /* 3) close-ups: 1 2 3 4 in one row */
 .project-template[data-layout="blossom-grid"] .blossom-closeups .proj-videoGrid{
   grid-template-columns: repeat(4, minmax(0, 1fr));
-gap: 12px;
+gap: 12px
+;
 }
 
 .project-template[data-layout="blossom-grid"] .blossom-closeups .proj-videoWide__video{

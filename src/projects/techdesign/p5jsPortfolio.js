@@ -34,7 +34,7 @@ export default {
     links: [
       {
         label: "Portfolio website (p5.js + JavaScript)",
-        href: "https://feliciatiffany.github.io/Advance-Critical-Computation/",
+        href: "https://feliciatiffany.github.io/advance-critical-computation-js-portfolio/",
       },
     ],
   },

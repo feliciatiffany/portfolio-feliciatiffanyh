@@ -38,7 +38,7 @@ export default {
         links: [
             {
                 label: "Final interactive website (Eleventy/ @11ty)",
-                href: "https://feliciatiffany.github.io/cityassystem_datavisualization/",
+                href: "https://feliciatiffany.github.io/unseencity-datavisualization-eleventyjs/",
             },
             {
                 label: "Site of Interest (DOCS)",

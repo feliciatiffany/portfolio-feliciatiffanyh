@@ -48,6 +48,15 @@ function Layout({ children }) {
         </a>
         <span aria-hidden> · </span>
         <a
+          href="https://github.com/feliciatiffany"
+          target="_blank"
+          rel="noreferrer"
+          className="foot-link"
+        >
+          github
+        </a>
+        <span aria-hidden> · </span>
+        <a
           href="https://linktr.ee/feliciatiffanyh"
           target="_blank"
           rel="noreferrer"
