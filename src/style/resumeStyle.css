@@ -1,16 +1,16 @@
 /* ===== About / Resume ===== */
 
 /* Make the content track actually scroll */
-.content-scroll{
+.content-scroll {
   grid-area: content;
-  min-height: 0;          /* allow child to shrink inside grid area */
+  min-height: 0;
   height: 100%;
   overflow: auto;
   padding-right: clamp(6px, .6vw, 12px);
 }
 
-/* Two-column resume grid (left: Education+Experience, right: Skills) */
-.resume-grid{
+/* Two-column resume grid */
+.resume-grid {
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: clamp(18px, 3vw, 36px) clamp(22px, 3vw, 48px);
@@ -18,7 +18,7 @@
   padding-right: clamp(4px, .4vw, 8px);
 }
 
-.resume-h{
+.resume-h {
   margin: clamp(10px, 1.6vw, 18px) 0 clamp(6px, 1vw, 12px) 0;
   font-weight: 700;
   font-size: clamp(12px, 2.2vw, 20px);
@@ -26,7 +26,7 @@
   color: var(--mauve);
 }
 
-.resume-list{
+.resume-list {
   list-style: none;
   margin: 0 0 clamp(18px, 2.2vw, 28px) 0;
   padding: 0;
@@ -34,36 +34,141 @@
   row-gap: clamp(10px, 1.2vw, 16px);
 }
 
-.resume-item{
+.resume-item {
   display: grid;
   grid-template-columns: clamp(16px, 1.6vw, 20px) 1fr;
   align-items: start;
   column-gap: clamp(8px, 1vw, 12px);
 }
 
-.star{
+/* ── CSS-drawn star ── */
+.star {
+  display: inline-block;
   width: clamp(14px, 1.6vw, 18px);
-  height: auto;
+  height: clamp(14px, 1.6vw, 18px);
   transform: translateY(2px);
-  opacity: .9;
+  flex-shrink: 0;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2%  35%,
+    39% 35%
+  );
+  background-color: var(--salmon, #DE826D);
 }
 
-.resume-item__body{ min-width: 0; }
+/* ── Blinking star (education + experience) ── */
+@keyframes starBlink {
+  0%, 100% {
+    opacity: 0.3;
+    background-color: var(--peach, #E8B19D);
+    box-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    background-color: var(--salmon, #DE826D);
+    box-shadow:
+      0 0 6px 2px var(--salmon, #DE826D),
+      0 0 14px 5px var(--peach, #E8B19D);
+  }
+}
 
-.resume-line{
+.star--blink {
+  animation: starBlink 1.6s ease-in-out infinite;
+}
+
+/* ── Always-shining star (skills, awards) — no blink, constant glow ── */
+.star--shine {
+  opacity: 1;
+  background-color: var(--salmon, #DE826D);
+  box-shadow:
+    0 0 5px 2px var(--salmon, #DE826D),
+    0 0 12px 4px var(--peach, #E8B19D),
+    0 0 20px 6px var(--cream, #F3E0D1);
+}
+
+/* ── Star button wrapper ── */
+.star-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  line-height: 0;
+  display: block;
+  width: clamp(14px, 1.6vw, 18px);
+}
+
+.star-btn:disabled {
+  cursor: default;
+}
+
+/* Rotate star slightly when open */
+.star-btn--open .star--blink {
+  transform: translateY(2px) rotate(20deg);
+  transition: transform 0.3s ease;
+}
+
+/* ── Expandable achievements list ── */
+.achieve-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity    0.35s ease,
+    margin-top 0.3s ease;
+}
+
+.achieve-list--open {
+  max-height: 600px;   /* large enough for any entry */
+  opacity: 1;
+  margin-top: clamp(6px, .8vw, 10px);
+}
+
+.achieve-item {
+  position: relative;
+  font-size: clamp(11px, .95vw, 13px);
+  color: #5e5e5e;
+  line-height: 1.5;
+  padding-left: 1em;
+  margin-bottom: .4em;
+}
+
+.achieve-item::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--salmon, #DE826D);
+  font-weight: 700;
+}
+
+/* ── Existing helpers ── */
+.resume-item__body { min-width: 0; }
+
+.resume-line {
   font-size: var(--fs-proj);
   line-height: 1.12;
 }
 
-.resume-strong{ font-weight: 600; }
+.resume-strong { font-weight: 600; }
 
-.resume-meta{
+.resume-meta {
   font-size: clamp(12px, 1vw, 14px);
   color: #5e5e5e;
   margin-top: .15em;
 }
 
-.reachout{
+.reachout {
   font-size: var(--fs-proj);
   max-width: 720px;
   margin-top: clamp(10px, 1.4vw, 16px);

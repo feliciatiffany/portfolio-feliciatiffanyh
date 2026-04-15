@@ -193,7 +193,7 @@ body{
 .grow-band[data-role="tech"]{ color:var(--salmon); }
 .grow-band[data-role="graphic"]{ color:var(--mauve); }
 .grow-band[data-role="others"]{ color:var(--maroon); }
-.grow-band[data-role="fany"]:hover,.grow-band[data-role="fany"]:focus-visible{ color:var(--peach); }
+.grow-band[data-role="fany"]{ color:var(--peach); }
 .grow-band[data-role="fany"]::before{ background:var(--band-peach); }
 .grow-band[data-role="tech"]::before{ background:var(--band-salmon); }
 .grow-band[data-role="graphic"]::before{ background:var(--band-mauve); }
