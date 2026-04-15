@@ -1,17 +1,15 @@
 export default {
   slug: "tdvj",
-  title: "Audio-reactive DJ/VJ Set",
+  title: "Decibel",
 
   meta: {
-    category: ["Tech Designer", "TouchDesigner", "DJ/VJ", "Interactive Visuals"],
+    category: ["Audio-reactive", "DJ/VJ", "Interactive Visuals"],
     year: "2026",
     tools: ["TouchDesigner", "DJ Controller", "Audio-reactive Visuals"],
   },
 
   intro:
-    "This project is an audio-reactive DJ/VJ set that connects TouchDesigner with a DJ controller. " +
-    "I was inspired to turn an Indonesian artist’s album cover into an interactive visual world, " +
-    "while incorporating a DJ setlist/mix I had just started learning.",
+    "Decibel is my exploration of audiovisual performance — merging live DJ mixing with real-time reactive visuals created in TouchDesigner. The visual language is rooted in the album artwork of an Indonesian artist, layered alongside a DJ mix I've recently started learning. The project is still very much alive and developing, with both the set and visuals continuing to grow.",
 
   sections: [
     { kind: "intro" },

@@ -14,9 +14,9 @@ export default {
 
   sections: [
     { kind: "intro" },
-    { kind: "youtube", title: "Project Video", videoIdPath: "youtube.videoId" },
-    { kind: "references", title: "Project Link", itemsPath: "projectLinks" },
+     { kind: "references", title: "Project Link", itemsPath: "projectLinks" },
 
+    { kind: "youtube", title: "Project Video", videoIdPath: "youtube.videoId" },
     { kind: "twoCol", leftPath: "inspirationLeft", rightPath: "inspirationRight" },
     { kind: "twoCol", leftPath: "sketchLeft", rightPath: "sketchRight" },
     { kind: "twoCol", leftPath: "typewriterLeft", rightPath: "typewriterRight" },
@@ -33,7 +33,7 @@ export default {
   projectLinks: [
     {
       label: "Open Poet Guy",
-      href: "https://feliciatiffany.github.io/Advance-Critical-Computation/project5_divination.html",
+      href: "https://feliciatiffany.github.io/the-poet-interactive-js/",
     },
   ],
 

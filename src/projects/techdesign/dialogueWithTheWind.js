@@ -26,6 +26,8 @@ export default {
 
     { kind: "desc", dataPath: "row8.desc" },
 
+    { kind: "links", title: "Links" },
+
     { kind: "references", title: "References", itemsPath: "references" },
   ],
 
@@ -192,6 +194,11 @@ export default {
       ],
     },
   },
+
+  links: [
+    { label: "p5.js Sketch (Interactive Demo)", href: "https://editor.p5js.org/feliciatiffany/sketches/NmifeIo6V" },
+    { label: "GitHub Repo", href: "https://github.com/feliciatiffany/dialogue-with-the-wind-arduino" },
+  ],
 
   references: [
     { label: "Thoughtforms (Science Gallery Melbourne)", href: "https://melbourne.sciencegallery.com/mental-exhibits/thoughtforms" },
