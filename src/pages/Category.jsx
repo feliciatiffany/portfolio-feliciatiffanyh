@@ -5,7 +5,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { byCategory } from "../lib/projects.js";
 
-const VALID = new Set(["tech", "graphic", "others"]);
+const VALID = new Set(["tech", "digital", "graphic", "others"]);
 
 /* Reusable media node (img/video) */
 function Media({ item, autoPlay = false }) {
@@ -85,7 +85,15 @@ export default function Category({ kind }) {
               className={`grow-band ${slug === "tech" ? "is-current" : ""}`}
               data-role="tech"
             >
-              tech designer
+              creative technologist
+            </Link>
+            <span className="comma">,</span>{" "}
+            <Link
+              to="/digital"
+              className={`grow-band ${slug === "digital" ? "is-current" : ""}`}
+              data-role="digital"
+            >
+              digital product
             </Link>
             <span className="comma">,</span>
           </span>
@@ -98,13 +106,13 @@ export default function Category({ kind }) {
               graphic designer
             </Link>
             <span className="comma">,</span>{" "}
-            <span className="mono">but I can be</span>{" "}
+            <span className="mono">and I create</span>{" "}
             <Link
               to="/others"
               className={`grow-band ${slug === "others" ? "is-current" : ""}`}
               data-role="others"
             >
-              others
+              solutions
             </Link>
           </span>
         </p>

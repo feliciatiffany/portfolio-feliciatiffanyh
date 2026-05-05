@@ -1,0 +1,141 @@
+{
+  "categories": [
+    { "slug": "digital", "title": "Digital Product Designer", "role": "digital" }
+  ],
+  "projects": [
+    {
+      "slug": "protocol-nation",
+      "title": "Protocol Nation",
+      "category": "digital",
+      "num": 2025,
+      "label": "React",
+      "externalUrl": "https://feliciatiffany.github.io/protocol-nation-projection-react/",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/techdesign/protocolNation/thumbnail.mp4",
+          "alt": "Protocol Nation"
+        }
+      ]
+    },
+    {
+      "slug": "short-story",
+      "title": "Short Story",
+      "category": "digital",
+      "num": 2025,
+      "label": "React",
+      "externalUrl": "https://feliciatiffany.github.io/interactive-archive-shortstory-react/",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/digital/storytelling.mov",
+          "alt": "Short Story"
+        }
+      ]
+    },
+    {
+      "slug": "unseen-city",
+      "title": "Seeing The Unseen City",
+      "category": "digital",
+      "num": 2025,
+      "label": "Data Vis",
+      "externalUrl": "https://feliciatiffany.github.io/unseencity-data-visualization-eleventyjs/",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/techdesign/unseenCity/documentation1.png",
+          "alt": "Unseen City preview"
+        }
+      ]
+    },
+    {
+      "slug": "p5js-portfolio",
+      "title": "p5js",
+      "category": "digital",
+      "num": 2025,
+      "label": "JavaScript",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/techdesign/p5js/design2.mp4",
+          "alt": "p5js Portfolio"
+        }
+      ]
+    },
+    {
+      "slug": "collection",
+      "title": "Collection",
+      "category": "digital",
+      "num": 2025,
+      "label": "Eleventy",
+      "externalUrl": "https://feliciatiffany.github.io/wishlist-collection-eleventy/",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/digital/wishlist.mov",
+          "alt": "Wishlist Collection"
+        }
+      ]
+    },
+    {
+      "slug": "memory",
+      "title": "Memory",
+      "category": "digital",
+      "num": 2025,
+      "label": "JavaScript",
+      "externalUrl": "https://feliciatiffany.github.io/melodymemory-selfassystem-js/",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/digital/melody.mov",
+          "alt": "Melody Memory"
+        }
+      ]
+    },
+    {
+      "slug": "collages",
+      "title": "Collages",
+      "category": "digital",
+      "num": 2025,
+      "label": "HTML/CSS",
+      "externalUrl": "https://feliciatiffany.github.io/maximalism-collages-htmlcss/",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/digital/maximalist.mov",
+          "alt": "Maximalist Collages"
+        }
+      ]
+    },
+    {
+      "slug": "poet",
+      "title": "Poet Guy",
+      "category": "digital",
+      "num": 2025,
+      "label": "JavaScript",
+      "externalUrl": "https://feliciatiffany.github.io/the-poet-interactive-js/",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/techdesign/poet/thumbnail_poet.mp4",
+          "alt": "Poet Guy"
+        }
+      ]
+    },
+    {
+      "slug": "travel-tool",
+      "title": "Travel Tool",
+      "category": "digital",
+      "num": 2025,
+      "label": "JavaScript",
+      "externalUrl": "https://feliciatiffany.github.io/travel-tool-js/",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/digital/travel.mov",
+          "alt": "Travel Tool"
+        }
+      ]
+    }
+  ]
+}

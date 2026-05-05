@@ -1,9 +1,8 @@
-// src/pages/TechDesigner.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import ProjectList from "../components/ProjectList.jsx";
 
-export default function TechDesigner() {
+export default function DigitalProductDesigner() {
   return (
     <>
       <section className="hero">
@@ -20,11 +19,11 @@ export default function TechDesigner() {
             <span className="comma">,</span>
           </span>
           <span className="line">
-            <Link to="/digital" className="grow-band" data-role="digital">
+            <Link to="/digital" className="grow-band is-current" data-role="digital">
               digital product
             </Link>
             <span className="comma">,</span>{" "}
-            <Link to="/graphic" className="grow-band is-current" data-role="graphic">
+            <Link to="/graphic" className="grow-band" data-role="graphic">
               graphic designer
             </Link>
             <span className="comma">,</span>
@@ -38,8 +37,7 @@ export default function TechDesigner() {
         </p>
       </section>
 
-      {/* IMPORTANT: ProjectList must be direct child (no wrapper) */}
-      <ProjectList categorySlug="graphic" className="graphicdesigner-page" />
+      <ProjectList categorySlug="digital" className="digitalproduct-page" />
     </>
   );
 }

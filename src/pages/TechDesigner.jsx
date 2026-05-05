@@ -15,15 +15,21 @@ export default function TechDesigner() {
             </Link>{" "}
             <span className="mono">a</span>{" "}
             <Link to="/tech" className="grow-band is-current" data-role="tech">
-              tech designer
+              creative technologist
             </Link>
             <span className="comma">,</span>
           </span>
           <span className="line">
+            <Link to="/digital" className="grow-band" data-role="digital">
+              digital product
+            </Link>
+            <span className="comma">,</span>{" "}
             <Link to="/graphic" className="grow-band" data-role="graphic">
               graphic designer
             </Link>
-            <span className="comma">,</span>{" "}
+            <span className="comma">,</span>
+          </span>
+          <span className="line">
             <span className="mono">and I create</span>{" "}
             <Link to="/others" className="grow-band" data-role="others">
               solutions

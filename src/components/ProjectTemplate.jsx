@@ -478,6 +478,7 @@ export default function ProjectTemplate({ project }) {
       <nav className="proj-nav" aria-label="Main navigation">
         <NavItem to="/about">About</NavItem>
         <NavItem to="/tech">Tech Designer</NavItem>
+        <NavItem to="/digital">Digital Product</NavItem>
         <NavItem to="/graphic">Graphic Designer</NavItem>
         <NavItem to="/others">Others</NavItem>
       </nav>

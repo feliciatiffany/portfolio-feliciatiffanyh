@@ -62,20 +62,6 @@
             ]
         },
         {
-            "slug": "a-week-of-blender",
-            "title": "A Week of Blender",
-            "category": "tech",
-            "num": 2026,
-            "label": "3D",
-            "media": [
-                {
-                    "type": "image",
-                    "src": "/media/techdesign/weekofBlender/3_1.png",
-                    "alt": "A Week of Blender"
-                }
-            ]
-        },
-        {
             "slug": "wehearyou",
             "title": "We Hear You",
             "category": "tech",
@@ -90,47 +76,6 @@
             ]
         },
         {
-            "slug": "unseen-city",
-            "title": "Seeing The Unseen City",
-            "category": "tech",
-            "num": 2025,
-            "label": "Data Vis",
-            "media": [
-                {
-                    "type": "image",
-                    "src": "/media/techdesign/unseenCity/documentation1.png",
-                    "alt": "Unseen City preview"
-                }
-            ]
-        },
-        {
-            "slug": "poet",
-            "title": "Poet Guy",
-            "category": "tech",
-            "num": 2025,
-            "label": "API + JavaScript",
-            "media": [
-                {
-                    "type": "video",
-                    "src": "/media/techdesign/poet/thumbnail_poet.mp4",
-                    "alt": "Poet Guy"
-                }
-            ]
-        },
-        {
-            "slug": "p5js-portfolio",
-            "title": "p5js",
-            "category": "tech",
-            "num": 2025,
-            "label": "Javascript",
-            "media": [
-                {
-                    "type": "video",
-                    "src": "/media/techdesign/p5js/design2.mp4",
-                    "alt": "p5js Portfolio"
-                }
-            ]
-        },{
             "slug": "sunney",
             "title": "Sunney Game",
             "category": "tech",

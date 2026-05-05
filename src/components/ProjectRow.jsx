@@ -5,9 +5,15 @@ import Media from "./Media.jsx";
 export default function ProjectRow({ p, onHover }) {
   const firstMedia = (p.media || [])[0] || null;
 
+  const linkProps = p.externalUrl
+    ? { href: p.externalUrl, target: "_blank", rel: "noreferrer" }
+    : { to: `/work/${p.slug}` };
+
+  const LinkComponent = p.externalUrl ? "a" : Link;
+
   return (
-    <Link
-      to={`/work/${p.slug}`}
+    <LinkComponent
+      {...linkProps}
       className="proj-card-link"
       onMouseEnter={() => onHover?.(p, firstMedia)}
       onFocus={() => onHover?.(p, firstMedia)}
@@ -32,6 +38,6 @@ export default function ProjectRow({ p, onHover }) {
           </div>
         </div>
       </article>
-    </Link>
+    </LinkComponent>
   );
 }

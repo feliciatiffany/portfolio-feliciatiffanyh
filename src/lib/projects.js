@@ -1,12 +1,14 @@
 // src/lib/projects.js (or wherever this file lives)
 
 import tech from "../data/tech.json";
+import digital from "../data/digital.json";
 import graphic from "../data/graphic.json";
 import others from "../data/others.json";
 
 // Merge all projects into one list
 const ALL = [
   ...(tech.projects || []),
+  ...(digital.projects || []),
   ...(graphic.projects || []),
   ...(others.projects || []),
 ];
@@ -14,6 +16,7 @@ const ALL = [
 // Optional: merged categories (if you ever need it)
 export const categories = [
   ...(tech.categories || []),
+  ...(digital.categories || []),
   ...(graphic.categories || []),
   ...(others.categories || []),
 ];

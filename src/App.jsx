@@ -4,6 +4,7 @@ import { Routes, Route, Link, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import TechDesigner from "./pages/TechDesigner.jsx";
+import DigitalProductDesigner from "./pages/DigitalProductDesigner.jsx";
 import GraphicDesigner from "./pages/GraphicDesigner.jsx";
 import Others from "./pages/Others.jsx";
 import About from "./pages/About.jsx";
@@ -79,6 +80,9 @@ export default function App() {
         {/* pages (support both lowercase + your existing uppercase links) */}
         <Route path="/tech" element={<TechDesigner />} />
         <Route path="/Tech" element={<TechDesigner />} />
+
+        <Route path="/digital" element={<DigitalProductDesigner />} />
+        <Route path="/Digital" element={<DigitalProductDesigner />} />
 
         <Route path="/graphic" element={<GraphicDesigner />} />
         <Route path="/Graphic" element={<GraphicDesigner />} />

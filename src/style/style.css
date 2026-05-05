@@ -5,8 +5,8 @@
 /* ===== Palette, scales & type ===== */
 :root{
   /* colors */
-  --salmon:#DE826D; --cream:#F3E0D1; --peach:#E8B19D; --mauve:#A06069; --maroon:#62232D;
-  --band-salmon:#DE826D22; --band-peach:#E8B19D22; --band-mauve:#A0606922; --band-maroon:#62232D22;
+  --salmon:#DE826D; --cream:#F3E0D1; --peach:#E8B19D; --mauve:#A06069; --maroon:#62232D; --teal:#4C8E86;
+  --band-salmon:#DE826D22; --band-peach:#E8B19D22; --band-mauve:#A0606922; --band-maroon:#62232D22; --band-teal:#4C8E8622;
   --ink:#000;
 
   --gap: clamp(12px, 1.6vw, 24px);
@@ -15,7 +15,7 @@
   --intro-h: clamp(80px, 18vw, 200px);
 
   /* hero hover growth */
-  --hover-size: 1.5em;
+  --hover-size: 1.2em;
 
   /* footer mini-hover growth */
   --foot-hover-size: 2em;
@@ -176,6 +176,7 @@ body{
 
 /* ===== Hoverable words ===== */
 .grow-band{
+  font-size: 0.95em;
   position:relative; display:inline; text-decoration:none; padding:0 .05em; line-height:1;
   transition: font-size .26s cubic-bezier(.2,.7,.2,1), color .3s ease;
 }
@@ -191,11 +192,13 @@ body{
 
 /* Colors */
 .grow-band[data-role="tech"]{ color:var(--salmon); }
+.grow-band[data-role="digital"]{ color:var(--maroon); }
 .grow-band[data-role="graphic"]{ color:var(--mauve); }
 .grow-band[data-role="others"]{ color:var(--maroon); }
 .grow-band[data-role="fany"]{ color:var(--peach); }
 .grow-band[data-role="fany"]::before{ background:var(--band-peach); }
 .grow-band[data-role="tech"]::before{ background:var(--band-salmon); }
+.grow-band[data-role="digital"]::before{ background:var(--band-maroon); }
 .grow-band[data-role="graphic"]::before{ background:var(--band-mauve); }
 .grow-band[data-role="others"]::before{ background:var(--band-maroon); }
 
@@ -214,6 +217,7 @@ body{
 /* Animate only when NOT current + NOT hovered/focused */
 .hero .grow-band[data-role="fany"]:not([aria-current="page"]):not(.is-current):not(:hover):not(:focus-visible),
 .hero .grow-band[data-role="tech"]:not([aria-current="page"]):not(.is-current):not(:hover):not(:focus-visible),
+.hero .grow-band[data-role="digital"]:not([aria-current="page"]):not(.is-current):not(:hover):not(:focus-visible),
 .hero .grow-band[data-role="graphic"]:not([aria-current="page"]):not(.is-current):not(:hover):not(:focus-visible),
 .hero .grow-band[data-role="others"]:not([aria-current="page"]):not(.is-current):not(:hover):not(:focus-visible){
   animation: softHint 2s ease-in-out infinite;
@@ -597,4 +601,12 @@ body{
     letter-spacing: normal;
     color: inherit;
   }
+}
+
+/* Lower project grid */
+.techdesigner-page,
+.graphicdesigner-page,
+.digitalproduct-page,
+.others-page {
+  margin-top: 2rem;
 }
