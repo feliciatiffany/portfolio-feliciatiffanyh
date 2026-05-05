@@ -9,13 +9,15 @@
 
   --band-about: #D56A6A;
   --band-tech:  #FF8E86;
-  --band-graph: #F2B3A5;
-  --band-other: #F6D2CC;
+  --band-digital: #F2B3A5;
+  --band-graph: #F6D2CC;
+  --band-other: #F3E0D1;
 
   --band-about-h: #B8565F;
   --band-tech-h:  #E26E63;
-  --band-graph-h: #D99689;
-  --band-other-h: #E9B7AF;
+  --band-digital-h: #F2B3A5;
+  --band-graph-h: #F6D2CC;
+  --band-other-h: #F3E0D1;
 
   --ink:#000;
 
@@ -94,7 +96,7 @@
   height: var(--proj-nav-h);
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .project-template .proj-nav__link{
@@ -106,8 +108,8 @@
   display: grid;
   place-items: center;
 
-  padding: 0 10px;
-  font-size: 14px;
+  padding: 0 8px;
+  font-size: clamp(12px, 1vw, 14px);
   cursor: pointer;
 
   transition:
@@ -119,8 +121,9 @@
 
 .project-template .proj-nav__link:nth-child(1){ background: var(--band-about); }
 .project-template .proj-nav__link:nth-child(2){ background: var(--band-tech); }
-.project-template .proj-nav__link:nth-child(3){ background: var(--band-graph); }
-.project-template .proj-nav__link:nth-child(4){ background: var(--band-other); }
+.project-template .proj-nav__link:nth-child(3){ background: var(--band-digital); }
+.project-template .proj-nav__link:nth-child(4){ background: var(--band-graph); }
+.project-template .proj-nav__link:nth-child(5){ background: var(--band-other); }
 
 .project-template .proj-nav__link:hover,
 .project-template .proj-nav__link:focus-visible{
@@ -135,9 +138,11 @@
 .project-template .proj-nav__link:nth-child(2):hover,
 .project-template .proj-nav__link:nth-child(2):focus-visible{ background: var(--band-tech-h); }
 .project-template .proj-nav__link:nth-child(3):hover,
-.project-template .proj-nav__link:nth-child(3):focus-visible{ background: var(--band-graph-h); }
+.project-template .proj-nav__link:nth-child(3):focus-visible{ background: var(--band-digital-h); }
 .project-template .proj-nav__link:nth-child(4):hover,
-.project-template .proj-nav__link:nth-child(4):focus-visible{ background: var(--band-other-h); }
+.project-template .proj-nav__link:nth-child(4):focus-visible{ background: var(--band-graph-h); }
+.project-template .proj-nav__link:nth-child(5):hover,
+.project-template .proj-nav__link:nth-child(5):focus-visible{ background: var(--band-other-h); }
 
 .project-template .proj-nav__link.is-active{
   color: var(--maroon);
