@@ -53,7 +53,13 @@
             "category": "tech",
             "num": 2026,
             "label": "3D + TouchDesigner",
-            "media": []
+            "media": [
+                {
+                    "type": "image",
+                    "src": "/media/techdesign/dialogue/dialogue_main.jpg",
+                    "alt": "Tracing Dendur"
+                }
+            ]
         },
         {
             "slug": "protocol-nation",
