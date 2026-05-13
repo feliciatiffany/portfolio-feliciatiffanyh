@@ -48,6 +48,14 @@
             ]
         },
         {
+            "slug": "tracing-dendur",
+            "title": "Tracing Dendur",
+            "category": "tech",
+            "num": 2026,
+            "label": "3D + TouchDesigner",
+            "media": []
+        },
+        {
             "slug": "protocol-nation",
             "title": "Protocol Nation",
             "category": "tech",
