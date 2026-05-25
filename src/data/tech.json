@@ -8,6 +8,20 @@
     ],
     "projects": [
         {
+            "slug": "tell-ai",
+            "title": "TellAI",
+            "category": "tech",
+            "num": 2026,
+            "label": "AI + Tangible",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/tellai/thumbnail.mp4",
+                    "alt": "TellAI - Rotary AI Storytelling Toy"
+                }
+            ]
+        },
+        {
             "slug": "tdvj",
             "title": "Decibel",
             "category": "tech",

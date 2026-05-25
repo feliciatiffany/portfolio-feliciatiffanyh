@@ -377,6 +377,18 @@ export default function ProjectTemplate({ project }) {
       );
     }
 
+    if (kind === "diagram") {
+      if (!s.src) return null;
+      return (
+        <section key={i} className={joinClasses("proj-section", s.className)}>
+          {s.title ? <h3 className="proj-minihead">{s.title}</h3> : null}
+          <div className="proj-diagram-wrap">
+            <img src={s.src} alt={s.alt || ""} className="proj-diagram-img" />
+          </div>
+        </section>
+      );
+    }
+
     if (kind === "youtube") {
       const videoId = s.videoId || getByPath(project, s.videoIdPath);
       if (!videoId) return null;

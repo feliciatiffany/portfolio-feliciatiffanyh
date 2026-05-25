@@ -381,6 +381,21 @@
   transform: scale(1.03);
 }
 
+/* ===== Diagram (white bg, 80% image) ===== */
+.project-template .proj-diagram-wrap {
+  background: #fff;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-template .proj-diagram-img {
+  width: 80%;
+  height: auto;
+  display: block;
+}
+
 /* ===== YouTube ===== */
 .project-template .yt-wrap{
   width: 100%;
