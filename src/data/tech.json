@@ -12,12 +12,26 @@
             "title": "TellAI",
             "category": "tech",
             "num": 2026,
-            "label": "AI + Tangible",
+            "label": "Hardware + AI",
             "media": [
                 {
                     "type": "video",
                     "src": "/media/techdesign/tellai/thumbnail.mp4",
                     "alt": "TellAI - Rotary AI Storytelling Toy"
+                }
+            ]
+        },
+        {
+            "slug": "tracing-dendur",
+            "title": "Tracing Dendur",
+            "category": "tech",
+            "num": 2026,
+            "label": "3D + TD",
+            "media": [
+                {
+                    "type": "video",
+                    "src": "/media/techdesign/tracingdendur/thumbnail.mp4",
+                    "alt": "Tracing Dendur"
                 }
             ]
         },
@@ -61,20 +75,7 @@
                 }
             ]
         },
-        {
-            "slug": "tracing-dendur",
-            "title": "Tracing Dendur",
-            "category": "tech",
-            "num": 2026,
-            "label": "3D + TouchDesigner",
-            "media": [
-                {
-                    "type": "image",
-                    "src": "/media/techdesign/dialogue/dialogue_main.jpg",
-                    "alt": "Tracing Dendur"
-                }
-            ]
-        },
+        
         {
             "slug": "protocol-nation",
             "title": "Protocol Nation",

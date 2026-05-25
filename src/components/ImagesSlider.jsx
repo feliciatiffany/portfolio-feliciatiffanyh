@@ -39,7 +39,7 @@ export default function ImagesSlider({ title = "Slider", items = [], onOpen, sho
             const video = isVideo(item);
 
             return (
-              <div className="slide" key={key}>
+              <div className="slide" key={key} style={{ flexDirection: "column", gap: 10 }}>
                 {video ? (
                   <video className="proj-slide-media" src={item.src} controls />
                 ) : (
@@ -52,6 +52,9 @@ export default function ImagesSlider({ title = "Slider", items = [], onOpen, sho
                     <img className="proj-slide-media" src={item.src} alt={item.alt || ""} />
                   </button>
                 )}
+                {item?.title ? (
+                  <p className="proj-slide-caption">{item.title}</p>
+                ) : null}
               </div>
             );
           })}

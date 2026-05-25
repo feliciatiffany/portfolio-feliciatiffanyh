@@ -351,6 +351,16 @@
   display: block;
 }
 
+.project-template .proj-slide-caption{
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  opacity: .85;
+}
+
 .project-template .navigation-buttons{
   position: absolute;
   inset: 0;
