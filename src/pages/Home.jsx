@@ -2,65 +2,59 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const PROFILE_SRC = "/media/profileimage.JPEG";
 
-/* --- tiny media box (image/gif/video), with placeholder fallback --- */
-function Thumb({ item }) {
-  if (!item || !item.src) {
-    return <span className="thumb" aria-hidden="true" />;
+/* Image links under the name — swap media freely */
+const DOORS = [
+  {
+    to: "/about",
+    label: "about me",
+    role: "fany",
+    media: { type: "image", src: "/media/graphicdesign/idcard/idcard_mockup1.png" },
+  },
+  {
+    to: "/nutshell",
+    label: "in a nutshell",
+    role: "graphic",
+    media: { type: "video", src: "/media/digital/maximalist.mp4" },
+  },
+  {
+    to: "/built",
+    label: "things I built",
+    role: "tech",
+    media: { type: "video", src: "/media/techdesign/tracingdendur/thumbnail.mp4" },
+  },
+];
+
+function DoorMedia({ media }) {
+  if (media.type === "video") {
+    return <video src={media.src} muted loop autoPlay playsInline preload="metadata" />;
   }
-  if (item.type === "video") {
-    return (
-      <span className="thumb">
-        <video
-          src={item.src}
-          poster={item.poster || undefined}
-          muted
-          loop
-          autoPlay
-          playsInline
-          preload="metadata"
-        />
-      </span>
-    );
-  }
-  return (
-    <span className="thumb">
-      <img src={item.src} alt={item.alt || ""} loading="lazy" />
-    </span>
-  );
+  return <img src={media.src} alt="" loading="lazy" />;
 }
 
-
-
 export default function Home() {
-
   return (
-    <section className="hero">
-      {/* Intro — unchanged */}
-      <p className="intro">
-        <span className="line">
-          <span className="mono">Hi, I’m</span>{" "}
-          <Link to="/about" className="grow-band name" data-role="fany">Fany!</Link>{" "}
-          <span className="mono">a</span>{" "}
-          <Link to="/tech" className="grow-band" data-role="tech">creative technologist</Link>
-          <span className="comma">,</span>
-        </span>
-        <span className="line">
-          <Link to="/digital" className="grow-band" data-role="digital">digital product</Link>
-          <span className="comma">,</span>{" "}
-          <Link to="/graphic" className="grow-band" data-role="graphic">graphic designer</Link>
-          <span className="comma">,</span>
-        </span>
-        <span className="line">
-          <span className="mono">and I create </span>{" "}
-          <Link to="/others" className="grow-band" data-role="others">solutions</Link>
-        </span>
-      </p>
+    <section className="home">
+      <img className="avatar" src={PROFILE_SRC} alt="Felicia Hertada" />
 
+      <h1 className="intro home-intro">
+        <span className="mono">Hi, I’m</span>{" "}
+        <Link to="/about" className="grow-band name" data-role="fany">
+          Felicia Hertada
+        </Link>
+      </h1>
 
-      <p className="kicker" style={{ maxWidth: 880 }}>
-        When I’m not designing, I’m traveling, going to concerts, or exploring life's side quests. Ghibli and matcha are also my small obsessions. Nice to meet you!
-      </p>
+      <nav className="doors" aria-label="Explore">
+        {DOORS.map((d) => (
+          <Link key={d.to} to={d.to} className="door" data-role={d.role}>
+            <span className="door__media">
+              <DoorMedia media={d.media} />
+            </span>
+            <span className="door__label">{d.label}</span>
+          </Link>
+        ))}
+      </nav>
     </section>
   );
 }

@@ -489,13 +489,17 @@ export default function ProjectTemplate({ project }) {
 
       <nav className="proj-nav" aria-label="Main navigation">
         <NavItem to="/about">About</NavItem>
+        <NavItem to="/built">Things I Built</NavItem>
         <NavItem to="/tech">Tech Designer</NavItem>
         <NavItem to="/digital">Digital Product</NavItem>
         <NavItem to="/graphic">Graphic Designer</NavItem>
         <NavItem to="/others">Others</NavItem>
       </nav>
 
-      <main className="proj-body">{sections.map(renderSection)}</main>
+      <main className="proj-body">
+        <h1 className="proj-page-title">{project.title}</h1>
+        {sections.map(renderSection)}
+      </main>
 
       <Lightbox open={!!lbItem} item={lbItem} onClose={closeLightbox} />
     </div>

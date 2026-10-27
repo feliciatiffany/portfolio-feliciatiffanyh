@@ -782,3 +782,45 @@ gap: 12px
     grid-template-columns: 1fr;
   }
 }
+/* =========================================================
+   NOTION-STYLE COLUMN — body sits in a centered half-page column
+   ========================================================= */
+@media (min-width: 901px){
+  .project-template .proj-nav{ grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+.project-template .proj-nav__link:nth-child(6){ background: var(--band-other); }
+
+.project-template .proj-body{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 16px 64px;
+  gap: 28px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.project-template .proj-page-title{
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
+}
+
+/* Stack every two-column row inside the narrow column */
+.project-template .proj-row3,
+.project-template .proj-row5{ grid-template-columns: 1fr; }
+
+/* Meta reads like Notion page properties, placed above the intro */
+.project-template .proj-row3__right{ order: -1; }
+.project-template .proj-meta{ font-size: 14px; color: rgba(0,0,0,.7); }
+
+.project-template .proj-diagram-img{ width: 100%; }
+.project-template[data-layout="fullpage-stack"] .proj-gallery{ width: 100%; }
+
+@media (max-width: 900px){
+  /* Title already shows in the body, so keep the header to one row */
+  .project-template .proj-head__title{ display: none; }
+  .project-template .proj-nav{
+    height: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .project-template .proj-nav__link{ height: 34px; }
+}
