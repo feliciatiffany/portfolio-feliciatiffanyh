@@ -4,15 +4,18 @@ import { Link } from "react-router-dom";
 import { TYPES, ENTRIES, groupByYear } from "../lib/timeline";
 import LogoUrl from "../assets/logosmall.png";
 
-function CardMedia({ media }) {
+// Outer span carries the hover glow (only around the image); inner frame crops to one ratio
+function CardMedia({ media, glow }) {
   if (!media?.src) return null;
   return (
-    <span className="tl-card__media">
-      {media.type === "video" ? (
-        <video src={media.src} poster={media.poster} muted loop autoPlay playsInline preload="metadata" />
-      ) : (
-        <img src={media.src} alt={media.alt || ""} loading="lazy" />
-      )}
+    <span className={`tl-card__media${glow ? " shine" : ""}`}>
+      <span className="tl-card__frame">
+        {media.type === "video" ? (
+          <video src={media.src} poster={media.poster} muted loop autoPlay playsInline preload="metadata" />
+        ) : (
+          <img src={media.src} alt={media.alt || ""} loading="lazy" />
+        )}
+      </span>
     </span>
   );
 }
@@ -22,7 +25,7 @@ function CardMedia({ media }) {
 function Card({ item, index }) {
   const body = (
     <>
-      <CardMedia media={item.media} />
+      <CardMedia media={item.media} glow={!!item.to} />
       <span className="tl-card__text">
         <span className="tl-card__title">{item.title}</span>
         <span className="tl-card__date">{item.date}</span>
@@ -39,7 +42,7 @@ function Card({ item, index }) {
       data-side={index % 2 ? "right" : "left"}
     >
       {item.to ? (
-        <Link to={item.to} className="tl-card__link shine">{body}</Link>
+        <Link to={item.to} className="tl-card__link">{body}</Link>
       ) : (
         <div className="tl-card__link">{body}</div>
       )}
