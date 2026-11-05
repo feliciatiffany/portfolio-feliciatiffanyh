@@ -23,7 +23,9 @@ export default {
   },
 
   intro:
-    "A Rotary AI Storytelling Toy for Children, Parents, and AI Literacy\n\nTellAI is a research-driven, tangible, screen-free AI toy built into a retro rotary telephone. It lets children ages 6–10 dial different character and emotion combinations to have playful voice conversations with AI.\n\nThe project started from a question around AI, children, and parenting. Parents were already concerned about children's relationship with screens, but AI adds another layer: children are now growing up with systems that can talk, answer, recommend, imitate, and emotionally respond.\n\nInstead of introducing AI as a hidden algorithm inside a screen, TellAI asks: what if AI could become something children can question, customize, and play with more critically?",
+    "A Rotary AI Storytelling Toy for Children, Parents, and AI Literacy\n\nTellAI is a screen-free AI toy hidden inside a retro rotary phone. Kids ages 6–10 dial a character and an emotion, then have a playful voice chat with AI.\n\nIt started with a question about AI, kids, and parenting. Parents already worry about screens, and now kids are growing up with things that can talk, answer, recommend, imitate, and even respond emotionally.\n\nSo instead of AI as a hidden algorithm behind a screen, we asked: what if kids could question it, customize it, and play with it more critically?",
+
+  quote: "What if kids could question AI, not just use it?",
 
   sections: [
     { kind: "intro" },
@@ -37,10 +39,10 @@ export default {
   ],
 
   interactionFlowBlock: {
-    title: "Interaction Flow",
+    title: "How it works",
     paragraphs: [
-      "Children interact with TellAI by picking up the phone, dialing one character and one emotion, and then speaking through the handset. The rotary dial becomes the physical input, turning AI interaction into something slower, more intentional, and more hands-on than typing into a chatbot.",
-      "After the child speaks, their voice is converted into text using Deepgram, Claude generates a playful response, and ElevenLabs turns the answer back into a character voice played through the phone speaker.",
+      "Kids pick up the phone, dial a character and an emotion, and talk into the handset. The rotary dial is the input, so talking to AI becomes slower, more on purpose, and more hands-on than typing into a chatbot.",
+      "Deepgram turns the child's voice into text, Claude writes a playful reply, and ElevenLabs turns it back into a character voice that plays through the phone.",
     ],
     bullets: [
       "Rotary Dial → Character / Emotion Selection → Child Voice → Deepgram STT → Claude AI → ElevenLabs TTS → Phone Speaker",
@@ -48,18 +50,18 @@ export default {
   },
 
   designBlock: {
-    title: "Design",
+    title: "Why we designed it this way",
     paragraphs: [
-      "The design was inspired by Inclusive AI Literacy for Kids Around the World by Druga, Vu, Likhith, and Qiu. Their work argues that AI learning for children should avoid deception, make machine behavior more understandable, and give children ways to teach, customize, or \"program\" the system.",
-      "That became the core design guideline for TellAI. We did not want to make an AI toy that hides behind magic or pretends to be human. Instead, kids can see that the AI changes based on the choices they dial.",
-      "We chose a rotary phone because it creates the opposite experience of a fast 2D screen. Kids have to dial, wait, listen, and respond. It also lets us repurpose old technology and connect it with new technology in a playful way.",
-      "The goal is not to replace the child's creativity, but to support curiosity, storytelling, and two-way interaction while still letting the child lead.",
+      "Our big inspiration was Inclusive AI Literacy for Kids Around the World by Druga, Vu, Likhith, and Qiu. They argue that AI for kids shouldn't trick them, should be easier to understand, and should let kids teach, customize, or \"program\" it.",
+      "That became our main rule. We didn't want an AI toy that hides behind magic or pretends to be human. Kids can see the AI change based on what they dial.",
+      "We picked a rotary phone because it's the opposite of a fast, flat screen. You have to dial, wait, listen, and answer. And it was fun to give old tech a new life next to new tech.",
+      "The goal isn't to replace a child's creativity. It's to spark curiosity, storytelling, and back-and-forth talk, while the child stays in charge.",
     ],
   },
 
   researchBlock: {
-    title: "Research Questions",
-    paragraphs: ["Through TellAI, we explored these questions:"],
+    title: "What we wanted to find out",
+    paragraphs: ["With TellAI, we were curious about:"],
     bullets: [
       "How do parents feel seeing their children interact with AI?",
       "What do parents think about introducing AI through toys?",
@@ -71,20 +73,20 @@ export default {
   playtestingBlock: {
     title: "Playtesting",
     paragraphs: [
-      "Because TellAI involves children, privacy and consent were central to the testing plan. We created a parent consent form explaining how photos and videos would be documented, made sure children's faces were not shown, deleted collected data after testing, and did not use any data for AI training.",
-      "During playtesting, we asked parents what they liked or disliked, whether they would allow something like this at home, what boundaries they would want in an AI toy, and at what age they think children should start learning about AI.",
-      "We also asked children simple questions, such as who they thought was talking through the phone and whether they would want to talk to it again.",
+      "Since kids were involved, privacy and consent came first. We made a parent consent form explaining how we'd take photos and videos, kept children's faces out of everything, deleted the data after testing, and never used any of it for AI training.",
+      "We asked parents what they liked and didn't, whether they'd allow something like this at home, what limits they'd want in an AI toy, and when kids should start learning about AI.",
+      "We asked the kids simpler things, like who they thought was talking on the phone and whether they'd want to talk to it again.",
     ],
   },
 
   findingsBlock: {
-    title: "Findings",
+    title: "What we learned",
     paragraphs: [
-      "Playtesting changed the prototype. At first, the delay between speech-to-text, AI response, and text-to-speech felt too long, so we added a ringtone and filler audio to make the waiting moment feel intentional.",
-      "When people did not know what to say at the beginning, we changed the flow so TellAI introduces itself first. When the AI responses were too long, we added a rule to keep replies short, usually one to two sentences, with a simple follow-up question.",
-      "The testing also showed how sensitive this topic is. Children were curious but impatient; they often started rotating or pressing parts of the phone before waiting for the AI response.",
-      "Parents were more hesitant. Out of nine parent-child groups we asked, seven declined to playtest. One parent said they were against AI, and two said they did not want their children using AI at a young age.",
-      "TellAI became both a prototype and a research object. It explores how AI can be introduced to children through play, but with more transparency, boundaries, and parent awareness. Rather than making AI feel invisible or magical, TellAI makes the interaction physical, visible, and easier to question.",
+      "Playtesting changed a lot. The wait between speech-to-text, the AI reply, and text-to-speech felt way too long, so we added a ringtone and filler audio to make the pause feel like part of the experience.",
+      "People didn't know what to say at first, so now TellAI introduces itself. Replies were too long, so we added a rule: one or two sentences, plus a simple follow-up question.",
+      "It also showed how sensitive this topic is. Kids were curious but impatient, often spinning the dial or pressing parts of the phone before the AI could answer.",
+      "Parents were more hesitant. Out of nine parent-child groups we asked, seven said no to playtesting. One parent said they were against AI, and two didn't want their kids using AI so young.",
+      "So TellAI became both a prototype and a research tool. It's about introducing AI to kids through play, but with more honesty, limits, and parents in the loop. Instead of making AI feel invisible or magical, it makes it physical, visible, and easier to question.",
     ],
   },
 

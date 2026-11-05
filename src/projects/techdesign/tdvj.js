@@ -9,7 +9,9 @@ export default {
   },
 
   intro:
-    "Decibel is my exploration of audiovisual performance — merging live DJ mixing with real-time reactive visuals created in TouchDesigner. The visual language is rooted in the album artwork of an Indonesian artist, layered alongside a DJ mix I've recently started learning. The project is still very much alive and developing, with both the set and visuals continuing to grow.",
+    "Decibel is me playing with audiovisual performance: live DJ mixing plus real-time visuals I made in TouchDesigner that react to the sound. The look comes from the album artwork of an Indonesian artist, paired with DJ mixing, which I only recently started learning. It's still very much a work in progress, and both the set and the visuals keep growing.",
+
+  quote: "Learning to DJ and VJ at the same time",
 
   sections: [
     { kind: "intro" },

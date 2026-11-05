@@ -29,9 +29,11 @@ export default {
 
   // 1) Overview
   intro:
-    "A street-food cart brand specializing in chewy tapioca balls called Cilok. " +
-    "Usually served on skewers or in cups, paired with bold sauces. " +
-    "A classic West Java street snack modernized with quality, hygiene, and eco-minded packaging.",
+    "A brand sprint for a street-food cart selling cilok, the chewy tapioca balls so many Indonesians grew up with. " +
+    "You get them on skewers or in cups, with bold sauces. " +
+    "I wanted to give this classic West Java snack a modern upgrade: better quality, cleaner prep, and eco-friendly packaging.",
+
+  quote: "Giving a childhood street snack a modern glow-up",
 
   // 2) Full page final image (hero)
   finalHero: [
@@ -42,83 +44,83 @@ export default {
   creativeBrief: [
     {
       type: "section",
-      title: "1) Product(s) / Service(s)",
+      title: "1) What we sell",
       bullets: [
-        "Focusing on core product: Cilok Original (steamed/boiled) — bouncy tapioca balls with light savory seasoning.",
+        "The star: Cilok Original (steamed or boiled). Bouncy tapioca balls with a light savory seasoning.",
         "Signature sauce: Kacang Smoky.",
-        "Kecap Pedas: sweet soy, chili flakes, nostalgic.",
-        "Gerobak/kiosk/food cart/food truck near schools, campuses, transits.",
-        "Event pop-ups & catering (package per 50–200 pax).",
-        "Honestly they are everywhere.",
+        "Kecap Pedas: sweet soy and chili flakes. Tastes like nostalgia.",
+        "Sold from a gerobak, kiosk, food cart, or food truck near schools, campuses, and transit stops.",
+        "Event pop-ups and catering (packages for 50–200 pax).",
+        "Honestly, cilok is everywhere.",
       ],
     },
     {
       type: "section",
-      title: "2) Target Audience(s)",
+      title: "2) Who it’s for",
       bullets: [
-        "Children and students: snackable, cheap, fast; hangout food while strolling town.",
-        "Commuters & office staff: mid-day or after-work bite under 10 minutes.",
-        "Families & nostalgia: “elementary school” memory with cleaner, safer prep.",
-        "Tourists/food explorers: authentic local street food with clear English cues.",
+        "Kids and students: cheap, fast, and easy to snack on while hanging out around town.",
+        "Commuters and office workers: a quick bite at lunch or after work, in under 10 minutes.",
+        "Families: that “elementary school” memory, but with cleaner, safer prep.",
+        "Tourists and food explorers: real local street food, with clear English cues.",
       ],
     },
     {
       type: "section",
-      title: "3) Unique Benefit to Audience",
+      title: "3) Why people would love it",
       bullets: [
-        "Sensory satisfaction: perfectly kenyal (bounce without rubbery), warm, saucy.",
-        "Custom control: sauce level, add-ons.",
-        "Speed + affordability: order-to-hand < 3 minutes; price within daily snack budget.",
-        "Assured hygiene & eco wraps: visible prep, gloves, sealed & sustainable containers.",
-        "Consistency: measured dough ratios, same taste every visit.",
-        "Interaction: social interaction between seller and customer.",
+        "It just feels good to eat: perfectly kenyal (bouncy, not rubbery), warm, and saucy.",
+        "You pick your sauce level and add-ons.",
+        "Fast and cheap: in your hand in under 3 minutes, priced for a daily snack budget.",
+        "You can see it’s clean: open prep, gloves, sealed and sustainable containers.",
+        "Same taste every visit, thanks to measured dough ratios.",
+        "You still get to chat with the seller, which is half the fun of street food.",
       ],
     },
     {
       type: "section",
-      title: "4) Current Audience Perception (typical for cilok street brands)",
+      title: "4) How people see cilok carts now",
       bullets: [
-        "Tasty, cheap, nostalgic, “old street food / childhood snack.”",
-        "Pain points: different sellers have different tastes for cilok or sauce; hygiene and packaging questionable (unhealthy/too many calories).",
+        "Tasty, cheap, nostalgic. The “old street food / childhood snack.”",
+        "The problems: every seller’s cilok and sauce taste different, and hygiene and packaging can be questionable (people worry it’s unhealthy or too many calories).",
       ],
     },
     {
       type: "section",
-      title: "5) Desired Perception (positioning)",
+      title: "5) How I want people to see it",
       bullets: [
-        "“Modern and upgraded Cilok” — a new generation of aesthetic cilok.",
-        "A modern street classic: still authentic flavor + professional standards (SOP, gloves, labeling).",
-        "Trusted & Instagrammable: neat cart, clear menu icons (halal, spicy level, eco), friendly service.",
-        "Eco-friendly and upgrading local businesses.",
+        "“Modern, upgraded cilok”: a new generation of aesthetic cilok.",
+        "A modern street classic: the same authentic flavor, with real standards (SOP, gloves, labeling).",
+        "Trustworthy and Instagrammable: a neat cart, clear menu icons (halal, spice level, eco), and friendly service.",
+        "Eco-friendly, and a way to level up local businesses.",
       ],
     },
     {
       type: "section",
-      title: "6) Main Competition",
+      title: "6) The competition",
       bullets: [
-        "Direct: other cilok carts (cilok isi, cilok kuah), cilor, cireng, batagor, siomay, bakso tusuk, seblak (similar streetfood vendors).",
-        "Indirect snacks: takoyaki, corndog, martabak mini, kebab mini, toast, gorengan, boba/tea (modern snacks, not Indo street vendors).",
+        "Direct: other cilok carts (cilok isi, cilok kuah), plus cilor, cireng, batagor, siomay, bakso tusuk, and seblak. Basically the same kind of street vendor.",
+        "Indirect: takoyaki, corndogs, mini martabak, mini kebab, toast, gorengan, boba and tea. Modern snacks, but not Indo street vendors.",
       ],
     },
     {
       type: "section",
-      title: "7) What Distinguishes This Brand",
+      title: "7) What makes this one different",
       bullets: [
-        "Product excellence: texture control (standardized dough, batch timer, sauce mastery consistency).",
-        "Operational quality: hygiene transparency (gloves, apron, tong use, covered sauce bins).",
-        "Consistency SOP: measured scoops, pre-portioned balls, 2-minute reheat/fry windows.",
-        "Sustainability: banana leaf/paper/other sustainable packaging; BYO discount sign; pump bottles for sauces (no sachets); segregated waste bins at cart.",
-        "Modern convenience & design: QR menu & cashless, order name called on pickup, loyalty rewards, social media.",
-        "Clean cart visuals: symbol system for spice levels and eco options—simple, bold, visible.",
+        "Texture done right: standardized dough, a batch timer, and sauces that taste the same every time.",
+        "Hygiene you can see: gloves, apron, tongs, covered sauce bins.",
+        "Simple SOPs: measured scoops, pre-portioned balls, 2-minute reheat or fry windows.",
+        "Less waste: banana leaf, paper, or other sustainable packaging; a bring-your-own discount sign; pump bottles instead of sauce sachets; sorted trash bins at the cart.",
+        "Modern and convenient: QR menu, cashless payment, your name called at pickup, loyalty rewards, social media.",
+        "A clean cart look: a symbol system for spice levels and eco options. Simple, bold, easy to spot.",
       ],
     },
     {
       type: "section",
-      title: "8) History / Lore",
+      title: "8) A bit of cilok history",
       bullets: [
-        "Origin from Bandung/West Java, name likely from “aci dicolok” (tapioca poked/skewered).",
-        "Became famous for elementary–junior high schoolers (1990s–2000s); now widely adapted (filled, fried, soup, different sauces).",
-        "They are everywhere in the street, have a huge target audience, and bring nostalgia.",
+        "It comes from Bandung, West Java. The name probably comes from “aci dicolok” (tapioca that’s poked or skewered).",
+        "It got famous with elementary and junior high kids in the 1990s–2000s. Now there are tons of versions: filled, fried, in soup, with all kinds of sauces.",
+        "Cilok is on every street, everyone eats it, and it brings back so many memories. Such a fun one to rebrand.",
       ],
     },
   ],

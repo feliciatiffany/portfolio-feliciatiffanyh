@@ -1,13 +1,13 @@
 // src/components/ProjectTemplate.jsx
 import React, { useMemo, useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import ImagesRow from "./ImagesRow.jsx";
 import ImagesSlider from "./ImagesSlider.jsx";
 import DescriptionProject1 from "./DescriptionProject1.jsx";
-import Introduction from "./Introduction.jsx";
 import Lightbox from "./Lightbox.jsx";
 import LogoUrl from "../assets/logosmall.png";
+import { projectDate } from "../lib/timeline.js";
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
 
@@ -110,14 +110,42 @@ function joinClasses(...parts) {
   return parts.filter(Boolean).join(" ");
 }
 
-function NavItem({ to, children }) {
+const asList = (v) => (Array.isArray(v) ? v : v ? [v] : []);
+
+// Big media under the title: first item of project.media
+function Hero({ item }) {
+  if (!item?.src) return null;
   return (
-    <NavLink
-      to={to}
-      className={({ isActive }) => "proj-nav__link" + (isActive ? " is-active" : "")}
-    >
-      {children}
-    </NavLink>
+    <figure className="proj-hero">
+      {item.type === "video" ? (
+        <AutoVideo src={item.src} alt={item.alt} poster={item.poster} />
+      ) : (
+        <img src={item.src} alt={item.alt || ""} />
+      )}
+    </figure>
+  );
+}
+
+// Date | Stacks | Category row under the hero
+function MetaRow({ project }) {
+  const meta = project.meta || {};
+  const cols = [
+    { label: "Date", items: asList(projectDate(project.slug) || meta.year) },
+    { label: "Stacks", items: asList(meta.tools) },
+    { label: "Category", items: asList(meta.category) },
+  ].filter((c) => c.items.length);
+  if (!cols.length) return null;
+  return (
+    <dl className="proj-metarow">
+      {cols.map((c) => (
+        <div key={c.label} className="proj-metarow__col">
+          <dt>{c.label}</dt>
+          {c.items.map((it) => (
+            <dd key={it}>{it}</dd>
+          ))}
+        </div>
+      ))}
+    </dl>
   );
 }
 
@@ -242,9 +270,17 @@ export default function ProjectTemplate({ project }) {
     const kind = s?.kind;
 
     if (kind === "intro") {
+      if (!project.intro && !project.quote) return null;
       return (
-        <section key={i} className={joinClasses("proj-section", s.className)}>
-          <Introduction intro={project.intro} meta={project.meta} />
+        <section key={i} className={joinClasses("proj-section proj-intro", s.className)}>
+          {project.intro
+            ? String(project.intro)
+                .split(/\n\s*\n/)
+                .map((para, j) => (
+                  <p key={j} className="proj-text">{para}</p>
+                ))
+            : null}
+          {project.quote ? <h2 className="proj-quote">“{project.quote}” - me</h2> : null}
         </section>
       );
     }
@@ -479,25 +515,17 @@ export default function ProjectTemplate({ project }) {
 
   return (
     <div className="project-template" data-layout={layoutAttr}>
-      <header className="proj-head">
-        <Link to="/" className="proj-logo" aria-label="Home">
-          <img src={LogoUrl} alt="Logo" />
+      <nav className="proj-top" aria-label="Back">
+        <Link to="/" className="proj-top__logo" aria-label="Home">
+          <img src={LogoUrl} alt="" />
         </Link>
-        <div className="proj-head__text">Hi, I’m Fany and now you are seeing</div>
-        <h1 className="proj-head__title">{project.title}</h1>
-      </header>
-
-      <nav className="proj-nav" aria-label="Main navigation">
-        <NavItem to="/about">About</NavItem>
-        <NavItem to="/built">Things I Built</NavItem>
-        <NavItem to="/tech">Tech Designer</NavItem>
-        <NavItem to="/digital">Digital Product</NavItem>
-        <NavItem to="/graphic">Graphic Designer</NavItem>
-        <NavItem to="/others">Others</NavItem>
+        <Link to="/built" className="proj-top__back">← What I’ve done</Link>
       </nav>
 
       <main className="proj-body">
         <h1 className="proj-page-title">{project.title}</h1>
+        <Hero item={project.media?.[0]} />
+        <MetaRow project={project} />
         {sections.map(renderSection)}
       </main>
 

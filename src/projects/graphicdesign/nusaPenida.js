@@ -38,10 +38,12 @@ export default {
   ],
 
   intro:
-    "Nusa Penida is an island destination in Bali, Indonesia, known for its stunning natural landscapes, including dramatic cliffs, pristine beaches, and vibrant marine life.\n\n" +
-    "Not only that, it offers visitors a mix of natural beauty and activities like snorkeling, diving, trekking, and exploring unique geological formations (e.g., Kelingking Beach, Angel’s Billabong).\n\n" +
-    "Brand Direction: Adventure audiences want earned experiences and safety clarity. Emphasize friendliness and diverse site with a center on “Tri Hita Karana” (harmony of people–nature–divine).\n\n" +
+    "Nusa Penida is an island in Bali, Indonesia, with huge cliffs, beautiful beaches, and so much sea life.\n\n" +
+    "You can snorkel, dive, trek, or go see wild rock formations like Kelingking Beach and Angel’s Billabong.\n\n" +
+    "My brand direction: adventurers want experiences they earn, and they want to know they’re safe. So I leaned into friendliness and how many different places the island has, all centered on “Tri Hita Karana” (harmony between people, nature, and the divine).\n\n" +
     "**Keywords:** **cool, sustainable, family, friendly, recreation, bold, escape, adventure, motif, color, premium, safe**",
+
+  quote: "Adventure that feels earned, but always safe",
 
   // ✅ MP4 in slider
   video: [
@@ -107,21 +109,21 @@ finalPages: [
   // PROCESS TEXT
   // =========================
   processLeft: {
-    title: "Design Process",
+    title: "How I approached it",
     paragraphs: [
-      "This project is a multi-week rebrand where I researched an existing brand, identified what was not working, then developed a new strategy and visual system that could scale across real-world touchpoints.",
-      "The goal was not to redesign a logo in isolation, but to build a brand direction rooted in context, competition, and audience needs, then prove it through implementation.",
+      "This was a multi-week rebrand. I researched an existing brand, figured out what wasn’t working, then built a new strategy and visual system that could work in the real world.",
+      "I didn’t want to just redraw a logo. I wanted a direction that came from the place, the competition, and the people visiting, and then I wanted to prove it actually works.",
     ],
   },
 
   processRight: {
-    title: "Brand Direction",
+    title: "Where I wanted the brand to go",
     bullets: [
-      "Adventure audiences want earned experiences + safety clarity",
-      "Friendly and family-accessible (not only extreme adventure)",
-      "Diverse sites unified by a coherent system",
-      "Centered on Tri Hita Karana (people–nature–divine)",
-      "Built to scale across real touchpoints",
+      "Adventurers want experiences they earn, and clear safety info",
+      "Friendly for families too, not only extreme adventure",
+      "Lots of different spots, held together by one system",
+      "Centered on Tri Hita Karana (people, nature, divine)",
+      "Made to work on real things people see and use",
     ],
   },
 
@@ -129,22 +131,22 @@ finalPages: [
   // 1) RESEARCH
   // =========================
   researchLeft: {
-    title: "1) Research & Orientation",
+    title: "1) Getting to know the brand",
     paragraphs: [
-      "I started by choosing a brand and building a clear snapshot of its current state. I researched what the brand does, who it serves, and how it communicates today.",
-      "I traced its recent history to understand how its identity evolved and what cultural or industry shifts shaped it.",
-      "To ground the work, I mapped the competitive landscape and compared visual identities across competitors to see where the brand blends in, where it stands out, and what gaps it could own.",
-      "I summarized all findings into a short presentation to clarify the problem space before designing anything.",
+      "First I picked a brand and looked hard at where it stands today: what it does, who it’s for, and how it talks to people.",
+      "I dug into its recent history to see how the identity changed and what shaped it.",
+      "Then I looked at the competitors side by side. Where does this brand blend in? Where does it stand out? What space is still open?",
+      "I put it all into a short presentation, so I knew the actual problem before designing anything.",
     ],
   },
 
   researchRight: {
-    title: "What This Stage Produced",
+    title: "What I came out with",
     bullets: [
-      "Current-state audit + pain points",
-      "Audience framing (adventure / family / explorers)",
-      "Competitive landscape + differentiation opportunities",
-      "Clear problem statement before visual design",
+      "A check-up of where the brand is now, and its pain points",
+      "Who it’s for (adventurers, families, explorers)",
+      "The competition, and where the brand could stand apart",
+      "A clear problem to solve before any visuals",
     ],
   },
 
@@ -164,21 +166,21 @@ finalPages: [
   // 2) STRATEGY
   // =========================
   strategicLeft: {
-    title: "2) Strategic & Conceptual Direction",
+    title: "2) Picking a direction",
     paragraphs: [
-      "Using the research, I reframed the findings into recommendations and proposed three different rebrand strategies, each with a distinct positioning and tone.",
-      "I treated strategy as a design constraint—each direction was justified by today’s cultural and social context, not just personal taste.",
-      "This step set the foundation for what the brand should mean, who it should speak to, and what it should feel like. Strategic direction was communicated through moodboards and tone.",
+      "From the research, I came up with three different rebrand strategies, each with its own positioning and tone.",
+      "I used strategy as a rule for myself: every direction had to make sense for today’s culture, not just my personal taste.",
+      "This step decided what the brand should mean, who it talks to, and how it should feel. I showed each one through moodboards and tone.",
     ],
   },
 
   strategicRight: {
-    title: "How Strategy Guided Design",
+    title: "How strategy shaped the design",
     bullets: [
-      "Positioning: earned adventure + clear safety cues",
-      "Tone: friendly, premium, bold (without feeling exclusive)",
-      "System thinking: destinations feel diverse yet unified",
-      "Tri Hita Karana used as an organizing principle",
+      "Positioning: adventure you earn, with clear safety cues",
+      "Tone: friendly, premium, and bold, without feeling exclusive",
+      "Lots of different places that still feel like one family",
+      "Tri Hita Karana as the thing that ties it all together",
     ],
   },
 
@@ -200,21 +202,21 @@ finalPages: [
   // 3) CONCEPTUAL EXPLORATION
   // =========================
   conceptualLeft: {
-    title: "3) Visual & Conceptual Exploration",
+    title: "3) Trying out the look",
     paragraphs: [
-      "After reviewing the strategic directions, I combined key parts into three stronger conceptual foundations. Instead of treating strategy as three separate options, I merged elements that felt most aligned with the brand’s needs and cultural context.",
-      "From there, I explored three different visual directions that could express the same strategy in different ways—testing typography, color, layout, imagery, and graphic language.",
-      "This phase was about breadth and comparison: generating distinct options, putting them side by side, and using feedback to understand which visual choices best supported the strategy.",
+      "Instead of keeping the three strategies separate, I mixed the parts that fit the brand and its culture best into three stronger concepts.",
+      "Then I explored three visual directions for the same idea, playing with typography, color, layout, imagery, and graphics.",
+      "This part was about making lots of options, putting them side by side, and using feedback to see which choices really worked.",
     ],
   },
 
   conceptualRight: {
-    title: "What I Explored",
+    title: "What I played with",
     bullets: [
-      "Typography systems (friendly clarity vs premium authority)",
-      "Color logic (bold escapism + safety legibility)",
-      "Motif/pattern language (place-based, scalable)",
-      "Layout rules (consistent hierarchy across many outputs)",
+      "Typography (friendly and clear vs premium and confident)",
+      "Color (bold escape vibes, but still easy to read for safety)",
+      "Motifs and patterns inspired by the place, that can grow with the brand",
+      "Layout rules, so every piece has the same clear hierarchy",
     ],
   },
 
@@ -232,19 +234,17 @@ finalPages: [
   // 4) IMPLEMENTATION / DRAFTS
   // =========================
   draftingLeft: {
-    title: "4) Implementation & Drafting",
+    title: "4) Making it real",
     paragraphs: [
-      "Based on critique and feedback, I refined the chosen direction and started stress testing the system across touchpoints rather than only in a single hero mockup.",
-      "This is where hierarchy, spacing, alignment, and consistency became critical, because the brand needed to feel coherent across formats while still being flexible.",
-      "For the final brand guide book, I applied the system across multiple touchpoints and treated implementation as proof—checking where the identity breaks, what elements are too rigid, and what rules need to be clarified.",
-      "The result is a brand kit that is not just visually appealing, but operational, consistent, and designed to scale.",
+      "After critique and feedback, I refined the direction I picked. Then I tried it on lots of real pieces, not just one pretty hero mockup.",
+      "This is where the small stuff mattered most: hierarchy, spacing, alignment. The brand had to feel the same everywhere, but still be flexible.",
     ],
   },
 
   draftingRight: {
      paragraphs: [
-      "For the final brand guide book, I applied the system across multiple touchpoints and treated implementation as proof—checking where the identity breaks, what elements are too rigid, and what rules need to be clarified.",
-      "The result is a brand kit that is not just visually appealing, but operational, consistent, and designed to scale.",
+      "For the final brand guide book, I used every touchpoint as a test. Where does the identity break? What feels too stiff? Which rules need to be clearer?",
+      "What I ended up with is a brand kit that looks good, but also actually works, stays consistent, and can grow.",
     ],
   },
 

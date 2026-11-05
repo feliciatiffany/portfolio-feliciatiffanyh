@@ -40,7 +40,8 @@ export default {
   ],
 
   intro:
-    "PPE (Personal Protective Equipment) Cooler Box—also referred to as the PC-Box—is a lightweight wearable cooling add-on designed to improve comfort and reduce heat-related illness risk for Healthcare Personnel (HCP) working in full PPE in hot and humid conditions.",
+    "The PPE (Personal Protective Equipment) Cooler Box, or PC-Box, is a light, wearable cooling add-on I designed for healthcare workers in full PPE. In hot, humid places those suits get really hot, so I wanted to make them more comfortable and lower the risk of heat-related illness.",
+  quote: "Keeping healthcare workers cool inside their PPE",
 
   youtube: {
     title: "PC-Box Demo",
@@ -62,41 +63,41 @@ export default {
   },
 
   problemContext: {
-    title: "Problem Context",
+    title: "The problem",
     paragraphs: [
-      "Multiple news outlets reported that prolonged PPE use can cause heat-related illness such as heat stroke, thermal discomfort, excessive sweating, faster dehydration, skin rash, and increased cardiovascular stress—especially in hot and humid environments.",
-      "Common mitigation strategies like adjusting rest schedules or periodically changing PPE can be impractical and inefficient in many real conditions, particularly in developing countries where healthcare personnel, PPE supply, and infrastructure are limited.",
+      "Many news outlets reported that wearing PPE for a long time can lead to heat stroke, overheating, heavy sweating, faster dehydration, skin rashes, and extra stress on the heart, especially in hot and humid places.",
+      "The usual fixes, like more breaks or changing PPE more often, don’t always work in real life. That’s especially true in developing countries, where there aren’t enough healthcare workers, PPE, or facilities.",
     ],
   },
 
   motivationRelatedWork: {
-    title: "Motivation and Related Work",
+    title: "What already existed",
     paragraphs: [
-      "Some related approaches focus on physiological monitoring to warn when body temperature is too high, indicating heat stress, fatigue, or fever.",
-      "Another approach explored a temperature-controlled water circulating system worn in PPE for thermal management, but wearability and weight become major practical considerations.",
-      "These considerations inspired the PC-Box: a lightweight (< 1 kg), wearable cooling system that supports air circulation in PPE to help maintain stable cognitive and immune performance.",
+      "Some existing ideas monitor the body and warn you when your temperature is too high, which can mean heat stress, fatigue, or fever.",
+      "Another one circulates temperature-controlled water inside the PPE, but that gets heavy and hard to wear.",
+      "That pushed me toward the PC-Box: a light (< 1 kg), wearable system that moves cool air through the PPE, to help people stay clear-headed and healthy while they work.",
     ],
   },
 
   objectives: {
-    title: "Project Objectives",
+    title: "What I wanted it to do",
     bullets: [
-      "Help healthcare personnel maintain a normal body temperature while wearing PPE.",
-      "Improve air circulation inside PPE to reduce heat stress and discomfort.",
-      "Keep the system lightweight (target < 1 kg), simple to use, and non-intrusive to movement.",
-      "Ensure the solution is safe, practical, and suitable for resource-limited contexts.",
+      "Help healthcare workers keep a normal body temperature in PPE.",
+      "Get more air moving inside the suit to cut down heat and discomfort.",
+      "Stay light (under 1 kg), easy to use, and out of the way when moving.",
+      "Be safe and practical, even in places with limited resources.",
     ],
   },
 
   systemOverview: {
-    title: "System Overview (PC-Box)",
+    title: "What’s inside",
     paragraphs: [
-      "The PC-Box integrates PPE with a compact cooling module carried on the back like a backpack. The system includes an Arduino UNO microcontroller, a cooling engine, blower/cooling fans, flexible air pipes, and sensors.",
-      "The cooling engine is built around a Thermoelectric Cooler (TEC1-12706) paired with heatsinks and fans to manage heat transfer.",
+      "The PC-Box is a small cooling module you wear on your back like a backpack, connected to the PPE. Inside there’s an Arduino UNO, a cooling engine, blower and cooling fans, flexible air pipes, and sensors.",
+      "The cooling engine is a Thermoelectric Cooler (TEC1-12706) with heatsinks and fans to move the heat around.",
     ],
     sections: [
       {
-        title: "Air delivery targets",
+        title: "Where the cool air goes",
         bullets: [
           "Back",
           "Hands (right + left)",
@@ -107,46 +108,46 @@ export default {
   },
 
   howItWorks: {
-    title: "How It Works",
+    title: "How it works",
     sections: [
       {
         title: "Control logic",
         bullets: [
-          "The system starts when the temperature sensor detects air inside PPE above 26°C.",
-          "Hot air is sucked out and flowed through the heatsink grille and cooling engine.",
-          "The microcontroller regulates blower fan speed (air intake) and cooling fan speed (dissipating heat from the hot-side heatsink).",
-          "After cooling the air to ~22–26°C, the air is circulated back into the PPE through flexible pipes to the body zones.",
-          "The engine heat is released to the environment using a cooling fan.",
+          "It turns on when the sensor detects air inside the PPE above 26°C.",
+          "Hot air gets pulled out and pushed through the heatsink grille and cooling engine.",
+          "The Arduino controls the blower fan (air in) and the cooling fan (getting heat off the hot-side heatsink).",
+          "Once the air is cooled to ~22–26°C, it flows back into the PPE through flexible pipes to different parts of the body.",
+          "A cooling fan blows the engine’s heat out into the air.",
         ],
       },
       {
-        title: "Wearability and safety",
+        title: "Comfort and safety",
         bullets: [
-          "Flexible pipes reduce movement restriction.",
-          "Pipes are integrated into a simple vest to allow independent use (no assistance needed).",
-          "Backpack placement improves balance and minimizes interference during work.",
-          "Designed without explosive components; PPE pipe connection uses screwed fittings to keep the suit secure.",
+          "Flexible pipes so you can still move freely.",
+          "Pipes are built into a simple vest, so you can put it on yourself.",
+          "Wearing it like a backpack keeps you balanced and out of your own way.",
+          "No explosive parts, and the pipes screw into the PPE so the suit stays sealed.",
         ],
       },
     ],
   },
 
   designConstraints: {
-    title: "Design Constraints",
+    title: "Rules I gave myself",
     bullets: [
-      "Lightweight: target system weight < 1 kg.",
-      "Simple steps: fast setup and easy operation in real clinical conditions.",
-      "Does not interfere with movement during tasks.",
-      "Safe integration with PPE (secure pipe connections, minimal leakage risk).",
+      "Light: under 1 kg.",
+      "Simple: quick to set up and easy to use in a real clinic.",
+      "Doesn’t get in the way while working.",
+      "Safe with PPE: secure pipe connections and little risk of leaks.",
     ],
   },
 
   results: {
-    title: "Test Results and User Feedback",
+    title: "What happened in testing",
     paragraphs: [
-      "From testing, the PC-Box activates after detecting temperature above 26°C inside the PPE suit.",
-      "It takes around 10 minutes to circulate cooled air to the body. The cooling engine then pauses temporarily until temperature rises again.",
-      "Based on user reviews, the PC-Box helps reduce heat discomfort while wearing PPE, improving comfort and supporting productivity.",
+      "In testing, the PC-Box turned on once the temperature inside the suit went above 26°C.",
+      "It took around 10 minutes to get cool air to the body. Then the cooling engine paused until it got warm again.",
+      "People who tried it said it made wearing PPE less hot and more comfortable, which made it easier to keep working.",
     ],
   },
 

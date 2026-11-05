@@ -27,8 +27,10 @@ export default {
   ],
 
   intro:
-    "This project designs and builds a physics-driven Rube Goldberg Machine in Unity, using chained interactions to unfold a personal narrative. " +
-    "It integrates 3D models, materials, sound, motion, camera framing, and lighting to create a cohesive, story-led experience.",
+    "I built a physics-driven Rube Goldberg machine in Unity, where one little chain reaction after another tells a personal story. " +
+    "I put together 3D models, materials, sound, motion, camera angles, and lighting so it all flows from one moment to the next.",
+
+  quote: "Missing home, one chain reaction at a time",
 
   linksBlock: {
     title: "Links",
@@ -51,24 +53,24 @@ export default {
   },
 
   descLeft: {
-    title: "Abstract",
+    title: "Why a café",
     paragraphs: [
-      "I built an Indonesian café as a tribute to my longing for home and to coffee as a shared tradition in Indonesia. Cafés are a growing part of everyday life—across youth culture, working communities, and even street coffee trucks—serving as places where people gather and relationships form.",
-      "This project becomes a dreamlike “world of wonder,” shaped by how I imagine Indonesia in my mind: familiar, vibrant, and warmly communal.",
+      "I built an Indonesian café because I miss home, and because coffee is something we share in Indonesia. Cafés are everywhere in daily life there, from young people hanging out to coworkers to street coffee carts. They're where people gather and friendships happen.",
+      "So this became a dreamy little “world of wonder,” built from how I picture Indonesia in my head: familiar, colorful, and warm.",
     ],
   },
 
   descRight: {
-    title: "Build Focus",
+    title: "What I focused on",
     bullets: [
-      "Physics-driven chain reactions (cause → effect → narrative progression)",
-      "3D scene composition (models, props, spatial storytelling)",
-      "Lighting + camera framing to guide attention through each step",
-      "Sound + motion cues to reinforce impact and pacing",
-      "Materials + environmental mood to evoke a nostalgic café atmosphere",
+      "Physics chain reactions (cause → effect → the story moves on)",
+      "Building the 3D scene (models, props, telling a story with space)",
+      "Lighting and camera angles to lead your eye through each step",
+      "Sound and motion to make each hit land and keep the pace",
+      "Materials and mood to make it feel like a nostalgic café",
     ],
     paragraphs: [
-      "The machine is designed as a sequence of interactions that feels playful and intentional, where each trigger carries the viewer forward through the space like a story.",
+      "I wanted every step to feel playful but on purpose, so each trigger walks you further into the café like turning a page.",
     ],
   },
 

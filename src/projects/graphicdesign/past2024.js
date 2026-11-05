@@ -17,8 +17,10 @@ export default {
   },
 
   intro:
-    "A curated archive of work created before 2024 — documenting my growth into design across organizations, competitions, hobbies, and early studies.\n\n"+ 
-    "This collection showcases all my work created before 2024.Growing up with a curiosity for exploring various disciplines, I discovered a passion for design, which eventually led me to major in Design and Technology. These pieces represent my journey as a designer, from contributions to student organizations and competition entries to personal creative hobbies. Some works also come from my foundation year at Parsons, The New School, where I experimented with diverse forms and styles.",
+    "My little archive of everything I made before 2024: work for orgs, competition entries, hobby projects, and early school work.\n\n"+
+    "I grew up curious about a bit of everything, and somewhere along the way I fell in love with design. That’s what led me to major in Design and Technology. Some of these pieces come from student organizations and competitions, some are just things I made for fun, and some are from my foundation year at Parsons, The New School, where I got to try out all kinds of forms and styles.",
+
+  quote: "Where my curiosity slowly turned into design",
 
   // Row 4: full-page stack images (public/media/graphicdesign/past2023/)
   media: [

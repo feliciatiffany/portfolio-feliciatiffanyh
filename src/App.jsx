@@ -33,7 +33,7 @@ function Layout({ children }) {
 
   return (
     <div className={`page-grid ${gridClass}`}>
-      {!onProject && !onHome && (
+      {!onProject && !onHome && !/^\/built/i.test(pathname) && (
         <header className="header" aria-label="Brand">
           <LogoMark />
         </header>

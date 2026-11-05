@@ -9,8 +9,9 @@ export default {
   },
 
   intro:
-    "Poet Guy is a browser-based poem generator inspired by the magic of street poets and the wandering thoughts we all carry. " +
-    "The project grew out of an encounter with @peoplearepoetry in Union Square, where I was drawn not only to the poems themselves, but to the slow, intentional process of someone listening, thinking, and typing something just for you.",
+    "Poet Guy is a poem generator in the browser, inspired by street poets and the random thoughts we all carry around. " +
+    "It started when I met @peoplearepoetry in Union Square. I loved the poems, but what really got me was the process: someone listening, thinking, and slowly typing something just for you.",
+  quote: "Someone listening, thinking, and typing a poem just for you",
 
   sections: [
     { kind: "intro" },
@@ -45,11 +46,11 @@ export default {
   },
 
   inspirationRight: {
-    title: "Project Concept",
+    title: "Where it started",
     paragraphs: [
-      "This project is a browser-based poem generator inspired by the magic of street poets and the wandering thoughts we all carry. The idea sparked after I met @peoplearepoetry not too long ago in Union Square. I was instantly drawn to his quiet presence in the corner of the subway, typing away on an old typewriter.",
-      "What fascinated me was not just the poems, but the process: how he would ask for a theme or feeling, sometimes offering his own question if you were not sure. People could respond with anything, something specific or something abstract, and he would begin typing slowly and with intention.",
-      "What made him unforgettable was the way he explained each poem after finishing. At first, I did not fully understand them, but with each reading I became more captivated by the rhythm, diction, and imagery. From that experience, I wanted to create an online version of this poetic encounter, a space where people might begin to love poetry the way I did.",
+      "The idea came after I met @peoplearepoetry in Union Square. He was sitting quietly in a corner of the subway, typing away on an old typewriter, and I was hooked right away.",
+      "He would ask you for a theme or a feeling, or give you his own question if you weren't sure. You could answer with anything, specific or abstract, and he would start typing, slowly and on purpose.",
+      "Then he explained each poem. Honestly, I didn't get them at first, but every time I reread them I liked the rhythm, the word choices, and the images more. So I wanted to make an online version of that moment, a place where people might start loving poetry the way I did.",
     ],
   },
 
@@ -61,10 +62,10 @@ export default {
   },
 
   sketchRight: {
-    title: "Visual Direction",
+    title: "How I wanted it to look",
     paragraphs: [
-      "Visually, the project centers around the old typewriter to reference history, intimacy, and the feeling of someone writing something just for you. I wanted the interface to carry the texture of vintage paper and the quiet presence of a page waiting for thought.",
-      "The sketch stage helped define how the project would feel before it was coded. Rather than treating the page as a neutral website layout, I designed it more like a poetic space, where the typewriter, paper, and pacing all contribute to the emotional tone of the experience.",
+      "Everything revolves around the old typewriter, because it feels personal and a bit nostalgic, like someone is writing just for you. I wanted the screen to feel like vintage paper, a quiet page waiting for a thought.",
+      "Sketching first helped me figure out the mood before I wrote any code. I didn't want a normal website layout. I wanted a little poetic space where the typewriter, the paper, and the pacing all set the tone.",
     ],
   },
 
@@ -76,11 +77,11 @@ export default {
   },
 
   typewriterRight: {
-    title: "Interaction Design",
+    title: "How it works",
     paragraphs: [
-      "The interaction begins with a single open-ended prompt: “What’s in your mind lately?” The participant enters a word, thought, or feeling, and that input acts like a divination, triggering a poem that relates to it either thematically or abstractly.",
-      "As the poem appears, each word is typed slowly on screen through a vintage typewriter animation, with small pauses that mimic a poet stopping to think. If the match feels random, that is part of the point. Like any good divination, it invites reflection rather than perfect relevance.",
-      "This project will never be as alive or intimate as sitting across from a real poet like @peoplearepoetry, but I hope it still sparks recognition, wonder, and a growing affection for poems in the people who encounter it.",
+      "It starts with one open question: “What’s in your mind lately?” You type a word, a thought, or a feeling, and it works kind of like a fortune: it pulls up a poem that connects to it, sometimes clearly, sometimes loosely.",
+      "The poem then types itself out word by word with a typewriter animation, with little pauses like a poet stopping to think. If the match feels random, that's kind of the point. Like any good fortune, it's there to make you think, not to be perfectly right.",
+      "It will never be as alive as sitting across from a real poet like @peoplearepoetry. But I hope it still makes people a little curious, and maybe a little fond of poems.",
     ],
   },
 

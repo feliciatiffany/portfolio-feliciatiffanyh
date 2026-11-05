@@ -15,7 +15,9 @@ export default {
   },
 
   intro:
-     "Caress A Bear is an interactive art piece inspired by the classic arcade game Whack-A-Mole. Designed to be playful and mischievous, it invites participants into a friendly competition with Vano, a lively bear who eagerly engages with the audience. As the game progresses, Vano becomes increasingly enthusiastic, speeding up and almost interacting directly with the player.",
+     "Caress A Bear is my playful twist on the arcade game Whack-A-Mole. Except here you don't whack anything, you just try to pet Vano, a cheeky little bear. He pops out to say hi, then dodges your hand. The longer you play, the more excited he gets, speeding up until he's almost playing back with you.",
+
+  quote: "You don't whack the bear, you just try to pet him",
 
 
   sections: [
@@ -43,24 +45,24 @@ export default {
   },
 
   heroRight: {
-    title: "Abstract",
+    title: "The idea",
     paragraphs: [
-      "The game is simple: the audience’s goal is to “caress” or touch the bear. Pressing a button calls Vano out of hiding, but as soon as someone tries to reach him, he playfully retreats. The installation works through two main inputs: a button that summons Vano and a distance sensor that detects hand movements. Inside the box, a servo motor powers a seesaw mechanism, allowing Vano to pop in and out.",
-      "The final project combined electronic interaction, mechanical movement, and digital animation to create an engaging and responsive installation. The integration of Arduino-based control, sensor-driven interaction, and dynamic visual feedback resulted in a playful and immersive user experience.",
+      "The game is simple: try to “caress” the bear. Press the button and Vano comes out of hiding. Reach for him and he ducks away. There are only two inputs, a button that calls him and a distance sensor that notices your hand. Inside the box, a servo moves a little seesaw that pops Vano in and out.",
+      "I loved mixing electronics, a moving mechanism, and on-screen animation in one piece. Arduino runs the bear, the sensor reads you, and the screen talks back, so the whole thing feels alive and a bit mischievous.",
     ],
   },
 
   toolsBlock: {
-    title: "Tools & Materials",
+    title: "What I used",
     bullets: [
-      "Arduino Uno — microcontroller responsible for handling user interactions and controlling movement.",
-      "Servo Motor — powers the seesaw mechanism, enabling the bear to pop in and out dynamically.",
-      "Ultrasonic Distance Sensor (HC-SR04) — detects proximity and triggers the bear’s reaction.",
-      "Push Button — activates the bear’s movement upon user interaction.",
-      "Wood & Acrylic — used for the physical enclosure and interaction setup.",
-      "Processing — supports the visual interface and animated text interaction.",
-      "Laser Cutter & Hand Tools — used for precise cutting and assembly.",
-      "Adhesives, Screws, and Hinges — essential for securing components and ensuring durability.",
+      "Arduino Uno — the brain, handles input and movement.",
+      "Servo Motor — drives the seesaw so Vano pops in and out.",
+      "Ultrasonic Distance Sensor (HC-SR04) — notices your hand coming close.",
+      "Push Button — calls Vano out.",
+      "Wood & Acrylic — the box and the setup.",
+      "Processing — the on-screen text and animation.",
+      "Laser Cutter & Hand Tools — cutting and putting it all together.",
+      "Adhesives, Screws, and Hinges — keeping everything in one piece.",
     ],
   },
 
@@ -72,11 +74,11 @@ export default {
   },
 
   processRight: {
-    title: "Development Process",
+    title: "How I built it",
     paragraphs: [
-      "The foundation of the project was established through Arduino programming, which controlled the bear’s movements and responses to user input. A servo motor managed the bear’s positioning, while an ultrasonic distance sensor detected hand proximity. The interaction sequence was designed to create a playful engagement where the bear dynamically reacted to the audience.",
-      "The enclosure was constructed in wood and integrated with a precisely designed seesaw mechanism. The servo motor was positioned to achieve responsive and repeatable movement, while the overall assembly balanced accessibility, durability, and visual clarity.",
-      "To extend the physical interaction, a Processing-based digital interface was developed to display responsive text and visual feedback. Serial communication between Arduino and Processing enabled real-time reactions, allowing the physical and digital parts of the installation to work together as one cohesive experience.",
+      "I started with the Arduino code. The servo moves Vano, the ultrasonic sensor watches for hands, and I tuned the timing so he reacts in a teasing, playful way.",
+      "Then I built the wooden box around a seesaw mechanism. I placed the servo carefully so the movement stayed quick and repeatable. I also wanted the box to be sturdy, easy to reach, and clear to look at.",
+      "Finally, I added a Processing screen that shows text reacting to the game. Arduino and Processing talk over serial in real time, so the physical bear and the screen move together.",
     ],
   },
 

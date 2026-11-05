@@ -29,8 +29,9 @@ export default {
     ],
 
     intro:
-        "This project investigates how cities are shaped by overlapping layers—people, biomes, weather systems, infrastructure, and digital traces that are both visible and invisible. Inspired by Mark Graham’s idea of the city as a palimpsest, it treats urban experience as something continually rewritten, yet still marked by older data, images, maps, narratives, and histories.\n\n" +
-        "To “unravel” these layers, I selected a Site of Interest and conducted field research by collecting grounded “data points” through observation and documentation. I translated these findings into a set of creative outputs—experience visualization, narrative storytelling, and a site data document—capturing the phenomenological feel of the place while revealing the hidden structures that shape how it is lived and perceived.",
+        "Cities are made of so many layers: people, nature, weather, infrastructure, and digital traces, some visible and some not. I got really into Mark Graham’s idea of the city as a palimpsest, a page that keeps getting rewritten but still shows marks of older data, maps, stories, and histories.\n\n" +
+        "To peel back those layers, I picked one Site of Interest and did my own field research, collecting small “data points” by observing and documenting. Then I turned what I found into a few creative outputs: a visualization of the experience, a short narrative, and a site data document. I wanted to capture how the place actually feels, and also show the hidden structures that shape how it’s lived and seen.",
+    quote: "What looks like data is sometimes someone’s whole day",
 
     // This is the block that appears immediately after intro
     linksBlock: {
@@ -79,35 +80,35 @@ export default {
 
     // Two-column content (overview + abstract + process)
     descLeft: {
-        title: "Abstract",
+        title: "Why I made it",
         paragraphs: [
-            "When a city becomes more than a system with hierarchies or the output of data, life can feel more meaningful. A city is not only a stack of buildings, people, ecosystems, and transit links, but a gathering of stories from millions of main characters and points of view. Each day is a good day or a bad day for someone. It reminds us that what appears as data is, at times, someone’s life.",
-            "The weave of observed data and lived interaction opens a new way of seeing for anyone, and for me from my bedroom window. The mix and connectedness of things—from the state of the sidewalk, the neighbor across the window, the weather, the air, the intersubjectivity of the surroundings, down to something as simple as a bird alighting—can offer a fresh view of a place I see every day. It teaches the skill of seeing, and seeing what is unseen.",
+            "When I stop seeing a city as just a system or a pile of data, life feels more meaningful. A city isn’t only buildings, people, nature, and trains. It’s millions of main characters, each with their own point of view. Every day is a good day or a bad day for someone. What looks like data is sometimes someone’s life.",
+            "Mixing what I observed with what I lived gave me a new way of seeing, right from my bedroom window. The sidewalk, the neighbor across the way, the weather, the air, how everyone around me connects, even a bird landing: all of it made a place I see every day feel new. It taught me how to really look, and to notice what usually goes unseen.",
         ],
     },
 
     descRight: {
-        title: "Process",
+        title: "How I made it",
         sections: [
             {
                 title: "1) Site of Interest",
                 paragraphs: [
-                    "After considering three possible locations, I chose the window of my apartment as my Site of Interest (SOI). The SOI becomes a daily lens for observing weather, neighbors, birds, sidewalk conditions, sound, and social movement.",
+                    "I thought about three possible spots and ended up choosing my apartment window as my Site of Interest (SOI). It became my daily lens for watching the weather, neighbors, birds, the sidewalk, sounds, and people passing by.",
                 ],
             },
             {
                 title: "2) Proposal",
                 paragraphs: [
-                    "Interpretation of the prompt: the city as a collection of stories (inspired by Invisible Cities). The city becomes a layered set of POVs—millions of main characters.",
-                    "Chosen medium: an interactive website that acts like a book, allowing visitors to explore different dates and story fragments through visuals.",
+                    "How I read the prompt: the city as a collection of stories (inspired by Invisible Cities). A city is a stack of POVs, millions of main characters.",
+                    "What I made: an interactive website that works like a book, where you can flip through different dates and story fragments through visuals.",
                 ],
             },
             {
                 title: "3) Sketch + Data Visualization",
                 paragraphs: [
-                    "The project translates drawing-derived data—color, line, transparency, shape, stroke—into a single canvas designed to reflect the atmosphere of each observation period.",
-                    "Example: on Oct 26, 2025, the observation described a quiet, starless night, yet a happy couple walked together. The canvas captures this contrast through flowing lines for cold wind, and color variation mapped from the recorded data.",
-                    "The visuals were curated into a website built with eleventy/ @11ty that works as an interactive digital library: each date reveals both the data visualization and the story behind it.",
+                    "I turned my observations into drawing data (color, line, transparency, shape, stroke) and combined them into one canvas per observation that shows the mood of that moment.",
+                    "For example, on Oct 26, 2025, I wrote down a quiet, starless night, but also a happy couple walking together. The canvas shows that contrast with flowing lines for the cold wind and colors mapped from my notes.",
+                    "I collected all the visuals into a website built with Eleventy (@11ty) that works like a little digital library: each date shows the visualization and the story behind it.",
                 ],
             },
         ],

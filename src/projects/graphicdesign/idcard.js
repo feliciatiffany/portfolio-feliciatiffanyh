@@ -14,7 +14,9 @@ export default {
   },
 
   intro:
-    "This project centers on designing a cohesive personal identity, beginning with the creation of a monogram/logo and extending into a personalized ID card. The logo reflects my design style and values, while the ID card complements and enhances the logo, presenting it within a functional and aesthetic layout. The logo serves as the foundation where I build based on my design style and values. Going forward from there, the ID card was build with design that complements and enhances the logo, presenting it within a functional and aesthetic layout.",
+    "I designed my own personal identity: first a monogram/logo, then an ID card to go with it. The logo came first, built around my design style and what I care about. Then I made the ID card so the logo could really shine, in a layout that’s both useful and nice to look at.",
+
+  quote: "Figuring out what “me” looks like as a logo",
 
   // Row 4 (gallery)
   media: [
@@ -28,11 +30,11 @@ export default {
   descLeft: {
     sections: [
       {
-        title: "Design Process",
+        title: "How I made it",
         bullets: [
-          { label: "Step 1: Monogram/Logo Design", text: "Designed a bold, meaningful monogram/logo reflecting my style and values." },
-          { label: "Step 2: Personal ID Card Design", text: "Developed an ID card focusing on typography and layout, enhancing the logo’s impact." },
-          { label: "Outcome", text: "A cohesive identity system that translates well from mark to application." },
+          { label: "Step 1: Monogram/Logo Design", text: "I made a bold monogram/logo that actually means something to me and shows my style." },
+          { label: "Step 2: Personal ID Card Design", text: "I built the ID card around typography and layout, so the logo stands out even more." },
+          { label: "Outcome", text: "A small identity system that works both as a mark and on a real card." },
         ],
       },
     ],

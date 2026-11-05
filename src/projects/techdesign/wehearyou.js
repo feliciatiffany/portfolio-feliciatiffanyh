@@ -52,8 +52,10 @@ export default {
 
   // ✅ Overview first
   intro:
-    "We Hear You is a gesture-based interactive experience that invites players into a soft, reflective landscape, where they can encounter the memories, thoughts, and quiet truths of people from different generations, occupations, and backgrounds. It also function as a beginning idea of interactive collection survey.\n\n" +
-    "“How might we help strangers share honest emotional reflections in a way that feels safe, and make qualitative data collection feel inviting instead of forced?”",
+    "We Hear You is a gesture-based experience where you wander a soft, quiet landscape and find the memories, thoughts, and small truths of people from different generations, jobs, and backgrounds. It's also my first try at turning a survey into something interactive.\n\n" +
+    "“How might we help strangers share honest feelings in a way that feels safe, and make answering questions feel inviting instead of forced?”",
+
+  quote: "Understanding ourselves through other people's stories",
 
   // ✅ Full Project Demonstration
   youtubes: [
@@ -74,26 +76,26 @@ export default {
 
   // ✅ Row 5 LEFT — Issues Addressed & Concept
   descLeft: {
-    title: "Issues Addressed & Concept",
+    title: "Why I made it",
     paragraphs: [
-      "This project continues a piece I created, Dialogue to the Wind (link), an interactive work where users spoke into an Arduino-based object and heard their words reflected back as a form of personal reflection. We Hear You carries that thread forward, but it turns reflection outward. It is about understanding ourselves through other people’s thoughts and feelings, and seeing the world as whole because of the people in it. Self reflection matters, but I think we often forget that life is also about living in relation to others and existing within community.",
-      "The core issue I’m responding to is emotional disconnection across generations and lived experiences. In a world that moves fast, we grow apart not only by age, but by work, routine, and silence. We Hear You creates a gentle space to encounter voices unlike your own and to sit with them. It brings forward the quiet voices we often overlook, like a child wondering if anyone understands them, an elder remembering love, or a worker whose name no one remembers. I wanted to honor emotional traces that rarely make it into any archive, not grand declarations, but small honest truths that quietly shape what it means to be human.",
-      "This concept is grounded in the psychology of listening. Being heard without interruption or judgment can be healing. The experience invites players to listen with care and respond, and in that exchange, maybe feel seen in return. For me, self understanding often happens through others. Meeting someone else’s truth can make your own feelings clearer, even when nothing is explicitly explained.",
+      "This picks up where my piece Dialogue with the Wind left off. There, you spoke into an Arduino-based object and heard your own words reflected back. We Hear You turns that reflection outward. It's about understanding ourselves through other people's thoughts and feelings. Self-reflection matters, but I think we forget that life is also about living with others, in community.",
+      "The problem I kept thinking about is how disconnected we get across generations and life experiences. Life moves fast, and we drift apart not just by age, but by work, routine, and silence. I wanted a gentle space to meet voices unlike your own and sit with them: a child wondering if anyone understands them, an elder remembering love, a worker whose name no one remembers. Not big statements, just small honest truths that rarely make it into any archive.",
+      "It's grounded in the psychology of listening. Being heard without interruption or judgment can be healing. You listen with care, respond, and maybe feel seen in return. For me, understanding myself often happens through others. Meeting someone else's truth can make your own feelings clearer.",
     ],
     sections: [
       {
-        title: "Beginning of the Interactive Survey Collection Platform",
+        title: "A survey that doesn't feel like a survey",
         paragraphs: [
-          "Alongside the emotional archive, this project is also an early experiment in making survey collection more engaging and emotionally honest. Traditional surveys can feel repetitive and transactional, which often leads to rushed, shallow, or “safe” answers. My assumption was that people share more thoughtfully when prompts feel like an experience instead of a form.",
-          "In informal testing, I noticed users took more time and wrote more nuanced messages when the prompt was framed as “leave a thought for someone you’ll never meet” and when the experience acknowledged them gently, rather than asking direct questions upfront.",
-          "I also saw hesitation at the beginning when expectations were unclear, which is why the final design includes guidance and why a future iteration would add an even clearer consent moment and a short tutorial phase.",
+          "This is also an early experiment in making surveys more fun and more honest. Normal surveys feel repetitive and transactional, so people give rushed, shallow, or “safe” answers. My guess was that people share more thoughtfully when it feels like an experience, not a form.",
+          "In informal testing, people took more time and wrote richer messages when the prompt was “leave a thought for someone you’ll never meet,” and when the experience greeted them gently instead of firing questions right away.",
+          "I also saw people hesitate at the start when they didn't know what to expect. That's why the final version has guidance, and why next time I'd add a clearer consent moment and a short tutorial.",
         ],
       },
       {
-        title: "Target Audience",
+        title: "Who it's for",
         paragraphs: [
-          "This experience is designed for art installation visitors and anyone being asked to share personal thoughts, like research participants, community members, museum visitors, or users giving feedback. They often need psychological safety, a reason to care, and acknowledgment that their input matters.",
-          "It also serves a secondary customer, the researcher or organizer who needs truthful qualitative responses without forcing people to overshare. We Hear You addresses these needs by embedding prompts inside a calm narrative world, offering a gentle entry into reflection, and turning response into a choice that feels human and voluntary.",
+          "It's for installation visitors and anyone being asked to share something personal: research participants, community members, museum visitors, people giving feedback. They need to feel safe, have a reason to care, and know their answer matters.",
+          "It's also for the researcher or organizer who wants honest answers without pushing people to overshare. So I tucked the prompts inside a calm story world, made the start gentle, and made answering feel like a human, voluntary choice.",
         ],
       },
     ],
@@ -101,17 +103,17 @@ export default {
 
   // ✅ Row 5 RIGHT — Experience Description + Gestures + Links (links format exactly like you asked)
   descRight: {
-    title: "Experience Description",
+    title: "The experience",
     paragraphs: [
-      "Set in a wide pastel field with a glowing, blossoming tree at its center, the player moves through a living archive of messages left behind by others. Light orbs drift down like falling thoughts, and antique objects sit scattered like quiet relics—each one holding a voice, a trace, a hope. You don’t know what message you’ll receive or who wrote it, but you follow the pull anyway, trusting that maybe it’s the one you need.",
-      "Instead of buttons, the world responds to your hands. With simple gestures, you choose what to do with what you found: relate to it, protect it, carry it forward, or let it go. Each choice shifts the emotional direction of the experience, and the environment subtly changes with you—like the world is listening back.",
-      "The tree is where the archive grows. Inspired by the Tree of Life, it offers every player a chance to leave a message of their own. Each contribution becomes part of what future players can discover, so over time the world slowly expands. It’s shaped by everyone who has passed through it.",
-      "Technically, the interaction is built with MediaPipe and Python, connected into Unity so the experience can read hand movement in real time. I chose gesture-based interaction on purpose: it asks the player to be present, to respond with attention, and to feel the act of listening and replying as something physical—like reaching out and touching memory.",
-      "Supported by gentle narration and guidance, We Hear You is meant to feel quiet, human, and open-ended. It’s a space to meet someone else’s truth, leave a trace of your own, and remember the power of simply listening to understand.",
+      "You're in a wide pastel field with a glowing, blossoming tree in the middle, moving through a living archive of messages other people left behind. Light orbs drift down like falling thoughts, and old objects sit around like quiet relics, each holding a voice, a trace, a hope. You don't know what message you'll get or who wrote it, but you follow the pull anyway, hoping it's the one you need.",
+      "There are no buttons. The world responds to your hands. With simple gestures, you decide what to do with what you found: relate to it, protect it, carry it forward, or let it go. Each choice shifts the mood, and the world changes a little with you, like it's listening back.",
+      "The tree is where the archive grows. Inspired by the Tree of Life, it lets every player leave a message of their own. Each one becomes something future players can find, so the world slowly grows, shaped by everyone who passed through.",
+      "Under the hood, MediaPipe and Python read your hand movement in real time and send it into Unity. I picked gestures on purpose. They ask you to be present and make listening and replying feel physical, like reaching out and touching a memory.",
+      "With gentle narration and guidance, I wanted it to feel quiet, human, and open-ended. A place to meet someone else's truth, leave a bit of your own, and remember how powerful it is to just listen.",
     ],
     sections: [
       {
-        title: "Gesture Responses",
+        title: "The gestures",
         bullets: [
           "Open palm: “I relate to this.”",
           "Fist: “I will protect this truth.”",
@@ -136,49 +138,49 @@ export default {
 
   // ✅ Design Process
   processIntro: {
-    title: "Design Process and Iteration",
+    title: "How I worked",
     paragraphs: [
-      "If I had to portray my thinking process, I’d say it looks like a mind map. When I design, I keep moving forward from one seed idea and let new branches appear as I test what’s possible and what feels meaningful. I like when concept and technical exploration grow side by side, so the work stays both grounded and imaginative.",
+      "If I had to draw my thinking process, it'd be a mind map. I start from one seed idea and let new branches pop up as I test what's possible and what feels meaningful. I like when the concept and the tech grow side by side, so the work stays grounded but still imaginative.",
     ],
   },
 
   processBrainstorming: {
     title: "1. Brainstorming",
     paragraphs: [
-      "This project started from two directions. One came from my previous piece, Dialogue to the Wind (link), and the desire to extend reflection beyond the self. The other came from my interest in building 3D environments in Unity and experimenting with hand gesture interaction using machine learning, especially MediaPipe.",
-      "At the beginning, it was a lot of questions, both technical and human. What kind of interaction feels natural. What makes people willing to share honestly. How can reflection become communal instead of only personal. I worked through this in Figma using a mind map. Connecting sticky notes, references, written ideas, and images is the clearest way for me to see patterns and choose a direction that actually holds together.",
-      "My early sketches focused on two things. First, tool research and which technologies could realistically work together. Second, concept exploration and what medium the experience should take. I initially leaned toward a game format because fun is always part of how I design experiences. It lowers pressure, invites curiosity, and makes people stay longer.",
+      "This started from two places. One was Dialogue with the Wind and wanting to take reflection beyond the self. The other was my curiosity about building 3D worlds in Unity and trying hand gesture interaction with machine learning, especially MediaPipe.",
+      "At first it was just a lot of questions, technical and human. What interaction feels natural? What makes people willing to share honestly? How can reflection be shared, not just personal? I worked it out in a Figma mind map. Connecting sticky notes, references, ideas, and images is the clearest way for me to spot patterns and pick a direction.",
+      "My early sketches focused on two things: which tools could realistically work together, and what form the experience should take. I leaned toward a game at first, because fun is always part of how I design. It lowers the pressure, makes people curious, and keeps them around longer.",
     ],
   },
 
   processEmpathize: {
-    title: "2. Empathize and Ideate",
+    title: "2. Empathize and ideate",
     paragraphs: [
-      "This phase was mostly research and experimentation. I played and studied soft storytelling games like Journey and analyzed what makes them emotionally powerful. I was especially interested in how a world can guide feeling without forcing a single narrative, and how symbolism can carry meaning without direct dialogue.",
-      "From there, I returned to the questions that originally came from Dialogue to the Wind, but expanded them outward. I kept asking what mental health challenges exist beyond individual self reflection, what kinds of care are missing, and why people should care about others. That led me to disconnection across generations and lived experiences, and the idea of community reflection as a practice.",
-      "In ideation, I shaped the experience around a belief I keep coming back to, that talking is one of the best forms of therapy. I wanted the interaction to feel closer to a psychologist’s space where you can express something and feel heard without being interrupted or judged. That’s why the messages can be anonymous or as personal as the player wants. Anonymity lowers the pressure of being perceived, and it makes honesty feel safer.",
-      "I also designed the response system as a way to practice listening without judgment. Instead of one correct reaction, players can respond differently because holding someone else’s truth isn’t one action. Sometimes you relate. Sometimes you protect what was shared. Sometimes you carry it forward. Sometimes you let it go. The goal is not to evaluate the player, but to keep them open minded and present while they encounter experiences that are not their own.",
-      "As the concept developed, the direction became clearer. I wanted an interactive installation that supports empathy and connection, and I also wanted it to function as a live survey collection experiment that could gather more honest qualitative responses. This is where experience and data became part of the same design question.",
+      "This part was mostly research and playing around. I played and studied gentle story games like Journey to see what makes them so emotional. I was especially curious how a world can guide feelings without forcing one story, and how symbols can carry meaning without dialogue.",
+      "Then I went back to the questions from Dialogue with the Wind and pushed them outward. What mental health struggles exist beyond self-reflection? What kind of care is missing? Why should people care about each other? That led me to disconnection across generations and life experiences, and to the idea of reflecting together as a community.",
+      "I built the experience around something I keep coming back to: talking is one of the best forms of therapy. I wanted it to feel a bit like a psychologist's room, where you can say something and feel heard without being interrupted or judged. That's why messages can be anonymous or as personal as you want. Anonymity takes away the pressure of being seen, and makes honesty feel safer.",
+      "The responses are also a way to practice listening without judging. There's no one right reaction, because holding someone else's truth isn't just one thing. Sometimes you relate. Sometimes you protect it. Sometimes you carry it forward. Sometimes you let it go. It's not about grading the player, it's about keeping them open and present.",
+      "Slowly the direction got clearer. I wanted an installation about empathy and connection that also works as a live survey experiment for more honest answers. That's where the experience and the data became the same design question.",
     ],
   },
 
   processPrototype: {
     title: "3. Prototype",
     paragraphs: [
-      "I began with rough sketches of the world, imagining a human archive. I kept coming back to the idea of the brain as a forest of memory. Some memories fade or crumble, but they always leave traces.",
-      "The audience for this work is art installation visitors, which means it’s naturally diverse in age, culture, and familiarity with interactive art. Because of that, the experience needed to be guided and easy to enter. I designed the full flow with clear instructions from start to finish, written in a poetic tone to help people feel emotionally safe and immersed.",
-      "On the technical side, I built the 3D environment in Unity first. I aimed for a soft, calming atmosphere that supports reflection. I also chose 3D because I wanted the “data” to feel alive. Instead of reading text in a flat interface, the player moves through it like a world, which helps them stay engaged.",
-      "At this stage, I made a key interaction choice: gestures instead of voice or a normal UI. Voice can feel exposing in a public or semi public setting, especially when the content is personal. Gestures feel quieter and more private. They also make the response physical, which slows the player down and asks for presence. I wanted the act of responding to feel intentional, like you’re holding someone else’s message with your hands rather than just clicking a button.",
-      "In parallel, I integrated MediaPipe with Python, C#, and WebSocket to create real time hand gesture interaction. One of the biggest challenges was choosing four gestures that are distinguishable for the model and less likely to be misread, while still feeling human and intentional. The interaction logic relies on distances between fingers and gesture states, and Unity and WebSocket continuously communicate to interpret the user’s input. The flowchart below shows how the system works, and the GitHub link is included in the links section.",
+      "I started with rough sketches of the world, imagining a human archive. I kept coming back to the brain as a forest of memory. Some memories fade or crumble, but they always leave traces.",
+      "Installation visitors are all kinds of people, different ages, cultures, and comfort with interactive art. So it had to be guided and easy to step into. I wrote clear instructions for the whole flow, in a poetic tone, so people feel safe and pulled in.",
+      "On the tech side, I built the 3D world in Unity first, going for something soft and calming. I chose 3D because I wanted the “data” to feel alive. Instead of reading text on a flat screen, you walk through it like a world, which keeps you engaged.",
+      "Here I made a big choice: gestures instead of voice or a normal UI. Talking out loud can feel exposing in a public space, especially about personal stuff. Gestures feel quieter and more private. They also make responding physical, which slows you down. I wanted it to feel like holding someone's message in your hands, not just clicking a button.",
+      "At the same time, I connected MediaPipe with Python, C#, and WebSocket for real-time hand tracking. Honestly, one of the hardest parts was picking four gestures the model could tell apart without misreading, while still feeling human. The logic looks at distances between fingers and gesture states, with Unity and WebSocket talking constantly. The flowchart below shows how it works, and the GitHub link is in the links section.",
     ],
   },
 
   processFinal: {
-    title: "4. Final Implementation, User Testing, and Reflection",
+    title: "4. Final setup, testing, and what I learned",
     paragraphs: [
-      "The final setup uses projection and a camera based tracking system, with MediaPipe and Python running live. The experience is designed for one person at a time in a private space so users are not influenced by others and feel safer sharing something honest.",
-      "Instructions are integrated inside the experience and supported by a booklet and project description. Testing went smoothly, and I was able to collect real messages as part of the live archive. I also learned where users hesitate. A clearer acknowledgment at the beginning helps set expectations about what the user will encounter and what gets recorded. A short tutorial phase before the main experience would also help users feel confident with gestures before entering the more reflective part.",
-      "If this project scales to larger data or connects across multiple installations, the next step would be adding an online database and API pipeline. That is outside my current scope, but it is a clear direction for future iterations.",
+      "The final setup uses a projector and camera tracking, with MediaPipe and Python running live. It's one person at a time in a private space, so nobody is influenced by others and it feels safer to share something honest.",
+      "Instructions live inside the experience, plus a booklet and project description. Testing went smoothly, and I collected real messages for the live archive. I also learned where people hesitate. A clearer note at the start about what they'll see and what gets recorded would help. So would a short tutorial, so people feel confident with the gestures before the reflective part.",
+      "If this grows to more data or connects several installations, the next step would be an online database and API. That's outside what I could do this time, but it's a clear next direction.",
     ],
   },
 

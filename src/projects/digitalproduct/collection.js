@@ -7,7 +7,8 @@ export default {
     tools: ["Eleventy", "HTML", "CSS"],
   },
   intro:
-    "Collection is an Eleventy-built digital product that explores curation, desire, and how a wishlist can become a narrative experience. It was designed to feel like a personal archive of carefully chosen items.",
+    "Collection is a wishlist that turned into a little story. I built it with Eleventy because I was curious about curation and desire, and why we want the things we want. It ended up feeling like a personal archive of things I chose on purpose.",
+  quote: "A wishlist can tell a story about who I am",
   sections: [
     { kind: "intro" },
     { kind: "references", title: "Project link", itemsPath: "links" },

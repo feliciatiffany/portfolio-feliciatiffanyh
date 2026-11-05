@@ -9,7 +9,9 @@ export default {
   },
 
   intro:
-    "On June 13, 2026, I took on a sudden art performance project at @nycresistor. The work grew from my earlier Decibel Project, where I built real-time visuals in TouchDesigner, into a full DJ/VJ performance challenge.",
+    "On June 13, 2026, I said yes to a last-minute performance at @nycresistor. It grew out of my Decibel project, where I'd been making real-time visuals in TouchDesigner, and turned into a full DJ/VJ set.",
+
+  quote: "One week, one set, and saying yes anyway",
 
   sections: [
     { kind: "intro" },
@@ -19,8 +21,8 @@ export default {
 
   descBlock: {
     paragraphs: [
-      "I started by developing new visuals and curating cohesive visual materials from my previous works. From there, I built a DJ set, practiced live mixing, and designed audio-reactive visuals that responded to the music and crowd energy.",
-      "Within one week, I learned to adapt my real-time visual system for a larger screen, prepare for a live performance, and work within a new creative community. This project strengthened my skills in TouchDesigner, live visual performance, DJ/VJ workflow, and technical preparation for live shows. It also taught me the importance of adaptability, quick problem-solving, and having alternative plans ready during a performance.",
+      "I made new visuals and pulled together pieces from my older work so everything felt like one world. Then I built a DJ set, practiced mixing live, and made visuals that react to the music and the crowd.",
+      "In one week I had to stretch my visual setup for a much bigger screen, get ready to perform live, and find my place in a new creative community. I got a lot better at TouchDesigner and the whole DJ/VJ workflow. Biggest lesson: stay flexible, solve things fast, and always have a backup plan.",
     ],
   },
 

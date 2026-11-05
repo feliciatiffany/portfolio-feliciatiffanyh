@@ -9,7 +9,9 @@ export default {
   },
 
   intro:
-    "This project uses camera-based gesture detection to allow visitors to trace the carvings of the Temple of Dendur through body movement, encouraging slower observation and a deeper awareness of spatial details. Inspired by contour drawing practices, the interaction transforms looking into a physical act of tracing, inviting visitors to notice the work through movement, duration, and attention.",
+    "In this project, a camera picks up your gestures so you can trace the carvings of the Temple of Dendur with your body. I wanted people to slow down and really notice the details. It's inspired by contour drawing: looking becomes tracing, and you get to know the work through movement, time, and attention.",
+
+  quote: "What if looking at a temple meant tracing it?",
 
   sections: [
     { kind: "intro" },
@@ -43,11 +45,11 @@ export default {
   ],
 
   conceptBlock: {
-    title: "Concept",
+    title: "Why I made it",
     paragraphs: [
-      "Tracing Dendur is a gesture-based in-gallery prototype where audiences can interact with and learn about the Temple of Dendur in new ways.",
-      "Often, I notice visitors simply walking back and forth, taking in the whole temple at a glance — while very few actually stop to notice the intricate carving details, each of which I find fascinating and full of stories.",
-      "I'm also interested in exploring how this interactive concept would affect participation and what kind of engagement it would generate. Would it change how people interpret meaning, or how they navigate the space as a whole?",
+      "Tracing Dendur is a gesture-based gallery prototype that gives people a new way to play with and learn about the Temple of Dendur.",
+      "I often see visitors just walking back and forth, taking in the whole temple at a glance. Very few stop to look at the carvings, and honestly I find every one of them fascinating and full of stories.",
+      "I'm also curious how something like this changes the way people take part. Would it change what they think the carvings mean, or how they move through the space?",
     ],
   },
 
@@ -56,7 +58,7 @@ export default {
       {
         title: "Prototyping",
         paragraphs: [
-          "I used AI to build fast prototypes on a website, visualizing the interactions I envisioned — especially hand gestures, which are often difficult to describe in words. The project itself remains a digital prototype to make it easier to test with colleagues and share online.",
+          "I used AI to spin up quick website prototypes so I could actually show the interactions in my head, especially hand gestures, which are really hard to explain in words. I kept the whole project as a digital prototype so it's easy to test with other people and share online.",
         ],
         links: [
           {
@@ -83,7 +85,7 @@ export default {
   prototypingBlock: {
     title: "Prototyping",
     paragraphs: [
-      "I used AI to build fast prototypes on a website, visualizing the interactions I envisioned — especially hand gestures, which are often difficult to describe in words. The project itself remains a digital prototype to make it easier to test with colleagues and share online.",
+      "I used AI to spin up quick website prototypes so I could actually show the interactions in my head, especially hand gestures, which are really hard to explain in words. I kept the whole project as a digital prototype so it's easy to test with other people and share online.",
     ],
     links: [
       {

@@ -7,7 +7,8 @@ export default {
     tools: ["JavaScript", "UI/UX"],
   },
   intro:
-    "Travel Tool is a JavaScript-driven product prototype built for planning and experiencing trips. It is designed to help users explore travel options, map moments, and connect with the feeling of being on the move.",
+    "Travel Tool is a JavaScript prototype for planning trips and actually enjoying them. I wanted it to help you explore options and map out moments, but also hold on to that feeling of being on the move.",
+  quote: "Planning a trip should feel like part of the trip",
   sections: [
     { kind: "intro" },
     { kind: "references", title: "Project link", itemsPath: "links" },

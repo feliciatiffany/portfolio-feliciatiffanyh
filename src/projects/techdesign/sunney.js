@@ -9,9 +9,11 @@ export default {
   },
 
   intro:
-    "Sunney is an interactive game developed with p5.js that reflects the journey of discovering and pursuing passions. " +
-    "Players take on the role of Sunney, a sunflower character moving through different challenges that represent growth, curiosity, and self-discovery. " +
-    "The game unfolds through stages inspired by music, art, and technology, gradually shifting from grayscale uncertainty to a more colorful and self-aware ending.",
+    "Sunney is a p5.js game about finding the things you love and going after them. " +
+    "You play as Sunney, a little sunflower, through challenges about growing up, being curious, and figuring yourself out. " +
+    "The stages are inspired by music, art, and tech, and the world slowly goes from gray and unsure to full of color.",
+
+  quote: "Finding your passions, one color at a time",
 
   sections: [
     { kind: "intro" },
@@ -42,10 +44,10 @@ export default {
   },
 
   heroRight: {
-    title: "Overview",
+    title: "What it's about",
     paragraphs: [
-      "The structure of the game follows different stages tied to passions such as music, art, and technology. As the player progresses, the atmosphere shifts from grayscale to color, turning visual change into a metaphor for self-discovery and confidence.",
-      "I treated the project as both autobiographical and open-ended. It reflects my own relationship with changing interests, but I also wanted it to feel relatable to anyone who has had to figure out what excites them over time.",
+      "Each stage is tied to a passion: music, art, or tech. As you play, the world fills in from grayscale to color, which is my way of showing someone finding themselves and getting more confident.",
+      "It's partly about me and my ever-changing interests. But I also wanted it to feel relatable to anyone who has had to slowly figure out what excites them.",
     ],
   },
 
@@ -57,10 +59,10 @@ export default {
   },
 
   progressRight: {
-    title: "Development Process",
+    title: "How it grew",
     paragraphs: [
-      "I organized the project through iterative visual and gameplay development, moving between concept planning, interface building, and playable scene testing. The progress images document how the project evolved from early structure into a more complete interactive experience.",
-      "Instead of presenting the game as one finished idea from the start, I used each iteration to test pacing, stage transitions, mood, and clarity. That process helped me shape the narrative around growth while also refining how the player would move through each environment.",
+      "I worked in rounds, jumping between planning the concept, building the interface, and testing playable scenes. These progress shots show it going from a rough structure to a real game.",
+      "I didn't start with a finished idea. Each round was a chance to test pacing, transitions between stages, mood, and whether things made sense. That's how the growth story took shape, and how I figured out the way you move through each world.",
     ],
   },
 
@@ -72,10 +74,10 @@ export default {
   },
 
   sketchRight: {
-    title: "Concept Development",
+    title: "Sketching it out",
     paragraphs: [
-      "The sketches helped establish Sunney’s world before everything was translated into the final digital game. I used them to think through scene composition, tone, character presence, and how each passion could feel visually distinct while still belonging to one larger story.",
-      "Because the game is built around personal growth, the visual planning stage was important for turning abstract emotions into concrete scenes. The sketches became a bridge between the narrative idea and the final playable environments.",
+      "I sketched Sunney's world before anything went digital. It helped me figure out each scene's layout and mood, where Sunney sits in it, and how every passion could look different but still feel like one story.",
+      "Since the game is about growing up, I needed a way to turn fuzzy feelings into real scenes. The sketches were that bridge between the story in my head and the levels you actually play.",
     ],
   },
 
@@ -87,10 +89,10 @@ export default {
   },
 
   spriteRight: {
-    title: "Character & Asset System",
+    title: "Making the pieces",
     paragraphs: [
-      "The sprite sheets document how I translated the concept into modular game assets. Designing these elements was part of making the world playable, not just illustrative, since each asset had to support movement, interaction, and visual consistency inside the game.",
-      "This stage was where the project became more system-based. Instead of only thinking about images as standalone drawings, I started thinking about how character states, environments, and interactions would work together in a p5.js game structure.",
+      "These sprite sheets are where the idea turned into actual game pieces. They had to be playable, not just pretty, so every asset needed to move, react, and match the rest of the game.",
+      "This is where I started thinking in systems. Instead of single drawings, I was thinking about how character states, backgrounds, and interactions all fit together in p5.js.",
     ],
   },
 

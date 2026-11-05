@@ -25,9 +25,10 @@ export default {
   ],
 
   intro:
-    "Julian Bleecker describes strong design fiction as “everyday leftovers” from possible worlds—signals of big societal shifts that reveal implications, not forecasts. " +
-    "This project is worldbuilding through the lens of the uncanny: imagine a near future we could realistically live in. " +
-    "What still feels familiar and comforting, and what feels subtly off or strangely different?",
+    "Julian Bleecker describes good design fiction as “everyday leftovers” from possible worlds: little hints of big changes that show what could happen, not predictions. " +
+    "That idea stuck with me, so this short film is my try at worldbuilding a near future we could actually live in, with a slightly uncanny twist. " +
+    "What still feels familiar and comforting, and what feels just a little off?",
+  quote: "A near future that feels familiar, but slightly off",
 
   youtube: {
     title: "Project Video",
@@ -37,7 +38,7 @@ export default {
 
   // Left column: quick facts
   descLeft: {
-    title: "Project Details",
+    title: "Quick facts",
     bullets: [
       { label: "Title:", text: "The True Light" },
       { label: "Duration:", text: "3 minutes 45 seconds (includes behind-the-scenes)" },
@@ -49,11 +50,11 @@ export default {
 
   // Right column: synopsis + meaning
   descRight: {
-    title: "Synopsis",
+    title: "The story",
     paragraphs: [
-      "The True Light tells the story of Nyi Roro Nirmana, a spy who receives a major mission to infiltrate and eliminate the boss of a shady corporation.",
-      "With the 'The True Light' flashlight, Nirmana carries out her mission with the help of technology to access information, hack data, provide explanations, and even serve as a weapon.",
-      "Just like its name, The True Light brings out all knowledge and the truth about this world.",
+      "The True Light follows Nyi Roro Nirmana, a spy who gets a big mission: sneak into a shady corporation and take down its boss.",
+      "Her secret tool is a flashlight called The True Light. It helps her find information, hack data, explain what’s going on, and even works as a weapon.",
+      "Just like its name, it brings everything to light, including the truth about this world.",
     ],
   },
 

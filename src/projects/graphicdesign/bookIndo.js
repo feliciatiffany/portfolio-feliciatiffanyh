@@ -9,7 +9,9 @@ export default {
   },
 
   intro:
-    "A booklet design themed “Fun Facts About Indonesia.” The project celebrates Indonesia’s cultural heritage, biodiversity, and trivia through typography-led storytelling—combining modern typefaces and engaging layouts to educate and inspire.",
+    "I made a little booklet of “Fun Facts About Indonesia,” my home country. I wanted to share our culture, nature, and weird trivia, and let the typography do most of the storytelling.",
+
+  quote: "Letting type tell the fun facts about home",
 
   // Row 4: all pages become the gallery
 
@@ -50,18 +52,17 @@ export default {
   descLeft: {
     sections: [
       {
-        title: "Project Overview",
+        title: "Why I made it",
         html:
-          "This project focuses on designing a visually captivating booklet themed “Fun Facts About Indonesia.” " +
-          "The booklet celebrates Indonesia’s cultural heritage, biodiversity, and intriguing trivia through a typographic lens. " +
-          "By combining modern typefaces and engaging layouts, the project crafts a narrative that educates and inspires, " +
-          "while showcasing typography as a storytelling medium.",
+          "Indonesia has so many fun facts that most people have never heard of, from our culture to our wildlife. " +
+          "I wanted to put them in one booklet and see how far typography alone could carry the story. " +
+          "Modern typefaces, playful layouts, and a lot of facts I was excited to share.",
       },
       {
-        title: "Outcome",
+        title: "What came out",
         html:
-          "<strong>Outcome:</strong> A cohesive, multi-page booklet that uses typography to celebrate Indonesia’s diversity—" +
-          "balancing aesthetic appeal with educational content.",
+          "<strong>Outcome:</strong> A multi-page booklet that celebrates how diverse Indonesia is. " +
+          "Pretty to flip through, but you also learn something on every page.",
       },
     ],
   },
@@ -69,23 +70,23 @@ export default {
   descRight: {
     sections: [
       {
-        title: "Design Process",
+        title: "How I made it",
         bullets: [
           {
             label: "Step 1: Concept Development —",
-            text: "Defined the theme and concept, focusing on Indonesia’s diversity and fascinating facts.",
+            text: "I picked the theme first: Indonesia’s diversity and the facts I found most fascinating.",
           },
           {
             label: "Step 2: Typeface Selection —",
-            text: "Paired Raleway and Roboto to balance modern elegance with readability and clarity.",
+            text: "I paired Raleway and Roboto. One feels modern and elegant, the other keeps things easy to read.",
           },
           {
             label: "Step 3: Visual Hierarchy & Layout —",
-            text: "Designed each page with unique yet cohesive layouts using tonal contrasts and typographic refinements.",
+            text: "Every page got its own layout, but tone contrast and small type details keep them feeling like one book.",
           },
           {
             label: "Step 4: Integration of Visuals —",
-            text: "Added minimal illustrations and graphic elements to support the typography and enhance the narrative.",
+            text: "I added just a few illustrations and graphic bits, so the type stays the main character.",
           },
         ],
       },

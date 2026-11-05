@@ -32,8 +32,10 @@ export default {
   ],
 
   intro:
-    "“Dialogue with the Wind” is an interactive installation that invites self-reflection through a responsive field of fiber-optic grass. " +
-    "Participants speak honestly into the space; the installation responds through shifting color, ambient flow, and sound—turning private emotions into a gentle, sensory dialogue.",
+    "“Dialogue with the Wind” is an interactive installation where you talk to a field of fiber-optic grass and it talks back. " +
+    "You speak honestly, and the grass answers with shifting color, soft movement, and sound. I wanted private feelings to turn into a gentle little conversation.",
+
+  quote: "Sometimes the voice you need to hear is your own",
 
   media: [
     { type: "image", src: "/media/techdesign/dialogue/dialogue_main.jpg", alt: "Main visual" },
@@ -56,25 +58,25 @@ export default {
   ],
 
   descLeft: {
-    title: "Abstract",
+    title: "Why I made it",
     paragraphs: [
-      "“Dialogue with the Wind” opens a gentle conversation between individuals and their inner selves. In a fast-paced, hyperconnected world, the work creates a quiet, judgment-free space for introspection and emotional release.",
-      "Participants speak openly while touching a field of fiber-optic grass. Their words are carried by the metaphorical “wind” and translated into responsive shifts in color and ambient flow, mirroring the energy and tone of the voice.",
-      "The installation also replays the user’s recorded words—inviting self-confrontation through listening, and encouraging acceptance and understanding of one’s inner narrative.",
-      "Rooted in self-reflection and emotional awareness, the work serves as both a mirror and a mentor—asking people to pause, look inward, and reconnect with the most essential voice: their own.",
+      "This piece is a quiet conversation between you and yourself. Everything moves so fast and we're always connected, so I wanted a calm, no-judgment space to slow down and let feelings out.",
+      "You speak while touching the fiber-optic grass. Your words get carried by the “wind” and turn into changes in color and flow that follow the energy and tone of your voice.",
+      "Then it plays your words back to you. Hearing yourself can be a little confronting, but I think it helps you accept and understand your own story.",
+      "For me it's both a mirror and a mentor. It asks you to pause, look inward, and reconnect with the most important voice: your own.",
     ],
   },
 
   descRight: {
-    title: "Concept + System Overview",
+    title: "The concept",
     paragraphs: [
-      "The installation explores self-reflection through an immersive, sensory-driven interaction. A field of swaying fiber-optic grass reacts to presence and voice energy, shifting colors based on amplitude and movement.",
-      "Symbolism:",
+      "It's all about reflecting through your senses. The swaying fiber-optic grass notices when you're there and how loud you speak, and changes color with your voice and movement.",
+      "What each part means to me:",
     ],
     bullets: [
-      "Wind as metaphor — change, emotion, freedom; spoken words are carried away but reflected back.",
-      "Grass as responsive medium — tactile + visual feedback for the speaker’s emotional energy.",
-      "Self-confrontation through sound — replaying the participant’s words encourages reflection.",
+      "Wind — change, emotion, freedom. Your words get carried away, but they come back to you.",
+      "Grass — something you can touch and see that responds to your emotional energy.",
+      "Hearing yourself — replaying your own words nudges you to reflect.",
     ],
   },
 
@@ -96,29 +98,29 @@ export default {
 
   row7: {
     left: {
-      title: "Development Process",
+      title: "How I got there",
       sections: [
         {
-          title: "Research & Conceptualization",
+          title: "Research",
           bullets: [
-            "Studying interactive installations & device art",
-            "Exploring mental health therapy techniques",
-            "Investigating materials such as fiber-optic strands and motion sensors",
+            "Looking at interactive installations and device art",
+            "Reading about mental health therapy techniques",
+            "Playing with materials like fiber-optic strands and motion sensors",
           ],
         },
         {
-          title: "Prototyping & Interaction Design",
+          title: "Prototyping the interaction",
           bullets: [
-            "Neutral Entry – The installation begins in a calm, unresponsive state.",
-            "Dialogue & Expression – Users engage with prompts, triggering responses.",
-            "Self-Confrontation & Reflection – Replays the user’s words for introspection.",
+            "Calm start – the piece sits quiet and still at first.",
+            "Talking – you respond to prompts and the grass reacts.",
+            "Listening back – it replays your words so you can reflect.",
           ],
         },
       ],
     },
 
     right: {
-      title: "Technical Implementation + Testing",
+      title: "The tech side + testing",
       sections: [
         {
           title: "Hardware (Interactive Features)",
@@ -137,14 +139,14 @@ export default {
         {
           title: "Software & Programming",
           bullets: [
-            "p5.js (JavaScript) – Controls UI and animation.",
-            "Arduino IDE & C++ – Handles sensor input and LED responsiveness.",
-            "WebSockets – Facilitates real-time communication.",
+            "p5.js (JavaScript) – the interface and animation.",
+            "Arduino IDE & C++ – reading the sensors and driving the LEDs.",
+            "WebSockets – keeping everything talking in real time.",
           ],
         },
         {
-          title: "Refinement & User Testing",
-          bullets: ["Fine-tuning sensor sensitivity", "Calibrating LED transitions", "Enhancing audio feedback clarity"],
+          title: "Testing and tweaking",
+          bullets: ["Tuning how sensitive the sensors are", "Smoothing the LED color changes", "Making the audio playback clearer"],
         },
       ],
     },
@@ -157,38 +159,38 @@ export default {
   },
 
   row8: {
-    title: "Step-by-Step Interaction Flow",
+    title: "What happens, step by step",
     desc: {
-      title: "Step-by-Step Interaction Flow",
+      title: "What happens, step by step",
       sections: [
         {
-          title: "Introduction & Activation",
+          title: "1. Getting started",
           paragraphs: [
-            "Users receive an introduction and abstract about the artwork. A neutral soundscape helps set a calming atmosphere.",
+            "You get a short intro to the piece while a calm, neutral soundscape plays.",
           ],
         },
         {
-          title: "User Engagement & Reflection",
+          title: "2. Talking and touching",
           bullets: [
-            "Users speak aloud, touch, or interact with fiber-optic grass.",
-            "Inputs captured include voice recording, motion detection, and amplitude analysis.",
+            "You speak out loud, touch the grass, or just move around it.",
+            "It records your voice, senses your movement, and measures how loud you are.",
           ],
         },
         {
-          title: "Data Processing & System Response",
-          bullets: ["Analyzes voice tone, motion activity, and silence.", "Adjusts real-time visual feedback and audio response."],
+          title: "3. The system listens",
+          bullets: ["It reads your voice, your movement, and your silences.", "Then it adjusts the light and sound in real time."],
         },
         {
-          title: "Interactive Feedback & Visual Response",
+          title: "4. The grass answers",
           paragraphs: [
-            "Output 1: Dynamic Color Feedback — Colors shift based on the user’s vocal input. Silent moments result in dimming effects.",
-            "Output 2: Story Retelling & Self-Reflection — The system replays recorded words, allowing users to hear their reflections.",
+            "Color — the colors shift with your voice. When you go quiet, the light dims.",
+            "Your story, retold — it replays your words so you can hear your own reflections.",
           ],
         },
         {
-          title: "Reflection & Completion",
+          title: "5. Wrapping up",
           paragraphs: [
-            "Guides users toward self-acceptance. Participants can save their recorded story or let the system reset for the next user.",
+            "It gently guides you toward self-acceptance. You can save your recorded story or let it reset for the next person.",
           ],
         },
       ],

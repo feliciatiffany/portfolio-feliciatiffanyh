@@ -48,7 +48,8 @@ export default {
     ],
 
     intro:
-        "Red Doors is an educational game-installation that addresses inequality in education driven by the wealth gap. I designed it as a public-facing interactive experience that teaches the issue through play, then turns that awareness into action through donations. The core idea is simple: if education is treated like something you can buy, the game should make you feel that tension firsthand.",
+        "Red Doors is an educational game installation about how the wealth gap shapes who gets an education. I designed it for public spaces: you learn about the issue by playing, and then you can turn that awareness into action by donating. The idea is simple. If education is treated like something you can buy, the game should make you feel that.",
+    quote: "If education can be bought, the game should make you feel it",
 
     youtubes: [
         {
@@ -76,62 +77,62 @@ export default {
     ],
 
     coreIssue: {
-        title: "Core Issue",
+        title: "Why this matters to me",
         paragraphs: [
-            "Growing up, education was always treated as something precious in my family. That made me hyper-aware of how unequal access can be, especially when poverty shapes facilities, environment, and the ability to keep going.",
-            "In the U.S. context this project focuses on, wealth is tied to educational achievement and upward mobility, and the cycle reinforces itself over generations. Red Doors responds to that reality by framing education inequality as an experience people can step into, not just a statistic they read and forget.",
+            "Growing up, education was always treated as something precious in my family. That made me really aware of how unequal access can be, especially when poverty decides your school, your surroundings, and whether you can keep going.",
+            "This project focuses on the U.S., where wealth is tied to how far people get in school and in life, and the cycle repeats over generations. I wanted Red Doors to turn that into something people can step into, not just a statistic they read and forget.",
         ],
     },
 
     customers: {
-        title: "Customer and Unmet Needs",
-        paragraphs: ["This project has more than one “customer,” because the issue itself is systemic."],
+        title: "Who it’s for",
+        paragraphs: ["There’s more than one audience here, because the problem itself is bigger than one group."],
         sections: [
             {
-                title: "Primary customer: middle-to-upper class public audiences in everyday public spaces",
+                title: "Mainly: middle-to-upper class people in everyday public spaces",
                 paragraphs: [
-                    "They often need a reason to stop, care, and understand the issue from a perspective they do not live. They also need a clear path from awareness to action. Red Doors is designed to reach them through recognizable public placement and a first-person narrative that makes the “education journey” feel urgent and personal.",
+                    "They usually need a reason to stop, care, and see the issue from a life they don’t live. They also need an easy way to go from caring to doing something. So Red Doors sits in places they already pass, and tells the “education journey” in first person so it feels personal.",
                 ],
             },
             {
-                title: "Secondary customer: civic decision-makers and institutions",
+                title: "Also: decision-makers and institutions",
                 paragraphs: [
-                    "They need sustained public pressure and visible signals that the community notices the injustice. Red Doors functions as both critique and public reminder, encouraging policy/program movement, not just individual empathy.",
+                    "They need steady public pressure and clear signs that people notice the injustice. Red Doors is both a critique and a public reminder, pushing for real policy and programs, not just personal empathy.",
                 ],
             },
             {
-                title: "Third audience: underprivileged communities",
+                title: "And: underprivileged communities",
                 paragraphs: [
-                    "They need encouragement and acknowledgment that the struggle is real and seen, and that perseverance is meaningful. The work aims to validate that the barrier is structural, not personal failure.",
+                    "They deserve to hear that the struggle is real, that it’s seen, and that pushing through matters. I wanted the work to say clearly: the barrier is the system, not a personal failure.",
                 ],
             },
         ],
     },
 
     whyGame: {
-        title: "Why a Game, and Why “Red Doors”",
+        title: "Why a game, and why red doors",
         paragraphs: [
-            "I chose a game because it places people inside a situation instead of asking them to empathize from a distance. The project statement frames Red Doors as both education and awareness-building, designed as a site-specific conceptual art installation.",
-            "The doors do two jobs at once. Symbolically, doors represent entering a new chapter and being forced to choose a path without knowing the outcome. Mechanically, doors create suspense and decision pressure, which fits the emotional truth of educational uncertainty when money is scarce.",
-            "The red color signals risk, fear, and instability, reinforcing the idea that “choice” is not equally safe for everyone.",
+            "I picked a game because it puts you inside the situation instead of asking you to feel for someone from far away. Red Doors is meant to teach and raise awareness, as a site-specific art installation.",
+            "The doors do two jobs. As a symbol, a door is a new chapter, and you have to pick a path without knowing where it leads. In the game, doors create suspense and pressure, which is exactly how school feels when money is tight.",
+            "And red means risk, fear, and instability, because “choice” isn’t equally safe for everyone.",
         ],
     },
 
     experienceFlow: {
-        title: "Experience and Game Flow",
+        title: "How you play",
         paragraphs: [
-            "Red Doors guides the player through education as a staged journey, starting from elementary school and aiming to complete college. Each level includes quiz-based learning moments designed to communicate the issue in an approachable, interactive way.",
-            "A key mechanic is friction. In certain stages, players must pay to unlock doors or access answer keys. If they cannot, they lose. This is intentional: it translates financial privilege into gameplay power so players feel how money can decide whether education continues. Donations collected through this mechanic are intended to support education for those in need.",
+            "You go through school as a journey, from elementary school all the way to finishing college. Each level has quiz questions that explain the issue in a friendly, hands-on way.",
+            "The main mechanic is friction. At some stages you have to pay to unlock a door or get the answer key. If you can’t, you lose. That’s on purpose: money becomes power in the game, so you feel how it can decide whether someone keeps learning. The money collected this way is meant to go to education for people who need it.",
         ],
         sections: [
             {
-                title: "Simplified Flow",
+                title: "The flow, simply",
                 bullets: [
-                    "Start with onboarding and instructions.",
-                    "Enter Level 1 (elementary), choose a door, answer a question.",
-                    "Progress through higher levels, with increasing difficulty and locked pathways.",
-                    "Encounter moments where payment is required to continue, mirroring real-world barriers.",
-                    "Reach the final stage (university) or lose when resources run out.",
+                    "Start with a quick intro and instructions.",
+                    "Enter Level 1 (elementary), pick a door, answer a question.",
+                    "Move up through harder levels with more locked paths.",
+                    "Hit moments where you have to pay to continue, just like real-life barriers.",
+                    "Make it to university, or lose when your money runs out.",
                 ],
             },
         ],
@@ -141,10 +142,10 @@ export default {
     flowchartMedia: [{ type: "image", src: "/media/techdesign/redDoors/flowchart.png", alt: "Red Doors flowchart" }],
 
     visualDesign: {
-        title: "Visual and Interaction Design",
+        title: "How it looks",
         paragraphs: [
-            "I built the world around a clear, repeatable visual language so people can understand it quickly in public.",
-            "The core design elements include door objects, money balance indicators, and four scenes that map to education stages (elementary through university). Even the sky shifts across stages (sunrise to night) to signal progression and the “phases of life” metaphor. These choices help the installation communicate without needing long explanations.",
+            "I kept the visuals clear and repetitive on purpose, so people passing by can get it fast.",
+            "The main pieces are the doors, a money balance, and four scenes for each school stage (elementary to university). Even the sky changes from sunrise to night as you go, like the “phases of life.” That way the game explains itself without long text.",
         ],
     },
 
@@ -166,23 +167,23 @@ export default {
     ],
 
     technicalPlan: {
-        title: "Technical Plan and Final Form",
+        title: "How I built it, and where it lives",
         paragraphs: [
-            "Red Doors is built as a Unity-based 3D game, with algorithms and structure implemented through coding. The final manifestation is intended to live in public as “Red Doors Station,” functioning like an interactive advertisement board that people can find easily and engage with as leisure.",
-            "The installation plan emphasizes outdoor interactive touchscreen signage and a physically recognizable station presence, including multiple stations in highly visible public/tourist locations to reach the intended audience.",
+            "Red Doors is a 3D game I built in Unity, with all the logic written in code. The final version is meant to live in public as a “Red Doors Station,” like an interactive ad board that people can easily find and play for fun.",
+            "The plan is outdoor touchscreen stations that are easy to recognize, with several of them in busy public and tourist spots so they reach the right people.",
         ],
     },
 
     designProcessResearch: {
-        title: "Design Process and Iteration",
+        title: "How I got there",
         sections: [
             {
-                title: "Research and framing",
+                title: "Research first",
                 paragraphs: [
-                    "I began by grounding the project in evidence that wealth inequality shapes education outcomes and mobility, then paired that with research on educational games and games designed for social change. This helped me frame the project around active learning: people learn and care more when they participate, not when they passively read.",
-                    "I anchored the approach in research on wealth-driven education inequality and on how educational and social-impact games can teach effectively through active participation. The references and annotated bibliography guided the decision to use a game format, a first-person perspective, and a public installation context.",
-                    "In this phase, I mapped all of my research into a mind map so I could see the system, not just the symptoms. I treated it like a living map where every source, statistic, observation, and idea became a node. Then I started bridging connections between them, not based on what looked interesting, but based on what explained the problem more clearly.",
-                    "I structured the mind map around five guiding questions: what, why, who, where, and how.",
+                    "I started with research showing how wealth inequality shapes education and people’s chances in life. Then I read about educational games and games made for social change. The big takeaway: people learn and care more when they take part, not when they just read.",
+                    "That research is what led me to a game, a first-person point of view, and a public installation.",
+                    "I put everything into a mind map so I could see the whole system, not just the symptoms. Every source, statistic, observation, and idea became a node. Then I connected them, not by what looked interesting, but by what explained the problem better.",
+                    "I organized it around five questions: what, why, who, where, and how.",
                 ],
             },
         ],
@@ -196,10 +197,10 @@ export default {
     ],
 
     earlyIterations: {
-        title: "Early Iterations and System Thinking",
+        title: "Early sketches",
         paragraphs: [
-            "Early design work focused on translating the abstract problem into game systems: doors as decision points, money as a visible resource, and locked progress as structural friction.",
-            "I iterated on how many stages were needed (four), how difficulty escalates, and how the visual system signals progress clearly in a public setting.",
+            "Early on, I was figuring out how to turn a big abstract problem into game rules: doors as choices, money as something you can see, and locked paths as the system getting in your way.",
+            "I went back and forth on how many stages it needed (I landed on four), how fast it gets harder, and how to show progress clearly in a public space.",
         ],
     },
 
@@ -214,10 +215,10 @@ export default {
     ],
 
     workSamples: {
-        title: "Work Samples and Refinement",
+        title: "Building and refining",
         paragraphs: [
-            "I developed and refined game design assets and scene concepts, then mapped the story logic through a flowchart so the experience reads consistently from beginning to end.",
-            "I also considered testing and visualization as part of evaluating how audiences respond to the installation format and message clarity.",
+            "I made and refined the game assets and scenes, then mapped the story in a flowchart so it makes sense from start to finish.",
+            "I also thought about how to test it, to see how people react to the installation and whether the message comes through.",
         ],
     },
 
@@ -240,10 +241,10 @@ export default {
     ],
 
     intendedImpact: {
-        title: "Intended Impact",
+        title: "What I hope it does",
         paragraphs: [
-            "Red Doors aims to create a chain reaction: raise awareness, build urgency, and encourage action through both individual donations and broader social pressure.",
-            "It is designed to meet people where they already are, in public leisure spaces, and quietly turn entertainment into a civic prompt.",
+            "I hope Red Doors starts a chain reaction: people notice, they feel the urgency, and they act, through donations and through bigger social pressure.",
+            "It meets people where they already are, out having fun in public, and quietly turns play into a nudge to care.",
         ],
     },
 

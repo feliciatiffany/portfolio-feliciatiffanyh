@@ -7,7 +7,8 @@ export default {
     tools: ["JavaScript", "UI/UX"],
   },
   intro:
-    "Memory is a JavaScript-based product experiment that explores how small interactions can trigger recall. The experience was built to feel like a playful interface for revisiting moments and patterns.",
+    "Memory is a small JavaScript experiment about recall. I was curious how tiny interactions can bring a moment back. I wanted it to feel playful, like poking around an interface and finding old patterns and memories along the way.",
+  quote: "Tiny interactions can bring whole moments back",
   sections: [
     { kind: "intro" },
     { kind: "references", title: "Project link", itemsPath: "links" },

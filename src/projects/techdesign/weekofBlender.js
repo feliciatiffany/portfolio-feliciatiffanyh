@@ -11,7 +11,9 @@ export default {
   },
 
   intro:
-    "I challenged myself to learn blender and here 4 project starting from first Project : Primitive object, second : Exterior, third : Interior, fourth: A scene",
+    "I challenged myself to learn Blender in a week. Here are the four projects I made along the way: first a primitive object, then an exterior, then an interior, and finally a whole scene.",
+
+  quote: "I challenged myself to learn Blender in a week",
 
   sections: [
     { kind: "intro" },
