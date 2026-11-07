@@ -112,6 +112,14 @@ export const awards = [
     title: "First Prize — Indonesian Fun Science Award (IFSA 3.0)",
     org: "",
     year: "2021",
+    caption: "I did something fun and won my first laptop as the prize! I studied which music koi fish like best, using descriptive statistics and MANOVA. Pretty serious for a silly topic, right?",
+    href: "https://www.youtube.com/watch?v=G5s1AjFzYlc",
+    // Cut-out pieces fanned out like a little collage; on hover they spread apart and grow.
+    // x/y/w = position and width in % of the collage box, r = tilt; hx/hy/hr/hs = hover move, tilt, scale
+    collage: [
+      { src: "/media/awards/ifsa/poster.png", alt: "My poster: what music do koi fish like?", x: 14, y: 8, w: 38, r: -8, hx: -10, hy: -3, hr: -13, hs: 1.06, z: 1, card: true },
+      { src: "/media/awards/ifsa/me.png", alt: "Me, smiling with a peace sign", x: 50, y: 0, w: 32, r: 3, hx: 10, hy: -4, hr: 6, hs: 1.08, z: 2 },
+    ],
   },
   {
     title: "Special Award — Indonesia Literacy Short Story Festival",
@@ -122,11 +130,17 @@ export const awards = [
     title: "Finalist — Adobe Professional National Championship",
     org: "",
     year: "2020 & 2021",
+    // Timeline extras (optional on any award): caption, image, external link, year to file it under
+    caption: "I’ve loved art for as long as I can remember, and high school was my peak poster-making era.",
+    media: { type: "image", src: "/media/awards/adobe-finalist.jpg", alt: "Presenting my #PariGergaji poster at the Adobe Certified Professional National Championship" },
+    href: "https://www.youtube.com/watch?v=6ypINLoNRjY&t=94s",
+    timelineYear: 2021,
   },
   {
     title: "Gold Medal — Khayyam International Invention & Innovation Festival",
     org: "",
     year: "2021",
+    hideOnTimeline: true, // shown inside the PPE Cooler Box card instead
   },
 ];
  

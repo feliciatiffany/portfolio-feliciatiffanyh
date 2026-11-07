@@ -8,7 +8,7 @@ import LogoUrl from "../assets/logosmall.png";
 function CardMedia({ media, glow }) {
   if (!media?.src) return null;
   return (
-    <span className={`tl-card__media${glow ? " shine" : ""}`}>
+    <span className={`tl-card__media${glow ? " shine" : ""}${media.wide ? " is-wide" : ""}${media.blend ? " is-blend" : ""}${media.fill ? " is-fill" : ""}`}>
       <span className="tl-card__frame">
         {media.type === "video" ? (
           <video src={media.src} poster={media.poster} muted loop autoPlay playsInline preload="metadata" />
@@ -20,17 +20,63 @@ function CardMedia({ media, glow }) {
   );
 }
 
+// Several photos in one row: each grows by its width/height ratio, so all share one height and fill the row
+function CardGallery({ images, glow }) {
+  return (
+    <span className={`tl-card__gallery${glow ? " shine" : ""}`}>
+      {images.map((im) => (
+        <img key={im.src} src={im.src} alt={im.alt || ""} loading="lazy" style={{ flex: `${im.ratio || 1} 1 0%` }} />
+      ))}
+    </span>
+  );
+}
+
+// Cut-out pieces laid over each other; each piece's place, tilt and hover motion come from data
+function CardCollage({ pieces }) {
+  return (
+    <span className="tl-collage">
+      {pieces.map((p) => (
+        <img
+          key={p.src}
+          src={p.src}
+          alt={p.alt || ""}
+          loading="lazy"
+          className={`tl-collage__piece${p.card ? " is-card" : ""}`}
+          style={{
+            left: `${p.x}%`, top: `${p.y}%`, width: `${p.w}%`, zIndex: p.z,
+            "--r": `${p.r || 0}deg`,
+            "--hx": `${p.hx || 0}%`, "--hy": `${p.hy || 0}%`, "--hr": `${p.hr ?? p.r ?? 0}deg`, "--hs": p.hs || 1.06,
+          }}
+        />
+      ))}
+    </span>
+  );
+}
+
 // Cards alternate sides of the center line (masonry rows, see useMasonry).
 // Creative Side cards are compact: small thumbnail, title + date only.
 function Card({ item, index }) {
   const body = (
     <>
-      <CardMedia media={item.media} glow={!!item.to} />
+      {item.collage?.length ? (
+        <CardCollage pieces={item.collage} />
+      ) : item.gallery?.length ? (
+        <CardGallery images={item.gallery} glow={!!(item.to || item.href)} />
+      ) : (
+        <CardMedia media={item.media} glow={!!(item.to || item.href)} />
+      )}
       <span className="tl-card__text">
         <span className="tl-card__title">{item.title}</span>
         <span className="tl-card__date">{item.date}</span>
         {item.subtitle && item.type !== "creative" && <span className="tl-card__sub">{item.subtitle}</span>}
         {item.desc && <span className="tl-card__desc">{item.desc}</span>}
+        {item.bullets?.length > 0 && (
+          <span className="tl-card__bullets" role="list">
+            {item.bullets.map((b) => (
+              <span key={b} role="listitem">{b}</span>
+            ))}
+          </span>
+        )}
       </span>
     </>
   );
@@ -43,6 +89,8 @@ function Card({ item, index }) {
     >
       {item.to ? (
         <Link to={item.to} className="tl-card__link">{body}</Link>
+      ) : item.href ? (
+        <a href={item.href} className="tl-card__link" target="_blank" rel="noopener noreferrer">{body}</a>
       ) : (
         <div className="tl-card__link">{body}</div>
       )}
@@ -113,6 +161,9 @@ export default function Built() {
 
   return (
     <section className="built" ref={root}>
+      <nav className="back-link-row">
+        <Link to="/" className="back-link">← Back</Link>
+      </nav>
       <header className="built-head">
         <Link to="/" className="built-logo" aria-label="Home">
           <img src={LogoUrl} alt="" />
@@ -160,6 +211,27 @@ export default function Built() {
           </ol>
         </div>
       ))}
+
+      {/* Closing note at the very end of the timeline */}
+      <footer className="tl-outro reveal">
+        <h2 className="tl-outro__h">Since you scrolled this far…</h2>
+        <p>
+          I grew up in a very science- and computer-science-minded family… crying a little when I
+          didn’t get a good score on a math exam, spending summers nitpicking code with my family, and
+          being a total nerd about grades…
+        </p>
+        <p>
+          People always ask me, “Why go into creative and art direction when you’re good at science?”
+          But I’ve always seen those logical endeavors as what shaped how I see the creative world. I
+          approach design differently: methodically and critically, and of course as an engineer and
+          coder in most of my work.
+        </p>
+        <p>
+          This educational background, combined with always traveling, meeting new people, and moving
+          cities for different schools, made me endlessly curious and taught me to approach the world
+          with my eyes and mind wide open.
+        </p>
+      </footer>
     </section>
   );
 }

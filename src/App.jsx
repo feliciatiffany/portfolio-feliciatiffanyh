@@ -12,6 +12,8 @@ import Category from "./pages/Category.jsx";
 import Project from "./pages/Project.jsx"; 
 import Nutshell from "./pages/Nutshell.jsx";
 import Built from "./pages/Built.jsx";
+import Blog from "./pages/Blog.jsx";
+import BlogPost from "./pages/BlogPost.jsx";
 
 import LogoUrl from "./assets/logosmall.png";
 
@@ -27,13 +29,13 @@ function Layout({ children }) {
   const { pathname } = useLocation();
   const onProject = pathname.startsWith("/work/");
   const onHome = pathname === "/";
-  const centered = onHome || /^\/(built|nutshell)/i.test(pathname);
+  const centered = onHome || /^\/(built|nutshell|blog)/i.test(pathname);
 
   const gridClass = onProject ? "page-grid--project" : centered ? "page-grid--center" : "";
 
   return (
     <div className={`page-grid ${gridClass}`}>
-      {!onProject && !onHome && !/^\/built/i.test(pathname) && (
+      {!onProject && !onHome && !/^\/(built|blog)/i.test(pathname) && (
         <header className="header" aria-label="Brand">
           <LogoMark />
         </header>
@@ -98,6 +100,8 @@ export default function App() {
 
         <Route path="/nutshell" element={<Nutshell />} />
         <Route path="/built" element={<Built />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
 
         <Route path="/about" element={<About />} />
         <Route path="/About" element={<About />} />

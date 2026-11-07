@@ -17,14 +17,16 @@ npm run deploy    # build + publish dist/ to gh-pages
 ## Site map
 | Route | File | What it is |
 |---|---|---|
-| `/` | `src/pages/Home.jsx` | Round profile photo + "Hi, I'm Fany!" intro + 3 text links (What I've done, Digital garden, About me), circled by a rotating 3D "Saturn ring" of project images |
+| `/` | `src/pages/Home.jsx` | Round profile photo + "Hi, I'm Fany!" intro + 4 text links (What I've done, Digital garden, Blog, About me), circled by a rotating 3D "Saturn ring" of project images |
 | `/about` | `src/pages/About.jsx` | Resume (data from `src/lib/resume.js`) |
 | `/nutshell` | `src/pages/Nutshell.jsx` | "Digital garden": Notion-style note — what I love / think / fear (edit `SECTIONS`) |
 | `/built` | `src/pages/Built.jsx` | "What I've done - A Timeline": center line, cards alternate sides (masonry rows), category toggles, sticky year jumps, cards slide in on scroll |
+| `/blog` | `src/pages/Blog.jsx` | Writing list: Categories + Year toggles on the left (work like the timeline filters), posts on a line with dots; a post with a cover shows it left of the title |
+| `/blog/:slug` | `src/pages/BlogPost.jsx` | One post: ← Back, centered title, category · date, text in a ~560px Montserrat column |
 | `/tech`, `/digital`, `/graphic`, `/others` | `src/pages/*Designer.jsx`, `Others.jsx` | Project lists per discipline |
 | `/work/:slug` | `src/pages/Project.jsx` → `src/components/ProjectTemplate.jsx` | Project page: centered title, hero (first `media` item), Date / Stacks / Category row, intro + pull quote, then `sections`, in a ~640px column |
 
-`src/App.jsx` holds the layout. `/`, `/built` and `/nutshell` use the centered layout (`page-grid--center`); `/work/*` uses the full-width project layout; everything else uses the logo-left grid. The corner logo is hidden on `/`, `/built` and `/work/*` (those pages place the logo themselves).
+`src/App.jsx` holds the layout. `/`, `/built`, `/blog*` and `/nutshell` use the centered layout (`page-grid--center`); `/work/*` uses the full-width project layout; everything else uses the logo-left grid. The corner logo is hidden on `/`, `/built`, `/blog*` and `/work/*`. `/built` and every blog page start with a top-left `← Back` link (`.back-link`).
 
 ## Visual style — keep it
 - **White background**, black ink. Titles, names, links and labels use monospace **Source Code Pro**; small text, captions, dates, descriptions, footer and project body copy use **Montserrat** via `var(--font-caption)`. Both load from Google Fonts in `index.html`.
@@ -44,6 +46,8 @@ npm run deploy    # build + publish dist/ to gh-pages
   - Entries whose date contains "Present" go under **Today**. Set `TODAY_NOTE` and per-year `YEAR_NOTES` taglines there.
 - **Project writing**: first person, casual and honest, in Fany's voice ("didn't win but learned a lot about team handling"). Each project file has a `quote` (short line, no quote marks) shown as the big pull quote “…” - me under the intro. Split intro paragraphs with a blank line (`\n\n`).
 - **Home ring images**: the `RING` array in `src/pages/Home.jsx` (`src`, `to` project link, `cutout` for transparent PNGs, `small` for the logo). Ring copies live in `public/media/home/` (≤600px). Back of the ring = bigger, front = smaller; it pauses while an image is hovered. Cutouts were made with macOS Vision subject lifting (`VNGenerateForegroundInstanceMaskRequest`); Preview/Photos "Copy Subject" gives the same result.
+- **Blog**: `src/data/blog.json` (`posts[]`: `slug`, `title`, `date` YYYY-MM-DD, `category` "Short Story" or "Thoughts", `summary`, `cover`, `blocks[]` of `p` / `heading` / `quote` / `item` / `image` / `video`). Imported once from the old Wix blog (feliciatiffany.wixsite.com/blog); posts are in Indonesian, keep them as written. Images in `public/media/blog/`.
+- **Timeline card extras** (`timeline.js` / `resume.js` awards): `caption`, `href` (external link), `media.fill` (image as wide as the text), `gallery` (photos in one row; give each a `ratio`), `collage` (overlapping cut-outs that spread on hover; `x/y/w/r` + hover `hx/hy/hr/hs`), `bullets`, `hideOnTimeline`, `timelineYear`.
 - **Media**: `public/media/...`, referenced as `/media/...`. Paths are **case-sensitive** on GitHub Pages. For example, the profile photo is `/media/profileimage.JPEG`.
 
 ## Conventions

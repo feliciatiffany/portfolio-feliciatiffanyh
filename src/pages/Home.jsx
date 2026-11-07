@@ -25,6 +25,7 @@ const RING = [
 const LINKS = [
   { to: "/built", label: "What I’ve done" },
   { to: "/nutshell", label: "Digital garden" },
+  { to: "/blog", label: "Blog" },
   { to: "/about", label: "About me" },
 ];
 
