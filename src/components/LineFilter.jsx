@@ -15,7 +15,7 @@ export default function LineFilter({
   direction = "column", // "row" | "column"
   title,
   radius = 90,
-  smoothing = 140,
+  smoothing = 70,
   className = "",
   ariaLabel,
 }) {

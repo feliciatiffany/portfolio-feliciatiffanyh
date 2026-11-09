@@ -32,6 +32,14 @@ export default function Blog() {
     () => POSTS.filter((p) => cats.has(p.category) && years.has(p.year)),
     [cats, years]
   );
+  const byYear = useMemo(() => {
+    const groups = new Map();
+    [...shown].sort((a, b) => b.date.localeCompare(a.date)).forEach((p) => {
+      if (!groups.has(p.year)) groups.set(p.year, []);
+      groups.get(p.year).push(p);
+    });
+    return [...groups.entries()];
+  }, [shown]);
   const root = useReveal([shown]);
 
   return (
@@ -51,25 +59,35 @@ export default function Blog() {
         />
       </aside>
 
-      <ol className="blog__list">
-          {shown.map((p) => (
-            <li key={p.slug} className={`blog-item reveal${p.cover ? " has-cover" : ""}`}>
-              <Link to={`/blog/${p.slug}`} className="blog-item__link">
-                {p.cover && (
-                  <span className="blog-item__media shine">
-                    <img src={p.cover} alt="" loading="lazy" />
+      {/* One section per year, newest first, each with its own line — like the timeline */}
+      {byYear.map(([y, posts], yi) => (
+        <div
+          key={y}
+          className="blog-year"
+          style={{ "--age": byYear.length > 1 ? (yi / (byYear.length - 1)).toFixed(3) : 0 }} /* 0 = newest, 1 = oldest */
+        >
+          <h2 className="tl-year__h blog-year__h">{y}</h2>
+          <ol className="blog__list line-reveal">
+            {posts.map((p) => (
+              <li key={p.slug} className={`blog-item reveal${p.cover ? " has-cover" : ""}`}>
+                <Link to={`/blog/${p.slug}`} className="blog-item__link">
+                  {p.cover && (
+                    <span className="blog-item__media shine">
+                      <img src={p.cover} alt="" loading="lazy" />
+                    </span>
+                  )}
+                  <span className="blog-item__text">
+                    <span className="blog-item__title">{p.title}</span>
+                    <span className="blog-item__meta">{p.category} · {formatDate(p.date)}</span>
+                    {p.summary && <span className="blog-item__sum">{p.summary}</span>}
                   </span>
-                )}
-                <span className="blog-item__text">
-                  <span className="blog-item__title">{p.title}</span>
-                  <span className="blog-item__meta">{p.category} · {formatDate(p.date)}</span>
-                  {p.summary && <span className="blog-item__sum">{p.summary}</span>}
-                </span>
-              </Link>
-            </li>
-          ))}
-          {shown.length === 0 && <li className="blog__empty">Pick a category and a year to see posts.</li>}
-      </ol>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+      {shown.length === 0 && <p className="blog__empty">Pick a category and a year to see posts.</p>}
     </section>
   );
 }

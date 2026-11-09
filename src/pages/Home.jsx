@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 import DitherImage from "../components/DitherImage.jsx";
+import GlassSurface from "../components/GlassSurface.jsx";
 import LineFilter from "../components/LineFilter.jsx";
-import OrbitImages from "../components/OrbitImages.jsx";
+import DomeGallery from "../components/DomeGallery.jsx";
 
 const PROFILE_SRC = "/media/profileimage.JPEG";
 
@@ -32,11 +33,7 @@ const LINKS = [
   { to: "/about", label: "About me" },
 ];
 
-// Two passes through the work (the second shuffled) so the ring is packed without neighbours repeating
-const ORBIT = [...RING, ...[6, 2, 9, 0, 11, 4, 7, 1, 10, 3, 12, 8, 5].map((i) => RING[i])].map((it) => ({
-  src: it.src,
-  alt: "",
-}));
+
 
 // Narrow screens get a tall orbit so the images circle the title instead of squeezing past it
 function useNarrow(query = "(max-width: 700px)") {
@@ -53,50 +50,70 @@ function useNarrow(query = "(max-width: 700px)") {
 export default function Home() {
   const narrow = useNarrow();
 
-  return (
-    <section className="home">
-      {/* One dense ring that circles around the intro, never across it. Images are decoration only. */}
-      <OrbitImages
-        className="home-orbit"
-        images={ORBIT}
-        shape="ellipse"
-        radiusX={narrow ? 360 : 720}
-        radiusY={narrow ? 640 : 340}
-        rotation={0}
-        duration={ORBIT.length * 2.8}
-        steps={ORBIT.length}
-        hold={0.55}
-        itemSize={narrow ? 120 : 108}
-        depth={1}
-        farBlur={4}
-        farSepia={0.6}
-        itemRadius={8}
-        shadow={0.08}
-        hoverScale={1}
-        hoverSpeed={0}
-        clickToFront={false}
-        draggable={false}
-        width={narrow ? "100%" : "min(1440px, 96%)"}
-        height="calc(100% - var(--orbit-pad) * 2)"
-        centerContent={
-          <div className="home__center">
-            <DitherImage className="avatar avatar--scramble" src={PROFILE_SRC} alt="Felicia Hertada" />
-
-            <ScrambledText as="h1" className="home-intro" {...historyTitle}>
-              Hi, I’m{" "}
-              <Link to="/about" className="home-intro__name">Fany</Link>!
-              <br />
-              a <span className="home-intro__role">tech &amp; product designer</span>,
-              <br />
-              but other time, I’m exploring
-            </ScrambledText>
-
-            <nav className="home-links" aria-label="Explore">
-              <LineFilter direction="row" items={LINKS.map((l) => ({ key: l.to, label: l.label, to: l.to }))} />
-            </nav>
-          </div>
-        }
+  const intro = (
+    <div className="home__center">
+      <DitherImage
+        className="avatar avatar--scramble"
+        src={PROFILE_SRC}
+        alt="Felicia Hertada"
+        palette={["#0D0D0D", "#5C5C5C", "#B0B0B0", "#FFFFFF"]}
+        contrast={1.2}
+        brightness={0.04}
       />
+
+      <ScrambledText as="h1" className="home-intro" {...historyTitle}>
+        Hi, I’m{" "}
+        <Link to="/about" className="home-intro__name">Fany</Link>!
+        <br />
+        a <span className="home-intro__role">tech &amp; product designer</span>,
+        <br />
+        but other time, I’m exploring
+      </ScrambledText>
+
+      <nav className="home-links" aria-label="Explore">
+        {/* each link sits in its own glass pill */}
+        <div className="home-glass-row">
+          {LINKS.map((l) => (
+            <GlassSurface
+              key={l.to}
+              className="home-glass"
+              width="fit-content"
+              height="auto"
+              borderRadius={999}
+              backgroundOpacity={0.28}
+              displace={0.4}
+              distortionScale={-160}
+              saturation={1.1}
+            >
+              <LineFilter direction="row" items={[{ key: l.to, label: l.label, to: l.to }]} />
+            </GlassSurface>
+          ))}
+        </div>
+      </nav>
+    </div>
+  );
+
+  return (
+    <section className={`home${narrow ? " home--narrow" : ""}`}>
+      {/* A slowly spinning dome of the work behind everything, dithered so it fades into the page */}
+      <div className="home-dome">
+        {/* Sized like the React Bits example: radius ≈ 0.78 × page width, so the sphere curves away right at the left and right edges */}
+        <DomeGallery
+          images={RING}
+          fit={0.78}
+          fitBasis="width"
+          heightGuard={Infinity}
+          minRadius={600}
+          segments={35}
+          maxVerticalRotationDeg={4}
+          imageBorderRadius="24px"
+          imageFilter="grayscale(.9) sepia(.12) contrast(1.05)"
+          overlayBlurColor="#FFFFFF"
+          autoRotate={narrow ? 5 : 3.5}
+          dragDampening={0.8}
+        />
+      </div>
+      {intro}
     </section>
   );
 }

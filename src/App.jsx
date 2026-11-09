@@ -14,36 +14,93 @@ import Built from "./pages/Built.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
 import GhostCursor from "./components/GhostCursor.jsx";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Mail01Icon, Linkedin01Icon, GithubIcon, Asterisk02Icon } from "@hugeicons/core-free-icons";
 
 const reduceMotion =
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// A faint trace left behind the cursor: slow, grainy, and gone a moment later — like time passing
+// The cursor is just a light: a coral glow with a long smoky trail. It stays lit while the mouse rests.
+const finePointer =
+  typeof window !== "undefined" && window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
+
 function CursorGlow() {
-  if (reduceMotion) return null;
+  if (reduceMotion || !finePointer) return null;
   return (
-    <GhostCursor
-      theme="light"
-      color="#C9A97A"
-      mixBlendMode="multiply"
-      size={34}
-      trailLength={70}
-      inertia={0.7}
-      turbulence={0.18}
-      drift={0.06}
-      detail={0.35}
-      brightness={0.8}
-      bloomStrength={0.2}
-      bloomRadius={1.2}
-      grainIntensity={0.14}
-      clickPuff={false}
-      intro={false}
-      fadeDelayMs={400}
-      fadeDurationMs={2600}
-      zIndex={60}
-      style={{ position: "fixed", opacity: 0.22 }}
-    />
+    <>
+      <GhostCursor
+        theme="light"
+        color="#DE826D" /* coral, from the site palette */
+        mixBlendMode="multiply"
+        size={22}
+        trailLength={110}
+        inertia={0.06} /* light stays right under the pointer */
+        turbulence={0.35}
+        drift={0.12}
+        detail={0.45}
+        bloomStrength={0.35}
+        bloomRadius={0.8}
+        grainIntensity={0.1}
+        clickPuff
+        intro={false}
+        fadeDelayMs={600000}
+        fadeDurationMs={2600}
+        zIndex={2147483000}
+        style={{ position: "fixed", opacity: 0.7 }}
+      />
+    </>
   );
+}
+
+const SOCIALS = [
+  { href: "mailto:feliciatiffany@gmail.com", label: "gmail", icon: Mail01Icon },
+  { href: "https://www.linkedin.com/in/feliciatiffanyh/", label: "linkedin", icon: Linkedin01Icon },
+  { href: "https://github.com/feliciatiffany", label: "github", icon: GithubIcon },
+  { href: "https://linktr.ee/feliciatiffanyh", label: "linktree", icon: Asterisk02Icon }, // closest match to the Linktree mark
+];
+
+// Wavy "seal" outline for the homepage social badges: a circle with 14 soft bumps
+const SEAL_PATH = (() => {
+  const pts = [];
+  for (let i = 0; i <= 112; i++) {
+    const t = (i / 112) * Math.PI * 2;
+    const r = 21 + 1.6 * Math.cos(14 * t);
+    pts.push(`${(24 + r * Math.cos(t)).toFixed(2)} ${(24 + r * Math.sin(t)).toFixed(2)}`);
+  }
+  return `M${pts.join("L")}Z`;
+})();
+
+function Socials({ icons = false }) {
+  if (icons) {
+    // homepage: each link is a visible symbol inside a wavy seal
+    return SOCIALS.map((l) => (
+      <a
+        key={l.label}
+        href={l.href}
+        className="social-badge"
+        aria-label={l.label}
+        title={l.label}
+        {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+      >
+        <svg className="social-badge__seal" viewBox="0 0 48 48" aria-hidden="true">
+          <path d={SEAL_PATH} />
+        </svg>
+        <HugeiconsIcon icon={l.icon} size={22} strokeWidth={1.6} className="social-badge__icon" />
+      </a>
+    ));
+  }
+  return SOCIALS.map((l, i) => (
+    <React.Fragment key={l.label}>
+      {i > 0 && <span aria-hidden> · </span>}
+      <a
+        href={l.href}
+        className="foot-link"
+        {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+      >
+        {l.label}
+      </a>
+    </React.Fragment>
+  ));
 }
 
 function backHref(pathname) {
@@ -58,7 +115,7 @@ function Layout({ children }) {
   const onHome = pathname === "/";
   const centered = onHome || /^\/(built|blog)/i.test(pathname);
 
-  const gridClass = onProject ? "page-grid--project" : centered ? "page-grid--center" : "";
+  const gridClass = `${onProject ? "page-grid--project" : centered ? "page-grid--center" : ""}`;
 
   return (
     <div className={`page-grid ${gridClass}`}>
@@ -73,38 +130,11 @@ function Layout({ children }) {
 
       <main className={`main ${onProject ? "main--project" : ""}`}>{children}</main>
 
-       {!onProject && (
-      <footer className="foot">
-        <a href="mailto:feliciatiffany@gmail.com" className="foot-link">gmail</a>
-        <span aria-hidden> · </span>
-        <a
-          href="https://www.linkedin.com/in/feliciatiffanyh/"
-          target="_blank"
-          rel="noreferrer"
-          className="foot-link"
-        >
-          linkedin
-        </a>
-        <span aria-hidden> · </span>
-        <a
-          href="https://github.com/feliciatiffany"
-          target="_blank"
-          rel="noreferrer"
-          className="foot-link"
-        >
-          github
-        </a>
-        <span aria-hidden> · </span>
-        <a
-          href="https://linktr.ee/feliciatiffanyh"
-          target="_blank"
-          rel="noreferrer"
-          className="foot-link"
-        >
-          linktree
-        </a>
-      </footer>
-       )}
+      {!onProject && (
+        <footer className={`foot${onHome ? " foot--icons" : ""}`}>
+          {onHome ? <Socials icons /> : <Socials />}
+        </footer>
+      )}
     </div>
   );
 }

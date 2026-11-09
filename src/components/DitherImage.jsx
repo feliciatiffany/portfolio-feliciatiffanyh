@@ -1,5 +1,5 @@
 // DitherImage — a photo printed like an old dithered page, adapted from React Bits' <Dither />.
-// The image is ordered-dithered (8x8 Bayer) into a small sepia palette. On load it resolves from chunky
+// The image is ordered-dithered (8x8 Bayer) into a few shades of grey. On load it resolves from chunky
 // pixels to full detail. The cursor uncovers the real photo with a fading trail, and a click sends a
 // ring through it — the present showing through for a moment before it fades back into the past.
 import { useEffect, useRef } from "react";
@@ -25,7 +25,7 @@ export default function DitherImage({
   src,
   alt = "",
   className = "",
-  palette = ["#2A1A18", "#62232D", "#9C575D", "#E6BD89", "#F7EEE4"], // dark → light
+  palette = ["#0D0D0D", "#5C5C5C", "#B0B0B0", "#FFFFFF"], // dark → light: black-and-white, like the original Dither
   pixelSize = 2, // css px per dither pixel
   contrast = 1.15,
   brightness = 0.02,

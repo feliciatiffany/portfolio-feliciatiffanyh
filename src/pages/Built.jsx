@@ -198,13 +198,18 @@ export default function Built() {
         <p className="tl-empty">Pick a category above to light up the timeline.</p>
       )}
 
-      {groups.map((g) => (
-        <div key={g.key} id={`y-${g.key}`} className="tl-year">
+      {groups.map((g, gi) => (
+        <div
+          key={g.key}
+          id={`y-${g.key}`}
+          className="tl-year"
+          style={{ "--age": groups.length > 1 ? (gi / (groups.length - 1)).toFixed(3) : 0 }} /* 0 = now, 1 = oldest */
+        >
           <h2 className="tl-year__h">
             {g.heading}
             {g.note && <span className="tl-year__note">{g.note}</span>}
           </h2>
-          <ol className="tl-list">
+          <ol className="tl-list line-reveal">
             {g.items.map((item, i) => (
               <Card key={item.id} item={item} index={i} />
             ))}

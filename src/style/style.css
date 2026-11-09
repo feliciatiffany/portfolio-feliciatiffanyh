@@ -151,6 +151,8 @@ body{
 /* ===== Footer ===== */
 .foot{
   grid-area:footer;
+  position: relative;
+  z-index: 2; /* stays above the homepage dome */
   padding: clamp(8px,1.4vw,14px) clamp(12px,1.6vw,20px);
   font-size: var(--fs-footer);
   display:flex; align-items:center; flex-wrap:wrap;
@@ -665,29 +667,33 @@ body{
   padding: 24px 16px;
   overflow: hidden;
 }
-.home{ --orbit-pad: clamp(40px, 8vh, 96px); } /* breathing room above and below the ring */
-.home-orbit{
-  position: absolute !important;
+/* the dome fills the whole screen behind everything, including the footer */
+.home-dome{
+  position: fixed;
   inset: 0;
-  margin: auto !important;
-  pointer-events: none; /* the rings overlap; only the images and the title catch the pointer */
+  z-index: 0;
 }
-.home-orbit .orbit-item{ pointer-events: none; cursor: default; }
-/* The intro always sits above every image, even ones passing in front */
-.home-orbit .orbit-center-content{ z-index: 1000; }
-.home-orbit .orbit-item-inner{
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
-  background: color-mix(in srgb, var(--background) 72%, transparent);
+/* soft paper glow behind the intro so the words always read clearly over the dome */
+.home-dome::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: radial-gradient(ellipse 28% 34% at 50% 50%, rgba(255,255,255,.9) 0%, rgba(255,255,255,.7) 50%, rgba(255,255,255,0) 100%);
 }
-.home-orbit .orbit-item:focus-visible .orbit-item-inner{ outline: 2px solid var(--ring); }
+.home--narrow .home-dome::after{
+  background: radial-gradient(ellipse 85% 42% at 30% 50%, rgba(255,255,255,.95) 0%, rgba(255,255,255,.82) 50%, rgba(255,255,255,0) 100%);
+}
+.home__center{ z-index: 10; }
 .home__center{
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(14px, 2vw, 22px);
+  gap: clamp(6px, .8vw, 10px); /* photo sits close to the title */
   text-align: center;
-  pointer-events: none; /* spiral cards stay clickable around the title */
+  pointer-events: none;
 }
 .home__center a,
 .home-intro,
@@ -714,8 +720,38 @@ body{
 .home-links{
   position: relative;
   z-index: 4;
+  margin-top: clamp(8px, 1.2vw, 14px);
 }
 .home-links .line-filter__list{ grid-template-columns: repeat(3, auto); gap: 8px clamp(22px, 3vw, 44px); }
+/* Glass pills: homepage links and social links float over the dome */
+.home-glass-row{ display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.home--narrow .home-glass-row{ flex-direction: column; align-items: flex-start; gap: 10px; }
+.home-glass .glass-surface__content{ padding: 9px 22px; }
+.home-glass .line-filter__list{ display: block; }
+/* Homepage social links: icons in wavy seals */
+.foot--icons{ justify-content: center; gap: clamp(18px, 3vw, 40px); padding-bottom: clamp(14px, 2vw, 24px); }
+.social-badge{
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px; height: 48px;
+  color: var(--color-text);
+  transition: color .3s ease, transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.social-badge__seal{
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  fill: color-mix(in srgb, var(--background) 82%, transparent);
+  stroke: currentColor;
+  stroke-width: 1;
+  transition: transform 1.2s cubic-bezier(.2,.7,.2,1), fill .3s ease;
+}
+.social-badge__icon{ position: relative; }
+.social-badge:hover,
+.social-badge:focus-visible{ color: var(--color-coral); transform: translateY(-2px); outline: none; }
+.social-badge:hover .social-badge__seal,
+.social-badge:focus-visible .social-badge__seal{ transform: rotate(60deg); fill: color-mix(in srgb, var(--color-coral) 10%, var(--background)); }
 @media (max-width: 700px){ .home-links .line-filter__list{ grid-template-columns: repeat(3, auto); } }
 .home-links__a{
   color: inherit;
@@ -727,6 +763,21 @@ body{
 .home-links__a:hover,
 .home-links__a:focus-visible{ color: var(--color-action-hover); background: var(--color-wash-tech); outline: none; }
 
+
+/* ===== Home on phones: text left-aligned over the dome, links stacked ===== */
+.home--narrow{
+  place-items: center start;
+  padding: 72px 20px;
+}
+.home--narrow .home__center{
+  align-items: flex-start;
+  text-align: left;
+  gap: 12px;
+}
+.home--narrow .home-intro{ font-size: clamp(18px, 5.4vw, 24px); }
+.home--narrow .home-links{ margin-top: 10px; }
+.home--narrow .home-links .line-filter__list{ grid-template-columns: 1fr; gap: 12px; justify-items: start; }
+.home--narrow .home-links .line-filter__item{ font-size: 15px; }
 
 /* =========================================================
    WHAT I'VE DONE — center-line timeline (roomy spacing)
@@ -877,9 +928,6 @@ body{
   border-radius: 1px;
   background: linear-gradient(to bottom, var(--sidebar-border) 0%, var(--sidebar-border) 55%, transparent 100%);
   transform-origin: top center;
-  animation: line-show 900ms cubic-bezier(0.23, 1, 0.32, 1) both;
-  animation-timeline: view();
-  animation-range: entry 0% cover 35%;
 }
 .tl-card{ position: relative; padding-bottom: clamp(64px, 10.5vw, 220px); align-self: start; container-type: inline-size; }
 .tl-card:nth-child(2){ padding-top: clamp(48px, 5vw, 120px); } /* first right card starts lower, so the sides stagger */
@@ -1079,6 +1127,7 @@ body{
   .built-side{ position: static; }
   .tl-list{ grid-template-columns: 1fr; padding-left: 24px; grid-auto-rows: auto; width: 100%; }
   .tl-list::before{ left: 4px; margin-left: 0; }
+  .tl-list{ --line-x: 5px; }
   .tl-card[data-side]{ grid-column: 1; grid-row-end: auto !important; padding-bottom: 64px; }
   .tl-card:nth-child(2){ padding-top: 0; }
   .tl-card:nth-child(2)::before{ top: 10px; }
@@ -1138,22 +1187,67 @@ body{
   border-radius: 1px;
   background: linear-gradient(to bottom, var(--sidebar-border) 0%, var(--sidebar-border) 55%, transparent 100%);
   transform-origin: top center;
-  animation: line-show 900ms cubic-bezier(0.23, 1, 0.32, 1) both;
-  animation-timeline: view();
-  animation-range: entry 0% cover 35%;
 }
-@keyframes line-show{
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
+/* ===== Lines draw themselves once they reach the screen, led by a small coral light ===== */
+.tl-list{ --line-x: 50%; }
+.blog__list{ --line-x: 1px; }
+.line-reveal::before{
+  transform: scaleY(0);
+  transition: transform 2.6s cubic-bezier(.45, 0, .2, 1);
 }
-@supports not (animation-timeline: view()){
-  .tl-list::before,
-  .blog__list::before{ animation: line-show 900ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+.line-reveal.is-in::before{ transform: scaleY(1); }
+.line-reveal::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--line-x);
+  width: 8px; height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--color-coral);
+  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--color-coral) 60%, transparent);
+  opacity: 0;
+  pointer-events: none;
 }
+.line-reveal.is-in::after{ animation: line-light 2.6s cubic-bezier(.45, 0, .2, 1) forwards; }
+@keyframes line-light{
+  0%   { top: 0; opacity: 0; }
+  8%   { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+/* ===== Memory fading: the further back in time, the fainter and more sepia the line =====
+   --age (0 = now, 1 = oldest) is set per year in JSX. Lines stay solid and fade out at the bottom. */
+.line-reveal{
+  --age: 0;
+  --line-c: color-mix(in srgb, var(--sidebar-border) calc(100% - var(--age) * 60%), var(--color-sand));
+}
+.line-reveal::before{
+  background: var(--line-c);
+  opacity: calc(1 - var(--age) * .35);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
+
+/* No dots on the lines: the cards sit beside the line on their own */
+.tl-card::before,
+.blog-item::before{ display: none !important; }
 @media (prefers-reduced-motion: reduce){
-  .tl-list::before,
-  .blog__list::before{ animation: none; transform: none; }
+  .line-reveal::before,
+  .tl-card.reveal::before,
+  .blog-item.reveal::before{ transform: none !important; transition: none !important; animation: none !important; }
+  .line-reveal::after{ display: none; }
 }
+.blog-year{ padding-top: clamp(28px, 2.5vw, 48px); }
+.blog-year:first-of-type{ padding-top: 0; }
+/* Year sits on the left, starting right at the line */
+.blog-year__h{
+  width: min(760px, 100%);
+  margin: 0 auto clamp(8px, 1vw, 16px);
+  justify-items: start;
+  text-align: left;
+}
+.blog__empty{ text-align: center; }
 .blog-item{ position: relative; }
 .blog-item::before{
   content: "";
@@ -1257,4 +1351,9 @@ body{
     top: max(16px, env(safe-area-inset-top));
     left: max(20px, env(safe-area-inset-left));
   }
+}
+
+/* ===== Cursor: a light instead of the arrow (mouse and trackpad only) ===== */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference){
+  html, body, *{ cursor: none !important; }
 }
