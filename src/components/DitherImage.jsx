@@ -3,6 +3,10 @@
 // pixels to full detail. The cursor uncovers the real photo with a fading trail, and a click sends a
 // ring through it — the present showing through for a moment before it fades back into the past.
 import { useEffect, useRef } from "react";
+import { token } from "../lib/tokens.js";
+
+// dark → light, black-and-white like the original Dither (tokens: --color-dither-1…4)
+const DITHER = ["color-dither-1", "color-dither-2", "color-dither-3", "color-dither-4"].map(token);
 
 const BAYER8 = [
   0, 48, 12, 60, 3, 51, 15, 63, 32, 16, 44, 28, 35, 19, 47, 31, 8, 56, 4, 52, 11, 59, 7, 55, 40, 24, 36, 20, 43, 27,
@@ -25,7 +29,7 @@ export default function DitherImage({
   src,
   alt = "",
   className = "",
-  palette = ["#0D0D0D", "#5C5C5C", "#B0B0B0", "#FFFFFF"], // dark → light: black-and-white, like the original Dither
+  palette = DITHER,
   pixelSize = 2, // css px per dither pixel
   contrast = 1.15,
   brightness = 0.02,

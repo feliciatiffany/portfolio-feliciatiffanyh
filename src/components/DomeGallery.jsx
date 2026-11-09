@@ -51,12 +51,12 @@ export default function DomeGallery({
   minRadius = 600,
   maxRadius = Infinity,
   heightGuard = 1.35, // radius never exceeds this × container height; Infinity turns it off
-  overlayBlurColor = "#120F17",
+  overlayBlurColor = "var(--background)", // any CSS colour; the page background by default
   maxVerticalRotationDeg = 5,
   dragSensitivity = 20,
   segments = 35,
   dragDampening = 2,
-  imageBorderRadius = "30px",
+  imageBorderRadius = "var(--radius-tile)",
   grayscale = true,
   imageFilter, // overrides grayscale, e.g. "sepia(.35)"
   autoRotate = 4, // degrees per second; 0 stops it
@@ -78,7 +78,7 @@ export default function DomeGallery({
 
   const applyTransform = (xDeg, yDeg) => {
     const el = sphereRef.current;
-    if (el) el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
+    if (el) el.style.transform = `translateZ(calc(var(--dome-radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
   };
 
   useEffect(() => {
@@ -100,7 +100,7 @@ export default function DomeGallery({
       }
       let radius = Math.min(basis * fit, h * heightGuard);
       radius = clamp(radius, minRadius, maxRadius);
-      root.style.setProperty("--radius", `${Math.round(radius)}px`);
+      root.style.setProperty("--dome-radius", `${Math.round(radius)}px`);
       applyTransform(rotationRef.current.x, rotationRef.current.y);
     });
     ro.observe(root);

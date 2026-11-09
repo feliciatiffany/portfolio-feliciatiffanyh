@@ -2,8 +2,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  --radius: 520px;
-  --circ: calc(var(--radius) * 3.14);
+  --dome-radius: 520px;
+  --circ: calc(var(--dome-radius) * 3.14);
   --rot-y: calc((360deg / var(--segments-x)) / 2);
   --rot-x: calc((360deg / var(--segments-y)) / 2);
   --item-width: calc(var(--circ) / var(--segments-x));
@@ -29,7 +29,7 @@ main.sphere-main {
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
-  background: var(--overlay-blur-color, #fff);
+  background: var(--overlay-blur-color, var(--background));
   cursor: grab;
 }
 main.sphere-main:active { cursor: grabbing; }
@@ -39,13 +39,13 @@ main.sphere-main:active { cursor: grabbing; }
   height: 100%;
   display: grid;
   place-items: center;
-  perspective: calc(var(--radius) * 2);
+  perspective: calc(var(--dome-radius) * 2);
   perspective-origin: 50% 50%;
   contain: layout paint size;
 }
 
 .sphere {
-  transform: translateZ(calc(var(--radius) * -1));
+  transform: translateZ(calc(var(--dome-radius) * -1));
   will-change: transform;
 }
 
@@ -60,12 +60,12 @@ main.sphere-main:active { cursor: grabbing; }
 
 /* soft vignette into the page colour */
 .overlay {
-  background-image: radial-gradient(ellipse at center, transparent 80%, color-mix(in srgb, var(--overlay-blur-color, #fff) 30%, transparent) 100%);
+  background-image: radial-gradient(ellipse at center, transparent 80%, color-mix(in srgb, var(--overlay-blur-color, var(--background)) 30%, transparent) 100%);
 }
 
 .overlay--blur {
-  -webkit-mask-image: radial-gradient(ellipse at center, transparent 72%, #000 100%);
-  mask-image: radial-gradient(ellipse at center, transparent 72%, #000 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 72%, var(--foreground) 100%);
+  mask-image: radial-gradient(ellipse at center, transparent 72%, var(--foreground) 100%);
 }
 
 .item {
@@ -81,15 +81,15 @@ main.sphere-main:active { cursor: grabbing; }
   backface-visibility: hidden;
   transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2))))
     rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2))))
-    translateZ(var(--radius));
+    translateZ(var(--dome-radius));
 }
 
 .item__image {
   position: absolute;
   display: block;
   inset: 10px;
-  border-radius: var(--tile-radius, 12px);
-  background: var(--overlay-blur-color, #fff);
+  border-radius: var(--tile-radius, var(--radius-tile));
+  background: var(--overlay-blur-color, var(--background));
   overflow: hidden;
   backface-visibility: hidden;
   pointer-events: none;
@@ -113,7 +113,7 @@ main.sphere-main:active { cursor: grabbing; }
   z-index: 5;
   opacity: .6;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #fff));
+  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, var(--background)));
 }
 .edge-fade--top { top: 0; transform: rotate(180deg); }
 .edge-fade--bottom { bottom: 0; }

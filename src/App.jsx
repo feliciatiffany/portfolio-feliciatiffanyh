@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
@@ -14,6 +14,7 @@ import Built from "./pages/Built.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
 import GhostCursor from "./components/GhostCursor.jsx";
+import { token } from "./lib/tokens.js";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Mail01Icon, Linkedin01Icon, GithubIcon, Asterisk02Icon } from "@hugeicons/core-free-icons";
 
@@ -30,7 +31,7 @@ function CursorGlow() {
     <>
       <GhostCursor
         theme="light"
-        color="#DE826D" /* coral, from the site palette */
+        color={token("color-cursor")} /* WebGL needs the real value, so it comes from the generated tokens */
         mixBlendMode="multiply"
         size={22}
         trailLength={110}
@@ -59,20 +60,9 @@ const SOCIALS = [
   { href: "https://linktr.ee/feliciatiffanyh", label: "linktree", icon: Asterisk02Icon }, // closest match to the Linktree mark
 ];
 
-// Wavy "seal" outline for the homepage social badges: a circle with 14 soft bumps
-const SEAL_PATH = (() => {
-  const pts = [];
-  for (let i = 0; i <= 112; i++) {
-    const t = (i / 112) * Math.PI * 2;
-    const r = 21 + 1.6 * Math.cos(14 * t);
-    pts.push(`${(24 + r * Math.cos(t)).toFixed(2)} ${(24 + r * Math.sin(t)).toFixed(2)}`);
-  }
-  return `M${pts.join("L")}Z`;
-})();
-
 function Socials({ icons = false }) {
   if (icons) {
-    // homepage: each link is a visible symbol inside a wavy seal
+    // homepage: each link is a visible symbol inside a thin circle
     return SOCIALS.map((l) => (
       <a
         key={l.label}
@@ -83,7 +73,7 @@ function Socials({ icons = false }) {
         {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
       >
         <svg className="social-badge__seal" viewBox="0 0 48 48" aria-hidden="true">
-          <path d={SEAL_PATH} />
+          <circle cx="24" cy="24" r="22.5" />
         </svg>
         <HugeiconsIcon icon={l.icon} size={22} strokeWidth={1.6} className="social-badge__icon" />
       </a>
@@ -109,13 +99,22 @@ function backHref(pathname) {
   return "/";
 }
 
+// Every page opens at the top, never wherever the previous page was scrolled to
+if (typeof window !== "undefined" && "scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+function useScrollToTop(pathname) {
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname]);
+}
+
 function Layout({ children }) {
   const { pathname } = useLocation();
+  useScrollToTop(pathname);
   const onProject = pathname.startsWith("/work/");
   const onHome = pathname === "/";
   const centered = onHome || /^\/(built|blog)/i.test(pathname);
 
-  const gridClass = `${onProject ? "page-grid--project" : centered ? "page-grid--center" : ""}`;
+  const gridClass = `${onProject ? "page-grid--project" : centered ? "page-grid--center" : ""}${onHome ? " page-grid--home" : ""}`;
 
   return (
     <div className={`page-grid ${gridClass}`}>

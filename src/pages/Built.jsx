@@ -11,7 +11,7 @@ import useReveal from "../lib/useReveal.js";
 function CardMedia({ media, glow }) {
   if (!media?.src) return null;
   return (
-    <span className={`tl-card__media${glow ? " shine" : ""}${media.wide ? " is-wide" : ""}${media.blend ? " is-blend" : ""}${media.fill ? " is-fill" : ""}`}>
+    <span className={`tl-card__media${glow ? " shine" : ""}${media.wide ? " is-wide" : ""}${media.blend ? " is-blend" : ""}${media.fill ? " is-fill" : ""}${media.cutout ? " is-cutout" : ""}`}>
       <span className="tl-card__frame">
         {media.type === "video" ? (
           <video src={media.src} poster={media.poster} muted loop autoPlay playsInline preload="metadata" />
@@ -35,9 +35,10 @@ function CardGallery({ images, glow }) {
 }
 
 // Cut-out pieces laid over each other; each piece's place, tilt and hover motion come from data
-function CardCollage({ pieces }) {
+// `box` (optional) = { aspect } makes the collage as wide as the card, with that width/height ratio
+function CardCollage({ pieces, box }) {
   return (
-    <span className="tl-collage">
+    <span className={`tl-collage${box ? " tl-collage--full" : ""}`} style={box ? { aspectRatio: box.aspect } : undefined}>
       {pieces.map((p) => (
         <img
           key={p.src}
@@ -62,7 +63,7 @@ function Card({ item, index }) {
   const body = (
     <>
       {item.collage?.length ? (
-        <CardCollage pieces={item.collage} />
+        <CardCollage pieces={item.collage} box={item.collageBox} />
       ) : item.gallery?.length ? (
         <CardGallery images={item.gallery} glow={!!(item.to || item.href)} />
       ) : (
@@ -86,7 +87,7 @@ function Card({ item, index }) {
 
   return (
     <li
-      className="tl-card reveal"
+      className={`tl-card reveal${item.year >= 2023 ? " is-recent" : ""}`}
       data-type={item.type}
       data-side={index % 2 ? "right" : "left"}
     >
@@ -249,11 +250,6 @@ export default function Built() {
             ariaLabel="Password"
             onChange={() => setStatus("idle")}
             onComplete={onPassword}
-            accentColor="var(--accent)"
-            inkColor="var(--foreground)"
-            slotColor="var(--muted)"
-            digitColor="var(--accent-foreground)"
-            dangerColor="var(--destructive)"
             slotSize={44}
             gap={8}
             radius={12}

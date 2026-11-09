@@ -280,7 +280,7 @@ export default function ProjectTemplate({ project }) {
                   <p key={j} className="proj-text">{para}</p>
                 ))
             : null}
-          {project.quote ? <h2 className="proj-quote">“{project.quote}” - me</h2> : null}
+          {project.quote && !project.bare ? <h2 className="proj-quote">“{project.quote}” - me</h2> : null}
         </section>
       );
     }
@@ -519,8 +519,9 @@ export default function ProjectTemplate({ project }) {
         <ScrambledText as="h1" className="proj-page-title" {...historyTitle}>
           {project.title}
         </ScrambledText>
-        <Hero item={project.media?.[0]} />
-        <MetaRow project={project} />
+        {/* `bare` pages (e.g. Past Work) are just the description followed by every image */}
+        {!project.bare && <Hero item={project.media?.[0]} />}
+        {!project.bare && <MetaRow project={project} />}
         {sections.map(renderSection)}
       </main>
 

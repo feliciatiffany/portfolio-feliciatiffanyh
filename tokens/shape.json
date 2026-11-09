@@ -1,0 +1,24 @@
+{
+  "radius": {
+    "none": { "$type": "dimension", "$value": "0", "$description": "Base step" },
+    "xs": { "$type": "dimension", "$value": "2px", "$description": "Base step" },
+    "sm": { "$type": "dimension", "$value": "4px", "$description": "Base step" },
+    "md": { "$type": "dimension", "$value": "6px", "$description": "Base step" },
+    "lg": { "$type": "dimension", "$value": "10px", "$description": "Base step" },
+    "xl": { "$type": "dimension", "$value": "24px", "$description": "Base step" },
+    "full": { "$type": "dimension", "$value": "999px", "$description": "Pills" },
+    "round": { "$type": "dimension", "$value": "50%", "$description": "Circles: avatar, dots, badges" },
+
+    "media": { "$type": "dimension", "$value": "{radius.sm}", "$description": "Photos and thumbnails" },
+    "card": { "$type": "dimension", "$value": "{radius.lg}", "$description": "Printed photos, panels, code slots" },
+    "pill": { "$type": "dimension", "$value": "{radius.full}", "$description": "Glass links and tags" },
+    "tile": { "$type": "dimension", "$value": "{radius.xl}", "$description": "Homepage dome tiles" }
+  },
+
+  "shadow": {
+    "print": { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "6px", "blur": "10px", "color": "color-mix(in srgb, {color.ink} 12%, transparent)" }, "$description": "A photo resting on the page" },
+    "print-raised": { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "10px", "blur": "18px", "color": "color-mix(in srgb, {color.ink} 22%, transparent)" }, "$description": "The photo on top of a stack" },
+    "print-lifted": { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "8px", "blur": "14px", "color": "color-mix(in srgb, {color.ink} 15%, transparent)" }, "$description": "A photo picked up on hover" },
+    "soft": { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "0", "blur": "20px", "color": "color-mix(in srgb, {color.ink} 35%, transparent)" }, "$description": "Even soft shadow around a page in a stack" }
+  }
+}

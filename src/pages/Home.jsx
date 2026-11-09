@@ -56,7 +56,6 @@ export default function Home() {
         className="avatar avatar--scramble"
         src={PROFILE_SRC}
         alt="Felicia Hertada"
-        palette={["#0D0D0D", "#5C5C5C", "#B0B0B0", "#FFFFFF"]}
         contrast={1.2}
         brightness={0.04}
       />
@@ -106,9 +105,8 @@ export default function Home() {
           minRadius={600}
           segments={35}
           maxVerticalRotationDeg={4}
-          imageBorderRadius="24px"
+          imageBorderRadius="var(--radius-tile)"
           imageFilter="grayscale(.9) sepia(.12) contrast(1.05)"
-          overlayBlurColor="#FFFFFF"
           autoRotate={narrow ? 5 : 3.5}
           dragDampening={0.8}
         />

@@ -6,8 +6,9 @@
   "homepage": "https://github.com/feliciatiffany/Portfolio.git",
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
+    "lint:tokens": "stylelint \"src/**/*.css\" && node scripts/lint-js-tokens.mjs",
     "dev": "vite",
-    "build": "node scripts/build-tokens.mjs && vite build",
+    "build": "npm run tokens && npm run lint:tokens && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.2",
     "gh-pages": "^6.3.0",
+    "stylelint": "^16.26.1",
     "vite": "^5.4.8"
   }
 }

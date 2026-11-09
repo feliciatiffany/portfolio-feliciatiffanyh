@@ -4,6 +4,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Tick02Icon } from "@hugeicons/core-free-icons";
 
 import "./CodeSlots.css";
+import { token } from "../lib/tokens.js";
+
+const px = (v) => parseFloat(v); // "8px" → 8, for layout maths
 
 const EASE_OUT = [0.23, 1, 0.32, 1];
 const WASH_IN = 0.3;
@@ -41,14 +44,15 @@ export default function CodeSlots({
   caret = true,
   disabled = false,
   autoFocus = false,
-  accentColor = "#f5f5f5",
-  inkColor = "#f5f5f5",
-  slotColor = "#27272a",
-  digitColor = "#18181b",
-  dangerColor = "#ff3b30",
+  // colours default to the site's roles (tokens); pass other CSS colours to override
+  accentColor = "var(--accent)",
+  inkColor = "var(--foreground)",
+  slotColor = "var(--muted)",
+  digitColor = "var(--accent-foreground)",
+  dangerColor = "var(--destructive)",
   slotSize = 44,
-  gap = 8,
-  radius = 12,
+  gap = px(token("space-2")),
+  radius = px(token("radius-card")),
   bounce = 0.2,
   settle = 0.3,
   rise = 8,

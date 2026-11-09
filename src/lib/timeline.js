@@ -35,7 +35,19 @@ export const YEAR_NOTES = {
 */
 const PROJECTS = [
   // highlights
-  { slug: "redDoors", date: "2023", highlight: true },
+  {
+    slug: "redDoors",
+    date: "2023",
+    highlight: true,
+    // the installation in front of the library, its two kiosks, and the QR code to play online
+    collageBox: { aspect: 1.45 },
+    collage: [
+      { src: "/media/techdesign/redDoors/thumb/library.png", alt: "Red Doors installation in front of the New York Public Library", x: 10, y: 6, w: 80, r: 0, hy: -2, hs: 1.02, z: 1 },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-left.png", alt: "Red Doors kiosk, start screen", x: 1, y: 63, w: 26, r: 0, hx: -1, hy: -3, hr: -2, hs: 1.03, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-right.png", alt: "Red Doors kiosk, second screen", x: 73, y: 60, w: 26, r: 0, hx: 1, hy: -3, hr: 2, hs: 1.03, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/qr-online.png", alt: "QR code: play Red Doors online", x: 85, y: 0, w: 12, r: 4, hy: -2, hr: -2, hs: 1.08, z: 3, card: true },
+    ],
+  },
   { slug: "book-indo", date: "Sept 2024", highlight: true },
   { slug: "caress", date: "Sept – Dec 2024", highlight: true },
   { slug: "sunney", date: "Oct – Dec 2024", highlight: true },
@@ -63,7 +75,7 @@ const PROJECTS = [
     ],
     href: "https://youtu.be/7Mz7gm41abA?si=45BGPqz6n1ZilLbB",
     // transparent cut-out; `fill` = exactly as wide as the text column
-    media: { type: "image", src: "/media/awards/ppe-cooler-box.png", alt: "PPE Cooler Box suit design with its cooling parts", fill: true },
+    media: { type: "image", src: "/media/awards/ppe-cooler-box-cutout.png", alt: "PPE Cooler Box suit design with its cooling parts", fill: true, cutout: true },
   },
   { slug: "past-2024", date: "Before 2024", year: 2023 },
   { slug: "personal-logo-design", date: "Aug 2024" },
@@ -105,7 +117,6 @@ const EXTRA_AWARDS = [
     // `gallery` = several photos side by side, all the same height, never cropped (`ratio` = width / height)
     gallery: [
       { src: "/media/awards/opsi-2019.jpg", ratio: 1.5, alt: "Receiving the OPSI 2019 silver medal on stage in Jakarta" },
-      { src: "/media/awards/nyia-2022.jpg", ratio: 1, alt: "Award winners on stage at the LKIR & NYIA Grand Award" },
       { src: "/media/awards/science-expo-2019.jpg", ratio: 1.776, alt: "Group photo of finalists at Indonesia Science Expo 2019" },
     ],
   },
@@ -170,6 +181,8 @@ function projectEntries() {
       desc: p.desc || (p.highlight ? clip(detail.intro) : ""),
       bullets: p.bullets,
       media: p.media || base.media?.[0] || detail.media?.[0],
+      collage: p.collage,
+      collageBox: p.collageBox,
       to: p.href ? undefined : `/work/${p.slug}`,
       href: p.href,
     };
@@ -206,6 +219,7 @@ function resumeEntries() {
         desc: a.caption || a.org,
         media: a.media,
         collage: a.collage,
+        collageBox: a.collageBox,
         href: a.href,
         year: a.timelineYear,
       };

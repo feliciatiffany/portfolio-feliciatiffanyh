@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './GhostCursor.css';
+import { token } from '../lib/tokens.js';
 
 const VERTEX = `#version 300 es
 in vec2 aPosition;
@@ -369,7 +370,7 @@ const link = (gl, fragmentSource) => {
 };
 
 const GhostCursor = ({
-  color = '#B497CF',
+  color = token('color-cursor'),
   brightness = 1,
   size = 80,
   trailLength = 50,

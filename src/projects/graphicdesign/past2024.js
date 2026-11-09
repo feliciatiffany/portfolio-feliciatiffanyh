@@ -1,4 +1,4 @@
-// src/projects/graphicdesign/past2023.js
+// src/projects/graphicdesign/past2024.js
 
 const base = import.meta.env.BASE_URL;
 const asset = (p) => `${base}${String(p).replace(/^\//, "")}`;
@@ -9,6 +9,8 @@ export default {
 
   // ✅ tells ProjectTemplate/CSS to use the special layout
   layout: "fullpage-stack",
+  // only the description, then all the images (no hero, details row or quote)
+  bare: true,
 
   meta: {
     category: ["Archive", "Communication Design", "Fine Art","Merchandise", "Branding & Marketing", "Illustration", "Game Design", "Photo Editing", "Typography", "Short Movies"],
