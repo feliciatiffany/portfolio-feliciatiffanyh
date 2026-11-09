@@ -1,0 +1,30 @@
+// About-me notes, shared by the About page and FanyLLM
+export const SECTIONS = [
+  {
+    title: "What I love",
+    role: "fany",
+    lines: [
+      "Research, and science especially. I can never get away from it.",
+      "Traveling, going to concerts, and following life's side quests.",
+      "Ghibli films and a good cup of matcha.",
+      "Making things with my hands and with code, and seeing people play with them.",
+    ],
+  },
+  {
+    title: "What I think",
+    role: "tech",
+    lines: [
+      "Conversation is the most basic way we share intelligence, so it makes sense that so many interfaces start there.",
+      "Interfaces should be built around the people who use them, not the other way around.",
+      "Everything builds off what came before, so it's worth knowing the history behind why things look the way they do.",
+    ],
+  },
+  {
+    title: "What I fear",
+    role: "digital",
+    lines: [
+      "Building something polished that nobody actually needs.",
+      "Losing curiosity once things start to feel routine.",
+    ],
+  },
+];

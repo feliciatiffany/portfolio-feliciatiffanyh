@@ -71,3 +71,18 @@
 @media (prefers-reduced-motion: reduce){
   .line-filter__label{ transform: none !important; transition: none; }
 }
+
+/* ── Vertical nav, quieter: muted heading, items in muted ink; switched-off items just fade (no strike) ── */
+.line-filter--column .line-filter__h{ font-weight: var(--font-weight-regular); color: var(--muted-foreground); margin-bottom: var(--space-2); }
+.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ text-decoration: none; opacity: calc(.35 + var(--effect, 0) * .45); filter: none; }
+.line-filter--column .line-filter__item[aria-pressed="true"] .line-filter__label::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--space-3) * -1);
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  background: var(--tc, var(--lf-accent));
+  transform: translateY(-50%) scale(var(--effect, 0));
+  transition: transform var(--duration-fast) ease;
+}

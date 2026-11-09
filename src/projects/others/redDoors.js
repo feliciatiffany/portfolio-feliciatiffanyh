@@ -6,7 +6,7 @@ export default {
 
     meta: {
         category: ["Educational Game", "Social Impact", "Unity 3D", "Game Prototype"],
-        year: "2025",
+        year: "2023",
         tools: ["Unity", "Adobe Illustrator", "Premiere Pro", "Power Point", "Figma"],
     },
 
@@ -42,14 +42,14 @@ export default {
 
         { kind: "desc", dataPath: "intendedImpact" },
 
-        // References then Links (as you wrote)
+        // the full project paper, then its references
+        { kind: "paper", title: "Paper", dataPath: "paper" },
         { kind: "references", title: "References", itemsPath: "references" },
 
     ],
 
     intro:
-        "Red Doors is an educational game installation about how the wealth gap shapes who gets an education. I designed it for public spaces: you learn about the issue by playing, and then you can turn that awareness into action by donating. The idea is simple. If education is treated like something you can buy, the game should make you feel that.",
-    quote: "If education can be bought, the game should make you feel it",
+        "With the goal of showing how the wealth gap shapes access to education, Red Doors is an educational game installation concept designed for public spaces. I chose the medium and the game flow based on secondary research into how well games teach, hoping to turn that awareness into action.",
 
     youtubes: [
         {
@@ -249,6 +249,109 @@ export default {
     },
 
     // ✅ References (must have href for your template)
+    // Project paper (2023). Its sources are the References below.
+    paper: {
+        title: "Red Doors: An Educational Game Installation Addressing Inequality in Education",
+        byline: "Felicia Tiffany Hertada · 2023",
+        parts: [
+            {
+                heading: "Overview",
+                blocks: [
+                    "Red Doors addresses educational inequality caused by the wealth gap. It teaches the public why the issue matters and spreads awareness to everyone through different approaches, encouraging people to work together toward a solution. By placing the player in one perspective, Red Doors takes them on a short educational adventure to understand the issue, and encourages them to contribute through donations to make a positive impact.",
+                ],
+            },
+            {
+                heading: "The problem",
+                blocks: [
+                    "As the world grows, education becomes more important, because a changing world asks for intelligence, skills and character to get by. Yet access to education, and the chance to finish it, is becoming more unequal in many parts of the world. This project focuses on the U.S. Assets and the wealth gap are a primary cause: family wealth is tied to both higher educational achievement and upward mobility in education. The problem grows like a circle. Having assets leads to educational advantages, which lead to more assets, creating a gap that gets harder to close over time.",
+                    "Many groups have tried to give underprivileged people equal access to high-quality education and to narrow the social gap, for example through free education and open courses. But the problem can't be solved without action from the wealthy and the government, and without the less privileged seeing how important education is.",
+                ],
+            },
+            {
+                heading: "The idea",
+                blocks: [
+                    "That is why the issue needs to be shared widely, to start a movement in society. Red Doors is built on the evidence that games are effective at teaching people, and is designed with care for its aesthetic value as conceptual art in a site-specific installation. Players see the world in first person, starting their education in elementary school with the mission of finishing college, with each stage shown as a level in the game. At certain stages, players must pay in-game currency, topped up with real money, to unlock doors or get answer keys; otherwise they lose. Besides teaching how much money shapes education, the money players spend goes to education donations for those in need.",
+                    "Red Doors was made in the hope that the upper-middle class becomes more aware of the issue and contributes, that the government is pushed to act, and that the less privileged see how crucial education is. Beyond this issue, the game also hopes to help with other global problems indirectly, since education is the foundation of people's character, morals and behavior.",
+                ],
+            },
+            {
+                heading: "Context and influences",
+                blocks: [
+                    "Red Doors brings art and technology together. Art leads the concept, the meaning and the aesthetics of the game, while the 3D models and the game's logic are built in Unity with code. I made this choice believing that the world keeps evolving and that art and technology together represent the future; the combination has helped society, civilization and culture advance since long ago. Using art and technology in education also improves students' visual and transversal competencies and extends their literacy development. This matches my commitment to education issues and my love of making learning enjoyable. My earlier experience making a COVID awareness game and organizing events with a purpose helped me build engaging content for Red Doors.",
+                ],
+            },
+            {
+                heading: "What's new about it",
+                blocks: [
+                    "Interactive art installations have often borrowed from games to create a personal, intimate experience for the player. Most of them focus on exploring the player's own identity or helping them solve problems within themselves. Red Doors takes a different approach. It shares the goal of encouraging self-reflection, but turns that reflection outward, toward the player's environment, by placing them in someone else's life. The idea comes from social media, which not only connects people but also makes them more aware of other people's lives. Red Doors uses the same idea to raise awareness of social issues through an interactive, site-specific game.",
+                ],
+            },
+            {
+                heading: "Intended impact",
+                blocks: [
+                    "The main purpose of Red Doors is to respond to problems caused by differences in social status, and to encourage people from all walks of life to engage with them: by helping fund education, by speaking up about education issues, or simply by understanding why education matters. Through the quizzes inside the game, players learn more about the problem and gain new insight. While they experience how hard it is to pursue education without financial privilege, they can also choose to donate. At certain levels, players need real money to continue, and each level mirrors a real stage of education, from elementary school to college. It is a way of showing the unfortunate fact that some people have to stop their education because of money.",
+                    "The project also aims, indirectly, to improve education as the foundation of human life. Education gives people knowledge, skills, information and norms, helps them tell right from wrong through critical thinking about their own environment, and teaches them their part in building a better world. It plays a key role in the economy, politics, science and more, and builds people's ability to solve and prevent injustice, racism and other global issues. Solving education issues means more educated people, a better society and more problem solvers, and it helps prevent violence, crime and injustice while promoting tolerance.",
+                ],
+            },
+            {
+                heading: "Who it's for",
+                blocks: [
+                    "The main audience is people in the middle to upper class, especially those with more economic means. By showing the perspective of people who face financial barriers and can't get the same education, Red Doors aims to raise awareness of educational inequality and start a movement by collecting donations for education. As more people care, more will lead the movement and act for free, equal education for those who need it.",
+                    "Red Doors is also a critique of the government, urging it to address its citizens' educational inequality, and a reminder of how much education matters for solving bigger problems in the long run. It signals that this injustice has been noticed, encourages persistence in pursuing education, and shows people from lower socioeconomic backgrounds why education is important.",
+                ],
+            },
+            {
+                heading: "Where it lives",
+                blocks: [
+                    "Because the issue needs a movement across every social class, Red Doors should stand in public spaces that are iconic and easy to find. It should also be where middle- and upper-class people spend their free time and are happy to spend money, so famous tourist spots in the city are ideal. Each installation works like an advertising board called a “Red Doors Station”, designed to catch attention and pull people into the game.",
+                    { list: ["Times Square", "Central Park", "Grand Central", "Statue of Liberty", "The Metropolitan Museum of Art (The Met)", "Museum of Modern Art (MoMA)"] },
+                    "One main Red Doors Station anchors the rest. It is bigger and more focused on aesthetics so it stands out to passersby, and could become a new attraction in the city. Together, the stations build a recognizable presence across the city, so people know Red Doors for both play and social awareness.",
+                ],
+            },
+            {
+                heading: "Game design",
+                blocks: [
+                    {
+                        list: [
+                            "Brownish red doors: educational choices in life are unpredictable, and you can't know which one leads to success. A choice can be dangerous, like the color red.",
+                            "Four scenes: elementary school, junior high school, senior high school and university.",
+                            "The sky: the background moves from sunrise to noon, sunset and night, showing the phases of life and signaling each new level.",
+                            "Buttons: how the player talks to the game.",
+                            "Money balance: wealth shown as a number. It unlocks some doors and scenes, and shows how hard, almost impossible, education is without money.",
+                        ],
+                    },
+                ],
+            },
+            {
+                heading: "Game flow",
+                blocks: [
+                    {
+                        ordered: true,
+                        list: [
+                            "The player starts the game.",
+                            "The first level is elementary school.",
+                            "The player chooses one of three doors.",
+                            "The door opens to a question about educational inequality, told from an easy-to-understand perspective.",
+                            "A right answer moves the player to the next level; a wrong answer ends the game.",
+                            "Level 2 is junior high school, and the player chooses a door again. If a door or answer is locked, the player must pay with their in-game balance, and may or may not feel the urge to pay.",
+                            "The in-game balance is limited; it's there to teach the player how to play. When it runs out, the player has to pay real money by tapping a bank card, and that money goes to education donations.",
+                            "A right answer continues the game. A wrong answer, or not being able to pay, means the player loses.",
+                            "The game repeats this up to the last level, university. Questions get harder and more doors and answers are locked.",
+                            "Finish.",
+                        ],
+                    },
+                ],
+            },
+            {
+                heading: "What it means for my practice",
+                blocks: [
+                    "This project pushes the integration of art and technology, which I believe can grow both worlds. Having grown up around science and technology, with a strong interest in design, I keep exploring how the two connect and making projects that come out of that exploration. Digital art and game making are one of the bridges between them, and both are part of this project.",
+                    "Using these media helps me grow as an artist and professional, and gives me a meaningful way to voice my concerns about education. Building the project also shows how people respond to art that uses technology. Watching how they react to an interactive installation about a global issue is a rare chance to understand public sentiment and engagement. Working for a broader audience also teaches me how a game as an art installation communicates with, and resonates across, different perspectives.",
+                ],
+            },
+        ],
+    },
+
     references: [
         {
             label: "Braga et al. (2017) — Wealth Inequality Is a Barrier to Education and Social Mobility",

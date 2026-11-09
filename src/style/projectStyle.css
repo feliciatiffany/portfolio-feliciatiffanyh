@@ -880,3 +880,72 @@ gap: var(--space-3);
   .proj-metarow__col:nth-child(2),
   .proj-metarow__col:nth-child(3){ justify-self: start; }
 }
+
+/* =========================================================
+   PAGE RHYTHM — the one place project-page spacing is decided (tokens: docs/tokens.md)
+   page top → title · section ↔ section · heading → content · caption → media · items in a section
+   Sections never add their own top/bottom margins; the body gap is the only space between them.
+   ========================================================= */
+.project-template .proj-body,
+.project-template[data-layout] .proj-body{ gap: var(--space-section); padding-top: var(--space-page-top); }
+.project-template .proj-page-title{ margin: 0; }
+.project-template :is(.proj-section, .proj-slider, .proj-row5, .proj-row6, .proj-intro, .proj-hero, .proj-metarow){ margin-top: 0; margin-bottom: 0; }
+
+/* a section = (hairline) → heading → content; items inside sit one stack-step apart */
+.project-template :is(.proj-section, .proj-slider, .proj-row6){ display: grid; gap: var(--space-stack); align-content: start; }
+.project-template :is(.proj-section, .proj-slider, .proj-row6) > .proj-minihead + *{ margin-top: calc(var(--space-heading-content) - var(--space-stack)); }
+.project-template .proj-body > :is(.proj-section, .proj-slider, .proj-row5, .proj-row6):has(.proj-minihead){
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-rule-heading);
+}
+/* reading text: one size and leading for the whole write-up */
+.project-template .proj-body{ font-size: var(--text-body); line-height: var(--leading-body); }
+.project-template .proj-text{ line-height: var(--leading-body); }
+.project-template .proj-minihead,
+.project-template[data-layout] .proj-minihead{ margin: 0; }
+.project-template .proj-block{ display: grid; gap: var(--space-heading-content); align-content: start; }
+.project-template .proj-stack{ display: grid; gap: var(--space-stack); }
+.project-template .proj-captioned{ display: grid; gap: var(--space-caption-media); }
+.project-template .proj-row6__link{ margin: 0; }
+.project-template .slider-container{ padding-top: 0; }
+
+/* write-up */
+.project-template .proj-intro{ gap: var(--space-paragraph); }
+.project-template .proj-quote{ margin: var(--space-heading-content) 0 0; }
+
+/* Looking back: four short answers, label above each (same rhythm as the rest of the page) */
+.project-template .proj-reflection__list{ display: grid; gap: var(--space-stack); margin: 0; }
+.project-template .proj-reflection__item{ display: grid; gap: var(--space-caption-media); }
+.project-template .proj-reflection__item dt{
+  font-family: var(--font-family-body);
+  font-size: var(--text-ui);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-title);
+  color: var(--color-accent-tech);
+}
+.project-template .proj-reflection__item dd{ margin: 0; line-height: var(--leading-prose); }
+
+/* Paper: the full write-up, overview first, the rest folded away */
+.project-template .proj-paper__doc{ display: grid; gap: var(--space-section); }
+.project-template .proj-paper__head{ display: grid; gap: var(--space-caption-media); }
+.project-template .proj-paper__title{ margin: 0; font-family: var(--font-family-title); font-size: var(--text-heading-sm); line-height: var(--leading-title); }
+.project-template .proj-paper__by{ margin: 0; font-size: var(--text-meta); color: var(--muted-foreground); }
+.project-template .proj-paper__part{ display: grid; gap: var(--space-heading-content); }
+.project-template .proj-paper__h{ margin: 0; font-size: var(--text-ui); font-weight: var(--font-weight-bold); color: var(--color-accent-tech); }
+.project-template .proj-paper__part p{ margin: 0; line-height: var(--leading-prose); }
+.project-template .proj-paper__part :is(ul, ol){ margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-2); line-height: var(--leading-body); }
+.project-template .proj-paper__more{ display: block; } /* details can't be a reliable grid, so parts space themselves */
+.project-template .proj-paper__more > summary{
+  justify-self: start;
+  list-style: none;
+  font-size: var(--text-ui);
+  color: var(--accent);
+  transition: color var(--duration-fast) ease;
+}
+.project-template .proj-paper__more > summary::-webkit-details-marker{ display: none; }
+.project-template .proj-paper__more > summary::before{ content: "↳ "; }
+.project-template .proj-paper__more > summary:hover,
+.project-template .proj-paper__more > summary:focus-visible{ color: var(--color-action-hover); outline: none; }
+.project-template .proj-paper__more[open] > summary{ color: var(--muted-foreground); }
+.project-template .proj-paper__more[open] > .proj-paper__part + .proj-paper__part,
+.project-template .proj-paper__more[open] > summary + .proj-paper__part{ margin-top: var(--space-section); }

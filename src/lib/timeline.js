@@ -39,13 +39,14 @@ const PROJECTS = [
     slug: "redDoors",
     date: "2023",
     highlight: true,
+    desc: "With the goal of showing how the wealth gap shapes access to education, Red Doors is an educational game installation concept designed for public spaces. I chose the medium and the game flow based on secondary research into how well games teach, hoping to turn that awareness into action.",
     // the installation in front of the library, its two kiosks, and the QR code to play online
     collageBox: { aspect: 1.45 },
     collage: [
-      { src: "/media/techdesign/redDoors/thumb/library.png", alt: "Red Doors installation in front of the New York Public Library", x: 10, y: 6, w: 80, r: 0, hy: -2, hs: 1.02, z: 1 },
-      { src: "/media/techdesign/redDoors/thumb/kiosk-left.png", alt: "Red Doors kiosk, start screen", x: 1, y: 63, w: 26, r: 0, hx: -1, hy: -3, hr: -2, hs: 1.03, z: 2 },
-      { src: "/media/techdesign/redDoors/thumb/kiosk-right.png", alt: "Red Doors kiosk, second screen", x: 73, y: 60, w: 26, r: 0, hx: 1, hy: -3, hr: 2, hs: 1.03, z: 2 },
-      { src: "/media/techdesign/redDoors/thumb/qr-online.png", alt: "QR code: play Red Doors online", x: 85, y: 0, w: 12, r: 4, hy: -2, hr: -2, hs: 1.08, z: 3, card: true },
+      { src: "/media/techdesign/redDoors/thumb/library-installation.jpg", alt: "Red Doors installation on the steps of the New York Public Library", x: 12, y: 8, w: 76, r: 0, hy: -2, hs: 1.02, z: 1, card: true },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-left.png", alt: "Red Doors kiosk, start screen", x: 0.5, y: 53, w: 34, r: 0, hx: -1, hy: -2, hr: -1.5, hs: 1.02, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-right.png", alt: "Red Doors kiosk, second screen", x: 66.5, y: 51, w: 33, r: 0, hx: 1, hy: -2, hr: 1.5, hs: 1.02, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/qr-online.png", alt: "QR code: play Red Doors online", x: 81, y: 0, w: 18, r: 4, hy: -1, hr: -2, hs: 1.04, z: 3, card: true },
     ],
   },
   { slug: "book-indo", date: "Sept 2024", highlight: true },

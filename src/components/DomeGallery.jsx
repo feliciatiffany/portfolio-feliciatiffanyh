@@ -27,21 +27,46 @@ function buildItems(pool, seg) {
   const normalized = pool.map((image) =>
     typeof image === "string" ? { src: image, alt: "" } : { src: image.src || "", alt: image.alt || "" }
   );
-  const used = Array.from({ length: coords.length }, (_, i) => normalized[i % normalized.length]);
+  return coords.map((c, i) => ({ ...c, ...normalized[spreadOrder(coords, normalized.length)[i]] }));
+}
 
-  // avoid the same image twice in a row
-  for (let i = 1; i < used.length; i++) {
-    if (used[i].src === used[i - 1].src) {
-      for (let j = i + 1; j < used.length; j++) {
-        if (used[j].src !== used[i].src) {
-          [used[i], used[j]] = [used[j], used[i]];
-          break;
-        }
-      }
+// Pick an image for every tile so repeats sit as far apart as possible: each tile takes the image
+// whose nearest copy is farthest away (distance wraps around the sphere), the least-used one on a
+// tie. A fixed seed keeps the layout the same on every visit.
+const orderCache = new Map();
+function spreadOrder(coords, n) {
+  const key = `${coords.length}:${n}`;
+  if (orderCache.has(key)) return orderCache.get(key);
+  let seed = 1234567;
+  const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const xs = coords.map((c) => c.x);
+  const span = coords.length ? Math.max(...xs) - Math.min(...xs) + 2 : 1;
+  const dist = (a, b) => {
+    const dx = Math.abs(a.x - b.x);
+    return Math.hypot(Math.min(dx, span - dx), a.y - b.y);
+  };
+  const used = new Array(n).fill(0);
+  const placed = Array.from({ length: n }, () => []); // tiles already showing each image
+  const picked = [];
+  // visit tiles in a scattered order so the first copies spread out evenly
+  const order = coords.map((_, i) => i).sort(() => rand() - 0.5);
+  const result = new Array(coords.length);
+  for (const i of order) {
+    const c = coords[i];
+    let best = 0;
+    let bestScore = -Infinity;
+    for (let img = 0; img < n; img++) {
+      const nearest = placed[img].length ? Math.min(...placed[img].map((t) => dist(c, coords[t]))) : 1e6;
+      const score = nearest - used[img] * 0.5 + rand() * 0.1;
+      if (score > bestScore) (bestScore = score), (best = img);
     }
+    used[best]++;
+    placed[best].push(i);
+    result[i] = best;
   }
-
-  return coords.map((c, i) => ({ ...c, src: used[i].src, alt: used[i].alt }));
+  picked.push(...result);
+  orderCache.set(key, picked);
+  return picked;
 }
 
 export default function DomeGallery({

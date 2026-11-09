@@ -92,9 +92,9 @@ function Card({ item, index }) {
       data-side={index % 2 ? "right" : "left"}
     >
       {item.to ? (
-        <Link to={item.to} className="tl-card__link">{body}</Link>
+        <Link to={item.to} className="tl-card__link" data-cursor="View project">{body}</Link>
       ) : item.href ? (
-        <a href={item.href} className="tl-card__link" target="_blank" rel="noopener noreferrer">{body}</a>
+        <a href={item.href} className="tl-card__link" target="_blank" rel="noopener noreferrer" data-cursor="Open link">{body}</a>
       ) : (
         <div className="tl-card__link">{body}</div>
       )}

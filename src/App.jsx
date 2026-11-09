@@ -14,9 +14,16 @@ import Built from "./pages/Built.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
 import GhostCursor from "./components/GhostCursor.jsx";
+import CursorDot from "./components/CursorDot.jsx";
+import ThemeToggle from "./components/ThemeToggle.jsx";
+import { useTheme } from "./lib/theme.js";
 import { token } from "./lib/tokens.js";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Mail01Icon, Linkedin01Icon, GithubIcon, Asterisk02Icon } from "@hugeicons/core-free-icons";
+import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
+import Socials from "./components/Socials.jsx";
+import FanyLLM from "./components/FanyLLM.jsx";
+import { getProject } from "./lib/projects.js";
+import blogData from "./data/blog.json";
 
 const reduceMotion =
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -26,16 +33,20 @@ const finePointer =
   typeof window !== "undefined" && window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
 
 function CursorGlow() {
+  const theme = useTheme();
   if (reduceMotion || !finePointer) return null;
+  const dark = theme === "dark";
   return (
     <>
+      <CursorDot />
       <GhostCursor
-        theme="light"
-        color={token("color-cursor")} /* WebGL needs the real value, so it comes from the generated tokens */
-        mixBlendMode="multiply"
-        size={22}
-        trailLength={110}
-        inertia={0.06} /* light stays right under the pointer */
+        key={theme} /* rebuild the light for the new mode */
+        theme={dark ? "dark" : "light"}
+        color={token("color-cursor", theme)} /* WebGL needs the real value: coral by day, grey at night */
+        mixBlendMode={dark ? "screen" : "multiply"} /* a glow adds light on dark paper, tints on white */
+        size={18}
+        trailLength={30} /* a soft trace behind the dot; the glow itself stays locked on */
+        inertia={0} /* locked to the dot */
         turbulence={0.35}
         drift={0.12}
         detail={0.45}
@@ -47,56 +58,45 @@ function CursorGlow() {
         fadeDelayMs={600000}
         fadeDurationMs={2600}
         zIndex={2147483000}
-        style={{ position: "fixed", opacity: 0.7 }}
+        style={{ position: "fixed", opacity: 0.32 }} /* a faint trace behind the dot */
       />
     </>
   );
 }
 
-const SOCIALS = [
-  { href: "mailto:feliciatiffany@gmail.com", label: "gmail", icon: Mail01Icon },
-  { href: "https://www.linkedin.com/in/feliciatiffanyh/", label: "linkedin", icon: Linkedin01Icon },
-  { href: "https://github.com/feliciatiffany", label: "github", icon: GithubIcon },
-  { href: "https://linktr.ee/feliciatiffanyh", label: "linktree", icon: Asterisk02Icon }, // closest match to the Linktree mark
-];
+// Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button
+const projectDetails = Object.values(import.meta.glob("./projects/**/*.js", { eager: true }))
+  .map((m) => m.default)
+  .filter((p) => p?.slug);
+const PAGE_NAMES = { built: "What I've done", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
+const HOME = { label: "Home", to: "/" };
 
-function Socials({ icons = false }) {
-  if (icons) {
-    // homepage: each link is a visible symbol inside a thin circle
-    return SOCIALS.map((l) => (
-      <a
-        key={l.label}
-        href={l.href}
-        className="social-badge"
-        aria-label={l.label}
-        title={l.label}
-        {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
-      >
-        <svg className="social-badge__seal" viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="22.5" />
-        </svg>
-        <HugeiconsIcon icon={l.icon} size={22} strokeWidth={1.6} className="social-badge__icon" />
-      </a>
-    ));
+function crumbsFor(pathname) {
+  const [, first = "", second] = pathname.split("/");
+  const key = first.toLowerCase();
+  if (key === "work" && second) {
+    const title = projectDetails.find((p) => p.slug === second)?.title || getProject(second)?.title || second;
+    return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: title };
   }
-  return SOCIALS.map((l, i) => (
-    <React.Fragment key={l.label}>
-      {i > 0 && <span aria-hidden> · </span>}
-      <a
-        href={l.href}
-        className="foot-link"
-        {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
-      >
-        {l.label}
-      </a>
-    </React.Fragment>
-  ));
+  if (key === "blog" && second) {
+    const post = (blogData.posts || []).find((p) => p.slug === second);
+    return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, here: post?.title || second };
+  }
+  return { parent: HOME, here: PAGE_NAMES[key] || first };
 }
 
-function backHref(pathname) {
-  if (pathname.startsWith("/work/")) return "/built";
-  if (/^\/blog\/.+/i.test(pathname)) return "/blog";
-  return "/";
+function Breadcrumb({ pathname }) {
+  const { parent, here } = crumbsFor(pathname);
+  return (
+    <nav className="crumbs" aria-label="Breadcrumb">
+      <Link to={parent.to} className="crumbs__back">
+        <HugeiconsIcon icon={ArrowLeft01Icon} size={16} strokeWidth={1.5} className="crumbs__icon" />
+        {parent.label}
+      </Link>
+      <span className="crumbs__sep" aria-hidden="true">/</span>
+      <span className="crumbs__here" aria-current="page">{here}</span>
+    </nav>
+  );
 }
 
 // Every page opens at the top, never wherever the previous page was scrolled to
@@ -112,7 +112,7 @@ function Layout({ children }) {
   useScrollToTop(pathname);
   const onProject = pathname.startsWith("/work/");
   const onHome = pathname === "/";
-  const centered = onHome || /^\/(built|blog)/i.test(pathname);
+  const centered = onHome || /^\/(built|blog|about)/i.test(pathname);
 
   const gridClass = `${onProject ? "page-grid--project" : centered ? "page-grid--center" : ""}${onHome ? " page-grid--home" : ""}`;
 
@@ -121,17 +121,18 @@ function Layout({ children }) {
       <CursorGlow />
       {!onHome && (
         <header className="header">
-          <Link to={backHref(pathname)} className="site-back">
-            ← Back
-          </Link>
+          <Breadcrumb pathname={pathname} />
         </header>
       )}
+      <FanyLLM />
+      <ThemeToggle />
 
       <main className={`main ${onProject ? "main--project" : ""}`}>{children}</main>
 
-      {!onProject && (
-        <footer className={`foot${onHome ? " foot--icons" : ""}`}>
-          {onHome ? <Socials icons /> : <Socials />}
+      {/* the homepage carries its social icons in the intro, under the buttons */}
+      {!onProject && !onHome && (
+        <footer className="foot">
+          <Socials />
         </footer>
       )}
     </div>

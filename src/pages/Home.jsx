@@ -3,35 +3,74 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 import DitherImage from "../components/DitherImage.jsx";
+import Socials from "../components/Socials.jsx";
 import GlassSurface from "../components/GlassSurface.jsx";
-import LineFilter from "../components/LineFilter.jsx";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import DomeGallery from "../components/DomeGallery.jsx";
+import { ENTRIES } from "../lib/timeline.js";
+import POSTERS from "../data/videoPosters.json"; // stills from timeline videos (generated from each video)
 
 const PROFILE_SRC = "/media/profileimage.JPEG";
 
-/* Ring images, all shown in the same 4:3 box. `cutout` = transparent PNG (fit inside, no frame).
-   `to` = project page (hover shine + pauses the ring). */
-const RING = [
-  { src: "/media/home/caress-cutout.png", to: "/work/caress", alt: "Caress A Bear", cutout: true },
-  { src: "/media/home/posterDreamer.jpg", to: "/work/greatest-dreamer", alt: "I Am the Greatest Dreamer poster" },
-  { src: "/media/home/tellai-cutout.png", to: "/work/tell-ai", alt: "TellAI telephone", cutout: true },
-  { src: "/media/home/unseenCity.jpg", to: "/work/unseen-city", alt: "Seeing the Unseen City" },
-  { src: "/media/logosmall.png", alt: "Fany logo", cutout: true },
-  { src: "/media/home/book.png", to: "/work/book-indo", alt: "Wonder of Indonesia book", cutout: true },
-  { src: "/media/home/sunney.jpg", to: "/work/sunney", alt: "Sunney game" },
-  { src: "/media/home/blender-cutout.png", to: "/work/a-week-of-blender", alt: "Blender picnic island", cutout: true },
-  { src: "/media/home/nusaPenida.jpg", to: "/work/nusa-penida", alt: "Nusa Penida brand guide" },
-  { src: "/media/home/cilok-cutout.png", to: "/work/cilok", alt: "Cilok cup", cutout: true },
-  { src: "/media/home/redDoors.jpg", to: "/work/redDoors", alt: "Red Doors" },
-  { src: "/media/home/idcard.png", to: "/work/personal-logo-design", alt: "Personal ID card", cutout: true },
-  { src: "/media/home/dialogue.jpg", to: "/work/dialogue-with-the-wind", alt: "Dialogue with the Wind" },
-];
+// The dome behind the intro shows one image per project from "What I've done" (projects and the
+// Creative Side; no awards, jobs or QR codes). Video cards use a still pulled from the video.
+// Decoration only, never links.
+const isImage = (src) => /\.(png|jpe?g|webp|gif|avif)$/i.test(src || "");
+const RING = (() => {
+  const seen = new Set();
+  const out = [];
+  for (const e of ENTRIES) {
+    if (e.type !== "projects" && e.type !== "creative") continue;
+    const piece = e.collage?.find((c) => !/qr/i.test(c.src)); // e.g. Red Doors: the installation photo
+    const m = e.media;
+    const src = piece?.src || (m?.type === "video" ? m.poster || POSTERS[m.src] : m?.src);
+    if (!isImage(src) || seen.has(src)) continue;
+    seen.add(src);
+    out.push({ src, alt: piece?.alt || m?.alt || e.title });
+  }
+  return out;
+})();
 
 const LINKS = [
-  { to: "/built", label: "What I’ve done" },
+  { to: "/built", label: "What I’ve done", arrow: true },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About me" },
 ];
+
+// Same glass as the original homepage pills
+const GLASS = { borderRadius: 999, backgroundOpacity: 0.28, displace: 0.4, distortionScale: -160, saturation: 1.1 };
+
+// What I explore on the side, typed out one at a time (from the About page's "What I love")
+const EXPLORING = ["life’s side quests", "short films", "racquet sports", "new cities", "Ghibli films", "a good cup of matcha", "concerts"];
+
+function Typewriter({ words }) {
+  const reduce = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [i, setI] = useState(0);
+  const [n, setN] = useState(reduce ? words[0].length : 0);
+  const [erasing, setErasing] = useState(false);
+  useEffect(() => {
+    if (reduce) return;
+    const word = words[i];
+    let t;
+    if (!erasing && n < word.length) t = setTimeout(() => setN(n + 1), 70);
+    else if (!erasing) t = setTimeout(() => setErasing(true), 1800); // hold the full word
+    else if (n > 0) t = setTimeout(() => setN(n - 1), 35);
+    else {
+      setErasing(false);
+      setI((i + 1) % words.length);
+    }
+    return () => clearTimeout(t);
+  }, [i, n, erasing, words, reduce]);
+  return (
+    // data-typing stops the caret blinking while letters are moving, like a real text cursor
+    <span className="home-typed" aria-live="off" data-typing={n > 0 && n < words[i].length ? "true" : undefined}>
+      {/* a zero-width space keeps the line its full height when the word is fully erased */}
+      <span className="home-typed__word">{words[i].slice(0, n) || "\u200b"}</span>
+      <span className="home-typed__caret" aria-hidden="true" />
+    </span>
+  );
+}
 
 
 
@@ -60,35 +99,38 @@ export default function Home() {
         brightness={0.04}
       />
 
-      <ScrambledText as="h1" className="home-intro" {...historyTitle}>
-        Hi, I’m{" "}
-        <Link to="/about" className="home-intro__name">Fany</Link>!
-        <br />
-        a <span className="home-intro__role">tech &amp; product designer</span>,
-        <br />
-        but other time, I’m exploring
-      </ScrambledText>
+      <h1 className="home-intro">
+        <ScrambledText as="span" className="home-intro__lines" {...historyTitle}>
+          Hi, I’m{" "}
+          <Link to="/about" className="home-intro__name">Fany</Link>.
+          <br />
+          An <span className="home-intro__role">engineer &amp; product designer</span>
+          <br />
+          who also explores
+        </ScrambledText>
+        <span className="scrambled-text-sr"> {EXPLORING.join(", ")}</span>
+        <Typewriter words={EXPLORING} />
+      </h1>
 
       <nav className="home-links" aria-label="Explore">
-        {/* each link sits in its own glass pill */}
-        <div className="home-glass-row">
-          {LINKS.map((l) => (
-            <GlassSurface
-              key={l.to}
-              className="home-glass"
-              width="fit-content"
-              height="auto"
-              borderRadius={999}
-              backgroundOpacity={0.28}
-              displace={0.4}
-              distortionScale={-160}
-              saturation={1.1}
-            >
-              <LineFilter direction="row" items={[{ key: l.to, label: l.label, to: l.to }]} />
-            </GlassSurface>
-          ))}
-        </div>
+        {/* each button sits in its own glass pill */}
+        {LINKS.map((l) => (
+          <GlassSurface key={l.to} className="home-glass" {...GLASS} width="fit-content" height="auto">
+            <Link to={l.to} className="home-pill">
+              {l.label}
+              {l.arrow && <HugeiconsIcon icon={ArrowRight01Icon} size={14} strokeWidth={1.8} className="home-pill__arrow" />}
+            </Link>
+          </GlassSurface>
+        ))}
       </nav>
+
+      <div className="home-socials">
+        <Socials icons wrap={(link, key) => (
+          <GlassSurface key={key} className="home-glass home-glass--round" {...GLASS} width={40} height={40}>
+            {link}
+          </GlassSurface>
+        )} />
+      </div>
     </div>
   );
 

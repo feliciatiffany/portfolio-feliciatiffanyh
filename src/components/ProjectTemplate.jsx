@@ -8,6 +8,32 @@ import DescriptionProject1 from "./DescriptionProject1.jsx";
 import Lightbox from "./Lightbox.jsx";
 import { projectDate } from "../lib/timeline.js";
 import ScrambledText, { historyTitle } from "./ScrambledText.jsx";
+import { REFLECTIONS } from "../lib/reflections.js";
+
+// Closing section on every big project: the outcome I wanted, the bet I made, how I'd know, what I learned
+const REFLECTION_ROWS = [
+  ["goal", "The goal"],
+  ["hypothesis", "My hypothesis"],
+  ["measure", "How I’d know it worked"],
+  ["learned", "What I learned, or what surprised me"],
+];
+function Reflection({ data }) {
+  const rows = REFLECTION_ROWS.filter(([key]) => data?.[key]);
+  if (!rows.length) return null;
+  return (
+    <section className="proj-section proj-reflection">
+      <h3 className="proj-minihead">Looking back</h3>
+      <dl className="proj-reflection__list">
+        {rows.map(([key, label]) => (
+          <div key={key} className="proj-reflection__item">
+            <dt>{label}</dt>
+            <dd>{data[key]}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
 
@@ -77,7 +103,7 @@ function InstagramEmbed({ url, captioned = false }) {
   if (!url) return null;
 
   return (
-    <div style={{ display: "grid", gap: 10 }}>
+    <div className="proj-captioned">
       <blockquote
         className="instagram-media"
         data-instgrm-permalink={url}
@@ -345,9 +371,9 @@ export default function ProjectTemplate({ project }) {
           if (!items?.length) return null;
 
           return (
-            <div style={{ display: "grid", gap: 12 }}>
+            <div className="proj-block">
               {title ? <h3 className="proj-minihead">{title}</h3> : null}
-              <div style={{ display: "grid", gap: 18 }}>
+              <div className="proj-stack">
                 {items.map((it, idx) => {
                   const url = typeof it === "string" ? it : it?.url;
                   const captioned = typeof it === "object" ? !!it.captioned : !!data.captioned;
@@ -367,7 +393,7 @@ export default function ProjectTemplate({ project }) {
 
           if (lay === "video") {
             return (
-              <div style={{ display: "grid", gap: 12 }}>
+              <div className="proj-block">
                 {title ? <h3 className="proj-minihead">{title}</h3> : null}
                 <div className="proj-videoGrid">
                   {items.map((v, idx) => (
@@ -382,7 +408,7 @@ export default function ProjectTemplate({ project }) {
 
           const isSlider = lay === "slider";
           return (
-            <div style={{ display: "grid", gap: 12 }}>
+            <div className="proj-block">
               {title ? <h3 className="proj-minihead">{title}</h3> : null}
               {isSlider ? (
                 <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
@@ -430,7 +456,7 @@ export default function ProjectTemplate({ project }) {
       if (!videoId) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           <h3 className="proj-minihead">{s.title || "Video"}</h3>
           <div className="yt-wrap">
             <iframe
@@ -450,10 +476,10 @@ export default function ProjectTemplate({ project }) {
       if (!Array.isArray(ys) || !ys.length) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           <h3 className="proj-minihead">{s.title || "Videos"}</h3>
           {ys.map((y) => (
-            <div key={y.videoId} style={{ display: "grid", gap: 10, marginBottom: 18 }}>
+            <div key={y.videoId} className="proj-captioned">
               <div className="proj-row6__link">{y.title}</div>
               <div className="yt-wrap">
                 <iframe
@@ -477,9 +503,9 @@ export default function ProjectTemplate({ project }) {
       if (!items?.length) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           {title ? <h3 className="proj-minihead">{title}</h3> : null}
-          <div style={{ display: "grid", gap: 18 }}>
+          <div className="proj-stack">
             {items.map((it, idx) => {
               const url = typeof it === "string" ? it : it?.url;
               const captioned = typeof it === "object" ? !!it.captioned : !!s.captioned;
@@ -490,12 +516,50 @@ export default function ProjectTemplate({ project }) {
       );
     }
 
+    if (kind === "paper") {
+      const paper = s.data || getByPath(project, s.dataPath);
+      if (!paper?.parts?.length) return null;
+      const block = (b, k) =>
+        typeof b === "string" ? (
+          <p key={k}>{b}</p>
+        ) : b.ordered ? (
+          <ol key={k}>{b.list.map((li) => <li key={li}>{li}</li>)}</ol>
+        ) : (
+          <ul key={k}>{b.list.map((li) => <li key={li}>{li}</li>)}</ul>
+        );
+      const part = (pt) => (
+        <div key={pt.heading} className="proj-paper__part">
+          <h4 className="proj-paper__h">{pt.heading}</h4>
+          {pt.blocks.map(block)}
+        </div>
+      );
+      const [first, ...rest] = paper.parts;
+      return (
+        <section key={i} className={joinClasses("proj-section proj-paper", s.className)}>
+          {s.title ? <h3 className="proj-minihead">{s.title}</h3> : null}
+          <article className="proj-paper__doc">
+            <header className="proj-paper__head">
+              <p className="proj-paper__title">{paper.title}</p>
+              {paper.byline ? <p className="proj-paper__by">{paper.byline}</p> : null}
+            </header>
+            {part(first)}
+            {rest.length > 0 && (
+              <details className="proj-paper__more">
+                <summary>Read the full paper</summary>
+                {rest.map(part)}
+              </details>
+            )}
+          </article>
+        </section>
+      );
+    }
+
     if (kind === "references") {
       const refs = s.items || getByPath(project, s.itemsPath);
       if (!Array.isArray(refs) || !refs.length) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           <h3 className="proj-minihead">{s.title || "References"}</h3>
           <ul className="proj-references">
             {refs.map((r) => (
@@ -523,6 +587,7 @@ export default function ProjectTemplate({ project }) {
         {!project.bare && <Hero item={project.media?.[0]} />}
         {!project.bare && <MetaRow project={project} />}
         {sections.map(renderSection)}
+        <Reflection data={REFLECTIONS[project.slug]} />
       </main>
 
       <Lightbox open={!!lbItem} item={lbItem} onClose={closeLightbox} />
