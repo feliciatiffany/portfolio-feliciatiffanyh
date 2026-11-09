@@ -6,6 +6,7 @@ import ImagesRow from "./ImagesRow.jsx";
 import ImagesSlider from "./ImagesSlider.jsx";
 import DescriptionProject1 from "./DescriptionProject1.jsx";
 import Lightbox from "./Lightbox.jsx";
+import LazyVideo from "./LazyVideo.jsx";
 import { projectDate } from "../lib/timeline.js";
 import ScrambledText, { historyTitle } from "./ScrambledText.jsx";
 import { REFLECTIONS } from "../lib/reflections.js";
@@ -45,22 +46,18 @@ function AutoVideo({ src, alt, poster }) {
         ? "video/quicktime"
         : undefined;
 
+  // plays like autoPlay, but only downloads once it's on screen
   return (
-    <video
+    <LazyVideo
       className="proj-videoWide__video"
       aria-label={alt || "Project video"}
+      src={src}
+      type={type}
       poster={poster}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
       controls={false}
       disablePictureInPicture
       controlsList="nodownload noplaybackrate noremoteplayback"
-    >
-      <source src={src} type={type} />
-    </video>
+    />
   );
 }
 

@@ -26,14 +26,14 @@ export default {
 
   // Row 4: full-page stack images (public/media/graphicdesign/past2023/)
   media: [
-    { type: "image", src: asset("media/graphicdesign/past2024/page1.png"), alt: "Past work page 1" },
-    { type: "image", src: asset("media/graphicdesign/past2024/page2.png"), alt: "Past work page 2" },
-    { type: "image", src: asset("media/graphicdesign/past2024/page3.png"), alt: "Past work page 3" },
-    { type: "image", src: asset("media/graphicdesign/past2024/page4.png"), alt: "Past work page 4" },
-    { type: "image", src: asset("media/graphicdesign/past2024/page5.png"), alt: "Past work page 5" },
-    { type: "image", src: asset("media/graphicdesign/past2024/page6.png"), alt: "Past work page 6" },
-    { type: "image", src: asset("media/graphicdesign/past2024/page7.png"), alt: "Past work page 7" },
-    { type: "image", src: asset("media/graphicdesign/past2024/page8.png"), alt: "Past work page 8" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page1.webp"), alt: "Past work page 1" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page2.webp"), alt: "Past work page 2" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page3.webp"), alt: "Past work page 3" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page4.webp"), alt: "Past work page 4" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page5.webp"), alt: "Past work page 5" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page6.webp"), alt: "Past work page 6" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page7.webp"), alt: "Past work page 7" },
+    { type: "image", src: asset("media/graphicdesign/past2024/page8.webp"), alt: "Past work page 8" },
   ],
 
   

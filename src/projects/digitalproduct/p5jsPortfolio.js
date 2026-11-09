@@ -50,7 +50,7 @@ export default {
     title: "Face Generator",
     layout: "video",
     items: [
-      { src: "/media/techdesign/p5js/faceGenerator.mp4", alt: "Face Generator (p5.js)" },
+      { src: "/media/techdesign/p5js/faceGenerator.web.mp4", alt: "Face Generator (p5.js)" },
     ],
   },
   faceRight: {
@@ -66,7 +66,7 @@ export default {
     title: "Experimental Clock: Climate Clock",
     layout: "video",
     items: [
-      { src: "/media/techdesign/p5js/experimentalClock.mp4", alt: "Experimental Clock: Climate Clock" },
+      { src: "/media/techdesign/p5js/experimentalClock.web.mp4", alt: "Experimental Clock: Climate Clock" },
     ],
   },
   clockRight: {
@@ -98,7 +98,7 @@ export default {
     title: "Data Portrait",
     layout: "video",
     items: [
-      { src: "/media/techdesign/p5js/dataPortrait.mp4", alt: "Data Portrait (p5.js)" },
+      { src: "/media/techdesign/p5js/dataPortrait.web.mp4", alt: "Data Portrait (p5.js)" },
     ],
   },
   dataRight: {
@@ -114,7 +114,7 @@ export default {
     title: "Interactive Typography 1: Oops",
     layout: "video",
     items: [
-      { src: "/media/techdesign/p5js/oops.mp4", alt: "Interactive Typography 1: Oops" },
+      { src: "/media/techdesign/p5js/oops.web.mp4", alt: "Interactive Typography 1: Oops" },
     ],
   },
   oopsRight: {
@@ -130,7 +130,7 @@ export default {
     title: "Interactive Typography 2: Design",
     layout: "video",
     items: [
-      { src: "/media/techdesign/p5js/design.mp4", alt: "Interactive Typography 2: Design (version 1)" },
+      { src: "/media/techdesign/p5js/design.web.mp4", alt: "Interactive Typography 2: Design (version 1)" },
     ],
   },
   designRight: {
@@ -146,7 +146,7 @@ export default {
     title: "Interactive Typography 3: Urup",
     layout: "video",
     items: [
-      { src: "/media/techdesign/p5js/urup.mp4", alt: "Interactive Typography 3: Urup" },
+      { src: "/media/techdesign/p5js/urup.web.mp4", alt: "Interactive Typography 3: Urup" },
     ],
   },
   urupRight: {
@@ -160,7 +160,7 @@ export default {
   media: [
     {
       type: "video",
-      src: "/media/techdesign/p5js/faceGenerator.mp4",
+      src: "/media/techdesign/p5js/faceGenerator.web.mp4",
       alt: "Visual + Interactive (p5.js & JavaScript) preview",
     },
   ],

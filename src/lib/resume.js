@@ -125,7 +125,7 @@ export const awards = [
     // Cut-out pieces fanned out like a little collage; on hover they spread apart and grow.
     // x/y/w = position and width in % of the collage box, r = tilt; hx/hy/hr/hs = hover move, tilt, scale
     collage: [
-      { src: "/media/awards/ifsa/poster.png", alt: "My poster: what music do koi fish like?", x: 14, y: 8, w: 38, r: -8, hx: -10, hy: -3, hr: -13, hs: 1.06, z: 1, card: true },
+      { src: "/media/awards/ifsa/poster.webp", alt: "My poster: what music do koi fish like?", x: 14, y: 8, w: 38, r: -8, hx: -10, hy: -3, hr: -13, hs: 1.06, z: 1, card: true },
       { src: "/media/awards/ifsa/me.png", alt: "Me, smiling with a peace sign", x: 50, y: 0, w: 32, r: 3, hx: 10, hy: -4, hr: 6, hs: 1.08, z: 2 },
     ],
   },

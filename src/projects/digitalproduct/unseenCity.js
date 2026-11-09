@@ -58,24 +58,24 @@ export default {
 
     // Website documentation slider
     documentation: [
-        { type: "image", src: "/media/techdesign/unseenCity/documentation1.png", alt: "Website documentation 1" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation2.png", alt: "Website documentation 2" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation3.png", alt: "Website documentation 3" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation4.png", alt: "Website documentation 4" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation5.png", alt: "Website documentation 5" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation6.png", alt: "Website documentation 6" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation7.png", alt: "Website documentation 7" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation8.png", alt: "Website documentation 8" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation9.png", alt: "Website documentation 9" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation10.png", alt: "Website documentation 10" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation11.png", alt: "Website documentation 11" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation12.png", alt: "Website documentation 12" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation1.webp", alt: "Website documentation 1" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation2.webp", alt: "Website documentation 2" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation3.webp", alt: "Website documentation 3" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation4.webp", alt: "Website documentation 4" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation5.webp", alt: "Website documentation 5" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation6.webp", alt: "Website documentation 6" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation7.webp", alt: "Website documentation 7" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation8.webp", alt: "Website documentation 8" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation9.webp", alt: "Website documentation 9" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation10.webp", alt: "Website documentation 10" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation11.webp", alt: "Website documentation 11" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation12.webp", alt: "Website documentation 12" },
     ],
 
     // Sketch and data as a gallery
     sketchAndData: [
-        { type: "image", src: "/media/techdesign/unseenCity/sketch.png", alt: "Sketch" },
-        { type: "image", src: "/media/techdesign/unseenCity/data.png", alt: "Data mapping" },
+        { type: "image", src: "/media/techdesign/unseenCity/sketch.webp", alt: "Sketch" },
+        { type: "image", src: "/media/techdesign/unseenCity/data.webp", alt: "Data mapping" },
     ],
 
     // Two-column content (overview + abstract + process)

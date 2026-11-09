@@ -83,19 +83,19 @@ export default {
   },
 
   overviewImages: [
-    { type: "image", src: "/media/techdesign/caress/Caress_main 2.jpeg", alt: "Caress A Bear main image" },
-    { type: "image", src: "/media/techdesign/caress/background bear.png", alt: "Caress A Bear background image" },
+    { type: "image", src: "/media/techdesign/caress/Caress_main 2.webp", alt: "Caress A Bear main image" },
+    { type: "image", src: "/media/techdesign/caress/background bear.webp", alt: "Caress A Bear background image" },
   ],
 
   processImages: [
-    { type: "image", src: "/media/techdesign/caress/caress_process.JPG", alt: "Caress A Bear process image 1" },
-    { type: "image", src: "/media/techdesign/caress/caress_process2.JPG", alt: "Caress A Bear process image 2" },
-    { type: "image", src: "/media/techdesign/caress/caress_process3.JPG", alt: "Caress A Bear process image 3" },
-    { type: "image", src: "/media/techdesign/caress/caress_process4.JPG", alt: "Caress A Bear process image 4" },
+    { type: "image", src: "/media/techdesign/caress/caress_process.webp", alt: "Caress A Bear process image 1" },
+    { type: "image", src: "/media/techdesign/caress/caress_process2.webp", alt: "Caress A Bear process image 2" },
+    { type: "image", src: "/media/techdesign/caress/caress_process3.webp", alt: "Caress A Bear process image 3" },
+    { type: "image", src: "/media/techdesign/caress/caress_process4.webp", alt: "Caress A Bear process image 4" },
   ],
 
   media: [
-    { type: "image", src: "/media/techdesign/caress/Caress_main 2.jpeg", alt: "Caress A Bear preview image" },
+    { type: "image", src: "/media/techdesign/caress/Caress_main 2.webp", alt: "Caress A Bear preview image" },
   ],
 
   row6: null,

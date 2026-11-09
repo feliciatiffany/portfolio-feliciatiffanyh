@@ -6,6 +6,7 @@ import LineFilter from "../components/LineFilter.jsx";
 import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 import CodeSlots from "../components/CodeSlots.jsx";
 import useReveal from "../lib/useReveal.js";
+import LazyVideo from "../components/LazyVideo.jsx";
 
 // Outer span carries the hover glow (only around the image); inner frame crops to one ratio
 function CardMedia({ media, glow }) {
@@ -14,7 +15,7 @@ function CardMedia({ media, glow }) {
     <span className={`tl-card__media${glow ? " shine" : ""}${media.wide ? " is-wide" : ""}${media.blend ? " is-blend" : ""}${media.fill ? " is-fill" : ""}${media.cutout ? " is-cutout" : ""}`}>
       <span className="tl-card__frame">
         {media.type === "video" ? (
-          <video src={media.src} poster={media.poster} muted loop autoPlay playsInline preload="metadata" />
+          <LazyVideo src={media.src} poster={media.poster} />
         ) : (
           <img src={media.src} alt={media.alt || ""} loading="lazy" />
         )}

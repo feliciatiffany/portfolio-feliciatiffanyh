@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LazyVideo from "./LazyVideo.jsx";
 
 function ThumbMedia({ item }) {
   if (!item) return null;
   if (item.type === "video") {
-    return <video src={item.src} muted loop playsInline autoPlay />;
+    return <LazyVideo src={item.src} />;
   }
   return <img src={item.src} alt={item.alt || ""} loading="lazy" />;
 }

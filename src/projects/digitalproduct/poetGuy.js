@@ -97,14 +97,14 @@ export default {
   ],
 
   inspirationImages: [
-    { type: "image", src: "/media/techdesign/poet/inspiration1.jpg", alt: "Poet Guy inspiration image 1" },
-    { type: "image", src: "/media/techdesign/poet/inspiration2.jpg", alt: "Poet Guy inspiration image 2" },
-    { type: "image", src: "/media/techdesign/poet/inspiration3.jpg", alt: "Poet Guy inspiration image 3" },
-    { type: "image", src: "/media/techdesign/poet/inspiration4.JPG", alt: "Poet Guy inspiration image 4" },
+    { type: "image", src: "/media/techdesign/poet/inspiration1.webp", alt: "Poet Guy inspiration image 1" },
+    { type: "image", src: "/media/techdesign/poet/inspiration2.webp", alt: "Poet Guy inspiration image 2" },
+    { type: "image", src: "/media/techdesign/poet/inspiration3.webp", alt: "Poet Guy inspiration image 3" },
+    { type: "image", src: "/media/techdesign/poet/inspiration4.webp", alt: "Poet Guy inspiration image 4" },
   ],
 
   sketchImages: [
-    { type: "image", src: "/media/techdesign/poet/sketch.png", alt: "Poet Guy sketch" },
+    { type: "image", src: "/media/techdesign/poet/sketch.webp", alt: "Poet Guy sketch" },
   ],
 
   typewriterImages: [

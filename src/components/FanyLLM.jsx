@@ -5,7 +5,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { SparklesIcon, RefreshIcon, Cancel01Icon, ArrowUp02Icon } from "@hugeicons/core-free-icons";
-import { answer, SUGGESTIONS } from "../lib/fanyllm.js";
+// the answer engine pulls in every project, post and résumé entry, so it loads on first use
+const loadEngine = () => import("../lib/fanyllm.js");
+const SUGGESTIONS = ["Can I email you?", "What are you studying?", "Tell me about Red Doors"];
 import "./FanyLLM.css";
 
 const reduceMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -64,8 +66,9 @@ export default function FanyLLM() {
     const q = question.trim();
     if (!q) return;
     setOpen(true);
-    setMessages((m) => [...m, { role: "user", text: q }, { role: "fany", ...answer(q) }]);
     setDraft("");
+    setMessages((m) => [...m, { role: "user", text: q }]);
+    loadEngine().then(({ answer }) => setMessages((m) => [...m, { role: "fany", ...answer(q) }]));
   }, []);
 
   const scrollDown = useCallback(() => {
@@ -75,6 +78,7 @@ export default function FanyLLM() {
   useEffect(scrollDown, [messages, scrollDown]);
 
   useEffect(() => {
+    if (open) loadEngine(); // warm it up as the panel slides in
     if (open) setTimeout(() => inputRef.current?.focus(), 250);
     // the page makes room for the panel (see FanyLLM.css) instead of sitting under it
     document.documentElement.classList.toggle("fanyllm-open", open);

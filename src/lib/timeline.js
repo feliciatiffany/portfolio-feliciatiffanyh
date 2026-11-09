@@ -44,8 +44,8 @@ const PROJECTS = [
     collageBox: { aspect: 1.45 },
     collage: [
       { src: "/media/techdesign/redDoors/thumb/library-installation.jpg", alt: "Red Doors installation on the steps of the New York Public Library", x: 12, y: 8, w: 76, r: 0, hy: -2, hs: 1.02, z: 1, card: true },
-      { src: "/media/techdesign/redDoors/thumb/kiosk-left.png", alt: "Red Doors kiosk, start screen", x: 0.5, y: 53, w: 34, r: 0, hx: -1, hy: -2, hr: -1.5, hs: 1.02, z: 2 },
-      { src: "/media/techdesign/redDoors/thumb/kiosk-right.png", alt: "Red Doors kiosk, second screen", x: 66.5, y: 51, w: 33, r: 0, hx: 1, hy: -2, hr: 1.5, hs: 1.02, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-left.webp", alt: "Red Doors kiosk, start screen", x: 0.5, y: 53, w: 34, r: 0, hx: -1, hy: -2, hr: -1.5, hs: 1.02, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-right.webp", alt: "Red Doors kiosk, second screen", x: 66.5, y: 51, w: 33, r: 0, hx: 1, hy: -2, hr: 1.5, hs: 1.02, z: 2 },
       { src: "/media/techdesign/redDoors/thumb/qr-online.png", alt: "QR code: play Red Doors online", x: 81, y: 0, w: 18, r: 4, hy: -1, hr: -2, hs: 1.04, z: 3, card: true },
     ],
   },
@@ -58,7 +58,7 @@ const PROJECTS = [
   { slug: "protocol-nation", date: "Sept – Dec 2025", highlight: true },
   { slug: "nusa-penida", date: "Nov – Dec 2025", highlight: true },
   { slug: "wehearyou", date: "Jan – May 2026", highlight: true },
-  { slug: "tdvj", date: "Mar 2026", highlight: true, media: { type: "video", src: "/media/techdesign/tdvj/thumbnail_tdvj.mp4" } },
+  { slug: "tdvj", date: "Mar 2026", highlight: true, media: { type: "video", src: "/media/techdesign/tdvj/thumbnail_tdvj.web.mp4" } },
   { slug: "blossom", date: "Nov 2026", highlight: true },
 
   // creative side
@@ -76,12 +76,12 @@ const PROJECTS = [
     ],
     href: "https://youtu.be/7Mz7gm41abA?si=45BGPqz6n1ZilLbB",
     // transparent cut-out; `fill` = exactly as wide as the text column
-    media: { type: "image", src: "/media/awards/ppe-cooler-box-cutout.png", alt: "PPE Cooler Box suit design with its cooling parts", fill: true, cutout: true },
+    media: { type: "image", src: "/media/awards/ppe-cooler-box-cutout.webp", alt: "PPE Cooler Box suit design with its cooling parts", fill: true, cutout: true },
   },
   { slug: "past-2024", date: "Before 2024", year: 2023 },
   { slug: "personal-logo-design", date: "Aug 2024" },
   { slug: "p5js-portfolio", date: "Aug 2024 – May 2025" },
-  { slug: "ThunderTD", date: "2024", media: { type: "image", src: "/media/techdesign/thunder/documentation1.png" } },
+  { slug: "ThunderTD", date: "2024", media: { type: "image", src: "/media/techdesign/thunder/documentation1.webp" } },
   { slug: "greatest-dreamer", date: "Nov – Dec 2024" },
   { slug: "poet", date: "2025" },
   { slug: "memory", date: "2025" },
@@ -91,7 +91,7 @@ const PROJECTS = [
   { slug: "short-story", date: "2025" },
   { slug: "theTrueLight", date: "2025" },
   { slug: "cilok", date: "Sept 2025" },
-  { slug: "a-week-of-blender", date: "Sept – Oct 2025", media: { type: "image", src: "/media/techdesign/weekofBlender/4_1.png" } },
+  { slug: "a-week-of-blender", date: "Sept – Oct 2025", media: { type: "image", src: "/media/techdesign/weekofBlender/4_1.webp" } },
   { slug: "tracing-dendur", date: "Nov – Dec 2025" },
   { slug: "touchdesigner-av", date: "2026" },
   { slug: "nycresistor", date: "June 2026" },

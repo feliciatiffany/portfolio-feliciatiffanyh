@@ -49,9 +49,9 @@ export default {
   },
 
   docs: [
-    { type: "image", src: "/media/techdesign/thunder/documentation1.png", alt: "Thunder documentation 1" },
-    { type: "image", src: "/media/techdesign/thunder/documentation2.png", alt: "Thunder documentation 2" },
-    { type: "image", src: "/media/techdesign/thunder/documentation3.png", alt: "Thunder documentation 3" },
+    { type: "image", src: "/media/techdesign/thunder/documentation1.webp", alt: "Thunder documentation 1" },
+    { type: "image", src: "/media/techdesign/thunder/documentation2.webp", alt: "Thunder documentation 2" },
+    { type: "image", src: "/media/techdesign/thunder/documentation3.webp", alt: "Thunder documentation 3" },
   ],
 
   media: [],

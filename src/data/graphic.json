@@ -12,7 +12,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/graphicdesign/nusaPenida/thumbnail.mp4",
+          "src": "/media/graphicdesign/nusaPenida/thumbnail.web.mp4",
           "alt": "Nusa Penida Brand Design"
         }
       ]
@@ -26,7 +26,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/graphicdesign/cilok/thumbnail.mp4",
+          "src": "/media/graphicdesign/cilok/thumbnail.web.mp4",
           "alt": "Cilok Brand Design"
         }
       ]
@@ -40,7 +40,7 @@
       "media": [
         {
           "type": "image",
-          "src": "/media/graphicdesign/idcard/idcard_mockup1.png",
+          "src": "/media/graphicdesign/idcard/idcard_mockup1.webp",
           "alt": "Personal logo preview"
         }
       ]
@@ -54,7 +54,7 @@
       "media": [
         {
           "type": "image",
-          "src": "/media/graphicdesign/posterDreamer/finalLandscape.jpg",
+          "src": "/media/graphicdesign/posterDreamer/finalLandscape.webp",
           "alt": "Greatest Dreamer poster"
         }
       ]
@@ -68,7 +68,7 @@
       "media": [
         {
           "type": "image",
-          "src": "/media/graphicdesign/bookIndo/mock-01-front.png",
+          "src": "/media/graphicdesign/bookIndo/mock-01-front.webp",
           "alt": "Wonder of Indonesia cover"
         }
       ]
@@ -82,7 +82,7 @@
       "media": [
         {
           "type": "image",
-          "src": "/media/graphicdesign/past2024/page8.png",
+          "src": "/media/graphicdesign/past2024/page8.webp",
           "alt": "Past work cover"
         }
       ]

@@ -34,12 +34,12 @@ export default {
   quote: "What if we could live inside a server?",
 
   media: [
-    { type: "image", src: "/media/techdesign/protocolNation/documentation1.JPG", alt: "Documentation 1" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation2.JPG", alt: "Documentation 2" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation3.JPG", alt: "Documentation 3" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation4.JPG", alt: "Documentation 4" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation5.JPG", alt: "Documentation 5" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation6.JPG", alt: "Documentation 6" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation1.webp", alt: "Documentation 1" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation2.webp", alt: "Documentation 2" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation3.webp", alt: "Documentation 3" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation4.webp", alt: "Documentation 4" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation5.webp", alt: "Documentation 5" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation6.webp", alt: "Documentation 6" },
   ],
 
   descLeft: {
@@ -86,10 +86,10 @@ export default {
         { type: "image", src: "/media/techdesign/protocolNation/website1.png", alt: "Website 1" },
         { type: "image", src: "/media/techdesign/protocolNation/website2.png", alt: "Website 2" },
         { type: "image", src: "/media/techdesign/protocolNation/website3.png", alt: "Website 3" },
-        { type: "image", src: "/media/techdesign/protocolNation/website4.png", alt: "Website 4" },
+        { type: "image", src: "/media/techdesign/protocolNation/website4.webp", alt: "Website 4" },
         { type: "image", src: "/media/techdesign/protocolNation/website5.png", alt: "Website 5" },
         { type: "image", src: "/media/techdesign/protocolNation/website6.png", alt: "Website 6" },
-        { type: "image", src: "/media/techdesign/protocolNation/website7.png", alt: "Website 7" },
+        { type: "image", src: "/media/techdesign/protocolNation/website7.webp", alt: "Website 7" },
       ],
     },
 

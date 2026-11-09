@@ -8,29 +8,47 @@ import GlassSurface from "../components/GlassSurface.jsx";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import DomeGallery from "../components/DomeGallery.jsx";
-import { ENTRIES } from "../lib/timeline.js";
 import POSTERS from "../data/videoPosters.json"; // stills from timeline videos (generated from each video)
+import THUMBS from "../data/domeThumbs.json"; // 640px copies for the dome tiles (originals stay for the project pages)
 
-const PROFILE_SRC = "/media/profileimage.JPEG";
+// small copy: the dithered photo samples it at ~256px, so it looks the same and loads in a blink
+const PROFILE_SRC = "/media/thumbs/profile.webp";
 
 // The dome behind the intro shows one image per project from "What I've done" (projects and the
-// Creative Side; no awards, jobs or QR codes). Video cards use a still pulled from the video.
-// Decoration only, never links.
+// Creative Side; no awards, jobs or QR codes). Video cards use a still pulled from the video, and every
+// tile uses a small 640px copy (src/data/domeThumbs.json). Decoration only, never links.
 const isImage = (src) => /\.(png|jpe?g|webp|gif|avif)$/i.test(src || "");
-const RING = (() => {
+const THUMB_RING = Object.values(THUMBS).map((src) => ({ src, alt: "" }));
+
+function ringFrom(entries) {
   const seen = new Set();
   const out = [];
-  for (const e of ENTRIES) {
+  for (const e of entries) {
     if (e.type !== "projects" && e.type !== "creative") continue;
     const piece = e.collage?.find((c) => !/qr/i.test(c.src)); // e.g. Red Doors: the installation photo
     const m = e.media;
     const src = piece?.src || (m?.type === "video" ? m.poster || POSTERS[m.src] : m?.src);
     if (!isImage(src) || seen.has(src)) continue;
     seen.add(src);
-    out.push({ src, alt: piece?.alt || m?.alt || e.title });
+    out.push({ src: THUMBS[src] || src, alt: "" });
   }
   return out;
-})();
+}
+
+// Start with the ready-made thumbnails (no project data needed), then pick up any project added since
+function useRing() {
+  const [ring, setRing] = useState(THUMB_RING);
+  useEffect(() => {
+    let live = true;
+    import("../lib/timeline.js").then(({ ENTRIES }) => {
+      const full = ringFrom(ENTRIES);
+      const known = new Set(THUMB_RING.map((r) => r.src));
+      if (live && full.some((r) => !known.has(r.src))) setRing(full);
+    });
+    return () => (live = false);
+  }, []);
+  return ring;
+}
 
 const LINKS = [
   { to: "/built", label: "What I’ve done", arrow: true },
@@ -88,6 +106,7 @@ function useNarrow(query = "(max-width: 700px)") {
 
 export default function Home() {
   const narrow = useNarrow();
+  const RING = useRing();
 
   const intro = (
     <div className="home__center">

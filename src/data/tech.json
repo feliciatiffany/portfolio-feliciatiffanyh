@@ -26,7 +26,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/tellai/thumbnail.mp4",
+                    "src": "/media/techdesign/tellai/thumbnail.web.mp4",
                     "alt": "TellAI - Rotary AI Storytelling Toy"
                 }
             ]
@@ -48,7 +48,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/tracingdendur/thumbnail.mp4",
+                    "src": "/media/techdesign/tracingdendur/thumbnail.web.mp4",
                     "alt": "Tracing Dendur"
                 }
             ]
@@ -61,7 +61,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/blossom/thumbnail_blossom.mp4",
+                    "src": "/media/techdesign/blossom/thumbnail_blossom.web.mp4",
                     "alt": "3D Environment Design and Modeling"
                 }
             ]
@@ -76,7 +76,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/protocolNation/thumbnail.mp4",
+                    "src": "/media/techdesign/protocolNation/thumbnail.web.mp4",
                     "alt": "Protocol Nation"
                 }
             ]
@@ -90,7 +90,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/wehearyou/wehearyou_thumbnail2.mp4",
+                    "src": "/media/techdesign/wehearyou/wehearyou_thumbnail2.web.mp4",
                     "alt": "We Hear You"
                 }
             ]
@@ -104,7 +104,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/sunney/thumbnail_sunney.mp4",
+                    "src": "/media/techdesign/sunney/thumbnail_sunney.web.mp4",
                     "alt": "Sunney Game"
                 }
             ]
@@ -118,7 +118,7 @@
             "media": [
                 {
                     "type": "image",
-                    "src": "/media/techdesign/dialogue/dialogue_main.jpg",
+                    "src": "/media/techdesign/dialogue/dialogue_main.webp",
                     "alt": "Dialogue with the Wind preview"
                 }
             ]
@@ -132,7 +132,7 @@
             "media": [
                 {
                     "type": "video",
-                    "src": "/media/techdesign/rubeGoldberg/Thumbnail%20vid.mp4",
+                    "src": "/media/techdesign/rubeGoldberg/Thumbnail%20vid.web.mp4",
                     "alt": "Rube Goldberg Café"
                 }
             ]
@@ -145,7 +145,7 @@
             "media": [
                 {
                     "type": "image",
-                    "src": "/media/techdesign/caress/Caress_main 2.jpeg",
+                    "src": "/media/techdesign/caress/Caress_main 2.webp",
                     "alt": "Caress A Bear"
                 }
             ]

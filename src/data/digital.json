@@ -13,7 +13,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/techdesign/protocolNation/thumbnail.mp4",
+          "src": "/media/techdesign/protocolNation/thumbnail.web.mp4",
           "alt": "Protocol Nation"
         }
       ]
@@ -28,7 +28,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/digital/storytelling.mp4",
+          "src": "/media/digital/storytelling.web.mp4",
           "alt": "Short Story"
         }
       ]
@@ -43,7 +43,7 @@
       "media": [
         {
           "type": "image",
-          "src": "/media/techdesign/unseenCity/documentation1.png",
+          "src": "/media/techdesign/unseenCity/documentation1.webp",
           "alt": "Unseen City preview"
         }
       ]
@@ -72,7 +72,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/digital/wishlist.mp4",
+          "src": "/media/digital/wishlist.web.mp4",
           "alt": "Wishlist Collection"
         }
       ]
@@ -102,7 +102,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/digital/maximalist.mp4",
+          "src": "/media/digital/maximalist.web.mp4",
           "alt": "Maximalist Collages"
         }
       ]
@@ -117,7 +117,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/techdesign/poet/thumbnail_poet.mp4",
+          "src": "/media/techdesign/poet/thumbnail_poet.web.mp4",
           "alt": "Poet Guy"
         }
       ]
@@ -132,7 +132,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/digital/travel.mp4",
+          "src": "/media/digital/travel.web.mp4",
           "alt": "Travel Tool"
         }
       ]

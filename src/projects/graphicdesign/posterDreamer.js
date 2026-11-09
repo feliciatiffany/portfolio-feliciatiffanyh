@@ -16,9 +16,9 @@ export default {
   quote: "I dream in my sleep and in my life",
 
   media: [
-    { type: "image", src: "/media/graphicdesign/posterDreamer/final-portrait.jpg", alt: "Poster I — Cloud Typography" },
-    { type: "image", src: "/media/graphicdesign/posterDreamer/i-am-the-greatest.png", alt: "Poster II — Dual Dreamer" },
-    { type: "image", src: "/media/graphicdesign/posterDreamer/finalLandscape.jpg", alt: "Poster III — Fantasy Scale" },
+    { type: "image", src: "/media/graphicdesign/posterDreamer/final-portrait.webp", alt: "Poster I — Cloud Typography" },
+    { type: "image", src: "/media/graphicdesign/posterDreamer/i-am-the-greatest.webp", alt: "Poster II — Dual Dreamer" },
+    { type: "image", src: "/media/graphicdesign/posterDreamer/finalLandscape.webp", alt: "Poster III — Fantasy Scale" },
   ],
 
   descLeft: {

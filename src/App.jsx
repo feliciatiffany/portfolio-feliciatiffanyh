@@ -1,18 +1,40 @@
 // src/App.jsx
-import React, { useLayoutEffect } from "react";
+import React, { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
 import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
-import TechDesigner from "./pages/TechDesigner.jsx";
-import DigitalProductDesigner from "./pages/DigitalProductDesigner.jsx";
-import GraphicDesigner from "./pages/GraphicDesigner.jsx";
-import Others from "./pages/Others.jsx";
-import About from "./pages/About.jsx";
-import Category from "./pages/Category.jsx";
-import Project from "./pages/Project.jsx"; 
-import Built from "./pages/Built.jsx";
-import Blog from "./pages/Blog.jsx";
-import BlogPost from "./pages/BlogPost.jsx";
+
+// Every page except the homepage loads on its own, so the first visit only downloads what it shows.
+// Right after the first page appears, the rest are fetched quietly so later clicks still feel instant.
+const PAGES = {
+  TechDesigner: () => import("./pages/TechDesigner.jsx"),
+  DigitalProductDesigner: () => import("./pages/DigitalProductDesigner.jsx"),
+  GraphicDesigner: () => import("./pages/GraphicDesigner.jsx"),
+  Others: () => import("./pages/Others.jsx"),
+  About: () => import("./pages/About.jsx"),
+  Category: () => import("./pages/Category.jsx"),
+  Project: () => import("./pages/Project.jsx"),
+  Built: () => import("./pages/Built.jsx"),
+  Blog: () => import("./pages/Blog.jsx"),
+  BlogPost: () => import("./pages/BlogPost.jsx"),
+};
+const TechDesigner = lazy(PAGES.TechDesigner);
+const DigitalProductDesigner = lazy(PAGES.DigitalProductDesigner);
+const GraphicDesigner = lazy(PAGES.GraphicDesigner);
+const Others = lazy(PAGES.Others);
+const About = lazy(PAGES.About);
+const Category = lazy(PAGES.Category);
+const Project = lazy(PAGES.Project);
+const Built = lazy(PAGES.Built);
+const Blog = lazy(PAGES.Blog);
+const BlogPost = lazy(PAGES.BlogPost);
+function usePrefetchPages() {
+  useEffect(() => {
+    const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1500));
+    const id = idle(() => Object.values(PAGES).forEach((load) => load()));
+    return () => (window.cancelIdleCallback || clearTimeout)(id);
+  }, []);
+}
 import GhostCursor from "./components/GhostCursor.jsx";
 import CursorDot from "./components/CursorDot.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
@@ -23,7 +45,6 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Socials from "./components/Socials.jsx";
 import FanyLLM from "./components/FanyLLM.jsx";
 import { getProject } from "./lib/projects.js";
-import blogData from "./data/blog.json";
 
 const reduceMotion =
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -64,29 +85,46 @@ function CursorGlow() {
   );
 }
 
-// Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button
-const projectDetails = Object.values(import.meta.glob("./projects/**/*.js", { eager: true }))
-  .map((m) => m.default)
-  .filter((p) => p?.slug);
+// Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.
+// Titles of projects and posts load on demand, so every page doesn't carry all of that text.
+const projectLoaders = import.meta.glob("./projects/**/*.js", { import: "default" });
 const PAGE_NAMES = { built: "What I've done", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
 const HOME = { label: "Home", to: "/" };
 
 function crumbsFor(pathname) {
   const [, first = "", second] = pathname.split("/");
   const key = first.toLowerCase();
-  if (key === "work" && second) {
-    const title = projectDetails.find((p) => p.slug === second)?.title || getProject(second)?.title || second;
-    return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: title };
-  }
-  if (key === "blog" && second) {
-    const post = (blogData.posts || []).find((p) => p.slug === second);
-    return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, here: post?.title || second };
-  }
+  if (key === "work" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, kind: "project", slug: second };
+  if (key === "blog" && second) return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, kind: "post", slug: second };
   return { parent: HOME, here: PAGE_NAMES[key] || first };
 }
 
+async function loadTitle(kind, slug) {
+  if (kind === "post") {
+    const { default: blog } = await import("./data/blog.json");
+    return (blog.posts || []).find((p) => p.slug === slug)?.title;
+  }
+  for (const load of Object.values(projectLoaders)) {
+    const p = await load();
+    if (p?.slug === slug) return p.title;
+  }
+  return undefined;
+}
+
 function Breadcrumb({ pathname }) {
-  const { parent, here } = crumbsFor(pathname);
+  const crumb = crumbsFor(pathname);
+  // project pages start from the short title in the list data, then use the page's own title
+  const quick = crumb.kind === "project" ? getProject(crumb.slug)?.title : undefined;
+  const [loaded, setLoaded] = useState({});
+  const key = `${crumb.kind}:${crumb.slug}`;
+  useEffect(() => {
+    if (!crumb.kind) return;
+    let live = true;
+    loadTitle(crumb.kind, crumb.slug).then((t) => live && t && setLoaded((m) => ({ ...m, [key]: t })));
+    return () => (live = false);
+  }, [crumb.kind, crumb.slug, key]);
+  const here = crumb.here || loaded[key] || quick || "";
+  const { parent } = crumb;
   return (
     <nav className="crumbs" aria-label="Breadcrumb">
       <Link to={parent.to} className="crumbs__back">
@@ -110,6 +148,7 @@ function useScrollToTop(pathname) {
 function Layout({ children }) {
   const { pathname } = useLocation();
   useScrollToTop(pathname);
+  usePrefetchPages();
   const onProject = pathname.startsWith("/work/");
   const onHome = pathname === "/";
   const centered = onHome || /^\/(built|blog|about)/i.test(pathname);
@@ -127,7 +166,9 @@ function Layout({ children }) {
       <FanyLLM />
       <ThemeToggle />
 
-      <main className={`main ${onProject ? "main--project" : ""}`}>{children}</main>
+      <main className={`main ${onProject ? "main--project" : ""}`}>
+        <Suspense fallback={null}>{children}</Suspense>
+      </main>
 
       {/* the homepage carries its social icons in the intro, under the buttons */}
       {!onProject && !onHome && (

@@ -16,7 +16,7 @@ export default function About() {
   return (
     <section className="about" ref={root}>
       <header className="built-head about-head">
-        <DitherImage className="avatar avatar--scramble about-avatar" src="/media/profileimage.JPEG" alt="Felicia Hertada" contrast={1.2} brightness={0.04} />
+        <DitherImage className="avatar avatar--scramble about-avatar" src="/media/thumbs/profile.webp" alt="Felicia Hertada" contrast={1.2} brightness={0.04} />
         <ScrambledText as="h1" className="built-title" {...historyTitle}>
           About me
         </ScrambledText>

@@ -97,15 +97,15 @@ export default {
   },
 
   projectFiles: [
-    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.png", alt: "Sunney project file 1" },
-    { type: "image", src: "/media/techdesign/sunney/ssProjectFile2.png", alt: "Sunney project file 2" },
+    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.webp", alt: "Sunney project file 1" },
+    { type: "image", src: "/media/techdesign/sunney/ssProjectFile2.webp", alt: "Sunney project file 2" },
   ],
 
   gameScreens: [
     { type: "image", src: "/media/techdesign/sunney/gameSS1.png", alt: "Sunney gameplay screen 1" },
     { type: "image", src: "/media/techdesign/sunney/gameSS2.png", alt: "Sunney gameplay screen 2" },
-    { type: "image", src: "/media/techdesign/sunney/gameSS3.png", alt: "Sunney gameplay screen 3" },
-    { type: "image", src: "/media/techdesign/sunney/gameSS4.png", alt: "Sunney gameplay screen 4" },
+    { type: "image", src: "/media/techdesign/sunney/gameSS3.webp", alt: "Sunney gameplay screen 3" },
+    { type: "image", src: "/media/techdesign/sunney/gameSS4.webp", alt: "Sunney gameplay screen 4" },
     { type: "image", src: "/media/techdesign/sunney/gameSS5.png", alt: "Sunney gameplay screen 5" },
     { type: "image", src: "/media/techdesign/sunney/gameSS6.png", alt: "Sunney gameplay screen 6" },
     { type: "image", src: "/media/techdesign/sunney/gameSS7.png", alt: "Sunney gameplay screen 7" },
@@ -124,23 +124,23 @@ export default {
   ],
 
   progressImages: [
-    { type: "image", src: "/media/techdesign/sunney/progress1.png", alt: "Sunney progress image 1" },
-    { type: "image", src: "/media/techdesign/sunney/progress2.png", alt: "Sunney progress image 2" },
-    { type: "image", src: "/media/techdesign/sunney/progress3.png", alt: "Sunney progress image 3" },
-    { type: "image", src: "/media/techdesign/sunney/progress4.png", alt: "Sunney progress image 4" },
-    { type: "image", src: "/media/techdesign/sunney/progress5.png", alt: "Sunney progress image 5" },
+    { type: "image", src: "/media/techdesign/sunney/progress1.webp", alt: "Sunney progress image 1" },
+    { type: "image", src: "/media/techdesign/sunney/progress2.webp", alt: "Sunney progress image 2" },
+    { type: "image", src: "/media/techdesign/sunney/progress3.webp", alt: "Sunney progress image 3" },
+    { type: "image", src: "/media/techdesign/sunney/progress4.webp", alt: "Sunney progress image 4" },
+    { type: "image", src: "/media/techdesign/sunney/progress5.webp", alt: "Sunney progress image 5" },
   ],
 
   sketchImages: [
-    { type: "image", src: "/media/techdesign/sunney/sketch1.jpg", alt: "Sunney sketch 1" },
-    { type: "image", src: "/media/techdesign/sunney/sketch2.jpg", alt: "Sunney sketch 2" },
-    { type: "image", src: "/media/techdesign/sunney/sketch3.jpg", alt: "Sunney sketch 3" },
+    { type: "image", src: "/media/techdesign/sunney/sketch1.webp", alt: "Sunney sketch 1" },
+    { type: "image", src: "/media/techdesign/sunney/sketch2.webp", alt: "Sunney sketch 2" },
+    { type: "image", src: "/media/techdesign/sunney/sketch3.webp", alt: "Sunney sketch 3" },
     { type: "image", src: "/media/techdesign/sunney/sketch4.png", alt: "Sunney sketch 4" },
     { type: "image", src: "/media/techdesign/sunney/sketch5.png", alt: "Sunney sketch 5" },
     { type: "image", src: "/media/techdesign/sunney/sketch6.png", alt: "Sunney sketch 6" },
     { type: "image", src: "/media/techdesign/sunney/sketch7.png", alt: "Sunney sketch 7" },
     { type: "image", src: "/media/techdesign/sunney/sketch8.png", alt: "Sunney sketch 8" },
-    { type: "image", src: "/media/techdesign/sunney/sketch9.png", alt: "Sunney sketch 9" },
+    { type: "image", src: "/media/techdesign/sunney/sketch9.webp", alt: "Sunney sketch 9" },
     { type: "image", src: "/media/techdesign/sunney/sketch10.png", alt: "Sunney sketch 10" },
   ],
 
@@ -166,7 +166,7 @@ export default {
   ],
 
   media: [
-    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.png", alt: "Sunney preview image" },
+    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.webp", alt: "Sunney preview image" },
   ],
 
   row6: null,

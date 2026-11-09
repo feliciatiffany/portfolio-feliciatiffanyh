@@ -60,20 +60,20 @@ export default {
 
     // ✅ put all slide picture (slider) — ordered
     slides: [
-        { type: "image", src: "/media/techdesign/redDoors/Slide1.jpeg", alt: "Slide 1" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide2.jpeg", alt: "Slide 2" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide3.jpeg", alt: "Slide 3" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide4.jpeg", alt: "Slide 4" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide5.jpeg", alt: "Slide 5" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide1.webp", alt: "Slide 1" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide2.webp", alt: "Slide 2" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide3.webp", alt: "Slide 3" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide4.webp", alt: "Slide 4" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide5.webp", alt: "Slide 5" },
         { type: "image", src: "/media/techdesign/redDoors/Slide6.jpeg", alt: "Slide 6" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide7.jpeg", alt: "Slide 7" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide8.jpeg", alt: "Slide 8" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide9.jpeg", alt: "Slide 9" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide10.jpeg", alt: "Slide 10" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide11.jpeg", alt: "Slide 11" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide12.jpeg", alt: "Slide 12" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide13.jpeg", alt: "Slide 13" },
-        { type: "image", src: "/media/techdesign/redDoors/Slide14.jpeg", alt: "Slide 14" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide7.webp", alt: "Slide 7" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide8.webp", alt: "Slide 8" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide9.webp", alt: "Slide 9" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide10.webp", alt: "Slide 10" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide11.webp", alt: "Slide 11" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide12.webp", alt: "Slide 12" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide13.webp", alt: "Slide 13" },
+        { type: "image", src: "/media/techdesign/redDoors/Slide14.webp", alt: "Slide 14" },
     ],
 
     coreIssue: {
@@ -139,7 +139,7 @@ export default {
     },
 
     // flowchart image
-    flowchartMedia: [{ type: "image", src: "/media/techdesign/redDoors/flowchart.png", alt: "Red Doors flowchart" }],
+    flowchartMedia: [{ type: "image", src: "/media/techdesign/redDoors/flowchart.webp", alt: "Red Doors flowchart" }],
 
     visualDesign: {
         title: "How it looks",
@@ -151,19 +151,19 @@ export default {
 
     // ✅ display all process_scene (ordered)
     sceneMedia: [
-        { type: "image", src: "/media/techdesign/redDoors/process_scene1.png", alt: "Scene 1" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene2.png", alt: "Scene 2" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene3.png", alt: "Scene 3" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene4.png", alt: "Scene 4" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene5.png", alt: "Scene 5" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene6.png", alt: "Scene 6" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene7.png", alt: "Scene 7" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene8.png", alt: "Scene 8" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene9.png", alt: "Scene 9" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene10.png", alt: "Scene 10" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene1.webp", alt: "Scene 1" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene2.webp", alt: "Scene 2" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene3.webp", alt: "Scene 3" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene4.webp", alt: "Scene 4" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene5.webp", alt: "Scene 5" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene6.webp", alt: "Scene 6" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene7.webp", alt: "Scene 7" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene8.webp", alt: "Scene 8" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene9.webp", alt: "Scene 9" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene10.webp", alt: "Scene 10" },
         { type: "image", src: "/media/techdesign/redDoors/process_scene11.png", alt: "Scene 11" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene12.png", alt: "Scene 12" },
-        { type: "image", src: "/media/techdesign/redDoors/process_scene13.png", alt: "Scene 13" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene12.webp", alt: "Scene 12" },
+        { type: "image", src: "/media/techdesign/redDoors/process_scene13.webp", alt: "Scene 13" },
     ],
 
     technicalPlan: {
@@ -191,9 +191,9 @@ export default {
 
     // ✅ display all mindmap (gallery) — filenames contain spaces, so we URL-encode them
     mindmapMedia: [
-        { type: "image", src: "/media/techdesign/redDoors/mind%20map.png", alt: "Mind map" },
-        { type: "image", src: "/media/techdesign/redDoors/mind%20map%202.png", alt: "Mind map 2" },
-        { type: "image", src: "/media/techdesign/redDoors/mind%20map%203.jpg", alt: "Mind map 3" },
+        { type: "image", src: "/media/techdesign/redDoors/mind%20map.webp", alt: "Mind map" },
+        { type: "image", src: "/media/techdesign/redDoors/mind%20map%202.webp", alt: "Mind map 2" },
+        { type: "image", src: "/media/techdesign/redDoors/mind%20map%203.webp", alt: "Mind map 3" },
     ],
 
     earlyIterations: {
@@ -207,11 +207,11 @@ export default {
     // ✅ display all sketches (slider) — ordered
     sketchMedia: [
         { type: "image", src: "/media/techdesign/redDoors/sketch.jpg", alt: "Sketch" },
-        { type: "image", src: "/media/techdesign/redDoors/sketch1.png", alt: "Sketch 1" },
-        { type: "image", src: "/media/techdesign/redDoors/sketch2.png", alt: "Sketch 2" },
-        { type: "image", src: "/media/techdesign/redDoors/sketch3.png", alt: "Sketch 3" },
-        { type: "image", src: "/media/techdesign/redDoors/sketch4.png", alt: "Sketch 4" },
-        { type: "image", src: "/media/techdesign/redDoors/sketch5.png", alt: "Sketch 5" },
+        { type: "image", src: "/media/techdesign/redDoors/sketch1.webp", alt: "Sketch 1" },
+        { type: "image", src: "/media/techdesign/redDoors/sketch2.webp", alt: "Sketch 2" },
+        { type: "image", src: "/media/techdesign/redDoors/sketch3.webp", alt: "Sketch 3" },
+        { type: "image", src: "/media/techdesign/redDoors/sketch4.webp", alt: "Sketch 4" },
+        { type: "image", src: "/media/techdesign/redDoors/sketch5.webp", alt: "Sketch 5" },
     ],
 
     workSamples: {
@@ -224,20 +224,20 @@ export default {
 
     // ✅ process asset building (slider) — ordered
     assetBuildingMedia: [
-        { type: "image", src: "/media/techdesign/redDoors/process_assetBuilding1.png", alt: "Asset building 1" },
-        { type: "image", src: "/media/techdesign/redDoors/process_assetBuilding2.png", alt: "Asset building 2" },
-        { type: "image", src: "/media/techdesign/redDoors/process_assetBuilding3.png", alt: "Asset building 3" },
+        { type: "image", src: "/media/techdesign/redDoors/process_assetBuilding1.webp", alt: "Asset building 1" },
+        { type: "image", src: "/media/techdesign/redDoors/process_assetBuilding2.webp", alt: "Asset building 2" },
+        { type: "image", src: "/media/techdesign/redDoors/process_assetBuilding3.webp", alt: "Asset building 3" },
     ],
 
     // ✅ process unity (slider) — ordered
     unityMedia: [
-        { type: "image", src: "/media/techdesign/redDoors/process_unity1.png", alt: "Unity process 1" },
-        { type: "image", src: "/media/techdesign/redDoors/process_unity2.png", alt: "Unity process 2" },
-        { type: "image", src: "/media/techdesign/redDoors/process_unity3.png", alt: "Unity process 3" },
-        { type: "image", src: "/media/techdesign/redDoors/process_unity4.png", alt: "Unity process 4" },
-        { type: "image", src: "/media/techdesign/redDoors/process_unity5.png", alt: "Unity process 5" },
-        { type: "image", src: "/media/techdesign/redDoors/process_unity6.png", alt: "Unity process 6" },
-        { type: "image", src: "/media/techdesign/redDoors/process_unity7.png", alt: "Unity process 7" },
+        { type: "image", src: "/media/techdesign/redDoors/process_unity1.webp", alt: "Unity process 1" },
+        { type: "image", src: "/media/techdesign/redDoors/process_unity2.webp", alt: "Unity process 2" },
+        { type: "image", src: "/media/techdesign/redDoors/process_unity3.webp", alt: "Unity process 3" },
+        { type: "image", src: "/media/techdesign/redDoors/process_unity4.webp", alt: "Unity process 4" },
+        { type: "image", src: "/media/techdesign/redDoors/process_unity5.webp", alt: "Unity process 5" },
+        { type: "image", src: "/media/techdesign/redDoors/process_unity6.webp", alt: "Unity process 6" },
+        { type: "image", src: "/media/techdesign/redDoors/process_unity7.webp", alt: "Unity process 7" },
     ],
 
     intendedImpact: {

@@ -54,10 +54,10 @@ export default {
   ],
 
   wideVideos: [
-    { src: "/media/techdesign/blossom/Final_cactus_wide2.mp4", alt: "Cactus diorama wide view" },
-    { src: "/media/techdesign/blossom/Final_lotus_wide.mp4", alt: "Lotus diorama wide view" },
-    { src: "/media/techdesign/blossom/Final_rose_wide.mp4", alt: "Rose diorama wide view" },
-    { src: "/media/techdesign/blossom/Final_sunflower_wide.mp4", alt: "Sunflower diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_cactus_wide2.web.mp4", alt: "Cactus diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_lotus_wide.web.mp4", alt: "Lotus diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_rose_wide.web.mp4", alt: "Rose diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_sunflower_wide.web.mp4", alt: "Sunflower diorama wide view" },
   ],
 
   closeupVideos: [

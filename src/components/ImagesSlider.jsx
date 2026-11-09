@@ -41,7 +41,7 @@ export default function ImagesSlider({ title = "Slider", items = [], onOpen, sho
             return (
               <div className="slide" key={key} style={{ flexDirection: "column", gap: 10 }}>
                 {video ? (
-                  <video className="proj-slide-media" src={item.src} controls />
+                  <video className="proj-slide-media" src={item.src} controls preload="metadata" />
                 ) : (
                   <button
                     type="button"
