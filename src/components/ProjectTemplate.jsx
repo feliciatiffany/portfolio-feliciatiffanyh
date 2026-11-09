@@ -6,8 +6,8 @@ import ImagesRow from "./ImagesRow.jsx";
 import ImagesSlider from "./ImagesSlider.jsx";
 import DescriptionProject1 from "./DescriptionProject1.jsx";
 import Lightbox from "./Lightbox.jsx";
-import LogoUrl from "../assets/logosmall.png";
 import { projectDate } from "../lib/timeline.js";
+import ScrambledText, { historyTitle } from "./ScrambledText.jsx";
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
 
@@ -84,7 +84,7 @@ function InstagramEmbed({ url, captioned = false }) {
         data-instgrm-version="14"
         data-instgrm-captioned={captioned ? "true" : undefined}
         style={{
-          background: "#fff",
+          background: "var(--color-bg)",
           border: 0,
           margin: 0,
           padding: 0,
@@ -515,15 +515,10 @@ export default function ProjectTemplate({ project }) {
 
   return (
     <div className="project-template" data-layout={layoutAttr}>
-      <nav className="proj-top" aria-label="Back">
-        <Link to="/" className="proj-top__logo" aria-label="Home">
-          <img src={LogoUrl} alt="" />
-        </Link>
-        <Link to="/built" className="proj-top__back">← What I’ve done</Link>
-      </nav>
-
       <main className="proj-body">
-        <h1 className="proj-page-title">{project.title}</h1>
+        <ScrambledText as="h1" className="proj-page-title" {...historyTitle}>
+          {project.title}
+        </ScrambledText>
         <Hero item={project.media?.[0]} />
         <MetaRow project={project} />
         {sections.map(renderSection)}

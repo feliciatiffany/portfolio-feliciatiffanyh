@@ -1,155 +1,92 @@
 // src/pages/About.jsx
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Star from "../assets/star.svg";
-import { education, experience, skills, awards } from "../lib/resume";
+import { ProximityFrame, ProximityTitle } from "../components/VariableProximity.jsx";
+import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 
-/* ── Expandable bullet (education + experience) ── */
-function ExpandBullet({ children, achievements }) {
-  const [open, setOpen] = useState(false);
-  const hasAchievements = achievements && achievements.length > 0;
-
-  return (
-    <li className="resume-item">
-      <button
-        className={`star-btn${open ? " star-btn--open" : ""}`}
-        aria-expanded={open}
-        aria-label={open ? "Collapse achievements" : "Expand achievements"}
-        onClick={() => hasAchievements && setOpen((v) => !v)}
-        disabled={!hasAchievements}
-      >
-        <img className="star star--blink" src={Star} alt="" aria-hidden />
-      </button>
-
-      <div className="resume-item__body">
-        {children}
-
-        {hasAchievements && (
-          <ul className={`achieve-list${open ? " achieve-list--open" : ""}`}>
-            {achievements.map((a, i) => (
-              <li key={i} className="achieve-item">
-                {a}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </li>
-  );
-}
-
-/* ── Static bullet (skills, awards) ── */
-function StaticBullet({ children }) {
-  return (
-    <li className="resume-item">
-      <img className="star star--shine" src={Star} alt="" aria-hidden />
-      <div className="resume-item__body">{children}</div>
-    </li>
-  );
-}
+const SECTIONS = [
+  {
+    title: "What I love",
+    role: "fany",
+    lines: [
+      "Research, and science especially. I can never get away from it.",
+      "Traveling, going to concerts, and following life's side quests.",
+      "Ghibli films and a good cup of matcha.",
+      "Making things with my hands and with code, and seeing people play with them.",
+    ],
+  },
+  {
+    title: "What I think",
+    role: "tech",
+    lines: [
+      "Conversation is the most basic way we share intelligence, so it makes sense that so many interfaces start there.",
+      "Interfaces should be built around the people who use them, not the other way around.",
+      "Everything builds off what came before, so it's worth knowing the history behind why things look the way they do.",
+    ],
+  },
+  {
+    title: "What I fear",
+    role: "digital",
+    lines: [
+      "Building something polished that nobody actually needs.",
+      "Losing curiosity once things start to feel routine.",
+    ],
+  },
+];
 
 export default function About() {
   return (
     <>
       <section className="hero">
-        <p className="intro">
+        <ProximityFrame as="p" className="intro">
           <span className="line">
-            <span className="mono">Hi, I'm</span>{" "}
+            <span className="mono"><ProximityTitle label="Hi, I'm" /></span>{" "}
             <Link to="/about" className="grow-band is-current" data-role="fany">
-              Fany!
+              <ProximityTitle label="Fany!" />
             </Link>{" "}
-            <span className="mono">a</span>{" "}
+            <span className="mono"><ProximityTitle label="a" /></span>{" "}
             <Link to="/tech" className="grow-band" data-role="tech">
-              creative technologist
+              <ProximityTitle label="creative technologist" />
             </Link>
             <span className="comma">,</span>
           </span>
           <span className="line">
             <Link to="/digital" className="grow-band" data-role="digital">
-              digital product
+              <ProximityTitle label="digital product" />
             </Link>
             <span className="comma">,</span>{" "}
             <Link to="/graphic" className="grow-band" data-role="graphic">
-              graphic designer
+              <ProximityTitle label="graphic designer" />
             </Link>
             <span className="comma">,</span>
           </span>
           <span className="line">
-            <span className="mono">and I create </span>{" "}
+            <span className="mono"><ProximityTitle label="and I create" /></span>{" "}
             <Link to="/others" className="grow-band" data-role="others">
-              solutions
+              <ProximityTitle label="solutions" />
             </Link>
           </span>
-        </p>
-        <p className="reachout">Press star to expand on achievements.</p>
+        </ProximityFrame>
       </section>
 
-      {/* Scrollable resume */}
-      <section className="resume content-scroll">
-        <div className="resume-grid">
+      <article className="note about-note">
+        <img className="avatar avatar--sm" src="/media/profileimage.JPEG" alt="Felicia Hertada" />
+        <ScrambledText as="h1" className="note__title" {...historyTitle}>
+          In a nutshell
+        </ScrambledText>
+        <p className="note__lede">A few honest notes about me.</p>
 
-          {/* ── Left column ── */}
-          <div className="resume-col">
-
-            <h2 className="resume-h">Education</h2>
-            <ul className="resume-list">
-              {education.map((ed, i) => (
-                <ExpandBullet key={i} achievements={ed.achievements}>
-                  <div className="resume-line">
-                    <span className="resume-strong">{ed.title}</span>
-                  </div>
-                  <div className="resume-meta">
-                    {ed.date} · {ed.place}
-                    {ed.meta ? ` · ${ed.meta}` : ""}
-                  </div>
-                </ExpandBullet>
+        {SECTIONS.map((s) => (
+          <section key={s.title} className="note__section">
+            <h2 className="note__h" data-role={s.role}>{s.title}</h2>
+            <ul className="note__list">
+              {s.lines.map((line) => (
+                <li key={line}>{line}</li>
               ))}
             </ul>
-
-            <h2 className="resume-h">Experience</h2>
-            <ul className="resume-list">
-              {experience.map((ex, i) => (
-                <ExpandBullet key={i} achievements={ex.achievements}>
-                  <div className="resume-line">
-                    <span className="resume-strong">{ex.title}</span>
-                  </div>
-                  <div className="resume-meta">
-                    {ex.date} · {ex.place}
-                  </div>
-                </ExpandBullet>
-              ))}
-            </ul>
-
-            {/* ── Awards & Honors ── */}
-            <h2 className="resume-h">Awards &amp; Honors</h2>
-            <ul className="resume-list">
-              {awards.map((aw, i) => (
-                <StaticBullet key={i}>
-                  <div className="resume-line">
-                    <span className="resume-strong">{aw.title}</span>
-                  </div>
-                  <div className="resume-meta">
-                    {aw.org ? `${aw.org} · ` : ""}{aw.year}
-                  </div>
-                </StaticBullet>
-              ))}
-            </ul>
-          </div>
-
-          {/* ── Right column: Skills ── */}
-          <aside className="resume-col">
-            <h2 className="resume-h">Skills</h2>
-            <ul className="resume-list">
-              {skills.map((s, i) => (
-                <StaticBullet key={i}>
-                  <div className="resume-line">{s}</div>
-                </StaticBullet>
-              ))}
-            </ul>
-          </aside>
-
-        </div>
-      </section>
+          </section>
+        ))}
+      </article>
     </>
   );
 }

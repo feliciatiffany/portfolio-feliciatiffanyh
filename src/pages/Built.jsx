@@ -2,7 +2,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TYPES, ENTRIES, groupByYear } from "../lib/timeline";
-import LogoUrl from "../assets/logosmall.png";
+import LineFilter from "../components/LineFilter.jsx";
+import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
+import CodeSlots from "../components/CodeSlots.jsx";
+import useReveal from "../lib/useReveal.js";
 
 // Outer span carries the hover glow (only around the image); inner frame crops to one ratio
 function CardMedia({ media, glow }) {
@@ -98,31 +101,6 @@ function Card({ item, index }) {
   );
 }
 
-// Fade + slide cards in as they scroll into view
-function useReveal(deps) {
-  const root = useRef(null);
-  useEffect(() => {
-    const els = root.current?.querySelectorAll(".reveal:not(.is-in)") || [];
-    if (!("IntersectionObserver" in window)) {
-      els.forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            io.unobserve(e.target);
-          }
-        }),
-      { rootMargin: "0px 0px -8% 0px" }
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, deps);
-  return root;
-}
-
 // Each card spans as many 8px grid rows as it is tall, so the two sides pack tightly in order
 const ROW = 8;
 function useMasonry(root, deps) {
@@ -141,8 +119,29 @@ function useMasonry(root, deps) {
   }, deps);
 }
 
+const PASSWORD = "matcha";
+const UNLOCK_KEY = "built-unlocked";
+
+function readUnlocked() {
+  try {
+    return sessionStorage.getItem(UNLOCK_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export default function Built() {
   const [active, setActive] = useState(() => new Set(TYPES.map((t) => t.key)));
+  const [unlocked, setUnlocked] = useState(readUnlocked);
+  const [status, setStatus] = useState("idle");
+
+  const groups = useMemo(
+    () => groupByYear(ENTRIES.filter((e) => active.has(e.type))),
+    [active]
+  );
+
+  const root = useReveal([groups, unlocked]);
+  useMasonry(root, [groups, unlocked]);
 
   const toggle = (key) =>
     setActive((prev) => {
@@ -151,40 +150,41 @@ export default function Built() {
       return next;
     });
 
-  const groups = useMemo(
-    () => groupByYear(ENTRIES.filter((e) => active.has(e.type))),
-    [active]
-  );
-
-  const root = useReveal([groups]);
-  useMasonry(root, [groups]);
+  const onPassword = (code) => {
+    if (code !== PASSWORD) {
+      setStatus("error");
+      return;
+    }
+    setStatus("success");
+    try {
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+    } catch {
+      /* private mode can block storage; the page still opens */
+    }
+    window.setTimeout(() => setUnlocked(true), 900);
+  };
 
   return (
     <section className="built" ref={root}>
-      <nav className="back-link-row">
-        <Link to="/" className="back-link">← Back</Link>
-      </nav>
       <header className="built-head">
-        <Link to="/" className="built-logo" aria-label="Home">
-          <img src={LogoUrl} alt="" />
-        </Link>
-        <h1 className="built-title">What I’ve done - A Timeline</h1>
+        <ScrambledText as="h1" className="built-title" {...historyTitle}>
+          What I’ve done - A Timeline
+        </ScrambledText>
+        <p className="built-sub">
+          Putting things on a timeline shows the bigger picture, and how each moment shapes the next.
+        </p>
       </header>
 
-      <div className="tl-filters" role="group" aria-label="Filter categories">
-        {TYPES.map((t) => (
-          <button
-            key={t.key}
-            type="button"
-            className="tl-filter"
-            data-type={t.key}
-            aria-pressed={active.has(t.key)}
-            onClick={() => toggle(t.key)}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
+      {unlocked ? (
+      <>
+      <LineFilter
+        direction="row"
+        className="tl-filters"
+        ariaLabel="Filter categories"
+        items={TYPES.map((t) => ({ key: t.key, label: t.label, type: t.key }))}
+        pressed={active}
+        onToggle={toggle}
+      />
 
       {groups.length > 0 && (
         <nav className="tl-jump" aria-label="Jump to year">
@@ -232,6 +232,33 @@ export default function Built() {
           with my eyes and mind wide open.
         </p>
       </footer>
+      </>
+      ) : (
+        <div className="built-lock">
+          <p className="built-lock__note">Password</p>
+          <CodeSlots
+            letters
+            length={PASSWORD.length}
+            status={status}
+            autoFocus
+            ariaLabel="Password"
+            onChange={() => setStatus("idle")}
+            onComplete={onPassword}
+            accentColor="var(--accent)"
+            inkColor="var(--foreground)"
+            slotColor="var(--muted)"
+            digitColor="var(--accent-foreground)"
+            dangerColor="var(--destructive)"
+            slotSize={44}
+            gap={8}
+            radius={12}
+            bounce={0.2}
+            settle={0.3}
+            rise={8}
+            cascade={20}
+          />
+        </div>
+      )}
     </section>
   );
 }

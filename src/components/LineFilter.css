@@ -1,0 +1,73 @@
+.line-filter{
+  --lf-ink: var(--color-text);
+  --lf-accent: var(--accent);
+}
+
+.line-filter__h{
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.line-filter__list{ display: grid; }
+
+.line-filter__item{
+  --tone: var(--tc, var(--lf-accent));
+  position: relative;
+  font: inherit;
+  padding: 2px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: color-mix(in srgb, var(--tone) calc(var(--effect, 0) * 100%), var(--tc, var(--lf-ink)));
+  text-align: left;
+  text-decoration: none;
+}
+/* Wider pointer target so items react just before the cursor arrives */
+.line-filter__item::before{ content: ""; position: absolute; inset: -6px -14px; }
+
+.line-filter__label{
+  position: relative;
+  display: inline-block;
+  transition: opacity .35s ease, filter .35s ease;
+}
+
+/* Turned off: faded and crossed out, like a struck line in an old ledger */
+.line-filter__item[aria-pressed="false"] .line-filter__label{
+  opacity: calc(.3 + var(--effect, 0) * .4);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  filter: blur(calc((1 - var(--effect, 0)) * .4px));
+}
+
+.line-filter__item:focus-visible{ outline: none; }
+.line-filter__item:focus-visible .line-filter__label{ opacity: 1; letter-spacing: .05em; }
+
+/* ── Vertical (blog): label slides right near the cursor ── */
+.line-filter--column .line-filter__list{ gap: 10px; justify-items: start; }
+.line-filter--column .line-filter__item{ font-size: 13px; }
+.line-filter--column .line-filter__label{ transform: translateX(calc(var(--effect, 0) * 10px)); }
+
+/* ── Horizontal (timeline): label lifts near the cursor ── */
+.line-filter--row .line-filter__list{
+  grid-template-columns: repeat(3, minmax(0, 200px));
+  justify-content: center;
+  justify-items: center;
+  gap: 22px 16px;
+}
+.line-filter--row .line-filter__item{
+  font-size: clamp(14px, 1.4vw, 17px);
+  padding: 2px 0;
+  text-align: center;
+}
+.line-filter--row .line-filter__label{
+  transform: translateY(calc(var(--effect, 0) * -3px));
+  letter-spacing: calc(var(--effect, 0) * .05em);
+}
+
+@media (max-width: 700px){
+  .line-filter--row .line-filter__list{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce){
+  .line-filter__label{ transform: none !important; transition: none; }
+}

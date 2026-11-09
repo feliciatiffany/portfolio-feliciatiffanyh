@@ -1,0 +1,76 @@
+{
+  "color": {
+    "coral": { "$type": "color", "$value": "#DE826D", "$description": "Base swatch" },
+    "cream": { "$type": "color", "$value": "#F3E0D1", "$description": "Base swatch" },
+    "rose": { "$type": "color", "$value": "#9C575D", "$description": "Base swatch" },
+    "peach": { "$type": "color", "$value": "#E8B19D", "$description": "Base swatch" },
+    "blush": { "$type": "color", "$value": "#B76E78", "$description": "Base swatch" },
+    "mauve": { "$type": "color", "$value": "#A06069", "$description": "Base swatch" },
+    "sand": { "$type": "color", "$value": "#E6BD89", "$description": "Base swatch" },
+    "maroon": { "$type": "color", "$value": "#62232D", "$description": "Base swatch" },
+    "gold": { "$type": "color", "$value": "#DAA561", "$description": "Base swatch" },
+    "amber": { "$type": "color", "$value": "#C6872F", "$description": "Base swatch. Favorite color on the palette card." },
+    "ink": { "$type": "color", "$value": "#000000", "$description": "Base. Body text." },
+    "paper": { "$type": "color", "$value": "#FFFFFF", "$description": "Base. Page background." },
+
+    "text": { "$type": "color", "$value": "{color.ink}", "$description": "Body text and milestones" },
+    "bg": { "$type": "color", "$value": "{color.paper}", "$description": "Page background" },
+
+    "action": {
+      "hover": { "$type": "color", "$value": "{color.maroon}", "$description": "Link and control hover" }
+    },
+
+    "accent": {
+      "name": { "$type": "color", "$value": "{color.peach}", "$description": "Name, Fany" },
+      "tech": { "$type": "color", "$value": "{color.coral}", "$description": "Tech, projects, home role" },
+      "digital": { "$type": "color", "$value": "{color.maroon}", "$description": "Digital product and other work" },
+      "graphic": { "$type": "color", "$value": "{color.mauve}", "$description": "Graphic design" },
+      "creative": { "$type": "color", "$value": "{color.blush}", "$description": "Creative side of the timeline" },
+      "work": { "$type": "color", "$value": "{color.amber}", "$description": "Work on the timeline" },
+      "award": { "$type": "color", "$value": "{color.gold}", "$description": "Awards" },
+      "love": { "$type": "color", "$value": "{color.coral}", "$description": "What I love" },
+      "think": { "$type": "color", "$value": "{color.rose}", "$description": "What I think" },
+      "fear": { "$type": "color", "$value": "{color.maroon}", "$description": "What I fear" }
+    },
+
+    "surface": {
+      "soft": { "$type": "color", "$value": "{color.cream}", "$description": "Selection, empty image wells, soft rings" },
+      "sand": { "$type": "color", "$value": "{color.sand}", "$description": "Warm surface, portrait ring" }
+    }
+  },
+
+  "background": { "$type": "color", "$value": "{color.paper}", "$description": "Page background" },
+  "foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Default text" },
+  "card": { "$type": "color", "$value": "{color.paper}", "$description": "Card surface" },
+  "card-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Text on cards" },
+  "popover": { "$type": "color", "$value": "{color.paper}", "$description": "Floating layer" },
+  "popover-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Text on floating layers" },
+  "primary": { "$type": "color", "$value": "{color.maroon}", "$description": "Primary action" },
+  "primary-foreground": { "$type": "color", "$value": "{color.paper}", "$description": "Text on a primary action" },
+  "secondary": { "$type": "color", "$value": "{color.cream}", "$description": "Secondary surface" },
+  "secondary-foreground": { "$type": "color", "$value": "{color.maroon}", "$description": "Text on a secondary surface" },
+  "muted": { "$type": "color", "$value": "{color.cream}", "$description": "Soft band" },
+  "muted-foreground": { "$type": "color", "$value": "color-mix(in srgb, {color.ink} 62%, transparent)", "$description": "Captions and descriptive text" },
+  "accent": { "$type": "color", "$value": "{color.coral}", "$description": "Accent mark and active item" },
+  "accent-foreground": { "$type": "color", "$value": "{color.maroon}", "$description": "Text on the accent" },
+  "destructive": { "$type": "color", "$value": "{color.rose}", "$description": "Error and destructive" },
+  "destructive-foreground": { "$type": "color", "$value": "{color.paper}", "$description": "Text on destructive" },
+  "border": { "$type": "color", "$value": "color-mix(in srgb, {color.ink} 12%, transparent)", "$description": "Hairline border" },
+  "input": { "$type": "color", "$value": "{border}", "$description": "Input border" },
+  "ring": { "$type": "color", "$value": "{color.sand}", "$description": "Focus ring" },
+  "chart-1": { "$type": "color", "$value": "{color.coral}", "$description": "Chart accent" },
+  "chart-2": { "$type": "color", "$value": "{color.rose}", "$description": "Chart accent" },
+  "chart-3": { "$type": "color", "$value": "{color.sand}", "$description": "Chart accent" },
+  "chart-4": { "$type": "color", "$value": "{color.gold}", "$description": "Chart accent" },
+  "chart-5": { "$type": "color", "$value": "{color.blush}", "$description": "Chart accent" },
+  "sidebar": { "$type": "color", "$value": "{color.paper}", "$description": "Sidebar surface" },
+  "sidebar-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Sidebar text" },
+  "sidebar-primary": { "$type": "color", "$value": "{color.maroon}", "$description": "Sidebar rail" },
+  "sidebar-primary-foreground": { "$type": "color", "$value": "{color.paper}", "$description": "Text on the sidebar rail" },
+  "sidebar-accent": { "$type": "color", "$value": "{color.coral}", "$description": "Active sidebar item" },
+  "sidebar-accent-foreground": { "$type": "color", "$value": "{color.maroon}", "$description": "Text on the active sidebar item" },
+  "sidebar-border": { "$type": "color", "$value": "{color.maroon}", "$description": "Sidebar branch line" },
+  "sidebar-ring": { "$type": "color", "$value": "{color.sand}", "$description": "Sidebar focus" },
+  "surface": { "$type": "color", "$value": "{color.cream}", "$description": "Secondary surface" },
+  "surface-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Text on a secondary surface" }
+}

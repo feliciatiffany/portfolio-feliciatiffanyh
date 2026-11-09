@@ -2,40 +2,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ProjectList from "../components/ProjectList.jsx";
+import { ProximityFrame, ProximityTitle } from "../components/VariableProximity.jsx";
 
 export default function Others() {
   return (
     <>
       <section className="hero">
-        <p className="intro">
+        <ProximityFrame as="p" className="intro">
           <span className="line">
-            <span className="mono">Hi, I’m</span>{" "}
+            <span className="mono"><ProximityTitle label="Hi, I’m" /></span>{" "}
             <Link to="/about" className="grow-band name" data-role="fany">
-              Fany!
+              <ProximityTitle label="Fany!" />
             </Link>{" "}
-            <span className="mono">a</span>{" "}
+            <span className="mono"><ProximityTitle label="a" /></span>{" "}
             <Link to="/tech" className="grow-band" data-role="tech">
-              creative technologist
+              <ProximityTitle label="creative technologist" />
             </Link>
             <span className="comma">,</span>
           </span>
           <span className="line">
             <Link to="/digital" className="grow-band" data-role="digital">
-              digital product
+              <ProximityTitle label="digital product" />
             </Link>
             <span className="comma">,</span>{" "}
             <Link to="/graphic" className="grow-band" data-role="graphic">
-              graphic designer
+              <ProximityTitle label="graphic designer" />
             </Link>
             <span className="comma">,</span>
           </span>
           <span className="line">
-            <span className="mono">and I create</span>{" "}
+            <span className="mono"><ProximityTitle label="and I create" /></span>{" "}
             <Link to="/others" className="grow-band is-current" data-role="others">
-              solutions
+              <ProximityTitle label="solutions" />
             </Link>
           </span>
-        </p>
+        </ProximityFrame>
       </section>
 
       {/* IMPORTANT: ProjectList must be direct child (no wrapper) */}

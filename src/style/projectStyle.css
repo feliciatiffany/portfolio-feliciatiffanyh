@@ -1,30 +1,22 @@
 /* Project Template CSS â€” fully scoped, won't overwrite other pages */
 
 .project-template{
-  --salmon:#DE826D;
-  --cream:#F3E0D1;
-  --peach:#E8B19D;
-  --mauve:#A06069;
-  --maroon:#62232D;
+  --band-about: var(--color-surface-soft);
+  --band-tech: var(--color-accent-name);
+  --band-digital: var(--color-surface-sand);
+  --band-graph: var(--color-accent-creative);
+  --band-other: var(--color-accent-award);
 
-  --band-about: #D56A6A;
-  --band-tech:  #FF8E86;
-  --band-digital: #F2B3A5;
-  --band-graph: #F6D2CC;
-  --band-other: #F3E0D1;
-
-  --band-about-h: #B8565F;
-  --band-tech-h:  #E26E63;
-  --band-digital-h: #F2B3A5;
-  --band-graph-h: #F6D2CC;
-  --band-other-h: #F3E0D1;
-
-  --ink:#000;
+  --band-about-h: var(--color-accent-name);
+  --band-tech-h: var(--color-accent-tech);
+  --band-digital-h: var(--color-accent-award);
+  --band-graph-h: var(--color-accent-graphic);
+  --band-other-h: var(--color-accent-work);
 
   --proj-head-h: 56px;
   --proj-nav-h:  40px;
 
-  color: var(--ink);
+  color: var(--color-text);
   width: 100%;
 }
 
@@ -46,7 +38,7 @@
   align-items: center;
   gap: 12px;
 
-  background: linear-gradient(90deg, #F7D9D1 0%, #F3C2B6 55%, #F0B0B6 100%);
+  background: linear-gradient(90deg, var(--color-surface-soft) 0%, var(--color-accent-name) 55%, var(--color-accent-creative) 100%);
 }
 
 .project-template .proj-logo{
@@ -84,7 +76,7 @@
   font-weight: 400;
 
   background-color: rgba(255,255,255,0.7);
-  border-left: 1px solid rgba(0,0,0,0.08);
+  border-left: 1px solid var(--border);
 }
 
 /* ========= ROW 2: NAV ========= */
@@ -101,7 +93,7 @@
 
 .project-template .proj-nav__link{
   text-decoration: none;
-  color: var(--ink);
+  color: var(--color-text);
   text-align: center;
 
   height: 100%;
@@ -127,7 +119,7 @@
 
 .project-template .proj-nav__link:hover,
 .project-template .proj-nav__link:focus-visible{
-  color: var(--maroon);
+  color: var(--color-action-hover);
   letter-spacing: .2em;
   filter: brightness(0.97);
   font-weight: 500;
@@ -145,7 +137,7 @@
 .project-template .proj-nav__link:nth-child(5):focus-visible{ background: var(--band-other-h); }
 
 .project-template .proj-nav__link.is-active{
-  color: var(--maroon);
+  color: var(--color-action-hover);
   filter: brightness(0.92);
 }
 
@@ -284,7 +276,7 @@
   font-size: 12px;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--maroon);
+  color: var(--color-action-hover);
 }
 
 .project-template .proj-desc{
@@ -357,7 +349,7 @@
   font-size: 12px;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--maroon);
+  color: var(--color-action-hover);
   opacity: .85;
 }
 
@@ -375,7 +367,7 @@
   pointer-events: auto;
   border: none;
   background: rgba(255,255,255,0.65);
-  color: var(--maroon);
+  color: var(--color-action-hover);
   width: 44px;
   height: 44px;
   font-size: 20px;
@@ -393,7 +385,7 @@
 
 /* ===== Diagram (white bg, 80% image) ===== */
 .project-template .proj-diagram-wrap {
-  background: #fff;
+  background: var(--color-bg);
   padding: 5%;
   display: flex;
   align-items: center;
@@ -411,7 +403,7 @@
   width: 100%;
   max-width: 100%;
   aspect-ratio: 16 / 9;
-  background: #ddd;
+  background: var(--color-surface-soft);
   overflow: hidden;
 }
 
@@ -487,14 +479,14 @@
 }
 
 .project-template .proj-references a{
-  color: var(--maroon);
+  color: var(--color-action-hover);
   text-decoration: none;
   border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
 .project-template .proj-references a:hover{
-  color: var(--ink);
-  border-bottom-color: var(--maroon);
+  color: var(--color-text);
+  border-bottom-color: var(--color-action-hover);
 }
 
 /* table styling */
@@ -506,7 +498,7 @@
 
 .project-template .proj-table th,
 .project-template .proj-table td{
-  border: 1px solid rgba(0,0,0,0.12);
+  border: 1px solid var(--border);
   padding: 8px 10px;
   vertical-align: top;
 }
@@ -579,7 +571,7 @@
   .project-template .proj-head__title{
     grid-column: 1 / -1;
     border-left: none;
-    border-top: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid var(--border);
   }
 
   .project-template .proj-nav{
@@ -810,7 +802,7 @@ gap: 12px
 
 /* Meta reads like Notion page properties, placed above the intro */
 .project-template .proj-row3__right{ order: -1; }
-.project-template .proj-meta{ font-size: 14px; color: rgba(0,0,0,.7); }
+.project-template .proj-meta{ font-size: 14px; color: var(--muted-foreground); }
 
 .project-template .proj-diagram-img{ width: 100%; }
 .project-template[data-layout="fullpage-stack"] .proj-gallery{ width: 100%; }
@@ -845,24 +837,7 @@ gap: 12px
   margin: 8px 0 12px;
 }
 
-.proj-top{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 16px 16px 0;
-  font-family: var(--font-caption);
-  font-size: 12px;
-}
-.proj-top__logo img{ display: block; height: 32px; width: auto; transition: transform .3s ease; }
-.proj-top__logo:hover img,
-.proj-top__logo:focus-visible img{ transform: rotate(-8deg) scale(1.08); }
-.proj-top__back{ color: rgba(0,0,0,.6); text-decoration: none; }
-.proj-top__back:hover,
-.proj-top__back:focus-visible{ color: var(--maroon); text-decoration: underline; }
-
-.proj-hero{ margin: 0; border-radius: 4px; overflow: hidden; background: #eee; }
+.proj-hero{ margin: 0; border-radius: 4px; overflow: hidden; background: var(--color-surface-soft); }
 .proj-hero img,
 .proj-hero video{ display: block; width: 100%; height: auto; max-height: 70vh; object-fit: cover; }
 
@@ -877,7 +852,7 @@ gap: 12px
 }
 .proj-metarow__col{ display: grid; align-content: start; gap: 1px; }
 .proj-metarow dt{ font-size: 13px; margin-bottom: 4px; }
-.proj-metarow dd{ margin: 0; font-size: 11px; color: rgba(0,0,0,.6); }
+.proj-metarow dd{ margin: 0; font-size: 11px; color: var(--muted-foreground); }
 .proj-metarow__col:nth-child(2){ justify-self: center; }
 .proj-metarow__col:nth-child(3){ justify-self: end; }
 
@@ -898,7 +873,7 @@ gap: 12px
   font-weight: 700;
   letter-spacing: 0;
   text-transform: none;
-  color: var(--ink);
+  color: var(--color-text);
 }
 
 @media (max-width: 560px){

@@ -1,7 +1,8 @@
 // src/pages/BlogPost.jsx — one post: Back, centered title, then the text
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { POSTS, formatDate } from "./Blog.jsx";
+import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 
 function Block({ b }) {
   switch (b.type) {
@@ -41,9 +42,6 @@ export default function BlogPost() {
   if (!post) {
     return (
       <article className="post">
-        <nav className="back-link-row">
-          <Link to="/blog" className="back-link">← Back</Link>
-        </nav>
         <p className="post__body">That post isn’t here anymore.</p>
       </article>
     );
@@ -51,10 +49,9 @@ export default function BlogPost() {
 
   return (
     <article className="post">
-      <nav className="back-link-row">
-        <Link to="/blog" className="back-link">← Back</Link>
-      </nav>
-      <h1 className="post__title">{post.title}</h1>
+      <ScrambledText as="h1" className="post__title" {...historyTitle}>
+        {post.title}
+      </ScrambledText>
       <p className="post__meta">{post.category} · {formatDate(post.date)}</p>
       <div className="post__body" lang="id">
         {post.blocks.map((b, i) => (

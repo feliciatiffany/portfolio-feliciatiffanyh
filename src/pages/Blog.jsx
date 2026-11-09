@@ -2,6 +2,8 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import data from "../data/blog.json";
+import LineFilter from "../components/LineFilter.jsx";
+import useReveal from "../lib/useReveal.js";
 
 export const POSTS = data.posts.map((p) => ({ ...p, year: Number(p.date.slice(0, 4)) }));
 export const CATEGORIES = [...new Set(POSTS.map((p) => p.category))].sort();
@@ -9,26 +11,6 @@ const YEARS = [...new Set(POSTS.map((p) => p.year))].sort((a, b) => b - a);
 
 export function formatDate(iso) {
   return new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-}
-
-// Toggle buttons that work like the "What I've done" filters (all on to start; click to hide)
-function FilterGroup({ title, items, active, onToggle }) {
-  return (
-    <div className="blog-filter" role="group" aria-label={`Filter by ${title.toLowerCase()}`}>
-      <h2 className="blog-filter__h">{title}</h2>
-      {items.map((it) => (
-        <button
-          key={it}
-          type="button"
-          className="blog-filter__btn"
-          aria-pressed={active.has(it)}
-          onClick={() => onToggle(it)}
-        >
-          {it}
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function useToggleSet(all) {
@@ -50,22 +32,28 @@ export default function Blog() {
     () => POSTS.filter((p) => cats.has(p.category) && years.has(p.year)),
     [cats, years]
   );
+  const root = useReveal([shown]);
 
   return (
-    <section className="blog">
-      <nav className="back-link-row">
-        <Link to="/" className="back-link">← Back</Link>
-      </nav>
+    <section className="blog" ref={root}>
+      <aside className="blog-nav" aria-label="Filter posts">
+        <LineFilter
+          title="Categories"
+          items={CATEGORIES.map((c) => ({ key: c, label: c }))}
+          pressed={cats}
+          onToggle={toggleCat}
+        />
+        <LineFilter
+          title="Year"
+          items={YEARS.map((y) => ({ key: y, label: String(y) }))}
+          pressed={years}
+          onToggle={toggleYear}
+        />
+      </aside>
 
-      <div className="blog__layout">
-        <aside className="blog__side">
-          <FilterGroup title="Categories" items={CATEGORIES} active={cats} onToggle={toggleCat} />
-          <FilterGroup title="Year" items={YEARS} active={years} onToggle={toggleYear} />
-        </aside>
-
-        <ol className="blog__list">
+      <ol className="blog__list">
           {shown.map((p) => (
-            <li key={p.slug} className={`blog-item${p.cover ? " has-cover" : ""}`}>
+            <li key={p.slug} className={`blog-item reveal${p.cover ? " has-cover" : ""}`}>
               <Link to={`/blog/${p.slug}`} className="blog-item__link">
                 {p.cover && (
                   <span className="blog-item__media shine">
@@ -81,8 +69,7 @@ export default function Blog() {
             </li>
           ))}
           {shown.length === 0 && <li className="blog__empty">Pick a category and a year to see posts.</li>}
-        </ol>
-      </div>
+      </ol>
     </section>
   );
 }

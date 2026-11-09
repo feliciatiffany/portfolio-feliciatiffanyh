@@ -23,7 +23,7 @@
   font-weight: 700;
   font-size: clamp(12px, 2.2vw, 20px);
   letter-spacing: .02em;
-  color: var(--mauve);
+  color: var(--color-accent-graphic);
 }
 
 .resume-list {
@@ -60,22 +60,22 @@
     2%  35%,
     39% 35%
   );
-  background-color: var(--salmon, #DE826D);
+  background-color: var(--color-accent-tech);
 }
 
 /* ── Blinking star (education + experience) ── */
 @keyframes starBlink {
   0%, 100% {
     opacity: 0.3;
-    background-color: var(--peach, #E8B19D);
+    background-color: var(--color-accent-name);
     box-shadow: none;
   }
   50% {
     opacity: 1;
-    background-color: var(--salmon, #DE826D);
+    background-color: var(--color-accent-tech);
     box-shadow:
-      0 0 6px 2px var(--salmon, #DE826D),
-      0 0 14px 5px var(--peach, #E8B19D);
+      0 0 6px 2px var(--color-accent-tech),
+      0 0 14px 5px var(--color-accent-name);
   }
 }
 
@@ -86,11 +86,11 @@
 /* ── Always-shining star (skills, awards) — no blink, constant glow ── */
 .star--shine {
   opacity: 1;
-  background-color: var(--salmon, #DE826D);
+  background-color: var(--color-accent-tech);
   box-shadow:
-    0 0 5px 2px var(--salmon, #DE826D),
-    0 0 12px 4px var(--peach, #E8B19D),
-    0 0 20px 6px var(--cream, #F3E0D1);
+    0 0 5px 2px var(--color-accent-tech),
+    0 0 12px 4px var(--color-accent-name),
+    0 0 20px 6px var(--color-surface-soft);
 }
 
 /* ── Star button wrapper ── */
@@ -138,7 +138,7 @@
 .achieve-item {
   position: relative;
   font-size: clamp(11px, .95vw, 13px);
-  color: #5e5e5e;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
   line-height: 1.5;
   padding-left: 1em;
   margin-bottom: .4em;
@@ -148,7 +148,7 @@
   content: "·";
   position: absolute;
   left: 0;
-  color: var(--salmon, #DE826D);
+  color: var(--color-accent-tech);
   font-weight: 700;
 }
 
@@ -164,7 +164,7 @@
 
 .resume-meta {
   font-size: clamp(12px, 1vw, 14px);
-  color: #5e5e5e;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
   margin-top: .15em;
 }
 

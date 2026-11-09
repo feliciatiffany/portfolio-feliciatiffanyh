@@ -1,0 +1,15 @@
+/* Fonts and sizes come from the title's own class, so the scramble fits wherever it's used */
+.scrambled-text{ position: relative; }
+.scrambled-text__inner{ display: block; }
+
+.scrambled-text-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

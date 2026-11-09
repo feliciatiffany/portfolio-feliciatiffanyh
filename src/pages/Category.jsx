@@ -4,6 +4,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { byCategory } from "../lib/projects.js";
+import { ProximityFrame, ProximityTitle } from "../components/VariableProximity.jsx";
 
 const VALID = new Set(["tech", "digital", "graphic", "others"]);
 
@@ -73,19 +74,19 @@ export default function Category({ kind }) {
     <>
       {/* INTRO pinned in its own grid area */}
       <section className="hero">
-        <p className="intro">
+        <ProximityFrame as="p" className="intro">
           <span className="line">
-            <span className="mono">Hi, I’m</span>{" "}
+            <span className="mono"><ProximityTitle label="Hi, I’m" /></span>{" "}
             <Link to="/about" className="grow-band name" data-role="fany">
-              Fany!
+              <ProximityTitle label="Fany!" />
             </Link>{" "}
-            <span className="mono">a</span>{" "}
+            <span className="mono"><ProximityTitle label="a" /></span>{" "}
             <Link
               to="/tech"
               className={`grow-band ${slug === "tech" ? "is-current" : ""}`}
               data-role="tech"
             >
-              creative technologist
+              <ProximityTitle label="creative technologist" />
             </Link>
             <span className="comma">,</span>{" "}
             <Link
@@ -93,7 +94,7 @@ export default function Category({ kind }) {
               className={`grow-band ${slug === "digital" ? "is-current" : ""}`}
               data-role="digital"
             >
-              digital product
+              <ProximityTitle label="digital product" />
             </Link>
             <span className="comma">,</span>
           </span>
@@ -103,19 +104,19 @@ export default function Category({ kind }) {
               className={`grow-band ${slug === "graphic" ? "is-current" : ""}`}
               data-role="graphic"
             >
-              graphic designer
+              <ProximityTitle label="graphic designer" />
             </Link>
             <span className="comma">,</span>{" "}
-            <span className="mono">and I create</span>{" "}
+            <span className="mono"><ProximityTitle label="and I create" /></span>{" "}
             <Link
               to="/others"
               className={`grow-band ${slug === "others" ? "is-current" : ""}`}
               data-role="others"
             >
-              solutions
+              <ProximityTitle label="solutions" />
             </Link>
           </span>
-        </p>
+        </ProximityFrame>
       </section>
 
       {/* PROJECT LIST pinned to content grid area */}

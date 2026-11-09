@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from "react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import TechDesigner from "./pages/TechDesigner.jsx";
@@ -10,34 +10,64 @@ import Others from "./pages/Others.jsx";
 import About from "./pages/About.jsx";
 import Category from "./pages/Category.jsx";
 import Project from "./pages/Project.jsx"; 
-import Nutshell from "./pages/Nutshell.jsx";
 import Built from "./pages/Built.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
+import GhostCursor from "./components/GhostCursor.jsx";
 
-import LogoUrl from "./assets/logosmall.png";
+const reduceMotion =
+  typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-function LogoMark() {
+// A faint trace left behind the cursor: slow, grainy, and gone a moment later — like time passing
+function CursorGlow() {
+  if (reduceMotion) return null;
   return (
-    <Link to="/" aria-label="Go to home" className="logo-link">
-      <img src={LogoUrl} alt="Fany logo" className="logo" />
-    </Link>
+    <GhostCursor
+      theme="light"
+      color="#C9A97A"
+      mixBlendMode="multiply"
+      size={34}
+      trailLength={70}
+      inertia={0.7}
+      turbulence={0.18}
+      drift={0.06}
+      detail={0.35}
+      brightness={0.8}
+      bloomStrength={0.2}
+      bloomRadius={1.2}
+      grainIntensity={0.14}
+      clickPuff={false}
+      intro={false}
+      fadeDelayMs={400}
+      fadeDurationMs={2600}
+      zIndex={60}
+      style={{ position: "fixed", opacity: 0.22 }}
+    />
   );
+}
+
+function backHref(pathname) {
+  if (pathname.startsWith("/work/")) return "/built";
+  if (/^\/blog\/.+/i.test(pathname)) return "/blog";
+  return "/";
 }
 
 function Layout({ children }) {
   const { pathname } = useLocation();
   const onProject = pathname.startsWith("/work/");
   const onHome = pathname === "/";
-  const centered = onHome || /^\/(built|nutshell|blog)/i.test(pathname);
+  const centered = onHome || /^\/(built|blog)/i.test(pathname);
 
   const gridClass = onProject ? "page-grid--project" : centered ? "page-grid--center" : "";
 
   return (
     <div className={`page-grid ${gridClass}`}>
-      {!onProject && !onHome && !/^\/(built|blog)/i.test(pathname) && (
-        <header className="header" aria-label="Brand">
-          <LogoMark />
+      <CursorGlow />
+      {!onHome && (
+        <header className="header">
+          <Link to={backHref(pathname)} className="site-back">
+            ← Back
+          </Link>
         </header>
       )}
 
@@ -98,7 +128,7 @@ export default function App() {
         <Route path="/others" element={<Others />} />
         <Route path="/Others" element={<Others />} />
 
-        <Route path="/nutshell" element={<Nutshell />} />
+        <Route path="/nutshell" element={<Navigate to="/blog" replace />} />
         <Route path="/built" element={<Built />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />

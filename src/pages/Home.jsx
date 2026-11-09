@@ -1,6 +1,10 @@
-// src/pages/Home.jsx — profile photo + intro, circled by a tilted 3D "Saturn ring" of project images
-import React, { useEffect, useRef } from "react";
+// src/pages/Home.jsx — profile photo + intro, with project images spiraling around the title
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
+import DitherImage from "../components/DitherImage.jsx";
+import LineFilter from "../components/LineFilter.jsx";
+import OrbitImages from "../components/OrbitImages.jsx";
 
 const PROFILE_SRC = "/media/profileimage.JPEG";
 
@@ -24,127 +28,75 @@ const RING = [
 
 const LINKS = [
   { to: "/built", label: "What I’ve done" },
-  { to: "/nutshell", label: "Digital garden" },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About me" },
 ];
 
-const TILT = (-12 * Math.PI) / 180; // ring tilt, like Saturn
-const SPEED = 0.00012; // radians per ms (~52s per turn)
+// Two passes through the work (the second shuffled) so the ring is packed without neighbours repeating
+const ORBIT = [...RING, ...[6, 2, 9, 0, 11, 4, 7, 1, 10, 3, 12, 8, 5].map((i) => RING[i])].map((it) => ({
+  src: it.src,
+  alt: "",
+}));
 
-function OrbitRing() {
-  const stageRef = useRef(null);
-  const itemRefs = useRef([]);
-  const paused = useRef(false);
-
+// Narrow screens get a tall orbit so the images circle the title instead of squeezing past it
+function useNarrow(query = "(max-width: 700px)") {
+  const [narrow, setNarrow] = useState(() => typeof window !== "undefined" && window.matchMedia(query).matches);
   useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const n = RING.length;
-    let angle = 0;
-    let last = performance.now();
-    let raf;
-
-    const place = () => {
-      const w = stage.clientWidth;
-      const h = stage.clientHeight;
-      const narrow = w < 700; // phones: tall ring that loops above and below the text
-      const rx = narrow ? w * 0.4 : Math.min(w * 0.44, 620);
-      const ry = narrow ? h * 0.4 : Math.min(h * 0.4, rx * 0.5);
-      const cos = Math.cos(TILT);
-      const sin = Math.sin(TILT);
-
-      itemRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const t = angle + (i / n) * Math.PI * 2;
-        const ex = rx * Math.cos(t);
-        const ey = ry * Math.sin(t);
-        const x = ex * cos - ey * sin;
-        const y = ex * sin + ey * cos;
-        const depth = Math.sin(t); // +1 = front of the ring, -1 = back
-        const scale = 0.95 - 0.4 * depth; // front smaller, back bigger
-        // Each image faces along the ring: edge-on-ish at the sides, tipped back/forward top and bottom
-        const turnY = -Math.cos(t) * 55;
-        const turnX = depth * -18;
-        const roll = Math.cos(t) * 6;
-        el.style.transform =
-          `translate(-50%, -50%) translate(${x}px, ${y}px) perspective(700px) ` +
-          `rotateX(${turnX}deg) rotateY(${turnY}deg) rotateZ(${roll}deg) scale(${scale})`;
-        el.style.zIndex = depth < 0 ? 1 : 3; // back half passes behind the photo
-        el.style.opacity = String(0.75 + 0.25 * (1 - Math.abs(depth)));
-      });
-    };
-
-    const tick = (now) => {
-      if (!paused.current) angle += (now - last) * SPEED;
-      last = now;
-      place();
-      raf = requestAnimationFrame(tick);
-    };
-
-    if (still) {
-      place();
-      window.addEventListener("resize", place);
-      return () => window.removeEventListener("resize", place);
-    }
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  const hold = (on) => () => (paused.current = on);
-
-  return (
-    <div className="orbit" ref={stageRef} aria-hidden="false">
-      {RING.map((it, i) => {
-        const cls = `orbit__item${it.cutout ? " is-cutout" : ""}`;
-        const img = <img src={it.src} alt={it.alt} draggable="false" />;
-        return it.to ? (
-          <Link
-            key={it.src}
-            to={it.to}
-            ref={(el) => (itemRefs.current[i] = el)}
-            className={`${cls} shine`}
-            onMouseEnter={hold(true)}
-            onMouseLeave={hold(false)}
-            onFocus={hold(true)}
-            onBlur={hold(false)}
-          >
-            {img}
-          </Link>
-        ) : (
-          <span key={it.src} ref={(el) => (itemRefs.current[i] = el)} className={cls}>
-            {img}
-          </span>
-        );
-      })}
-    </div>
-  );
+    const mq = window.matchMedia(query);
+    const on = () => setNarrow(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, [query]);
+  return narrow;
 }
 
 export default function Home() {
+  const narrow = useNarrow();
+
   return (
     <section className="home">
-      <OrbitRing />
+      {/* One dense ring that circles around the intro, never across it. Images are decoration only. */}
+      <OrbitImages
+        className="home-orbit"
+        images={ORBIT}
+        shape="ellipse"
+        radiusX={narrow ? 360 : 720}
+        radiusY={narrow ? 640 : 340}
+        rotation={0}
+        duration={ORBIT.length * 2.8}
+        steps={ORBIT.length}
+        hold={0.55}
+        itemSize={narrow ? 120 : 108}
+        depth={1}
+        farBlur={4}
+        farSepia={0.6}
+        itemRadius={8}
+        shadow={0.08}
+        hoverScale={1}
+        hoverSpeed={0}
+        clickToFront={false}
+        draggable={false}
+        width={narrow ? "100%" : "min(1440px, 96%)"}
+        height="calc(100% - var(--orbit-pad) * 2)"
+        centerContent={
+          <div className="home__center">
+            <DitherImage className="avatar avatar--scramble" src={PROFILE_SRC} alt="Felicia Hertada" />
 
-      <div className="home__center">
-        <img className="avatar" src={PROFILE_SRC} alt="Felicia Hertada" />
+            <ScrambledText as="h1" className="home-intro" {...historyTitle}>
+              Hi, I’m{" "}
+              <Link to="/about" className="home-intro__name">Fany</Link>!
+              <br />
+              a <span className="home-intro__role">tech &amp; product designer</span>,
+              <br />
+              but other time, I’m exploring
+            </ScrambledText>
 
-        <h1 className="home-intro">
-          Hi, I’m{" "}
-          <Link to="/about" className="home-intro__name">Fany</Link>!
-          <br />a <span className="home-intro__role">tech &amp; product designer</span>,
-          <br />but other time, I’m exploring
-        </h1>
-
-        <nav className="home-links" aria-label="Explore">
-          {LINKS.map((l) => (
-            <Link key={l.to} to={l.to} className="home-links__a">
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
+            <nav className="home-links" aria-label="Explore">
+              <LineFilter direction="row" items={LINKS.map((l) => ({ key: l.to, label: l.label, to: l.to }))} />
+            </nav>
+          </div>
+        }
+      />
     </section>
   );
 }
