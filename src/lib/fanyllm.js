@@ -51,10 +51,10 @@ const DOCS = [
     links: [{ label: "See it on the timeline", to: "/built" }],
   })),
   ...(blog.posts || []).map((p) => ({
-    title: p.title,
-    keys: words(p.title),
-    body: words(`${p.category} ${p.summary}`),
-    text: `“${p.title}” is a ${String(p.category || "post").toLowerCase()} I wrote (${p.date?.slice(0, 4)}). ${p.summary || ""}`,
+    title: p.en?.title || p.title,
+    keys: words(`${p.title} ${p.en?.title || ""}`),
+    body: words(`${p.category} ${p.summary} ${p.en?.summary || ""}`),
+    text: `“${p.en?.title || p.title}” is a ${String(p.category || "post").toLowerCase()} I wrote in Indonesian (${p.date?.slice(0, 4)}). ${p.en?.summary || p.summary || ""}`,
     links: [{ label: "Read it", to: `/blog/${p.slug}` }],
   })),
   ...ABOUT.map((s) => ({

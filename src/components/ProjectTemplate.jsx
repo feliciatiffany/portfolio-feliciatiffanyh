@@ -1,5 +1,5 @@
 // src/components/ProjectTemplate.jsx
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import ImagesRow from "./ImagesRow.jsx";
@@ -10,6 +10,7 @@ import LazyVideo from "./LazyVideo.jsx";
 import { projectDate } from "../lib/timeline.js";
 import ScrambledText, { historyTitle } from "./ScrambledText.jsx";
 import { REFLECTIONS } from "../lib/reflections.js";
+import SectionNav from "./SectionNav.jsx";
 
 // Closing section on every big project: the outcome I wanted, the bet I made, how I'd know, what I learned
 const REFLECTION_ROWS = [
@@ -34,6 +35,17 @@ function Reflection({ data }) {
       </dl>
     </section>
   );
+}
+
+// Section list on the left names the story's chapters, not every caption: headings over a slider,
+// video or image-only block are labels for media, and deeper sub-headings belong to their chapter
+function isChapter(el, root) {
+  let depth = 0;
+  for (let e = el.parentElement; e && e !== root; e = e.parentElement) depth++;
+  if (depth > 2) return false;
+  const section = [...root.children].find((c) => c.contains(el));
+  if (!section || section.matches(".proj-slider")) return false;
+  return !!section.querySelector("p, dl, ul, article"); // a section of only images or video is a caption
 }
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
@@ -174,6 +186,7 @@ function MetaRow({ project }) {
 
 export default function ProjectTemplate({ project }) {
   const [lbItem, setLbItem] = useState(null);
+  const bodyRef = useRef(null);
   const layoutAttr = project?.layout ? project.layout : undefined;
 
   const openLightbox = (item) => {
@@ -576,7 +589,8 @@ export default function ProjectTemplate({ project }) {
 
   return (
     <div className="project-template" data-layout={layoutAttr}>
-      <main className="proj-body">
+      <SectionNav rootRef={bodyRef} selector=".proj-minihead" accept={isChapter} deps={[project?.slug]} />
+      <main className="proj-body" ref={bodyRef}>
         <ScrambledText as="h1" className="proj-page-title" {...historyTitle}>
           {project.title}
         </ScrambledText>

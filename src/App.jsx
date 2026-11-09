@@ -102,7 +102,8 @@ function crumbsFor(pathname) {
 async function loadTitle(kind, slug) {
   if (kind === "post") {
     const { default: blog } = await import("./data/blog.json");
-    return (blog.posts || []).find((p) => p.slug === slug)?.title;
+    const post = (blog.posts || []).find((p) => p.slug === slug);
+    return post?.en?.title || post?.title;
   }
   for (const load of Object.values(projectLoaders)) {
     const p = await load();

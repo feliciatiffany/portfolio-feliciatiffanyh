@@ -77,9 +77,9 @@ export default function Blog() {
                     </span>
                   )}
                   <span className="blog-item__text">
-                    <span className="blog-item__title">{p.title}</span>
+                    <span className="blog-item__title">{p.en?.title || p.title}</span>
                     <span className="blog-item__meta">{p.category} · {formatDate(p.date)}</span>
-                    {p.summary && <span className="blog-item__sum">{p.summary}</span>}
+                    {(p.en?.summary || p.summary) && <span className="blog-item__sum">{p.en?.summary || p.summary}</span>}
                   </span>
                 </Link>
               </li>
