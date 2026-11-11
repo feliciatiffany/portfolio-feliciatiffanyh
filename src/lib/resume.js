@@ -15,6 +15,34 @@ export const education = [
  
 export const experience = [
   {
+    title: "Digital Marketing & Website Designer Intern — Riley",
+    date: "Aug 2026 – Present",
+    place: "Remote",
+    href: "https://www.askriley.io/",
+    achievements: ["Designing Riley’s website and digital marketing."],
+  },
+  {
+    title: "Block Builder — Vibe XP",
+    date: "Jul 2026 – Oct 2026",
+    place: "New York, USA · Remote",
+    href: "https://www.vibexp.com/",
+    achievements: [
+      "Optimized 3D models, textures, modular pieces and other art deliverables to support current development priorities.",
+    ],
+  },
+  {
+    title: "Creative & Content Lead — Immigration Records",
+    date: "May 2026 – Aug 2026",
+    place: "Miami, USA · Remote",
+    href: "https://www.instagram.com/immigrationrecords/",
+    achievements: [
+      "Led creative and content direction for campaigns, including social media visuals, promotional materials and brand assets.",
+      "Designed graphics and visual concepts for digital posts, event promotion and artist-related content.",
+      "Kept one visual style across platforms while exploring new ideas for audience engagement.",
+      "Worked with marketing, content and creative teams on campaign planning and visual storytelling.",
+    ],
+  },
+  {
     title: "Student Tutor — Design & Technology Major, Parsons",
     date: "Sept 2025 – Present",
     place: "New York, USA",
@@ -44,7 +72,8 @@ export const experience = [
   },
   {
     title: "Vice President — Indonesian Students Association (NYC) & Officer of Academics — PPI",
-    date: "Jul 2024 – Present",
+    date: "Jul 2024 – Jul 2026",
+    timelineDate: "Jul 2026", // sits on the timeline where it ended
     place: "New York, USA",
     achievements: [
       "Led the Indonesian student association in NYC, overseeing six divisions and engaging 1,000+ members across universities.",
@@ -57,6 +86,9 @@ export const experience = [
     title: "Volunteer — AIESEC",
     date: "Jun 2024 – Aug 2024",
     place: "Yogyakarta, Indonesia",
+    href: "https://aiesec.org/",
+    to: "/book/aiesec", // the picture opens the Summer 2024 flip book
+    media: { src: "/media/organization/aiesec/thumb-cutout.webp", alt: "Summer 2024 with AIESEC", fill: true, cutout: true },
     achievements: [
       "Taught interactive English lessons to 200+ students across three villages, improving access to quality education.",
       "Awarded Best Agent 2024 for outstanding student exchange and volunteer collaboration.",
@@ -107,6 +139,14 @@ export const awards = [
     title: "Third Place — Youth Scientific Work Contest",
     org: "BRIN · National Research and Innovation Agency, Republic of Indonesia",
     year: "2022",
+    caption: "I came back determined to win after two years of trying. I didn’t just win, I also earned a trip and made best friends from all around the country.",
+    href: "https://brin.go.id/en/news/110745/2023-indonesia-to-hold-international-scale-research-and-innovation-exhibition",
+    // Two photos stacked like prints across the card's full width: the award on top, the trip behind it
+    collageBox: { aspect: 1.4 }, // pieces + hover motion stay inside the text width
+    collage: [
+      { src: "/media/awards/brin/trip.jpg", alt: "LKIR finalists on the trip, in front of Bogor Palace", x: 3, y: 4, w: 52, r: 0, hx: -2, hy: -2, hr: -1.5, hs: 1.03, z: 1, card: true },
+      { src: "/media/awards/brin/stage.jpg", alt: "Receiving third place on stage at the LKIR & NYIA 2022 Grand Award", x: 44, y: 23, w: 52, r: 0, hx: 2, hy: 1, hr: 1.5, hs: 1.05, z: 2, card: true },
+    ],
   },
   {
     title: "First Prize — Indonesian Fun Science Award (IFSA 3.0)",
@@ -117,7 +157,7 @@ export const awards = [
     // Cut-out pieces fanned out like a little collage; on hover they spread apart and grow.
     // x/y/w = position and width in % of the collage box, r = tilt; hx/hy/hr/hs = hover move, tilt, scale
     collage: [
-      { src: "/media/awards/ifsa/poster.png", alt: "My poster: what music do koi fish like?", x: 14, y: 8, w: 38, r: -8, hx: -10, hy: -3, hr: -13, hs: 1.06, z: 1, card: true },
+      { src: "/media/awards/ifsa/poster.webp", alt: "My poster: what music do koi fish like?", x: 14, y: 8, w: 38, r: -8, hx: -10, hy: -3, hr: -13, hs: 1.06, z: 1, card: true },
       { src: "/media/awards/ifsa/me.png", alt: "Me, smiling with a peace sign", x: 50, y: 0, w: 32, r: 3, hx: 10, hy: -4, hr: 6, hs: 1.08, z: 2 },
     ],
   },

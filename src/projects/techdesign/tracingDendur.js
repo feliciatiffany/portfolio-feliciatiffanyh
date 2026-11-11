@@ -11,7 +11,6 @@ export default {
   intro:
     "In this project, a camera picks up your gestures so you can trace the carvings of the Temple of Dendur with your body. I wanted people to slow down and really notice the details. It's inspired by contour drawing: looking becomes tracing, and you get to know the work through movement, time, and attention.",
 
-  quote: "What if looking at a temple meant tracing it?",
 
   sections: [
     { kind: "intro" },
@@ -21,16 +20,16 @@ export default {
       kind: "media",
       layout: "slider",
       items: [
-        { type: "image", src: "/media/techdesign/tracingdendur/process1_siteresearch.JPG", alt: "Site Research", title: "Research and Visual Brainstorming" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process2_siteresearch.JPG", alt: "Site Research", title: "Research and Visual Brainstorming" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process3_siteresearch.JPG", alt: "Site Research", title: "Research and Visual Brainstorming" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process4_AIprototyping.png", alt: "AI Prototyping", title: "AI Prototyping" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process5_3dmodel.png", alt: "3D Modeling", title: "3D Modeling" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process6_texturing.png", alt: "Texturing", title: "Texturing & Carving" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process7_texturing.png", alt: "Texturing", title: "Texturing & Carving" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process8_touchdesignerexport.png", alt: "TouchDesigner Export", title: "Export to TouchDesigner" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process9_interactiondesign.png", alt: "Interaction Design", title: "Experience Design" },
-        { type: "image", src: "/media/techdesign/tracingdendur/process10_testing.jpg", alt: "Testing", title: "Testing" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process1_siteresearch.webp", alt: "Site Research", title: "Research and Visual Brainstorming" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process2_siteresearch.webp", alt: "Site Research", title: "Research and Visual Brainstorming" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process3_siteresearch.webp", alt: "Site Research", title: "Research and Visual Brainstorming" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process4_AIprototyping.webp", alt: "AI Prototyping", title: "AI Prototyping" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process5_3dmodel.webp", alt: "3D Modeling", title: "3D Modeling" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process6_texturing.webp", alt: "Texturing", title: "Texturing & Carving" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process7_texturing.webp", alt: "Texturing", title: "Texturing & Carving" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process8_touchdesignerexport.webp", alt: "TouchDesigner Export", title: "Export to TouchDesigner" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process9_interactiondesign.webp", alt: "Interaction Design", title: "Experience Design" },
+        { type: "image", src: "/media/techdesign/tracingdendur/process10_testing.webp", alt: "Testing", title: "Testing" },
       ],
     },
     {
@@ -38,7 +37,7 @@ export default {
       title: "Full Demonstration",
       layout: "video",
       items: [
-        { type: "video", src: "/media/techdesign/tracingdendur/thumbnail.mp4", alt: "Tracing Dendur Full Demonstration" },
+        { type: "video", src: "/media/techdesign/tracingdendur/thumbnail.web.mp4", alt: "Tracing Dendur Full Demonstration" },
       ],
     },
     { kind: "references", title: "References", itemsPath: "references" },

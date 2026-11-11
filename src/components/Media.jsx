@@ -1,4 +1,5 @@
 import React from "react";
+import LazyVideo from "./LazyVideo.jsx";
 
 export default function Media({ item, className, autoPlay = false, controls = false }) {
   if (!item?.src) return null;
@@ -6,6 +7,7 @@ export default function Media({ item, className, autoPlay = false, controls = fa
   const cls = className || "proj-media";
   const type = item.type || "image";
 
+  if (type === "video" && autoPlay) return <LazyVideo className={cls} src={item.src} controls={controls} />;
   if (type === "video") {
     return (
       <video

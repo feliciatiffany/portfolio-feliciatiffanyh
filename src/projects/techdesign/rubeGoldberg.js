@@ -30,7 +30,6 @@ export default {
     "I built a physics-driven Rube Goldberg machine in Unity, where one little chain reaction after another tells a personal story. " +
     "I put together 3D models, materials, sound, motion, camera angles, and lighting so it all flows from one moment to the next.",
 
-  quote: "Missing home, one chain reaction at a time",
 
   linksBlock: {
     title: "Links",
@@ -76,23 +75,23 @@ export default {
 
   // docs slider (png files in your folder)
   documentation: [
-    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation1.png", alt: "Documentation 1" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation2.png", alt: "Documentation 2" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation3.png", alt: "Documentation 3" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation4.png", alt: "Documentation 4" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation5.png", alt: "Documentation 5" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation6.png", alt: "Documentation 6" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation1.webp", alt: "Documentation 1" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation2.webp", alt: "Documentation 2" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation3.webp", alt: "Documentation 3" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation4.webp", alt: "Documentation 4" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation5.webp", alt: "Documentation 5" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/documentation6.webp", alt: "Documentation 6" },
      { type: "image", src: "/media/techdesign/rubeGoldberg/Scene%20thumbnail%20pic.jpg", alt: "Scene thumbnail" },
   
   ],
 
   // brainstorming slider (png files in your folder)
   brainstorming: [
-    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming1.png", alt: "Brainstorming 1" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming2.png", alt: "Brainstorming 2" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming3.png", alt: "Brainstorming 3" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming4.png", alt: "Brainstorming 4" },
-    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming5.png", alt: "Brainstorming 5" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming1.webp", alt: "Brainstorming 1" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming2.webp", alt: "Brainstorming 2" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming3.webp", alt: "Brainstorming 3" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming4.webp", alt: "Brainstorming 4" },
+    { type: "image", src: "/media/techdesign/rubeGoldberg/brainstorming5.webp", alt: "Brainstorming 5" },
   ],
 
  

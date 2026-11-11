@@ -11,7 +11,6 @@ export default {
   intro:
     "On June 13, 2026, I said yes to a last-minute performance at @nycresistor. It grew out of my Decibel project, where I'd been making real-time visuals in TouchDesigner, and turned into a full DJ/VJ set.",
 
-  quote: "One week, one set, and saying yes anyway",
 
   sections: [
     { kind: "intro" },

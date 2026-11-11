@@ -33,11 +33,10 @@ export default {
     "You get them on skewers or in cups, with bold sauces. " +
     "I wanted to give this classic West Java snack a modern upgrade: better quality, cleaner prep, and eco-friendly packaging.",
 
-  quote: "Giving a childhood street snack a modern glow-up",
 
   // 2) Full page final image (hero)
   finalHero: [
-    { type: "image", src: asset("media/graphicdesign/cilok/final.jpg"), alt: "Cilok Brand Sprint — Final Full Page" },
+    { type: "image", src: asset("media/graphicdesign/cilok/final.webp"), alt: "Cilok Brand Sprint — Final Full Page" },
   ],
 
   // 3) Creative brief (kept in YOUR order 1–8)
@@ -127,12 +126,12 @@ export default {
 
   // 4) Other images after the brief (what you told)
   processMedia: [
-    { type: "image", src: asset("media/graphicdesign/cilok/inspiration.jpg"), alt: "Inspiration" },
-    { type: "image", src: asset("media/graphicdesign/cilok/moodboard.jpg"), alt: "Moodboard" },
-    { type: "image", src: asset("media/graphicdesign/cilok/sketch.png"), alt: "Sketch" },
-    { type: "image", src: asset("media/graphicdesign/cilok/progress1.png"), alt: "Progress 1" },
-    { type: "image", src: asset("media/graphicdesign/cilok/progress2.png"), alt: "Progress 2" },
-    { type: "image", src: asset("media/graphicdesign/cilok/progress3.png"), alt: "Progress 3" },
-    { type: "image", src: asset("media/graphicdesign/cilok/progress4.png"), alt: "Progress 4" },
+    { type: "image", src: asset("media/graphicdesign/cilok/inspiration.webp"), alt: "Inspiration" },
+    { type: "image", src: asset("media/graphicdesign/cilok/moodboard.webp"), alt: "Moodboard" },
+    { type: "image", src: asset("media/graphicdesign/cilok/sketch.webp"), alt: "Sketch" },
+    { type: "image", src: asset("media/graphicdesign/cilok/progress1.webp"), alt: "Progress 1" },
+    { type: "image", src: asset("media/graphicdesign/cilok/progress2.webp"), alt: "Progress 2" },
+    { type: "image", src: asset("media/graphicdesign/cilok/progress3.webp"), alt: "Progress 3" },
+    { type: "image", src: asset("media/graphicdesign/cilok/progress4.webp"), alt: "Progress 4" },
   ],
 };

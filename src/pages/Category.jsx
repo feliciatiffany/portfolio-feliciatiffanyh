@@ -1,6 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // File: src/pages/Category.jsx
 // ─────────────────────────────────────────────────────────────────────────────
+import LazyVideo from "../components/LazyVideo.jsx";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { byCategory } from "../lib/projects.js";
@@ -10,6 +11,7 @@ const VALID = new Set(["tech", "digital", "graphic", "others"]);
 
 /* Reusable media node (img/video) */
 function Media({ item, autoPlay = false }) {
+  if (item?.type === "video" && autoPlay) return <LazyVideo src={item.src} poster={item.poster || undefined} />;
   if (item?.type === "video") {
     return (
       <video

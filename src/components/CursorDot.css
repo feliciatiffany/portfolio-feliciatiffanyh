@@ -1,0 +1,72 @@
+/* Coral dot cursor. Every change of state is animated:
+   resting dot → (link) shrinks to a point · (text) stretches into a thin line · (labelled link) small bullet while the label wipes in · (press) squeezes */
+.cursor-dot{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483001; /* above the light trail and the FanyLLM panel */
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity var(--duration-base) ease;
+}
+.cursor-dot[data-hidden="true"]{ opacity: 0; }
+.cursor-dot__mark{
+  /* size is animated directly, so the circle can morph into a line and back */
+  --w: var(--space-3);
+  --h: var(--space-3);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--w);
+  height: var(--h);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  transition:
+    width var(--duration-base) var(--ease-spring),
+    height var(--duration-base) var(--ease-spring),
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) ease;
+}
+/* links and buttons: shrinks to a point */
+.cursor-dot[data-state="link"] .cursor-dot__mark{ --w: var(--space-1-5); --h: var(--space-1-5); }
+/* labelled links: a small bullet beside the words */
+.cursor-dot[data-state="label"] .cursor-dot__mark{ --w: var(--space-2); --h: var(--space-2); }
+/* text: a thin upright line, like the text cursor */
+.cursor-dot[data-state="text"] .cursor-dot__mark{ --w: calc(var(--space-0-5) * 1.5); --h: var(--space-6); }
+.cursor-dot[data-down="true"] .cursor-dot__mark{ transform: translate(-50%, -50%) scale(.6); }
+
+.cursor-dot__label{
+  position: absolute;
+  left: var(--space-3);
+  padding: var(--space-1-5) var(--space-3);
+  border: 1px solid var(--color-tag-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-tag-bg);
+  -webkit-backdrop-filter: blur(var(--space-2));
+  backdrop-filter: blur(var(--space-2));
+  box-shadow: var(--shadow-print);
+  color: var(--color-tag-fg);
+  top: 50%;
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-none);
+  white-space: nowrap;
+  /* hidden: wiped away to the left */
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  transform: translate(calc(var(--space-2) * -1), -50%);
+  transition:
+    clip-path var(--duration-base) var(--ease-out),
+    opacity var(--duration-fast) ease,
+    transform var(--duration-base) var(--ease-out);
+}
+.cursor-dot[data-state="label"] .cursor-dot__label{
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: translate(0, -50%);
+  transition-delay: 60ms; /* the dot shrinks first, then the words write out */
+}
+@media (prefers-reduced-motion: reduce){
+  .cursor-dot, .cursor-dot__mark, .cursor-dot__label{ transition: none; }
+}

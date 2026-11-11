@@ -1,0 +1,10 @@
+{
+  "blend": {
+    "paper": {
+      "$type": "string",
+      "$value": "multiply",
+      "$description": "How images with a white background sit on the page: melted into white paper, shown as-is on dark",
+      "$extensions": { "mode": { "dark": "normal" } }
+    }
+  }
+}

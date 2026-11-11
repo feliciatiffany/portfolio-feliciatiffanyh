@@ -1,0 +1,173 @@
+/* FanyLLM: sparkle button top right, a side panel, and a chip over selected text. All values are tokens. */
+:root{ --llm-w: min(380px, 100vw); }
+.fany-llm{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  width: var(--llm-w);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  background: var(--background);
+  border-left: 1px solid var(--border); /* a hairline edge, no shadow */
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform var(--duration-slow) var(--ease-out), visibility 0s linear var(--duration-slow);
+}
+.fany-llm.is-open{
+  transform: none;
+  visibility: visible;
+  transition: transform var(--duration-slow) var(--ease-out), visibility 0s;
+}
+
+/* trigger, aligned with the breadcrumb on the left */
+.fany-llm__trigger{
+  position: fixed;
+  top: var(--space-5);
+  right: var(--space-5);
+  z-index: 61;
+  display: grid;
+  place-items: center;
+  width: var(--space-8);
+  height: var(--space-8);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-round);
+  background: transparent;
+  color: var(--muted-foreground);
+  transition: color var(--duration-fast) ease, transform var(--duration-slow) var(--ease-out);
+}
+.fany-llm__trigger:hover,
+.fany-llm__trigger:focus-visible,
+.fany-llm__trigger.is-open{ color: var(--accent); outline: none; }
+
+/* Open on a wide screen: the page slides over to make room, and the sparkle rides along beside the panel */
+.page-grid,
+.home-dome,
+.fany-llm__trigger{ transition: margin-right var(--duration-slow) var(--ease-out), right var(--duration-slow) var(--ease-out), color var(--duration-fast) ease, transform var(--duration-slow) var(--ease-out); }
+@media (min-width: 900px){
+  .fanyllm-open .page-grid{ margin-right: var(--llm-w); }
+  .fanyllm-open .home-dome{ right: var(--llm-w); }
+  .fanyllm-open .fany-llm__trigger{ right: calc(var(--llm-w) + var(--space-5)); }
+}
+/* on a phone the panel covers the page, so its own close button takes over */
+@media (max-width: 899px){
+  .fany-llm__trigger.is-open{ opacity: 0; pointer-events: none; }
+}
+.fany-llm__trigger:hover{ transform: rotate(45deg); }
+
+.fany-llm__head{ display: flex; align-items: center; justify-content: space-between; min-height: var(--space-8); }
+.fany-llm__name{ font-family: var(--font-family-title); font-size: var(--text-ui); }
+.fany-llm__tools{ display: flex; gap: var(--space-1); }
+.fany-llm__tools button,
+.fany-llm__form button{
+  display: grid;
+  place-items: center;
+  width: var(--space-8);
+  height: var(--space-8);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-round);
+  background: transparent;
+  color: var(--muted-foreground);
+  transition: color var(--duration-fast) ease;
+}
+.fany-llm__tools button:hover,
+.fany-llm__tools button:focus-visible{ color: var(--foreground); outline: none; }
+
+.fany-llm__log{
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-stack);
+  overflow-y: auto;
+  padding: var(--space-4) 0;
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body);
+}
+.fany-llm__empty{ margin-top: auto; display: grid; gap: var(--space-heading-content); }
+.fany-llm__hello{ margin: 0; font-family: var(--font-family-title); font-size: var(--text-heading-sm); line-height: var(--leading-title); }
+.fany-llm__suggest{ margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-2); }
+.fany-llm__suggest button{
+  padding: var(--space-1) 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  color: var(--muted-foreground);
+  transition: color var(--duration-fast) ease;
+}
+.fany-llm__suggest button:hover,
+.fany-llm__suggest button:focus-visible{ color: var(--accent); outline: none; }
+
+.fany-llm__question{
+  align-self: flex-end;
+  max-width: 85%;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-card);
+  background: var(--color-wash-soft);
+  color: var(--foreground);
+}
+.fany-llm__answer p{ margin: 0; color: var(--foreground); }
+.fany-llm__links{ display: grid; gap: var(--space-1); margin-top: var(--space-caption-media); }
+.fany-llm__link{ color: var(--accent); text-decoration: none; }
+.fany-llm__link:hover,
+.fany-llm__link:focus-visible{ color: var(--color-action-hover); outline: none; }
+
+.fany-llm__form{
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--background);
+}
+.fany-llm__form:focus-within{ border-color: var(--accent); }
+.fany-llm__form input{
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-2) 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-family-body);
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list -- iOS zooms into inputs under 16px */
+  font-size: 16px;
+  color: var(--foreground);
+  outline: none;
+}
+.fany-llm__form button:not(:disabled){ color: var(--accent); }
+.fany-llm__note{ margin: var(--space-2) 0 0; font-family: var(--font-family-body); font-size: var(--text-meta); color: var(--muted-foreground); }
+
+/* chip over selected text */
+.fany-llm__chip{
+  position: fixed;
+  z-index: 62;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  padding: var(--space-1-5) var(--space-3);
+  border: 1px solid var(--color-tag-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-tag-bg);
+  -webkit-backdrop-filter: blur(var(--space-2));
+  backdrop-filter: blur(var(--space-2));
+  box-shadow: var(--shadow-print);
+  color: var(--color-tag-fg);
+  font-family: var(--font-family-body);
+  font-size: var(--text-ui);
+  white-space: nowrap;
+  transform: translate(-50%, calc(-100% - var(--space-2)));
+  animation: fany-llm-chip var(--duration-base) var(--ease-out);
+}
+.fany-llm__chip:hover,
+.fany-llm__chip:focus-visible{ border-color: var(--color-tag-fg); color: var(--color-action-hover); outline: none; }
+@keyframes fany-llm-chip{ from{ opacity: 0; transform: translate(-50%, calc(-100% + var(--space-1))); } }
+
+@media (prefers-reduced-motion: reduce){
+  .fany-llm, .fany-llm.is-open{ transition: none; }
+  .fany-llm__chip{ animation: none; }
+}

@@ -43,7 +43,6 @@ export default {
     "Out-of-Place Blooms is a little 3D collection of flowers surviving where they really shouldn't. I kept wondering what a flower's “natural” habitat even means.\n\n" +
     "So I made four stylized dioramas, each one dropping a flower into a biome it doesn't belong in. I wanted every piece to feel pretty and a bit uncomfortable at the same time, with the flower adapting through its shape, texture, and materials. Together they read as one collectible series.",
 
-  quote: "What if flowers bloomed where they don't belong?",
 
   
   sideVideos: [
@@ -54,10 +53,10 @@ export default {
   ],
 
   wideVideos: [
-    { src: "/media/techdesign/blossom/Final_cactus_wide2.mp4", alt: "Cactus diorama wide view" },
-    { src: "/media/techdesign/blossom/Final_lotus_wide.mp4", alt: "Lotus diorama wide view" },
-    { src: "/media/techdesign/blossom/Final_rose_wide.mp4", alt: "Rose diorama wide view" },
-    { src: "/media/techdesign/blossom/Final_sunflower_wide.mp4", alt: "Sunflower diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_cactus_wide2.web.mp4", alt: "Cactus diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_lotus_wide.web.mp4", alt: "Lotus diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_rose_wide.web.mp4", alt: "Rose diorama wide view" },
+    { src: "/media/techdesign/blossom/Final_sunflower_wide.web.mp4", alt: "Sunflower diorama wide view" },
   ],
 
   closeupVideos: [

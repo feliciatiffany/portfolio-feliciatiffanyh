@@ -55,7 +55,6 @@ export default {
     "We Hear You is a gesture-based experience where you wander a soft, quiet landscape and find the memories, thoughts, and small truths of people from different generations, jobs, and backgrounds. It's also my first try at turning a survey into something interactive.\n\n" +
     "“How might we help strangers share honest feelings in a way that feels safe, and make answering questions feel inviting instead of forced?”",
 
-  quote: "Understanding ourselves through other people's stories",
 
   // ✅ Full Project Demonstration
   youtubes: [
@@ -67,11 +66,11 @@ export default {
 
   // ✅ Posters + Guide (order preserved)
   media: [
-    { type: "image", src: "/media/techdesign/wehearyou/poster_1@300x.png", alt: "Poster 1" },
-    { type: "image", src: "/media/techdesign/wehearyou/poster_2@300x.png", alt: "Poster 2" },
-    { type: "image", src: "/media/techdesign/wehearyou/poster_3@300x.png", alt: "Poster 3" },
-    { type: "image", src: "/media/techdesign/wehearyou/poster_4@300x.png", alt: "Poster 4" },
-    { type: "image", src: "/media/techdesign/wehearyou/guide@300x.png", alt: "Gesture Guide" },
+    { type: "image", src: "/media/techdesign/wehearyou/poster_1@300x.webp", alt: "Poster 1" },
+    { type: "image", src: "/media/techdesign/wehearyou/poster_2@300x.webp", alt: "Poster 2" },
+    { type: "image", src: "/media/techdesign/wehearyou/poster_3@300x.webp", alt: "Poster 3" },
+    { type: "image", src: "/media/techdesign/wehearyou/poster_4@300x.webp", alt: "Poster 4" },
+    { type: "image", src: "/media/techdesign/wehearyou/guide@300x.webp", alt: "Gesture Guide" },
   ],
 
   // ✅ Row 5 LEFT — Issues Addressed & Concept
@@ -86,7 +85,7 @@ export default {
       {
         title: "A survey that doesn't feel like a survey",
         paragraphs: [
-          "This is also an early experiment in making surveys more fun and more honest. Normal surveys feel repetitive and transactional, so people give rushed, shallow, or “safe” answers. My guess was that people share more thoughtfully when it feels like an experience, not a form.",
+          "This is also an early experiment in making surveys more fun and more honest. Normal surveys feel repetitive and transactional, so people give rushed, shallow, or “safe” answers. My guess was that people share more thoughtfully when it feels like an experience, not a form. So I hid the survey inside a calm 3D world, with anonymous messages, a gentle start, and quiet hand gestures instead of voice or buttons.",
           "In informal testing, people took more time and wrote richer messages when the prompt was “leave a thought for someone you’ll never meet,” and when the experience greeted them gently instead of firing questions right away.",
           "I also saw people hesitate at the start when they didn't know what to expect. That's why the final version has guidance, and why next time I'd add a clearer consent moment and a short tutorial.",
         ],
@@ -187,23 +186,23 @@ export default {
   // ✅ Process media placed between stages (order preserved)
   processMedia: {
     brainstorming: [
-      { type: "image", src: "/media/techdesign/wehearyou/process1.jpg", alt: "Process 1" },
+      { type: "image", src: "/media/techdesign/wehearyou/process1.webp", alt: "Process 1" },
     ],
     empathize: [
-      { type: "image", src: "/media/techdesign/wehearyou/process2.jpg", alt: "Process 2" },
-      { type: "image", src: "/media/techdesign/wehearyou/process3.jpg", alt: "Process 3" },
+      { type: "image", src: "/media/techdesign/wehearyou/process2.webp", alt: "Process 2" },
+      { type: "image", src: "/media/techdesign/wehearyou/process3.webp", alt: "Process 3" },
     ],
     prototype: [
-      { type: "image", src: "/media/techdesign/wehearyou/process4.jpg", alt: "Process 4" },
-      { type: "image", src: "/media/techdesign/wehearyou/process5.jpg", alt: "Process 5" },
-      { type: "image", src: "/media/techdesign/wehearyou/flowchart.jpg", alt: "System Flowchart" },
+      { type: "image", src: "/media/techdesign/wehearyou/process4.webp", alt: "Process 4" },
+      { type: "image", src: "/media/techdesign/wehearyou/process5.webp", alt: "Process 5" },
+      { type: "image", src: "/media/techdesign/wehearyou/flowchart.webp", alt: "System Flowchart" },
     ],
     final: [
-      { type: "image", src: "/media/techdesign/wehearyou/poster_1@300x.png", alt: "Poster 1" },
-      { type: "image", src: "/media/techdesign/wehearyou/poster_2@300x.png", alt: "Poster 2" },
-      { type: "image", src: "/media/techdesign/wehearyou/poster_3@300x.png", alt: "Poster 3" },
-      { type: "image", src: "/media/techdesign/wehearyou/poster_4@300x.png", alt: "Poster 4" },
-      { type: "image", src: "/media/techdesign/wehearyou/guide@300x.png", alt: "Gesture Guide" },
+      { type: "image", src: "/media/techdesign/wehearyou/poster_1@300x.webp", alt: "Poster 1" },
+      { type: "image", src: "/media/techdesign/wehearyou/poster_2@300x.webp", alt: "Poster 2" },
+      { type: "image", src: "/media/techdesign/wehearyou/poster_3@300x.webp", alt: "Poster 3" },
+      { type: "image", src: "/media/techdesign/wehearyou/poster_4@300x.webp", alt: "Poster 4" },
+      { type: "image", src: "/media/techdesign/wehearyou/guide@300x.webp", alt: "Gesture Guide" },
     ],
   },
 
@@ -213,27 +212,27 @@ export default {
       title: "Live Documentation",
       layout: "slider",
       media: [
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation1.jpeg", alt: "Live Documentation 1" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation2.jpeg", alt: "Live Documentation 2" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation3.jpeg", alt: "Live Documentation 3" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation4.jpeg", alt: "Live Documentation 4" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation5.jpeg", alt: "Live Documentation 5" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation6.jpeg", alt: "Live Documentation 6" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation7.jpeg", alt: "Live Documentation 7" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation8.jpeg", alt: "Live Documentation 8" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation9.jpeg", alt: "Live Documentation 9" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation10.jpeg", alt: "Live Documentation 10" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation11.jpeg", alt: "Live Documentation 11" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation12.jpeg", alt: "Live Documentation 12" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation13.jpeg", alt: "Live Documentation 13" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation14.JPG", alt: "Live Documentation 14" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation15.jpeg", alt: "Live Documentation 15" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation16.JPG", alt: "Live Documentation 16" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation17.jpeg", alt: "Live Documentation 17" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation18.jpeg", alt: "Live Documentation 18" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation19.jpeg", alt: "Live Documentation 19" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation20.jpeg", alt: "Live Documentation 20" },
-        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation21.jpeg", alt: "Live Documentation 21" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation1.webp", alt: "Live Documentation 1" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation2.webp", alt: "Live Documentation 2" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation3.webp", alt: "Live Documentation 3" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation4.webp", alt: "Live Documentation 4" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation5.webp", alt: "Live Documentation 5" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation6.webp", alt: "Live Documentation 6" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation7.webp", alt: "Live Documentation 7" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation8.webp", alt: "Live Documentation 8" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation9.webp", alt: "Live Documentation 9" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation10.webp", alt: "Live Documentation 10" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation11.webp", alt: "Live Documentation 11" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation12.webp", alt: "Live Documentation 12" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation13.webp", alt: "Live Documentation 13" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation14.webp", alt: "Live Documentation 14" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation15.webp", alt: "Live Documentation 15" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation16.webp", alt: "Live Documentation 16" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation17.webp", alt: "Live Documentation 17" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation18.webp", alt: "Live Documentation 18" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation19.webp", alt: "Live Documentation 19" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation20.webp", alt: "Live Documentation 20" },
+        { type: "image", src: "/media/techdesign/wehearyou/livedocumentation21.webp", alt: "Live Documentation 21" },
       ],
     },
     youtubes: [

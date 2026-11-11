@@ -4,9 +4,9 @@
 }
 
 .line-filter__h{
-  margin: 0 0 12px;
-  font-size: 13px;
-  font-weight: 700;
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-ui);
+  font-weight: var(--font-weight-bold);
 }
 
 .line-filter__list{ display: grid; }
@@ -15,7 +15,7 @@
   --tone: var(--tc, var(--lf-accent));
   position: relative;
   font: inherit;
-  padding: 2px 0;
+  padding: var(--space-0-5) 0;
   background: none;
   border: 0;
   cursor: pointer;
@@ -44,8 +44,8 @@
 .line-filter__item:focus-visible .line-filter__label{ opacity: 1; letter-spacing: .05em; }
 
 /* ── Vertical (blog): label slides right near the cursor ── */
-.line-filter--column .line-filter__list{ gap: 10px; justify-items: start; }
-.line-filter--column .line-filter__item{ font-size: 13px; }
+.line-filter--column .line-filter__list{ gap: var(--space-2-5); justify-items: start; }
+.line-filter--column .line-filter__item{ font-size: var(--text-ui); }
 .line-filter--column .line-filter__label{ transform: translateX(calc(var(--effect, 0) * 10px)); }
 
 /* ── Horizontal (timeline): label lifts near the cursor ── */
@@ -53,11 +53,11 @@
   grid-template-columns: repeat(3, minmax(0, 200px));
   justify-content: center;
   justify-items: center;
-  gap: 22px 16px;
+  gap: var(--space-6) var(--space-4);
 }
 .line-filter--row .line-filter__item{
-  font-size: clamp(14px, 1.4vw, 17px);
-  padding: 2px 0;
+  font-size: var(--text-lead);
+  padding: var(--space-0-5) 0;
   text-align: center;
 }
 .line-filter--row .line-filter__label{
@@ -70,4 +70,19 @@
 }
 @media (prefers-reduced-motion: reduce){
   .line-filter__label{ transform: none !important; transition: none; }
+}
+
+/* ── Vertical nav, quieter: muted heading, items in muted ink; switched-off items just fade (no strike) ── */
+.line-filter--column .line-filter__h{ font-weight: var(--font-weight-regular); color: var(--muted-foreground); margin-bottom: var(--space-2); }
+.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ text-decoration: none; opacity: calc(.35 + var(--effect, 0) * .45); filter: none; }
+.line-filter--column .line-filter__item[aria-pressed="true"] .line-filter__label::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--space-3) * -1);
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  background: var(--tc, var(--lf-accent));
+  transform: translateY(-50%) scale(var(--effect, 0));
+  transition: transform var(--duration-fast) ease;
 }

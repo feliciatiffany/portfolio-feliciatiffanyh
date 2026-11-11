@@ -8,11 +8,11 @@
             "title": "Red Doors",
             "category": "others",
             "num": 2023,
-            "label": "Edu Game",
+            "label": "Concept · Edu Game",
             "media": [
                 {
                     "type": "image",
-                    "src": "/media/techdesign/redDoors/Slide1.jpeg",
+                    "src": "/media/techdesign/redDoors/Slide1.webp",
                     "alt": "Red Doors"
                 }
             ]
@@ -26,7 +26,7 @@
       "media": [
         {
           "type": "video",
-          "src": "/media/others/theTrueLight/thumbnail_theTrueLight.mp4",
+          "src": "/media/others/theTrueLight/thumbnail_theTrueLight.web.mp4",
           "alt": "The True Light"
         }
       ]
@@ -39,7 +39,7 @@
             "media": [
                 {
                     "type": "image",
-                    "src": "/media/techdesign/ppeCooler/ppeCooler.png",
+                    "src": "/media/techdesign/ppeCooler/ppeCooler.webp",
                     "alt": "PPE Cooler Box"
                 }
             ]

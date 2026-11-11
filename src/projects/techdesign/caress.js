@@ -17,7 +17,6 @@ export default {
   intro:
      "Caress A Bear is my playful twist on the arcade game Whack-A-Mole. Except here you don't whack anything, you just try to pet Vano, a cheeky little bear. He pops out to say hi, then dodges your hand. The longer you play, the more excited he gets, speeding up until he's almost playing back with you.",
 
-  quote: "You don't whack the bear, you just try to pet him",
 
 
   sections: [
@@ -83,19 +82,19 @@ export default {
   },
 
   overviewImages: [
-    { type: "image", src: "/media/techdesign/caress/Caress_main 2.jpeg", alt: "Caress A Bear main image" },
-    { type: "image", src: "/media/techdesign/caress/background bear.png", alt: "Caress A Bear background image" },
+    { type: "image", src: "/media/techdesign/caress/Caress_main 2.webp", alt: "Caress A Bear main image" },
+    { type: "image", src: "/media/techdesign/caress/background bear.webp", alt: "Caress A Bear background image" },
   ],
 
   processImages: [
-    { type: "image", src: "/media/techdesign/caress/caress_process.JPG", alt: "Caress A Bear process image 1" },
-    { type: "image", src: "/media/techdesign/caress/caress_process2.JPG", alt: "Caress A Bear process image 2" },
-    { type: "image", src: "/media/techdesign/caress/caress_process3.JPG", alt: "Caress A Bear process image 3" },
-    { type: "image", src: "/media/techdesign/caress/caress_process4.JPG", alt: "Caress A Bear process image 4" },
+    { type: "image", src: "/media/techdesign/caress/caress_process.webp", alt: "Caress A Bear process image 1" },
+    { type: "image", src: "/media/techdesign/caress/caress_process2.webp", alt: "Caress A Bear process image 2" },
+    { type: "image", src: "/media/techdesign/caress/caress_process3.webp", alt: "Caress A Bear process image 3" },
+    { type: "image", src: "/media/techdesign/caress/caress_process4.webp", alt: "Caress A Bear process image 4" },
   ],
 
   media: [
-    { type: "image", src: "/media/techdesign/caress/Caress_main 2.jpeg", alt: "Caress A Bear preview image" },
+    { type: "image", src: "/media/techdesign/caress/Caress_main 2.webp", alt: "Caress A Bear preview image" },
   ],
 
   row6: null,

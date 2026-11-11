@@ -1,13 +1,26 @@
 // src/components/ProjectTemplate.jsx
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import ImagesRow from "./ImagesRow.jsx";
 import ImagesSlider from "./ImagesSlider.jsx";
 import DescriptionProject1 from "./DescriptionProject1.jsx";
 import Lightbox from "./Lightbox.jsx";
+import LazyVideo from "./LazyVideo.jsx";
 import { projectDate } from "../lib/timeline.js";
 import ScrambledText, { historyTitle } from "./ScrambledText.jsx";
+import SectionNav from "./SectionNav.jsx";
+
+// Section list on the left names the story's chapters, not every caption: headings over a slider,
+// video or image-only block are labels for media, and deeper sub-headings belong to their chapter
+function isChapter(el, root) {
+  let depth = 0;
+  for (let e = el.parentElement; e && e !== root; e = e.parentElement) depth++;
+  if (depth > 2) return false;
+  const section = [...root.children].find((c) => c.contains(el));
+  if (!section || section.matches(".proj-slider")) return false;
+  return !!section.querySelector("p, dl, ul, article"); // a section of only images or video is a caption
+}
 
 const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
 
@@ -19,22 +32,18 @@ function AutoVideo({ src, alt, poster }) {
         ? "video/quicktime"
         : undefined;
 
+  // plays like autoPlay, but only downloads once it's on screen
   return (
-    <video
+    <LazyVideo
       className="proj-videoWide__video"
       aria-label={alt || "Project video"}
+      src={src}
+      type={type}
       poster={poster}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
       controls={false}
       disablePictureInPicture
       controlsList="nodownload noplaybackrate noremoteplayback"
-    >
-      <source src={src} type={type} />
-    </video>
+    />
   );
 }
 
@@ -77,7 +86,7 @@ function InstagramEmbed({ url, captioned = false }) {
   if (!url) return null;
 
   return (
-    <div style={{ display: "grid", gap: 10 }}>
+    <div className="proj-captioned">
       <blockquote
         className="instagram-media"
         data-instgrm-permalink={url}
@@ -151,6 +160,7 @@ function MetaRow({ project }) {
 
 export default function ProjectTemplate({ project }) {
   const [lbItem, setLbItem] = useState(null);
+  const bodyRef = useRef(null);
   const layoutAttr = project?.layout ? project.layout : undefined;
 
   const openLightbox = (item) => {
@@ -270,7 +280,7 @@ export default function ProjectTemplate({ project }) {
     const kind = s?.kind;
 
     if (kind === "intro") {
-      if (!project.intro && !project.quote) return null;
+      if (!project.intro) return null;
       return (
         <section key={i} className={joinClasses("proj-section proj-intro", s.className)}>
           {project.intro
@@ -280,7 +290,6 @@ export default function ProjectTemplate({ project }) {
                   <p key={j} className="proj-text">{para}</p>
                 ))
             : null}
-          {project.quote ? <h2 className="proj-quote">“{project.quote}” - me</h2> : null}
         </section>
       );
     }
@@ -345,9 +354,9 @@ export default function ProjectTemplate({ project }) {
           if (!items?.length) return null;
 
           return (
-            <div style={{ display: "grid", gap: 12 }}>
+            <div className="proj-block">
               {title ? <h3 className="proj-minihead">{title}</h3> : null}
-              <div style={{ display: "grid", gap: 18 }}>
+              <div className="proj-stack">
                 {items.map((it, idx) => {
                   const url = typeof it === "string" ? it : it?.url;
                   const captioned = typeof it === "object" ? !!it.captioned : !!data.captioned;
@@ -367,7 +376,7 @@ export default function ProjectTemplate({ project }) {
 
           if (lay === "video") {
             return (
-              <div style={{ display: "grid", gap: 12 }}>
+              <div className="proj-block">
                 {title ? <h3 className="proj-minihead">{title}</h3> : null}
                 <div className="proj-videoGrid">
                   {items.map((v, idx) => (
@@ -382,7 +391,7 @@ export default function ProjectTemplate({ project }) {
 
           const isSlider = lay === "slider";
           return (
-            <div style={{ display: "grid", gap: 12 }}>
+            <div className="proj-block">
               {title ? <h3 className="proj-minihead">{title}</h3> : null}
               {isSlider ? (
                 <ImagesSlider items={items} onOpen={openLightbox} showTitle={false} />
@@ -430,7 +439,7 @@ export default function ProjectTemplate({ project }) {
       if (!videoId) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           <h3 className="proj-minihead">{s.title || "Video"}</h3>
           <div className="yt-wrap">
             <iframe
@@ -450,10 +459,10 @@ export default function ProjectTemplate({ project }) {
       if (!Array.isArray(ys) || !ys.length) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           <h3 className="proj-minihead">{s.title || "Videos"}</h3>
           {ys.map((y) => (
-            <div key={y.videoId} style={{ display: "grid", gap: 10, marginBottom: 18 }}>
+            <div key={y.videoId} className="proj-captioned">
               <div className="proj-row6__link">{y.title}</div>
               <div className="yt-wrap">
                 <iframe
@@ -477,9 +486,9 @@ export default function ProjectTemplate({ project }) {
       if (!items?.length) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           {title ? <h3 className="proj-minihead">{title}</h3> : null}
-          <div style={{ display: "grid", gap: 18 }}>
+          <div className="proj-stack">
             {items.map((it, idx) => {
               const url = typeof it === "string" ? it : it?.url;
               const captioned = typeof it === "object" ? !!it.captioned : !!s.captioned;
@@ -490,12 +499,50 @@ export default function ProjectTemplate({ project }) {
       );
     }
 
+    if (kind === "paper") {
+      const paper = s.data || getByPath(project, s.dataPath);
+      if (!paper?.parts?.length) return null;
+      const block = (b, k) =>
+        typeof b === "string" ? (
+          <p key={k}>{b}</p>
+        ) : b.ordered ? (
+          <ol key={k}>{b.list.map((li) => <li key={li}>{li}</li>)}</ol>
+        ) : (
+          <ul key={k}>{b.list.map((li) => <li key={li}>{li}</li>)}</ul>
+        );
+      const part = (pt) => (
+        <div key={pt.heading} className="proj-paper__part">
+          <h4 className="proj-paper__h">{pt.heading}</h4>
+          {pt.blocks.map(block)}
+        </div>
+      );
+      const [first, ...rest] = paper.parts;
+      return (
+        <section key={i} className={joinClasses("proj-section proj-paper", s.className)}>
+          {s.title ? <h3 className="proj-minihead">{s.title}</h3> : null}
+          <article className="proj-paper__doc">
+            <header className="proj-paper__head">
+              <p className="proj-paper__title">{paper.title}</p>
+              {paper.byline ? <p className="proj-paper__by">{paper.byline}</p> : null}
+            </header>
+            {part(first)}
+            {rest.length > 0 && (
+              <details className="proj-paper__more">
+                <summary>Read the full paper</summary>
+                {rest.map(part)}
+              </details>
+            )}
+          </article>
+        </section>
+      );
+    }
+
     if (kind === "references") {
       const refs = s.items || getByPath(project, s.itemsPath);
       if (!Array.isArray(refs) || !refs.length) return null;
 
       return (
-        <section key={i} className={joinClasses("proj-row6", s.className)} style={{ marginTop: 18 }}>
+        <section key={i} className={joinClasses("proj-row6", s.className)}>
           <h3 className="proj-minihead">{s.title || "References"}</h3>
           <ul className="proj-references">
             {refs.map((r) => (
@@ -515,12 +562,14 @@ export default function ProjectTemplate({ project }) {
 
   return (
     <div className="project-template" data-layout={layoutAttr}>
-      <main className="proj-body">
+      <SectionNav rootRef={bodyRef} selector=".proj-minihead" accept={isChapter} deps={[project?.slug]} />
+      <main className="proj-body" ref={bodyRef}>
         <ScrambledText as="h1" className="proj-page-title" {...historyTitle}>
           {project.title}
         </ScrambledText>
-        <Hero item={project.media?.[0]} />
-        <MetaRow project={project} />
+        {/* `bare` pages (e.g. Past Work) are just the description followed by every image */}
+        {!project.bare && <Hero item={project.media?.[0]} />}
+        {!project.bare && <MetaRow project={project} />}
         {sections.map(renderSection)}
       </main>
 

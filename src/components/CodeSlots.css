@@ -1,14 +1,14 @@
 .code-slots {
-  --cs-accent: #f5f5f5;
-  --cs-ink: #f5f5f5;
-  --cs-slot: #27272a;
-  --cs-digit: #18181b;
-  --cs-danger: #ff3b30;
+  --cs-accent: var(--accent);
+  --cs-ink: var(--foreground);
+  --cs-slot: var(--muted);
+  --cs-digit: var(--accent-foreground);
+  --cs-danger: var(--destructive);
   --cs-size: 44px;
   --cs-height: 52px;
-  --cs-gap: 8px;
-  --cs-radius: 12px;
-  --cs-font: 22px;
+  --cs-gap: var(--space-2);
+  --cs-radius: var(--radius-card);
+  --cs-font: var(--text-heading-sm);
 
   position: relative;
   display: inline-block;
@@ -40,6 +40,7 @@
   background: transparent;
   color: transparent;
   caret-color: transparent;
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list -- iOS zooms into inputs under 16px */
   font-size: 16px;
   opacity: 0;
   cursor: inherit;
@@ -112,8 +113,8 @@
   color: var(--cs-digit);
   font-family: inherit;
   font-size: var(--cs-font);
-  font-weight: 600;
-  line-height: 1;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-none);
   font-variant-numeric: tabular-nums;
 }
 
@@ -155,7 +156,7 @@
   position: absolute;
   width: 1px;
   height: 1px;
-  margin: -1px;
+  margin: calc(var(--space-px) * -1);
   padding: 0;
   border: 0;
   overflow: hidden;

@@ -31,15 +31,14 @@ export default {
     "For this project I took things happening right now, in society and in tech, and asked: where could this go? Then I designed a believable future around it. I didn't set a date, so the world could stretch as far ahead as the idea needed.\n\n" +
     "Protocol Nation is a world where people can move their physical selves into a digital world on a screen (the full story is in the abstract below). The projection mapping shows a day in the life of a “Surver,” a human who lives on a screen, and how they shape and share that digital world. The website is the prologue: it sets the mood, introduces the world, and also works on its own as an interactive React site, with live documentation at the end.\n\n" +
     "I didn't want to just design one gadget or interface. I was more curious about everything around them: the relationships, systems, habits, and rules that make a world actually feel alive.",
-  quote: "What if we could live inside a server?",
 
   media: [
-    { type: "image", src: "/media/techdesign/protocolNation/documentation1.JPG", alt: "Documentation 1" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation2.JPG", alt: "Documentation 2" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation3.JPG", alt: "Documentation 3" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation4.JPG", alt: "Documentation 4" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation5.JPG", alt: "Documentation 5" },
-    { type: "image", src: "/media/techdesign/protocolNation/documentation6.JPG", alt: "Documentation 6" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation1.webp", alt: "Documentation 1" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation2.webp", alt: "Documentation 2" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation3.webp", alt: "Documentation 3" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation4.webp", alt: "Documentation 4" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation5.webp", alt: "Documentation 5" },
+    { type: "image", src: "/media/techdesign/protocolNation/documentation6.webp", alt: "Documentation 6" },
   ],
 
   descLeft: {
@@ -62,6 +61,7 @@ export default {
           "I built it with React and CSS. Each scroll snaps to a full-screen “line,” so the story reads like digital poetry: one sentence or animation at a time.",
           "I added small animations, timed video, and ambient sound to hint at routing, loading, and bodies turning into interfaces. On the technical side, it was my playground for full-height sections, scroll snapping, and syncing media.",
           "It works as the “prologue” to the projection mapping, so by the time you see the installation, you're already inside the server world.",
+          "I'd know it worked if people scroll all the way through, can explain what a Surver is by the time they reach the projection, and come away with questions about how this world works.",
         ],
       },
       {
@@ -86,10 +86,10 @@ export default {
         { type: "image", src: "/media/techdesign/protocolNation/website1.png", alt: "Website 1" },
         { type: "image", src: "/media/techdesign/protocolNation/website2.png", alt: "Website 2" },
         { type: "image", src: "/media/techdesign/protocolNation/website3.png", alt: "Website 3" },
-        { type: "image", src: "/media/techdesign/protocolNation/website4.png", alt: "Website 4" },
+        { type: "image", src: "/media/techdesign/protocolNation/website4.webp", alt: "Website 4" },
         { type: "image", src: "/media/techdesign/protocolNation/website5.png", alt: "Website 5" },
         { type: "image", src: "/media/techdesign/protocolNation/website6.png", alt: "Website 6" },
-        { type: "image", src: "/media/techdesign/protocolNation/website7.png", alt: "Website 7" },
+        { type: "image", src: "/media/techdesign/protocolNation/website7.webp", alt: "Website 7" },
       ],
     },
 

@@ -1,0 +1,68 @@
+{
+  "duration": {
+    "fast": {
+      "$type": "duration",
+      "$value": "200ms",
+      "$description": "Colour and small hover changes"
+    },
+    "base": {
+      "$type": "duration",
+      "$value": "300ms",
+      "$description": "Most hover movement"
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": "500ms",
+      "$description": "Spreading collages, glows"
+    },
+    "memory": {
+      "$type": "duration",
+      "$value": "1400ms",
+      "$description": "Things resolving out of the past (reveals)"
+    },
+    "draw": {
+      "$type": "duration",
+      "$value": "2600ms",
+      "$description": "Timeline lines drawing in"
+    }
+  },
+  "ease": {
+    "out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.2,
+        0.7,
+        0.2,
+        1
+      ],
+      "$description": "Default: quick start, soft landing"
+    },
+    "spring": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.2,
+        0.8,
+        0.2,
+        1.15
+      ],
+      "$description": "A small overshoot for playful pieces"
+    },
+    "in-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.45,
+        0,
+        0.2,
+        1
+      ],
+      "$description": "Slow drift both ways (reveals, lines)"
+    }
+  },
+  "scale": {
+    "hover": {
+      "$type": "number",
+      "$value": 1.03,
+      "$description": "How much a hovered image grows. Recent timeline images rest at paragraph width ÷ this, so hovered = paragraph width"
+    }
+  }
+}

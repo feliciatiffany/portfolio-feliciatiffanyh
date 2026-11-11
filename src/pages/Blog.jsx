@@ -70,16 +70,16 @@ export default function Blog() {
           <ol className="blog__list line-reveal">
             {posts.map((p) => (
               <li key={p.slug} className={`blog-item reveal${p.cover ? " has-cover" : ""}`}>
-                <Link to={`/blog/${p.slug}`} className="blog-item__link">
+                <Link to={`/blog/${p.slug}`} className="blog-item__link" data-cursor="Read">
                   {p.cover && (
                     <span className="blog-item__media shine">
                       <img src={p.cover} alt="" loading="lazy" />
                     </span>
                   )}
                   <span className="blog-item__text">
-                    <span className="blog-item__title">{p.title}</span>
+                    <span className="blog-item__title">{p.en?.title || p.title}</span>
                     <span className="blog-item__meta">{p.category} · {formatDate(p.date)}</span>
-                    {p.summary && <span className="blog-item__sum">{p.summary}</span>}
+                    {(p.en?.summary || p.summary) && <span className="blog-item__sum">{p.en?.summary || p.summary}</span>}
                   </span>
                 </Link>
               </li>

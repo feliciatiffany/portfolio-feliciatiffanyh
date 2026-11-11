@@ -11,38 +11,37 @@ export default {
   intro:
     "I made a little booklet of “Fun Facts About Indonesia,” my home country. I wanted to share our culture, nature, and weird trivia, and let the typography do most of the storytelling.",
 
-  quote: "Letting type tell the fun facts about home",
 
   // Row 4: all pages become the gallery
 
   media: [
     // slider 1 pages
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-01.png", alt: "Book page 1" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-02.jpg", alt: "Book page 2" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-02b.png", alt: "Book page 2 (variation)" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-03.png", alt: "Book page 3" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-04b.jpg", alt: "Book page 4 (variation B)" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-05.jpg", alt: "Book page 5" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-06.jpg", alt: "Book page 6" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-07.png", alt: "Book page 7" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-07a.png", alt: "Book page 7 (detail A)" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-07b.png", alt: "Book page 7 (detail B)" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-08.png", alt: "Book page 8" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/page-09.png", alt: "Book page 9" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-01.webp", alt: "Book page 1" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-02.webp", alt: "Book page 2" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-02b.webp", alt: "Book page 2 (variation)" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-03.webp", alt: "Book page 3" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-04b.webp", alt: "Book page 4 (variation B)" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-05.webp", alt: "Book page 5" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-06.webp", alt: "Book page 6" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-07.webp", alt: "Book page 7" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-07a.webp", alt: "Book page 7 (detail A)" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-07b.webp", alt: "Book page 7 (detail B)" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-08.webp", alt: "Book page 8" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/page-09.webp", alt: "Book page 9" },
 
   ],
   slider: {
   title: "Book Mockups / Spreads",
   items: [
     { type: "image", src: "/media/graphicdesign/bookIndo/mock-01-title.png", alt: "Mockup title" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/mock-01-front.png", alt: "Mockup front cover" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/mock-02.png", alt: "Mockup spread 2" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/mock-01-front.webp", alt: "Mockup front cover" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/mock-02.webp", alt: "Mockup spread 2" },
     { type: "image", src: "/media/graphicdesign/bookIndo/mock-03.png", alt: "Mockup spread 3" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/mock-04.png", alt: "Mockup spread 4" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/mock-05.png", alt: "Mockup spread 5" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/mock-06.png", alt: "Mockup spread 6" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/mock-07.png", alt: "Mockup spread 7" },
-    { type: "image", src: "/media/graphicdesign/bookIndo/mock-08.png", alt: "Mockup spread 8" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/mock-04.webp", alt: "Mockup spread 4" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/mock-05.webp", alt: "Mockup spread 5" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/mock-06.webp", alt: "Mockup spread 6" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/mock-07.webp", alt: "Mockup spread 7" },
+    { type: "image", src: "/media/graphicdesign/bookIndo/mock-08.webp", alt: "Mockup spread 8" },
     { type: "image", src: "/media/graphicdesign/bookIndo/mock-09.png", alt: "Mockup spread 9" },
   ],
 },

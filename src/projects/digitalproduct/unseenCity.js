@@ -31,7 +31,6 @@ export default {
     intro:
         "Cities are made of so many layers: people, nature, weather, infrastructure, and digital traces, some visible and some not. I got really into Mark Graham’s idea of the city as a palimpsest, a page that keeps getting rewritten but still shows marks of older data, maps, stories, and histories.\n\n" +
         "To peel back those layers, I picked one Site of Interest and did my own field research, collecting small “data points” by observing and documenting. Then I turned what I found into a few creative outputs: a visualization of the experience, a short narrative, and a site data document. I wanted to capture how the place actually feels, and also show the hidden structures that shape how it’s lived and seen.",
-    quote: "What looks like data is sometimes someone’s whole day",
 
     // This is the block that appears immediately after intro
     linksBlock: {
@@ -58,24 +57,24 @@ export default {
 
     // Website documentation slider
     documentation: [
-        { type: "image", src: "/media/techdesign/unseenCity/documentation1.png", alt: "Website documentation 1" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation2.png", alt: "Website documentation 2" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation3.png", alt: "Website documentation 3" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation4.png", alt: "Website documentation 4" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation5.png", alt: "Website documentation 5" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation6.png", alt: "Website documentation 6" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation7.png", alt: "Website documentation 7" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation8.png", alt: "Website documentation 8" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation9.png", alt: "Website documentation 9" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation10.png", alt: "Website documentation 10" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation11.png", alt: "Website documentation 11" },
-        { type: "image", src: "/media/techdesign/unseenCity/documentation12.png", alt: "Website documentation 12" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation1.webp", alt: "Website documentation 1" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation2.webp", alt: "Website documentation 2" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation3.webp", alt: "Website documentation 3" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation4.webp", alt: "Website documentation 4" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation5.webp", alt: "Website documentation 5" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation6.webp", alt: "Website documentation 6" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation7.webp", alt: "Website documentation 7" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation8.webp", alt: "Website documentation 8" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation9.webp", alt: "Website documentation 9" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation10.webp", alt: "Website documentation 10" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation11.webp", alt: "Website documentation 11" },
+        { type: "image", src: "/media/techdesign/unseenCity/documentation12.webp", alt: "Website documentation 12" },
     ],
 
     // Sketch and data as a gallery
     sketchAndData: [
-        { type: "image", src: "/media/techdesign/unseenCity/sketch.png", alt: "Sketch" },
-        { type: "image", src: "/media/techdesign/unseenCity/data.png", alt: "Data mapping" },
+        { type: "image", src: "/media/techdesign/unseenCity/sketch.webp", alt: "Sketch" },
+        { type: "image", src: "/media/techdesign/unseenCity/data.webp", alt: "Data mapping" },
     ],
 
     // Two-column content (overview + abstract + process)

@@ -35,7 +35,20 @@ export const YEAR_NOTES = {
 */
 const PROJECTS = [
   // highlights
-  { slug: "redDoors", date: "2023", highlight: true },
+  {
+    slug: "redDoors",
+    date: "2023",
+    highlight: true,
+    desc: "With the goal of showing how the wealth gap shapes access to education, Red Doors is an educational game installation concept designed for public spaces. I chose the medium and the game flow based on secondary research into how well games teach, hoping to turn that awareness into action.",
+    // the installation in front of the library, its two kiosks, and the QR code to play online
+    collageBox: { aspect: 1.45 },
+    collage: [
+      { src: "/media/techdesign/redDoors/thumb/library-installation.jpg", alt: "Red Doors installation on the steps of the New York Public Library", x: 12, y: 8, w: 76, r: 0, hy: -2, hs: 1.02, z: 1, card: true },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-left.webp", alt: "Red Doors kiosk, start screen", x: 0.5, y: 53, w: 34, r: 0, hx: -1, hy: -2, hr: -1.5, hs: 1.02, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/kiosk-right.webp", alt: "Red Doors kiosk, second screen", x: 66.5, y: 51, w: 33, r: 0, hx: 1, hy: -2, hr: 1.5, hs: 1.02, z: 2 },
+      { src: "/media/techdesign/redDoors/thumb/qr-online.png", alt: "QR code: play Red Doors online", x: 81, y: 0, w: 18, r: 4, hy: -1, hr: -2, hs: 1.04, z: 3, card: true },
+    ],
+  },
   { slug: "book-indo", date: "Sept 2024", highlight: true },
   { slug: "caress", date: "Sept – Dec 2024", highlight: true },
   { slug: "sunney", date: "Oct – Dec 2024", highlight: true },
@@ -45,7 +58,7 @@ const PROJECTS = [
   { slug: "protocol-nation", date: "Sept – Dec 2025", highlight: true },
   { slug: "nusa-penida", date: "Nov – Dec 2025", highlight: true },
   { slug: "wehearyou", date: "Jan – May 2026", highlight: true },
-  { slug: "tdvj", date: "Mar 2026", highlight: true, media: { type: "video", src: "/media/techdesign/tdvj/thumbnail_tdvj.mp4" } },
+  { slug: "tdvj", date: "Mar 2026", highlight: true, media: { type: "video", src: "/media/techdesign/tdvj/thumbnail_tdvj.web.mp4" } },
   { slug: "blossom", date: "Nov 2026", highlight: true },
 
   // creative side
@@ -63,12 +76,12 @@ const PROJECTS = [
     ],
     href: "https://youtu.be/7Mz7gm41abA?si=45BGPqz6n1ZilLbB",
     // transparent cut-out; `fill` = exactly as wide as the text column
-    media: { type: "image", src: "/media/awards/ppe-cooler-box.png", alt: "PPE Cooler Box suit design with its cooling parts", fill: true },
+    media: { type: "image", src: "/media/awards/ppe-cooler-box-cutout.webp", alt: "PPE Cooler Box suit design with its cooling parts", fill: true, cutout: true },
   },
   { slug: "past-2024", date: "Before 2024", year: 2023 },
   { slug: "personal-logo-design", date: "Aug 2024" },
   { slug: "p5js-portfolio", date: "Aug 2024 – May 2025" },
-  { slug: "ThunderTD", date: "2024", media: { type: "image", src: "/media/techdesign/thunder/documentation1.png" } },
+  { slug: "ThunderTD", date: "2024", media: { type: "image", src: "/media/techdesign/thunder/documentation1.webp" } },
   { slug: "greatest-dreamer", date: "Nov – Dec 2024" },
   { slug: "poet", date: "2025" },
   { slug: "memory", date: "2025" },
@@ -78,10 +91,10 @@ const PROJECTS = [
   { slug: "short-story", date: "2025" },
   { slug: "theTrueLight", date: "2025" },
   { slug: "cilok", date: "Sept 2025" },
-  { slug: "a-week-of-blender", date: "Sept – Oct 2025", media: { type: "image", src: "/media/techdesign/weekofBlender/4_1.png" } },
+  { slug: "a-week-of-blender", date: "Sept – Oct 2025", media: { type: "image", src: "/media/techdesign/weekofBlender/4_1.webp" } },
   { slug: "tracing-dendur", date: "Nov – Dec 2025" },
   { slug: "touchdesigner-av", date: "2026" },
-  { slug: "nycresistor", date: "June 2026" },
+  { slug: "nycresistor", date: "June 2026", desc: "Yes, I impulsively taught myself how to DJ after I got the gig.", media: { type: "image", src: "/media/techdesign/nycresistor/thumbnail.webp", alt: "DJ/VJ set at NYC Resistor, visuals on the LED wall" } },
   { slug: "unseen-city", date: "Aug – Sept 2026" },
 ];
 
@@ -105,7 +118,6 @@ const EXTRA_AWARDS = [
     // `gallery` = several photos side by side, all the same height, never cropped (`ratio` = width / height)
     gallery: [
       { src: "/media/awards/opsi-2019.jpg", ratio: 1.5, alt: "Receiving the OPSI 2019 silver medal on stage in Jakarta" },
-      { src: "/media/awards/nyia-2022.jpg", ratio: 1, alt: "Award winners on stage at the LKIR & NYIA Grand Award" },
       { src: "/media/awards/science-expo-2019.jpg", ratio: 1.776, alt: "Group photo of finalists at Indonesia Science Expo 2019" },
     ],
   },
@@ -170,6 +182,8 @@ function projectEntries() {
       desc: p.desc || (p.highlight ? clip(detail.intro) : ""),
       bullets: p.bullets,
       media: p.media || base.media?.[0] || detail.media?.[0],
+      collage: p.collage,
+      collageBox: p.collageBox,
       to: p.href ? undefined : `/work/${p.slug}`,
       href: p.href,
     };
@@ -178,7 +192,7 @@ function projectEntries() {
 
 function resumeEntries() {
   const exp = experience.map((ex, i) => {
-    const { year, month } = parseStart(ex.date);
+    const { year, month } = parseStart(ex.timelineDate || ex.date);
     const isOrg = ORG_PREFIXES.some((pre) => ex.title.startsWith(pre));
     // "Role — Org" → jobs lead with the role, organizations lead with the org
     const [role, ...rest] = ex.title.split(" — ");
@@ -193,6 +207,9 @@ function resumeEntries() {
       month,
       present: /present/i.test(ex.date),
       desc: clip(ex.achievements?.[0], 170),
+      href: ex.to ? undefined : ex.href,
+      to: ex.to,
+      media: ex.media,
     };
   });
 
@@ -206,6 +223,7 @@ function resumeEntries() {
         desc: a.caption || a.org,
         media: a.media,
         collage: a.collage,
+        collageBox: a.collageBox,
         href: a.href,
         year: a.timelineYear,
       };

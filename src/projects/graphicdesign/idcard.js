@@ -16,14 +16,13 @@ export default {
   intro:
     "I designed my own personal identity: first a monogram/logo, then an ID card to go with it. The logo came first, built around my design style and what I care about. Then I made the ID card so the logo could really shine, in a layout that’s both useful and nice to look at.",
 
-  quote: "Figuring out what “me” looks like as a logo",
 
   // Row 4 (gallery)
   media: [
-    { type: "image", src: asset("media/graphicdesign/idcard/idcard_1.png"), alt: "Personal monogram/logo" },
-    { type: "image", src: asset("media/graphicdesign/idcard/idcard_1_1.png"), alt: "Personal monogram/logo variation" },
-    { type: "image", src: asset("media/graphicdesign/idcard/idcard_mockup1.png"), alt: "ID card mockup 1" },
-    { type: "image", src: asset("media/graphicdesign/idcard/idcard_mockup2.png"), alt: "ID card mockup 2" },
+    { type: "image", src: asset("media/graphicdesign/idcard/idcard_1.webp"), alt: "Personal monogram/logo" },
+    { type: "image", src: asset("media/graphicdesign/idcard/idcard_1_1.webp"), alt: "Personal monogram/logo variation" },
+    { type: "image", src: asset("media/graphicdesign/idcard/idcard_mockup1.webp"), alt: "ID card mockup 1" },
+    { type: "image", src: asset("media/graphicdesign/idcard/idcard_mockup2.webp"), alt: "ID card mockup 2" },
   ],
 
   // Row 5 (2 columns)

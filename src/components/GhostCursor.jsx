@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './GhostCursor.css';
+import { token } from '../lib/tokens.js';
 
 const VERTEX = `#version 300 es
 in vec2 aPosition;
@@ -369,7 +370,7 @@ const link = (gl, fragmentSource) => {
 };
 
 const GhostCursor = ({
-  color = '#B497CF',
+  color = token('color-cursor'),
   brightness = 1,
   size = 80,
   trailLength = 50,
@@ -708,7 +709,13 @@ const GhostCursor = ({
       ghost.px = ghost.x;
       ghost.py = ghost.y;
       if (ghost.ready) {
-        if (pointer.inside) {
+        if (pointer.inside && s.inertia === 0) {
+          // locked: the glow sits exactly on the pointer, no spring lag (local change)
+          ghost.vx = (pointer.x - ghost.x) / Math.max(dt, 1e-3);
+          ghost.vy = (pointer.y - ghost.y) / Math.max(dt, 1e-3);
+          ghost.x = pointer.x;
+          ghost.y = pointer.y;
+        } else if (pointer.inside) {
           const stiffness = 520 * Math.pow(1 - s.inertia, 2) + 26;
           const damping = 2 * Math.sqrt(stiffness) * 0.92;
           const steps = Math.max(1, Math.ceil(dt / (1 / 240)));

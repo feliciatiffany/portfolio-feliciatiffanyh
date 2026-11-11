@@ -20,8 +20,8 @@
 
 .resume-h {
   margin: clamp(10px, 1.6vw, 18px) 0 clamp(6px, 1vw, 12px) 0;
-  font-weight: 700;
-  font-size: clamp(12px, 2.2vw, 20px);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-subtitle);
   letter-spacing: .02em;
   color: var(--color-accent-graphic);
 }
@@ -124,7 +124,7 @@
   overflow: hidden;
   opacity: 0;
   transition:
-    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 0.4s var(--ease-in-out),
     opacity    0.35s ease,
     margin-top 0.3s ease;
 }
@@ -137,9 +137,9 @@
 
 .achieve-item {
   position: relative;
-  font-size: clamp(11px, .95vw, 13px);
+  font-size: var(--text-small);
   color: color-mix(in srgb, var(--color-text) 55%, transparent);
-  line-height: 1.5;
+  line-height: var(--leading-body);
   padding-left: 1em;
   margin-bottom: .4em;
 }
@@ -149,27 +149,27 @@
   position: absolute;
   left: 0;
   color: var(--color-accent-tech);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 /* ── Existing helpers ── */
 .resume-item__body { min-width: 0; }
 
 .resume-line {
-  font-size: var(--fs-proj);
-  line-height: 1.12;
+  font-size: var(--text-list);
+  line-height: var(--leading-title);
 }
 
-.resume-strong { font-weight: 600; }
+.resume-strong { font-weight: var(--font-weight-semibold); }
 
 .resume-meta {
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: var(--text-small);
   color: color-mix(in srgb, var(--color-text) 55%, transparent);
   margin-top: .15em;
 }
 
 .reachout {
-  font-size: var(--fs-proj);
+  font-size: var(--text-list);
   max-width: 720px;
   margin-top: clamp(10px, 1.4vw, 16px);
 }

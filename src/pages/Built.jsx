@@ -6,15 +6,16 @@ import LineFilter from "../components/LineFilter.jsx";
 import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 import CodeSlots from "../components/CodeSlots.jsx";
 import useReveal from "../lib/useReveal.js";
+import LazyVideo from "../components/LazyVideo.jsx";
 
 // Outer span carries the hover glow (only around the image); inner frame crops to one ratio
 function CardMedia({ media, glow }) {
   if (!media?.src) return null;
   return (
-    <span className={`tl-card__media${glow ? " shine" : ""}${media.wide ? " is-wide" : ""}${media.blend ? " is-blend" : ""}${media.fill ? " is-fill" : ""}`}>
+    <span className={`tl-card__media${glow ? " shine" : ""}${media.wide ? " is-wide" : ""}${media.blend ? " is-blend" : ""}${media.fill ? " is-fill" : ""}${media.cutout ? " is-cutout" : ""}`}>
       <span className="tl-card__frame">
         {media.type === "video" ? (
-          <video src={media.src} poster={media.poster} muted loop autoPlay playsInline preload="metadata" />
+          <LazyVideo src={media.src} poster={media.poster} />
         ) : (
           <img src={media.src} alt={media.alt || ""} loading="lazy" />
         )}
@@ -35,9 +36,10 @@ function CardGallery({ images, glow }) {
 }
 
 // Cut-out pieces laid over each other; each piece's place, tilt and hover motion come from data
-function CardCollage({ pieces }) {
+// `box` (optional) = { aspect } makes the collage as wide as the card, with that width/height ratio
+function CardCollage({ pieces, box }) {
   return (
-    <span className="tl-collage">
+    <span className={`tl-collage${box ? " tl-collage--full" : ""}`} style={box ? { aspectRatio: box.aspect } : undefined}>
       {pieces.map((p) => (
         <img
           key={p.src}
@@ -59,44 +61,45 @@ function CardCollage({ pieces }) {
 // Cards alternate sides of the center line (masonry rows, see useMasonry).
 // Creative Side cards are compact: small thumbnail, title + date only.
 function Card({ item, index }) {
-  const body = (
-    <>
-      {item.collage?.length ? (
-        <CardCollage pieces={item.collage} />
-      ) : item.gallery?.length ? (
-        <CardGallery images={item.gallery} glow={!!(item.to || item.href)} />
-      ) : (
-        <CardMedia media={item.media} glow={!!(item.to || item.href)} />
-      )}
-      <span className="tl-card__text">
-        <span className="tl-card__title">{item.title}</span>
-        <span className="tl-card__date">{item.date}</span>
-        {item.subtitle && item.type !== "creative" && <span className="tl-card__sub">{item.subtitle}</span>}
-        {item.desc && <span className="tl-card__desc">{item.desc}</span>}
-        {item.bullets?.length > 0 && (
-          <span className="tl-card__bullets" role="list">
-            {item.bullets.map((b) => (
-              <span key={b} role="listitem">{b}</span>
-            ))}
-          </span>
-        )}
-      </span>
-    </>
+  const media = item.collage?.length ? (
+    <CardCollage pieces={item.collage} box={item.collageBox} />
+  ) : item.gallery?.length ? (
+    <CardGallery images={item.gallery} glow={!!(item.to || item.href)} />
+  ) : item.media?.src ? (
+    <CardMedia media={item.media} glow={!!(item.to || item.href)} />
+  ) : null;
+
+  // Only the picture is a link; the words beside it stay plain text
+  const hit = !media ? null : item.to ? (
+    <Link to={item.to} className="tl-card__hit" data-cursor="View project" aria-label={`${item.title}: view project`}>{media}</Link>
+  ) : item.href ? (
+    <a href={item.href} className="tl-card__hit" target="_blank" rel="noopener noreferrer" data-cursor="Open link" aria-label={`${item.title}: open link`}>{media}</a>
+  ) : (
+    media
   );
 
   return (
     <li
-      className="tl-card reveal"
+      className={`tl-card reveal${item.year >= 2023 ? " is-recent" : ""}`}
       data-type={item.type}
       data-side={index % 2 ? "right" : "left"}
     >
-      {item.to ? (
-        <Link to={item.to} className="tl-card__link">{body}</Link>
-      ) : item.href ? (
-        <a href={item.href} className="tl-card__link" target="_blank" rel="noopener noreferrer">{body}</a>
-      ) : (
-        <div className="tl-card__link">{body}</div>
-      )}
+      <div className="tl-card__link">
+        {hit}
+        <span className="tl-card__text">
+          <span className="tl-card__title">{item.title}</span>
+          <span className="tl-card__date">{item.date}</span>
+          {item.subtitle && item.type !== "creative" && <span className="tl-card__sub">{item.subtitle}</span>}
+          {item.desc && <span className="tl-card__desc">{item.desc}</span>}
+          {item.bullets?.length > 0 && (
+            <span className="tl-card__bullets" role="list">
+              {item.bullets.map((b) => (
+                <span key={b} role="listitem">{b}</span>
+              ))}
+            </span>
+          )}
+        </span>
+      </div>
     </li>
   );
 }
@@ -249,11 +252,6 @@ export default function Built() {
             ariaLabel="Password"
             onChange={() => setStatus("idle")}
             onComplete={onPassword}
-            accentColor="var(--accent)"
-            inkColor="var(--foreground)"
-            slotColor="var(--muted)"
-            digitColor="var(--accent-foreground)"
-            dangerColor="var(--destructive)"
             slotSize={44}
             gap={8}
             radius={12}

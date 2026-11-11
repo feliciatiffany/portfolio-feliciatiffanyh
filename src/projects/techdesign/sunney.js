@@ -13,7 +13,6 @@ export default {
     "You play as Sunney, a little sunflower, through challenges about growing up, being curious, and figuring yourself out. " +
     "The stages are inspired by music, art, and tech, and the world slowly goes from gray and unsure to full of color.",
 
-  quote: "Finding your passions, one color at a time",
 
   sections: [
     { kind: "intro" },
@@ -28,6 +27,7 @@ export default {
     { kind: "twoCol", leftPath: "progressLeft", rightPath: "progressRight" },
     { kind: "twoCol", leftPath: "sketchLeft", rightPath: "sketchRight" },
     { kind: "twoCol", leftPath: "spriteLeft", rightPath: "spriteRight" },
+    { kind: "desc", dataPath: "knowBlock" },
   ],
 
   youtube: {
@@ -46,8 +46,8 @@ export default {
   heroRight: {
     title: "What it's about",
     paragraphs: [
-      "Each stage is tied to a passion: music, art, or tech. As you play, the world fills in from grayscale to color, which is my way of showing someone finding themselves and getting more confident.",
-      "It's partly about me and my ever-changing interests. But I also wanted it to feel relatable to anyone who has had to slowly figure out what excites them.",
+      "Each stage is tied to a passion: music, art, or tech. As you play, the world fills in from grayscale to color, which is my way of showing someone finding themselves and getting more confident. My bet was that you'd feel Sunney growing up through the color alone, without me spelling it out.",
+      "It's partly about me and my ever-changing interests. But I also wanted it to feel relatable to anyone who has had to slowly figure out what excites them, and to leave them a little more hopeful.",
     ],
   },
 
@@ -96,16 +96,24 @@ export default {
     ],
   },
 
+  knowBlock: {
+    title: "How I'd know it worked",
+    paragraphs: [
+      "I'd watch whether players notice the color coming back, and whether they stick with it through all the stages.",
+      "And I'd listen for whether the story reminds them of their own changing interests. If someone tells me it felt a bit like them, that's the part I care about most.",
+    ],
+  },
+
   projectFiles: [
-    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.png", alt: "Sunney project file 1" },
-    { type: "image", src: "/media/techdesign/sunney/ssProjectFile2.png", alt: "Sunney project file 2" },
+    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.webp", alt: "Sunney project file 1" },
+    { type: "image", src: "/media/techdesign/sunney/ssProjectFile2.webp", alt: "Sunney project file 2" },
   ],
 
   gameScreens: [
     { type: "image", src: "/media/techdesign/sunney/gameSS1.png", alt: "Sunney gameplay screen 1" },
     { type: "image", src: "/media/techdesign/sunney/gameSS2.png", alt: "Sunney gameplay screen 2" },
-    { type: "image", src: "/media/techdesign/sunney/gameSS3.png", alt: "Sunney gameplay screen 3" },
-    { type: "image", src: "/media/techdesign/sunney/gameSS4.png", alt: "Sunney gameplay screen 4" },
+    { type: "image", src: "/media/techdesign/sunney/gameSS3.webp", alt: "Sunney gameplay screen 3" },
+    { type: "image", src: "/media/techdesign/sunney/gameSS4.webp", alt: "Sunney gameplay screen 4" },
     { type: "image", src: "/media/techdesign/sunney/gameSS5.png", alt: "Sunney gameplay screen 5" },
     { type: "image", src: "/media/techdesign/sunney/gameSS6.png", alt: "Sunney gameplay screen 6" },
     { type: "image", src: "/media/techdesign/sunney/gameSS7.png", alt: "Sunney gameplay screen 7" },
@@ -124,23 +132,23 @@ export default {
   ],
 
   progressImages: [
-    { type: "image", src: "/media/techdesign/sunney/progress1.png", alt: "Sunney progress image 1" },
-    { type: "image", src: "/media/techdesign/sunney/progress2.png", alt: "Sunney progress image 2" },
-    { type: "image", src: "/media/techdesign/sunney/progress3.png", alt: "Sunney progress image 3" },
-    { type: "image", src: "/media/techdesign/sunney/progress4.png", alt: "Sunney progress image 4" },
-    { type: "image", src: "/media/techdesign/sunney/progress5.png", alt: "Sunney progress image 5" },
+    { type: "image", src: "/media/techdesign/sunney/progress1.webp", alt: "Sunney progress image 1" },
+    { type: "image", src: "/media/techdesign/sunney/progress2.webp", alt: "Sunney progress image 2" },
+    { type: "image", src: "/media/techdesign/sunney/progress3.webp", alt: "Sunney progress image 3" },
+    { type: "image", src: "/media/techdesign/sunney/progress4.webp", alt: "Sunney progress image 4" },
+    { type: "image", src: "/media/techdesign/sunney/progress5.webp", alt: "Sunney progress image 5" },
   ],
 
   sketchImages: [
-    { type: "image", src: "/media/techdesign/sunney/sketch1.jpg", alt: "Sunney sketch 1" },
-    { type: "image", src: "/media/techdesign/sunney/sketch2.jpg", alt: "Sunney sketch 2" },
-    { type: "image", src: "/media/techdesign/sunney/sketch3.jpg", alt: "Sunney sketch 3" },
+    { type: "image", src: "/media/techdesign/sunney/sketch1.webp", alt: "Sunney sketch 1" },
+    { type: "image", src: "/media/techdesign/sunney/sketch2.webp", alt: "Sunney sketch 2" },
+    { type: "image", src: "/media/techdesign/sunney/sketch3.webp", alt: "Sunney sketch 3" },
     { type: "image", src: "/media/techdesign/sunney/sketch4.png", alt: "Sunney sketch 4" },
     { type: "image", src: "/media/techdesign/sunney/sketch5.png", alt: "Sunney sketch 5" },
     { type: "image", src: "/media/techdesign/sunney/sketch6.png", alt: "Sunney sketch 6" },
     { type: "image", src: "/media/techdesign/sunney/sketch7.png", alt: "Sunney sketch 7" },
     { type: "image", src: "/media/techdesign/sunney/sketch8.png", alt: "Sunney sketch 8" },
-    { type: "image", src: "/media/techdesign/sunney/sketch9.png", alt: "Sunney sketch 9" },
+    { type: "image", src: "/media/techdesign/sunney/sketch9.webp", alt: "Sunney sketch 9" },
     { type: "image", src: "/media/techdesign/sunney/sketch10.png", alt: "Sunney sketch 10" },
   ],
 
@@ -166,7 +174,7 @@ export default {
   ],
 
   media: [
-    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.png", alt: "Sunney preview image" },
+    { type: "image", src: "/media/techdesign/sunney/ssProjectFile1.webp", alt: "Sunney preview image" },
   ],
 
   row6: null,

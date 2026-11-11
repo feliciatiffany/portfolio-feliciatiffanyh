@@ -1,76 +1,701 @@
 {
   "color": {
-    "coral": { "$type": "color", "$value": "#DE826D", "$description": "Base swatch" },
-    "cream": { "$type": "color", "$value": "#F3E0D1", "$description": "Base swatch" },
-    "rose": { "$type": "color", "$value": "#9C575D", "$description": "Base swatch" },
-    "peach": { "$type": "color", "$value": "#E8B19D", "$description": "Base swatch" },
-    "blush": { "$type": "color", "$value": "#B76E78", "$description": "Base swatch" },
-    "mauve": { "$type": "color", "$value": "#A06069", "$description": "Base swatch" },
-    "sand": { "$type": "color", "$value": "#E6BD89", "$description": "Base swatch" },
-    "maroon": { "$type": "color", "$value": "#62232D", "$description": "Base swatch" },
-    "gold": { "$type": "color", "$value": "#DAA561", "$description": "Base swatch" },
-    "amber": { "$type": "color", "$value": "#C6872F", "$description": "Base swatch. Favorite color on the palette card." },
-    "ink": { "$type": "color", "$value": "#000000", "$description": "Base. Body text." },
-    "paper": { "$type": "color", "$value": "#FFFFFF", "$description": "Base. Page background." },
-
-    "text": { "$type": "color", "$value": "{color.ink}", "$description": "Body text and milestones" },
-    "bg": { "$type": "color", "$value": "{color.paper}", "$description": "Page background" },
-
+    "coral": {
+      "$type": "color",
+      "$value": "#DE826D",
+      "$description": "Base swatch"
+    },
+    "cream": {
+      "$type": "color",
+      "$value": "#F3E0D1",
+      "$description": "Base swatch"
+    },
+    "rose": {
+      "$type": "color",
+      "$value": "#9C575D",
+      "$description": "Base swatch"
+    },
+    "peach": {
+      "$type": "color",
+      "$value": "#E8B19D",
+      "$description": "Base swatch"
+    },
+    "blush": {
+      "$type": "color",
+      "$value": "#B76E78",
+      "$description": "Base swatch"
+    },
+    "mauve": {
+      "$type": "color",
+      "$value": "#A06069",
+      "$description": "Base swatch"
+    },
+    "sand": {
+      "$type": "color",
+      "$value": "#E6BD89",
+      "$description": "Base swatch"
+    },
+    "maroon": {
+      "$type": "color",
+      "$value": "#62232D",
+      "$description": "Base swatch"
+    },
+    "gold": {
+      "$type": "color",
+      "$value": "#DAA561",
+      "$description": "Base swatch"
+    },
+    "amber": {
+      "$type": "color",
+      "$value": "#C6872F",
+      "$description": "Base swatch. Favorite color on the palette card."
+    },
+    "ink": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Base. Body text."
+    },
+    "paper": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "$description": "Base. Page background."
+    },
+    "grey-900": {
+      "$type": "color",
+      "$value": "#0D0D0D",
+      "$description": "Base. Darkest dither shade."
+    },
+    "grey-600": {
+      "$type": "color",
+      "$value": "#5C5C5C",
+      "$description": "Base. Mid dither shade."
+    },
+    "grey-300": {
+      "$type": "color",
+      "$value": "#B0B0B0",
+      "$description": "Base. Light dither shade."
+    },
+    "grey-100": {
+      "$type": "color",
+      "$value": "#F2F2F2",
+      "$description": "Base. Dark-mode brightest grey (primary highlights)"
+    },
+    "grey-200": {
+      "$type": "color",
+      "$value": "#D4D4D4",
+      "$description": "Base. Dark-mode light grey"
+    },
+    "grey-400": {
+      "$type": "color",
+      "$value": "#9E9E9E",
+      "$description": "Base. Dark-mode mid grey"
+    },
+    "grey-500": {
+      "$type": "color",
+      "$value": "#808080",
+      "$description": "Base. Dark-mode quiet grey (lines)"
+    },
+    "night": {
+      "$type": "color",
+      "$value": "#111111",
+      "$description": "Base. Dark-mode page: neutral near-black"
+    },
+    "umber": {
+      "$type": "color",
+      "$value": "#1A1A1A",
+      "$description": "Base. Dark-mode raised surface (cards, panels)"
+    },
+    "soot": {
+      "$type": "color",
+      "$value": "#262626",
+      "$description": "Base. Dark-mode soft surface (empty wells, washes)"
+    },
+    "parchment": {
+      "$type": "color",
+      "$value": "#EDEDED",
+      "$description": "Base. Dark-mode text: soft white"
+    },
+    "text": {
+      "$type": "color",
+      "$value": "{color.ink}",
+      "$description": "Body text and milestones",
+      "$extensions": {
+        "mode": {
+          "dark": "{color.parchment}"
+        }
+      }
+    },
+    "bg": {
+      "$type": "color",
+      "$value": "{color.paper}",
+      "$description": "Page background",
+      "$extensions": {
+        "mode": {
+          "dark": "{color.night}"
+        }
+      }
+    },
     "action": {
-      "hover": { "$type": "color", "$value": "{color.maroon}", "$description": "Link and control hover" }
+      "hover": {
+        "$type": "color",
+        "$value": "{color.maroon}",
+        "$description": "Link and control hover",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.paper}"
+          }
+        }
+      }
     },
-
     "accent": {
-      "name": { "$type": "color", "$value": "{color.peach}", "$description": "Name, Fany" },
-      "tech": { "$type": "color", "$value": "{color.coral}", "$description": "Tech, projects, home role" },
-      "digital": { "$type": "color", "$value": "{color.maroon}", "$description": "Digital product and other work" },
-      "graphic": { "$type": "color", "$value": "{color.mauve}", "$description": "Graphic design" },
-      "creative": { "$type": "color", "$value": "{color.blush}", "$description": "Creative side of the timeline" },
-      "work": { "$type": "color", "$value": "{color.amber}", "$description": "Work on the timeline" },
-      "award": { "$type": "color", "$value": "{color.gold}", "$description": "Awards" },
-      "love": { "$type": "color", "$value": "{color.coral}", "$description": "What I love" },
-      "think": { "$type": "color", "$value": "{color.rose}", "$description": "What I think" },
-      "fear": { "$type": "color", "$value": "{color.maroon}", "$description": "What I fear" }
+      "name": {
+        "$type": "color",
+        "$value": "{color.peach}",
+        "$description": "Name, Fany",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-100}"
+          }
+        }
+      },
+      "tech": {
+        "$type": "color",
+        "$value": "{color.coral}",
+        "$description": "Tech, projects, home role",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-100}"
+          }
+        }
+      },
+      "digital": {
+        "$type": "color",
+        "$value": "{color.maroon}",
+        "$description": "Digital product and other work",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-300}"
+          }
+        }
+      },
+      "graphic": {
+        "$type": "color",
+        "$value": "{color.mauve}",
+        "$description": "Graphic design",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-400}"
+          }
+        }
+      },
+      "creative": {
+        "$type": "color",
+        "$value": "{color.blush}",
+        "$description": "Creative side of the timeline",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-400}"
+          }
+        }
+      },
+      "work": {
+        "$type": "color",
+        "$value": "{color.amber}",
+        "$description": "Work on the timeline",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-200}"
+          }
+        }
+      },
+      "award": {
+        "$type": "color",
+        "$value": "{color.gold}",
+        "$description": "Awards",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-200}"
+          }
+        }
+      },
+      "love": {
+        "$type": "color",
+        "$value": "{color.coral}",
+        "$description": "What I love",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-100}"
+          }
+        }
+      },
+      "think": {
+        "$type": "color",
+        "$value": "{color.rose}",
+        "$description": "What I think",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-300}"
+          }
+        }
+      },
+      "fear": {
+        "$type": "color",
+        "$value": "{color.maroon}",
+        "$description": "What I fear",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-300}"
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "color-mix(in srgb, {color.coral} 55%, {color.maroon})",
+        "$description": "Brick: coral deepened with maroon, for highlighted words that must stay readable (homepage name and role)",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-100}"
+          }
+        }
+      }
     },
-
     "surface": {
-      "soft": { "$type": "color", "$value": "{color.cream}", "$description": "Selection, empty image wells, soft rings" },
-      "sand": { "$type": "color", "$value": "{color.sand}", "$description": "Warm surface, portrait ring" }
+      "soft": {
+        "$type": "color",
+        "$value": "{color.cream}",
+        "$description": "Selection, empty image wells, soft rings",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.soot}"
+          }
+        }
+      },
+      "sand": {
+        "$type": "color",
+        "$value": "{color.sand}",
+        "$description": "Warm surface, portrait ring",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-600}"
+          }
+        }
+      }
+    },
+    "glow": {
+      "$type": "color",
+      "$value": "color-mix(in srgb, {color.coral} 42%, transparent)",
+      "$description": "Warm light behind hovered images; also the cursor light",
+      "$extensions": {
+        "mode": {
+          "dark": "color-mix(in srgb, {color.paper} 22%, transparent)"
+        }
+      }
+    },
+    "cursor": {
+      "$type": "color",
+      "$value": "{color.coral}",
+      "$description": "Cursor light (WebGL, read from src/lib/tokens.js)",
+      "$extensions": {
+        "mode": {
+          "dark": "{color.grey-200}"
+        }
+      }
+    },
+    "dither": {
+      "1": {
+        "$type": "color",
+        "$value": "{color.grey-900}",
+        "$description": "Dithered photo, darkest"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{color.grey-600}",
+        "$description": "Dithered photo, shadow"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{color.grey-300}",
+        "$description": "Dithered photo, light"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{color.paper}",
+        "$description": "Dithered photo, paper"
+      }
+    },
+    "line": {
+      "old": {
+        "$type": "color",
+        "$value": "{color.sand}",
+        "$description": "Timeline line where it fades into the oldest years",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.grey-600}"
+          }
+        }
+      }
+    },
+    "glow-off": {
+      "$type": "color",
+      "$value": "rgb(from {color.coral} r g b / 0)",
+      "$description": "The glow's resting state: same coral, fully transparent, so it fades in warm instead of from black",
+      "$extensions": {
+        "mode": {
+          "dark": "rgb(from {color.paper} r g b / 0)"
+        }
+      }
+    },
+    "tag": {
+      "bg": {
+        "$type": "color",
+        "$value": "color-mix(in srgb, {background} 88%, transparent)",
+        "$description": "Small floating labels (cursor label, Ask FanyLLM): frosted page colour"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "color-mix(in srgb, {accent} 45%, transparent)",
+        "$description": "Hairline around small floating labels"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{accent}",
+        "$description": "Text in small floating labels"
+      }
     }
   },
-
-  "background": { "$type": "color", "$value": "{color.paper}", "$description": "Page background" },
-  "foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Default text" },
-  "card": { "$type": "color", "$value": "{color.paper}", "$description": "Card surface" },
-  "card-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Text on cards" },
-  "popover": { "$type": "color", "$value": "{color.paper}", "$description": "Floating layer" },
-  "popover-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Text on floating layers" },
-  "primary": { "$type": "color", "$value": "{color.maroon}", "$description": "Primary action" },
-  "primary-foreground": { "$type": "color", "$value": "{color.paper}", "$description": "Text on a primary action" },
-  "secondary": { "$type": "color", "$value": "{color.cream}", "$description": "Secondary surface" },
-  "secondary-foreground": { "$type": "color", "$value": "{color.maroon}", "$description": "Text on a secondary surface" },
-  "muted": { "$type": "color", "$value": "{color.cream}", "$description": "Soft band" },
-  "muted-foreground": { "$type": "color", "$value": "color-mix(in srgb, {color.ink} 62%, transparent)", "$description": "Captions and descriptive text" },
-  "accent": { "$type": "color", "$value": "{color.coral}", "$description": "Accent mark and active item" },
-  "accent-foreground": { "$type": "color", "$value": "{color.maroon}", "$description": "Text on the accent" },
-  "destructive": { "$type": "color", "$value": "{color.rose}", "$description": "Error and destructive" },
-  "destructive-foreground": { "$type": "color", "$value": "{color.paper}", "$description": "Text on destructive" },
-  "border": { "$type": "color", "$value": "color-mix(in srgb, {color.ink} 12%, transparent)", "$description": "Hairline border" },
-  "input": { "$type": "color", "$value": "{border}", "$description": "Input border" },
-  "ring": { "$type": "color", "$value": "{color.sand}", "$description": "Focus ring" },
-  "chart-1": { "$type": "color", "$value": "{color.coral}", "$description": "Chart accent" },
-  "chart-2": { "$type": "color", "$value": "{color.rose}", "$description": "Chart accent" },
-  "chart-3": { "$type": "color", "$value": "{color.sand}", "$description": "Chart accent" },
-  "chart-4": { "$type": "color", "$value": "{color.gold}", "$description": "Chart accent" },
-  "chart-5": { "$type": "color", "$value": "{color.blush}", "$description": "Chart accent" },
-  "sidebar": { "$type": "color", "$value": "{color.paper}", "$description": "Sidebar surface" },
-  "sidebar-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Sidebar text" },
-  "sidebar-primary": { "$type": "color", "$value": "{color.maroon}", "$description": "Sidebar rail" },
-  "sidebar-primary-foreground": { "$type": "color", "$value": "{color.paper}", "$description": "Text on the sidebar rail" },
-  "sidebar-accent": { "$type": "color", "$value": "{color.coral}", "$description": "Active sidebar item" },
-  "sidebar-accent-foreground": { "$type": "color", "$value": "{color.maroon}", "$description": "Text on the active sidebar item" },
-  "sidebar-border": { "$type": "color", "$value": "{color.maroon}", "$description": "Sidebar branch line" },
-  "sidebar-ring": { "$type": "color", "$value": "{color.sand}", "$description": "Sidebar focus" },
-  "surface": { "$type": "color", "$value": "{color.cream}", "$description": "Secondary surface" },
-  "surface-foreground": { "$type": "color", "$value": "{color.ink}", "$description": "Text on a secondary surface" }
+  "background": {
+    "$type": "color",
+    "$value": "{color.paper}",
+    "$description": "Page background",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.night}"
+      }
+    }
+  },
+  "foreground": {
+    "$type": "color",
+    "$value": "{color.ink}",
+    "$description": "Default text",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.parchment}"
+      }
+    }
+  },
+  "card": {
+    "$type": "color",
+    "$value": "{color.paper}",
+    "$description": "Card surface",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.umber}"
+      }
+    }
+  },
+  "card-foreground": {
+    "$type": "color",
+    "$value": "{color.ink}",
+    "$description": "Text on cards",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.parchment}"
+      }
+    }
+  },
+  "popover": {
+    "$type": "color",
+    "$value": "{color.paper}",
+    "$description": "Floating layer",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.umber}"
+      }
+    }
+  },
+  "popover-foreground": {
+    "$type": "color",
+    "$value": "{color.ink}",
+    "$description": "Text on floating layers",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.parchment}"
+      }
+    }
+  },
+  "primary": {
+    "$type": "color",
+    "$value": "{color.maroon}",
+    "$description": "Primary action",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-100}"
+      }
+    }
+  },
+  "primary-foreground": {
+    "$type": "color",
+    "$value": "{color.paper}",
+    "$description": "Text on a primary action",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.night}"
+      }
+    }
+  },
+  "secondary": {
+    "$type": "color",
+    "$value": "{color.cream}",
+    "$description": "Secondary surface",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.soot}"
+      }
+    }
+  },
+  "secondary-foreground": {
+    "$type": "color",
+    "$value": "{color.maroon}",
+    "$description": "Text on a secondary surface",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-200}"
+      }
+    }
+  },
+  "muted": {
+    "$type": "color",
+    "$value": "{color.cream}",
+    "$description": "Soft band",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.soot}"
+      }
+    }
+  },
+  "muted-foreground": {
+    "$type": "color",
+    "$value": "color-mix(in srgb, {color.ink} 62%, transparent)",
+    "$description": "Captions and descriptive text",
+    "$extensions": {
+      "mode": {
+        "dark": "color-mix(in srgb, {color.parchment} 62%, transparent)"
+      }
+    }
+  },
+  "accent": {
+    "$type": "color",
+    "$value": "{color.coral}",
+    "$description": "Accent mark and active item",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-200}"
+      }
+    }
+  },
+  "accent-foreground": {
+    "$type": "color",
+    "$value": "{color.maroon}",
+    "$description": "Text on the accent",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.night}"
+      }
+    }
+  },
+  "destructive": {
+    "$type": "color",
+    "$value": "{color.rose}",
+    "$description": "Error and destructive",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-300}"
+      }
+    }
+  },
+  "destructive-foreground": {
+    "$type": "color",
+    "$value": "{color.paper}",
+    "$description": "Text on destructive",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.night}"
+      }
+    }
+  },
+  "border": {
+    "$type": "color",
+    "$value": "color-mix(in srgb, {color.ink} 12%, transparent)",
+    "$description": "Hairline border",
+    "$extensions": {
+      "mode": {
+        "dark": "color-mix(in srgb, {color.parchment} 14%, transparent)"
+      }
+    }
+  },
+  "input": {
+    "$type": "color",
+    "$value": "{border}",
+    "$description": "Input border"
+  },
+  "ring": {
+    "$type": "color",
+    "$value": "{color.sand}",
+    "$description": "Focus ring",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-400}"
+      }
+    }
+  },
+  "chart-1": {
+    "$type": "color",
+    "$value": "{color.coral}",
+    "$description": "Chart accent",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-100}"
+      }
+    }
+  },
+  "chart-2": {
+    "$type": "color",
+    "$value": "{color.rose}",
+    "$description": "Chart accent",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-200}"
+      }
+    }
+  },
+  "chart-3": {
+    "$type": "color",
+    "$value": "{color.sand}",
+    "$description": "Chart accent",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-300}"
+      }
+    }
+  },
+  "chart-4": {
+    "$type": "color",
+    "$value": "{color.gold}",
+    "$description": "Chart accent",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-400}"
+      }
+    }
+  },
+  "chart-5": {
+    "$type": "color",
+    "$value": "{color.blush}",
+    "$description": "Chart accent",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-500}"
+      }
+    }
+  },
+  "sidebar": {
+    "$type": "color",
+    "$value": "{color.paper}",
+    "$description": "Sidebar surface",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.night}"
+      }
+    }
+  },
+  "sidebar-foreground": {
+    "$type": "color",
+    "$value": "{color.ink}",
+    "$description": "Sidebar text",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.parchment}"
+      }
+    }
+  },
+  "sidebar-primary": {
+    "$type": "color",
+    "$value": "{color.maroon}",
+    "$description": "Sidebar rail",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-300}"
+      }
+    }
+  },
+  "sidebar-primary-foreground": {
+    "$type": "color",
+    "$value": "{color.paper}",
+    "$description": "Text on the sidebar rail",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.night}"
+      }
+    }
+  },
+  "sidebar-accent": {
+    "$type": "color",
+    "$value": "{color.coral}",
+    "$description": "Active sidebar item",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-200}"
+      }
+    }
+  },
+  "sidebar-accent-foreground": {
+    "$type": "color",
+    "$value": "{color.maroon}",
+    "$description": "Text on the active sidebar item",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-100}"
+      }
+    }
+  },
+  "sidebar-border": {
+    "$type": "color",
+    "$value": "{color.maroon}",
+    "$description": "Sidebar branch line",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-500}"
+      }
+    }
+  },
+  "sidebar-ring": {
+    "$type": "color",
+    "$value": "{color.sand}",
+    "$description": "Sidebar focus",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.grey-400}"
+      }
+    }
+  },
+  "surface": {
+    "$type": "color",
+    "$value": "{color.cream}",
+    "$description": "Secondary surface",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.soot}"
+      }
+    }
+  },
+  "surface-foreground": {
+    "$type": "color",
+    "$value": "{color.ink}",
+    "$description": "Text on a secondary surface",
+    "$extensions": {
+      "mode": {
+        "dark": "{color.parchment}"
+      }
+    }
+  }
 }
