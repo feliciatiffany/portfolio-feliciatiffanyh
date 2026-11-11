@@ -9,7 +9,7 @@ export default {
 
   // ✅ tells ProjectTemplate/CSS to use the special layout
   layout: "fullpage-stack",
-  // only the description, then all the images (no hero, details row or quote)
+  // only the description, then all the images (no hero or details row)
   bare: true,
 
   meta: {
@@ -22,7 +22,6 @@ export default {
     "My little archive of everything I made before 2024: work for orgs, competition entries, hobby projects, and early school work.\n\n"+
     "I grew up curious about a bit of everything, and somewhere along the way I fell in love with design. That’s what led me to major in Design and Technology. Some of these pieces come from student organizations and competitions, some are just things I made for fun, and some are from my foundation year at Parsons, The New School, where I got to try out all kinds of forms and styles.",
 
-  quote: "Where my curiosity slowly turned into design",
 
   // Row 4: full-page stack images (public/media/graphicdesign/past2023/)
   media: [

@@ -31,7 +31,6 @@ export default {
     intro:
         "Cities are made of so many layers: people, nature, weather, infrastructure, and digital traces, some visible and some not. I got really into Mark Graham’s idea of the city as a palimpsest, a page that keeps getting rewritten but still shows marks of older data, maps, stories, and histories.\n\n" +
         "To peel back those layers, I picked one Site of Interest and did my own field research, collecting small “data points” by observing and documenting. Then I turned what I found into a few creative outputs: a visualization of the experience, a short narrative, and a site data document. I wanted to capture how the place actually feels, and also show the hidden structures that shape how it’s lived and seen.",
-    quote: "What looks like data is sometimes someone’s whole day",
 
     // This is the block that appears immediately after intro
     linksBlock: {

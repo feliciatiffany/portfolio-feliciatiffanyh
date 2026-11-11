@@ -13,7 +13,6 @@ export default {
     "The look is borrowed from p5.js and its editor (https://p5js.org/ and https://editor.p5js.org/), an open-source library with a really kind, welcoming community. " +
     "There's a bit of everything: simple sketches, data visualizations, interactive interfaces, and API-based work. " +
     "Here are a few of my favorite fully built p5.js projects.",
-  quote: "Code is my sketchbook for playing with ideas",
 
   sections: [
     { kind: "intro" },

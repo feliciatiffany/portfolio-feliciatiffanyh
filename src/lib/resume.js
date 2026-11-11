@@ -15,6 +15,34 @@ export const education = [
  
 export const experience = [
   {
+    title: "Digital Marketing & Website Designer Intern — Riley",
+    date: "Aug 2026 – Present",
+    place: "Remote",
+    href: "https://www.askriley.io/",
+    achievements: ["Designing Riley’s website and digital marketing."],
+  },
+  {
+    title: "Block Builder — Vibe XP",
+    date: "Jul 2026 – Oct 2026",
+    place: "New York, USA · Remote",
+    href: "https://www.vibexp.com/",
+    achievements: [
+      "Optimized 3D models, textures, modular pieces and other art deliverables to support current development priorities.",
+    ],
+  },
+  {
+    title: "Creative & Content Lead — Immigration Records",
+    date: "May 2026 – Aug 2026",
+    place: "Miami, USA · Remote",
+    href: "https://www.instagram.com/immigrationrecords/",
+    achievements: [
+      "Led creative and content direction for campaigns, including social media visuals, promotional materials and brand assets.",
+      "Designed graphics and visual concepts for digital posts, event promotion and artist-related content.",
+      "Kept one visual style across platforms while exploring new ideas for audience engagement.",
+      "Worked with marketing, content and creative teams on campaign planning and visual storytelling.",
+    ],
+  },
+  {
     title: "Student Tutor — Design & Technology Major, Parsons",
     date: "Sept 2025 – Present",
     place: "New York, USA",
@@ -44,7 +72,8 @@ export const experience = [
   },
   {
     title: "Vice President — Indonesian Students Association (NYC) & Officer of Academics — PPI",
-    date: "Jul 2024 – Present",
+    date: "Jul 2024 – Jul 2026",
+    timelineDate: "Jul 2026", // sits on the timeline where it ended
     place: "New York, USA",
     achievements: [
       "Led the Indonesian student association in NYC, overseeing six divisions and engaging 1,000+ members across universities.",
@@ -57,6 +86,9 @@ export const experience = [
     title: "Volunteer — AIESEC",
     date: "Jun 2024 – Aug 2024",
     place: "Yogyakarta, Indonesia",
+    href: "https://aiesec.org/",
+    to: "/book/aiesec", // the picture opens the Summer 2024 flip book
+    media: { src: "/media/organization/aiesec/thumb-cutout.webp", alt: "Summer 2024 with AIESEC", fill: true, cutout: true },
     achievements: [
       "Taught interactive English lessons to 200+ students across three villages, improving access to quality education.",
       "Awarded Best Agent 2024 for outstanding student exchange and volunteer collaboration.",

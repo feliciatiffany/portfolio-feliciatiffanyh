@@ -11,7 +11,6 @@ export default {
   intro:
     "In this project, a camera picks up your gestures so you can trace the carvings of the Temple of Dendur with your body. I wanted people to slow down and really notice the details. It's inspired by contour drawing: looking becomes tracing, and you get to know the work through movement, time, and attention.",
 
-  quote: "What if looking at a temple meant tracing it?",
 
   sections: [
     { kind: "intro" },

@@ -55,7 +55,6 @@ export default {
     "We Hear You is a gesture-based experience where you wander a soft, quiet landscape and find the memories, thoughts, and small truths of people from different generations, jobs, and backgrounds. It's also my first try at turning a survey into something interactive.\n\n" +
     "“How might we help strangers share honest feelings in a way that feels safe, and make answering questions feel inviting instead of forced?”",
 
-  quote: "Understanding ourselves through other people's stories",
 
   // ✅ Full Project Demonstration
   youtubes: [
@@ -86,7 +85,7 @@ export default {
       {
         title: "A survey that doesn't feel like a survey",
         paragraphs: [
-          "This is also an early experiment in making surveys more fun and more honest. Normal surveys feel repetitive and transactional, so people give rushed, shallow, or “safe” answers. My guess was that people share more thoughtfully when it feels like an experience, not a form.",
+          "This is also an early experiment in making surveys more fun and more honest. Normal surveys feel repetitive and transactional, so people give rushed, shallow, or “safe” answers. My guess was that people share more thoughtfully when it feels like an experience, not a form. So I hid the survey inside a calm 3D world, with anonymous messages, a gentle start, and quiet hand gestures instead of voice or buttons.",
           "In informal testing, people took more time and wrote richer messages when the prompt was “leave a thought for someone you’ll never meet,” and when the experience greeted them gently instead of firing questions right away.",
           "I also saw people hesitate at the start when they didn't know what to expect. That's why the final version has guidance, and why next time I'd add a clearer consent moment and a short tutorial.",
         ],

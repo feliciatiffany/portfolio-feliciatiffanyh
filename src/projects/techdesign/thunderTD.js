@@ -22,7 +22,6 @@ export default {
     "Interactive TouchDesigner visuals for DJ sets. This was an experiment: I built the whole thing only with TOPs and feedback loops. " +
     "I fed in Thunder footage plus a live video feed from OBS, and processed it all in real time so the visuals react as they go.",
 
-  quote: "Just TOPs, feedback loops, and a little thunder",
 
   youtube: {
     title: "YouTube",

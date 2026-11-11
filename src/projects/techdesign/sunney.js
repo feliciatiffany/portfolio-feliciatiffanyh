@@ -13,7 +13,6 @@ export default {
     "You play as Sunney, a little sunflower, through challenges about growing up, being curious, and figuring yourself out. " +
     "The stages are inspired by music, art, and tech, and the world slowly goes from gray and unsure to full of color.",
 
-  quote: "Finding your passions, one color at a time",
 
   sections: [
     { kind: "intro" },
@@ -28,6 +27,7 @@ export default {
     { kind: "twoCol", leftPath: "progressLeft", rightPath: "progressRight" },
     { kind: "twoCol", leftPath: "sketchLeft", rightPath: "sketchRight" },
     { kind: "twoCol", leftPath: "spriteLeft", rightPath: "spriteRight" },
+    { kind: "desc", dataPath: "knowBlock" },
   ],
 
   youtube: {
@@ -46,8 +46,8 @@ export default {
   heroRight: {
     title: "What it's about",
     paragraphs: [
-      "Each stage is tied to a passion: music, art, or tech. As you play, the world fills in from grayscale to color, which is my way of showing someone finding themselves and getting more confident.",
-      "It's partly about me and my ever-changing interests. But I also wanted it to feel relatable to anyone who has had to slowly figure out what excites them.",
+      "Each stage is tied to a passion: music, art, or tech. As you play, the world fills in from grayscale to color, which is my way of showing someone finding themselves and getting more confident. My bet was that you'd feel Sunney growing up through the color alone, without me spelling it out.",
+      "It's partly about me and my ever-changing interests. But I also wanted it to feel relatable to anyone who has had to slowly figure out what excites them, and to leave them a little more hopeful.",
     ],
   },
 
@@ -93,6 +93,14 @@ export default {
     paragraphs: [
       "These sprite sheets are where the idea turned into actual game pieces. They had to be playable, not just pretty, so every asset needed to move, react, and match the rest of the game.",
       "This is where I started thinking in systems. Instead of single drawings, I was thinking about how character states, backgrounds, and interactions all fit together in p5.js.",
+    ],
+  },
+
+  knowBlock: {
+    title: "How I'd know it worked",
+    paragraphs: [
+      "I'd watch whether players notice the color coming back, and whether they stick with it through all the stages.",
+      "And I'd listen for whether the story reminds them of their own changing interests. If someone tells me it felt a bit like them, that's the part I care about most.",
     ],
   },
 

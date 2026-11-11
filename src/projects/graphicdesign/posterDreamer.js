@@ -13,7 +13,6 @@ export default {
     "I finished it with “I am the greatest dreamer.” I liked that it could mean dreaming in your sleep " +
     "or dreaming in life, and I mean both. Dream big, then chase it like it’s a fantasy world.",
 
-  quote: "I dream in my sleep and in my life",
 
   media: [
     { type: "image", src: "/media/graphicdesign/posterDreamer/final-portrait.webp", alt: "Poster I — Cloud Typography" },

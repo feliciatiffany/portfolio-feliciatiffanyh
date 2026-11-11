@@ -61,29 +61,21 @@ function CardCollage({ pieces, box }) {
 // Cards alternate sides of the center line (masonry rows, see useMasonry).
 // Creative Side cards are compact: small thumbnail, title + date only.
 function Card({ item, index }) {
-  const body = (
-    <>
-      {item.collage?.length ? (
-        <CardCollage pieces={item.collage} box={item.collageBox} />
-      ) : item.gallery?.length ? (
-        <CardGallery images={item.gallery} glow={!!(item.to || item.href)} />
-      ) : (
-        <CardMedia media={item.media} glow={!!(item.to || item.href)} />
-      )}
-      <span className="tl-card__text">
-        <span className="tl-card__title">{item.title}</span>
-        <span className="tl-card__date">{item.date}</span>
-        {item.subtitle && item.type !== "creative" && <span className="tl-card__sub">{item.subtitle}</span>}
-        {item.desc && <span className="tl-card__desc">{item.desc}</span>}
-        {item.bullets?.length > 0 && (
-          <span className="tl-card__bullets" role="list">
-            {item.bullets.map((b) => (
-              <span key={b} role="listitem">{b}</span>
-            ))}
-          </span>
-        )}
-      </span>
-    </>
+  const media = item.collage?.length ? (
+    <CardCollage pieces={item.collage} box={item.collageBox} />
+  ) : item.gallery?.length ? (
+    <CardGallery images={item.gallery} glow={!!(item.to || item.href)} />
+  ) : item.media?.src ? (
+    <CardMedia media={item.media} glow={!!(item.to || item.href)} />
+  ) : null;
+
+  // Only the picture is a link; the words beside it stay plain text
+  const hit = !media ? null : item.to ? (
+    <Link to={item.to} className="tl-card__hit" data-cursor="View project" aria-label={`${item.title}: view project`}>{media}</Link>
+  ) : item.href ? (
+    <a href={item.href} className="tl-card__hit" target="_blank" rel="noopener noreferrer" data-cursor="Open link" aria-label={`${item.title}: open link`}>{media}</a>
+  ) : (
+    media
   );
 
   return (
@@ -92,13 +84,22 @@ function Card({ item, index }) {
       data-type={item.type}
       data-side={index % 2 ? "right" : "left"}
     >
-      {item.to ? (
-        <Link to={item.to} className="tl-card__link" data-cursor="View project">{body}</Link>
-      ) : item.href ? (
-        <a href={item.href} className="tl-card__link" target="_blank" rel="noopener noreferrer" data-cursor="Open link">{body}</a>
-      ) : (
-        <div className="tl-card__link">{body}</div>
-      )}
+      <div className="tl-card__link">
+        {hit}
+        <span className="tl-card__text">
+          <span className="tl-card__title">{item.title}</span>
+          <span className="tl-card__date">{item.date}</span>
+          {item.subtitle && item.type !== "creative" && <span className="tl-card__sub">{item.subtitle}</span>}
+          {item.desc && <span className="tl-card__desc">{item.desc}</span>}
+          {item.bullets?.length > 0 && (
+            <span className="tl-card__bullets" role="list">
+              {item.bullets.map((b) => (
+                <span key={b} role="listitem">{b}</span>
+              ))}
+            </span>
+          )}
+        </span>
+      </div>
     </li>
   );
 }

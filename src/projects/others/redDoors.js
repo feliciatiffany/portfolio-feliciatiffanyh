@@ -112,7 +112,9 @@ export default {
     whyGame: {
         title: "Why a game, and why red doors",
         paragraphs: [
+            "I wanted people passing by to feel how money decides who keeps learning, and then turn that feeling into action by donating.",
             "I picked a game because it puts you inside the situation instead of asking you to feel for someone from far away. Red Doors is meant to teach and raise awareness, as a site-specific art installation.",
+            "My bet was that playing in first person would make it personal. Picking red doors, paying to unlock paths and watching your money run out makes the wealth gap something you feel, not just read about.",
             "The doors do two jobs. As a symbol, a door is a new chapter, and you have to pick a path without knowing where it leads. In the game, doors create suspense and pressure, which is exactly how school feels when money is tight.",
             "And red means risk, fear, and instability, because “choice” isn’t equally safe for everyone.",
         ],
@@ -199,7 +201,7 @@ export default {
     earlyIterations: {
         title: "Early sketches",
         paragraphs: [
-            "Early on, I was figuring out how to turn a big abstract problem into game rules: doors as choices, money as something you can see, and locked paths as the system getting in your way.",
+            "The hardest part, early on, was turning a big abstract problem into game rules: doors as choices, money as something you can see, and locked paths as the system getting in your way.",
             "I went back and forth on how many stages it needed (I landed on four), how fast it gets harder, and how to show progress clearly in a public space.",
         ],
     },
@@ -218,7 +220,7 @@ export default {
         title: "Building and refining",
         paragraphs: [
             "I made and refined the game assets and scenes, then mapped the story in a flowchart so it makes sense from start to finish.",
-            "I also thought about how to test it, to see how people react to the installation and whether the message comes through.",
+            "I also thought about how to test it, to see how people react to the installation and whether the message comes through. I’d know it worked if strangers stop to play, if I can see how far they get before the paywalls end their run, if they can explain the message afterward, and if anyone actually donates.",
         ],
     },
 

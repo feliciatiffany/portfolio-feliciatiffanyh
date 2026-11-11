@@ -94,7 +94,7 @@ const PROJECTS = [
   { slug: "a-week-of-blender", date: "Sept – Oct 2025", media: { type: "image", src: "/media/techdesign/weekofBlender/4_1.webp" } },
   { slug: "tracing-dendur", date: "Nov – Dec 2025" },
   { slug: "touchdesigner-av", date: "2026" },
-  { slug: "nycresistor", date: "June 2026" },
+  { slug: "nycresistor", date: "June 2026", desc: "Yes, I impulsively taught myself how to DJ after I got the gig.", media: { type: "image", src: "/media/techdesign/nycresistor/thumbnail.webp", alt: "DJ/VJ set at NYC Resistor, visuals on the LED wall" } },
   { slug: "unseen-city", date: "Aug – Sept 2026" },
 ];
 
@@ -192,7 +192,7 @@ function projectEntries() {
 
 function resumeEntries() {
   const exp = experience.map((ex, i) => {
-    const { year, month } = parseStart(ex.date);
+    const { year, month } = parseStart(ex.timelineDate || ex.date);
     const isOrg = ORG_PREFIXES.some((pre) => ex.title.startsWith(pre));
     // "Role — Org" → jobs lead with the role, organizations lead with the org
     const [role, ...rest] = ex.title.split(" — ");
@@ -207,6 +207,9 @@ function resumeEntries() {
       month,
       present: /present/i.test(ex.date),
       desc: clip(ex.achievements?.[0], 170),
+      href: ex.to ? undefined : ex.href,
+      to: ex.to,
+      media: ex.media,
     };
   });
 

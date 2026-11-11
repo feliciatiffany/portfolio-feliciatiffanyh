@@ -11,7 +11,6 @@ export default {
   intro:
     "I made a little booklet of “Fun Facts About Indonesia,” my home country. I wanted to share our culture, nature, and weird trivia, and let the typography do most of the storytelling.",
 
-  quote: "Letting type tell the fun facts about home",
 
   // Row 4: all pages become the gallery
 

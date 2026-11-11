@@ -11,7 +11,6 @@ export default {
   intro:
     "Poet Guy is a poem generator in the browser, inspired by street poets and the random thoughts we all carry around. " +
     "It started when I met @peoplearepoetry in Union Square. I loved the poems, but what really got me was the process: someone listening, thinking, and slowly typing something just for you.",
-  quote: "Someone listening, thinking, and typing a poem just for you",
 
   sections: [
     { kind: "intro" },

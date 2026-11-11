@@ -17,7 +17,6 @@ export default {
   intro:
      "Caress A Bear is my playful twist on the arcade game Whack-A-Mole. Except here you don't whack anything, you just try to pet Vano, a cheeky little bear. He pops out to say hi, then dodges your hand. The longer you play, the more excited he gets, speeding up until he's almost playing back with you.",
 
-  quote: "You don't whack the bear, you just try to pet him",
 
 
   sections: [

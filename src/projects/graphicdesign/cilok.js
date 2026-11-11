@@ -33,7 +33,6 @@ export default {
     "You get them on skewers or in cups, with bold sauces. " +
     "I wanted to give this classic West Java snack a modern upgrade: better quality, cleaner prep, and eco-friendly packaging.",
 
-  quote: "Giving a childhood street snack a modern glow-up",
 
   // 2) Full page final image (hero)
   finalHero: [

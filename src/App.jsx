@@ -17,6 +17,7 @@ const PAGES = {
   Built: () => import("./pages/Built.jsx"),
   Blog: () => import("./pages/Blog.jsx"),
   BlogPost: () => import("./pages/BlogPost.jsx"),
+  FlipBook: () => import("./pages/FlipBook.jsx"),
 };
 const TechDesigner = lazy(PAGES.TechDesigner);
 const DigitalProductDesigner = lazy(PAGES.DigitalProductDesigner);
@@ -28,6 +29,7 @@ const Project = lazy(PAGES.Project);
 const Built = lazy(PAGES.Built);
 const Blog = lazy(PAGES.Blog);
 const BlogPost = lazy(PAGES.BlogPost);
+const FlipBook = lazy(PAGES.FlipBook);
 function usePrefetchPages() {
   useEffect(() => {
     const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1500));
@@ -45,6 +47,7 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Socials from "./components/Socials.jsx";
 import FanyLLM from "./components/FanyLLM.jsx";
 import { getProject } from "./lib/projects.js";
+import { BOOKS } from "./lib/books.js";
 
 const reduceMotion =
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -96,6 +99,7 @@ function crumbsFor(pathname) {
   const key = first.toLowerCase();
   if (key === "work" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, kind: "project", slug: second };
   if (key === "blog" && second) return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, kind: "post", slug: second };
+  if (key === "book" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: BOOKS[second]?.title || second };
   return { parent: HOME, here: PAGE_NAMES[key] || first };
 }
 
@@ -152,7 +156,7 @@ function Layout({ children }) {
   usePrefetchPages();
   const onProject = pathname.startsWith("/work/");
   const onHome = pathname === "/";
-  const centered = onHome || /^\/(built|blog|about)/i.test(pathname);
+  const centered = onHome || /^\/(built|blog|about|book)/i.test(pathname);
 
   const gridClass = `${onProject ? "page-grid--project" : centered ? "page-grid--center" : ""}${onHome ? " page-grid--home" : ""}`;
 
@@ -204,6 +208,7 @@ export default function App() {
         <Route path="/built" element={<Built />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/book/:slug" element={<FlipBook />} />
 
         <Route path="/about" element={<About />} />
         <Route path="/About" element={<About />} />

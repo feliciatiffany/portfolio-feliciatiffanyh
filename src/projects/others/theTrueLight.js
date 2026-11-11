@@ -28,7 +28,6 @@ export default {
     "Julian Bleecker describes good design fiction as “everyday leftovers” from possible worlds: little hints of big changes that show what could happen, not predictions. " +
     "That idea stuck with me, so this short film is my try at worldbuilding a near future we could actually live in, with a slightly uncanny twist. " +
     "What still feels familiar and comforting, and what feels just a little off?",
-  quote: "A near future that feels familiar, but slightly off",
 
   youtube: {
     title: "Project Video",

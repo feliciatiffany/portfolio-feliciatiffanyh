@@ -8,7 +8,6 @@ export default {
   },
   intro:
     "Collection is a wishlist that turned into a little story. I built it with Eleventy because I was curious about curation and desire, and why we want the things we want. It ended up feeling like a personal archive of things I chose on purpose.",
-  quote: "A wishlist can tell a story about who I am",
   sections: [
     { kind: "intro" },
     { kind: "references", title: "Project link", itemsPath: "links" },

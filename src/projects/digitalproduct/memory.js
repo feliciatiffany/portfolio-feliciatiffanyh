@@ -8,7 +8,6 @@ export default {
   },
   intro:
     "Memory is a small JavaScript experiment about recall. I was curious how tiny interactions can bring a moment back. I wanted it to feel playful, like poking around an interface and finding old patterns and memories along the way.",
-  quote: "Tiny interactions can bring whole moments back",
   sections: [
     { kind: "intro" },
     { kind: "references", title: "Project link", itemsPath: "links" },

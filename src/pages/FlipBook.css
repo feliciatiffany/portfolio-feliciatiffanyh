@@ -1,0 +1,67 @@
+/* A book alone in the middle of the page. Pages are 4:5; open, two sit side by side.
+   The page bending itself is drawn by StPageFlip (page-flip); this only sizes and frames it. */
+.flipbook{
+  --page-h: min(54vh, 460px);
+  --book-w: min(92vw, calc(var(--page-h) * 1.6)); /* two 4:5 pages */
+
+  min-height: calc(100vh - var(--space-18) * 3);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-5);
+  padding: var(--space-18) var(--space-4) var(--space-10);
+}
+
+.flipbook__stage{
+  width: var(--book-w);
+  transition: transform calc(var(--duration-slow) * 1.8) var(--ease-in-out);
+}
+/* closed: only the right-hand cover shows, so slide half a page left to centre it */
+.flipbook__stage.is-closed{ transform: translateX(-25%); }
+.flipbook__mount{ width: 100%; }
+
+.flipbook__page{ background: var(--color-bg); overflow: hidden; }
+.flipbook__page img{ display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; pointer-events: none; }
+
+.flipbook__nav{
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-family-body);
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.flipbook__nav button{
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  background: none;
+  color: var(--foreground);
+  font: inherit;
+  font-size: var(--text-ui);
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+.flipbook__nav button:hover,
+.flipbook__nav button:focus-visible{ color: var(--accent); outline: none; }
+.flipbook__nav button:disabled{ opacity: 0.3; cursor: default; color: var(--foreground); }
+
+.flipbook__link{
+  font-family: var(--font-family-body);
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+.flipbook__link:hover,
+.flipbook__link:focus-visible{ color: var(--accent); outline: none; }
+
+.flipbook__missing{ text-align: center; font-family: var(--font-family-body); color: var(--muted-foreground); }
+
+/* portrait (narrow screens) shows one page, so nothing to centre */
+@media (max-width: 700px){
+  .flipbook{ --book-w: min(92vw, calc(var(--page-h) * 0.8)); }
+  .flipbook__stage.is-closed{ transform: none; }
+}
+@media (prefers-reduced-motion: reduce){
+  .flipbook__stage{ transition: none; }
+}

@@ -41,7 +41,6 @@ export default {
 
   intro:
     "The PPE (Personal Protective Equipment) Cooler Box, or PC-Box, is a light, wearable cooling add-on I designed for healthcare workers in full PPE. In hot, humid places those suits get really hot, so I wanted to make them more comfortable and lower the risk of heat-related illness.",
-  quote: "Keeping healthcare workers cool inside their PPE",
 
   youtube: {
     title: "PC-Box Demo",

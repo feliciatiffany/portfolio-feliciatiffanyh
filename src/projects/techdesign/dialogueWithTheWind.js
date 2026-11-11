@@ -26,6 +26,8 @@ export default {
 
     { kind: "desc", dataPath: "row8.desc" },
 
+    { kind: "desc", dataPath: "knowBlock" },
+
     { kind: "links", title: "Links" },
 
     { kind: "references", title: "References", itemsPath: "references" },
@@ -35,7 +37,6 @@ export default {
     "“Dialogue with the Wind” is an interactive installation where you talk to a field of fiber-optic grass and it talks back. " +
     "You speak honestly, and the grass answers with shifting color, soft movement, and sound. I wanted private feelings to turn into a gentle little conversation.",
 
-  quote: "Sometimes the voice you need to hear is your own",
 
   media: [
     { type: "image", src: "/media/techdesign/dialogue/dialogue_main.webp", alt: "Main visual" },
@@ -195,6 +196,14 @@ export default {
         },
       ],
     },
+  },
+
+  knowBlock: {
+    title: "How I'd know it worked",
+    paragraphs: [
+      "I'd watch how long people keep talking, and whether they actually reach out and touch the grass.",
+      "Then whether they listen to the whole playback instead of walking off, and whether they choose to save their story at the end.",
+    ],
   },
 
   links: [

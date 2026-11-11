@@ -3,7 +3,6 @@
 // page it came from. To plug in a real model later, replace `answer()` with a call to your own
 // server endpoint and keep the same { text, links } shape.
 import { education, experience, skills, awards } from "./resume.js";
-import { REFLECTIONS } from "./reflections.js";
 import { SECTIONS as ABOUT } from "./about.js";
 import { ENTRIES } from "./timeline.js";
 import blog from "../data/blog.json";
@@ -24,15 +23,24 @@ const words = (s) => (String(s || "").toLowerCase().match(/[a-z0-9]+/g) || []).f
 const sentences = (s, n = 2) => (String(s || "").replace(/\s+/g, " ").match(/[^.!?]+[.!?]+/g) || [String(s || "")]).slice(0, n).map((x) => x.trim()).join(" ");
 
 // ---- knowledge: one doc per thing worth answering about ----------------------------------------
+// every sentence a project page shows (intro, section paragraphs, bullets), so answers can come from the story
+const projectText = (v, key = "") =>
+  typeof v === "string"
+    ? (/^(intro|text|paragraphs|bullets|\d+)$/.test(key) ? v : "")
+    : Array.isArray(v)
+      ? v.map((x, i) => projectText(x, /^(paragraphs|bullets)$/.test(key) ? key : String(i))).join(" ")
+      : v && typeof v === "object"
+        ? Object.entries(v).map(([k, x]) => projectText(x, k)).join(" ")
+        : "";
+
 const DOCS = [
   ...PROJECTS.map((p) => {
-    const r = REFLECTIONS[p.slug] || {};
     const intro = asText(p.intro);
     return {
       title: p.title,
       keys: words(`${p.title} ${p.slug.replace(/[-_]/g, " ")}`),
-      body: words(`${intro} ${p.quote || ""} ${Object.values(r).join(" ")} ${[].concat(p.meta?.category || []).join(" ")} ${[].concat(p.meta?.tools || []).join(" ")}`),
-      text: [sentences(intro, 2), r.goal, r.learned].filter(Boolean).join(" "),
+      body: words(`${projectText(p)} ${[].concat(p.meta?.category || []).join(" ")} ${[].concat(p.meta?.tools || []).join(" ")}`),
+      text: sentences(intro, 3),
       links: [{ label: `Open ${p.title}`, to: `/work/${p.slug}` }],
     };
   }),

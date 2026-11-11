@@ -857,13 +857,6 @@ gap: var(--space-3);
 
 .project-template .proj-intro{ display: grid; gap: var(--space-3); }
 .project-template .proj-text{ white-space: normal; line-height: var(--leading-prose); }
-.proj-quote{
-  margin: var(--space-7) 0 0;
-  font-family: var(--font-family-body);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--text-section-title);
-  line-height: var(--leading-title);
-}
 
 /* Section headings: Montserrat bold instead of tiny caps */
 .project-template .proj-minihead{
@@ -911,19 +904,6 @@ gap: var(--space-3);
 
 /* write-up */
 .project-template .proj-intro{ gap: var(--space-paragraph); }
-.project-template .proj-quote{ margin: var(--space-heading-content) 0 0; }
-
-/* Looking back: four short answers, label above each (same rhythm as the rest of the page) */
-.project-template .proj-reflection__list{ display: grid; gap: var(--space-stack); margin: 0; }
-.project-template .proj-reflection__item{ display: grid; gap: var(--space-caption-media); }
-.project-template .proj-reflection__item dt{
-  font-family: var(--font-family-body);
-  font-size: var(--text-ui);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--leading-title);
-  color: var(--color-accent-tech);
-}
-.project-template .proj-reflection__item dd{ margin: 0; line-height: var(--leading-prose); }
 
 /* Paper: the full write-up, overview first, the rest folded away */
 .project-template .proj-paper__doc{ display: grid; gap: var(--space-section); }

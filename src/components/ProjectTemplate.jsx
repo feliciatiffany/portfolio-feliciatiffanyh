@@ -9,33 +9,7 @@ import Lightbox from "./Lightbox.jsx";
 import LazyVideo from "./LazyVideo.jsx";
 import { projectDate } from "../lib/timeline.js";
 import ScrambledText, { historyTitle } from "./ScrambledText.jsx";
-import { REFLECTIONS } from "../lib/reflections.js";
 import SectionNav from "./SectionNav.jsx";
-
-// Closing section on every big project: the outcome I wanted, the bet I made, how I'd know, what I learned
-const REFLECTION_ROWS = [
-  ["goal", "The goal"],
-  ["hypothesis", "My hypothesis"],
-  ["measure", "How I’d know it worked"],
-  ["learned", "What I learned, or what surprised me"],
-];
-function Reflection({ data }) {
-  const rows = REFLECTION_ROWS.filter(([key]) => data?.[key]);
-  if (!rows.length) return null;
-  return (
-    <section className="proj-section proj-reflection">
-      <h3 className="proj-minihead">Looking back</h3>
-      <dl className="proj-reflection__list">
-        {rows.map(([key, label]) => (
-          <div key={key} className="proj-reflection__item">
-            <dt>{label}</dt>
-            <dd>{data[key]}</dd>
-          </div>
-        ))}
-      </dl>
-    </section>
-  );
-}
 
 // Section list on the left names the story's chapters, not every caption: headings over a slider,
 // video or image-only block are labels for media, and deeper sub-headings belong to their chapter
@@ -306,7 +280,7 @@ export default function ProjectTemplate({ project }) {
     const kind = s?.kind;
 
     if (kind === "intro") {
-      if (!project.intro && !project.quote) return null;
+      if (!project.intro) return null;
       return (
         <section key={i} className={joinClasses("proj-section proj-intro", s.className)}>
           {project.intro
@@ -316,7 +290,6 @@ export default function ProjectTemplate({ project }) {
                   <p key={j} className="proj-text">{para}</p>
                 ))
             : null}
-          {project.quote && !project.bare ? <h2 className="proj-quote">“{project.quote}” - me</h2> : null}
         </section>
       );
     }
@@ -598,7 +571,6 @@ export default function ProjectTemplate({ project }) {
         {!project.bare && <Hero item={project.media?.[0]} />}
         {!project.bare && <MetaRow project={project} />}
         {sections.map(renderSection)}
-        <Reflection data={REFLECTIONS[project.slug]} />
       </main>
 
       <Lightbox open={!!lbItem} item={lbItem} onClose={closeLightbox} />

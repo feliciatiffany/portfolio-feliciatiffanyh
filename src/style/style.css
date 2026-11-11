@@ -936,6 +936,8 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   text-decoration: none;
 }
 .tl-card[data-side="left"] .tl-card__link{ margin-left: auto; }
+/* the picture is the only link on a card */
+.tl-card__hit{ display: grid; min-width: 0; color: inherit; text-decoration: none; border-radius: var(--radius-md); }
 
 /* Timeline images: whole image, never cropped — fits inside one 360 x 230 box, centered over the text */
 .tl-card__media{ display: block; justify-self: center; max-width: 100%; border-radius: var(--radius-md); }
@@ -949,7 +951,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   max-height: 43cqw;
 }
 
-.tl-card__link:focus-visible{ outline: 2px solid var(--tc); outline-offset: 4px; }
+.tl-card__hit:focus-visible{ outline: 2px solid var(--tc); outline-offset: 4px; }
 /* Single image: the whole framed picture grows on hover, like the photo rows (not a zoom inside the frame) */
 .tl-card__media.shine .tl-card__frame{ transition: transform .25s ease, box-shadow .45s ease; }
 .tl-card__media.shine:hover img,
@@ -1027,14 +1029,14 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .tl-collage__piece.is-card + .tl-collage__piece.is-card{ filter: drop-shadow(0 0 18px var(--color-glow-off)) drop-shadow(var(--shadow-print-raised)); }
 .tl-collage__piece:nth-child(2){ transition-delay: .04s; }
 .tl-collage__piece:nth-child(3){ transition-delay: .08s; }
-.tl-card__link:hover .tl-collage__piece,
-.tl-card__link:focus-visible .tl-collage__piece{
+.tl-card__hit:hover .tl-collage__piece,
+.tl-card__hit:focus-visible .tl-collage__piece{
   transform: translate(var(--hx), var(--hy)) rotate(var(--hr)) scale(var(--hs));
   filter: drop-shadow(0 0 18px var(--color-glow)) drop-shadow(var(--shadow-print-lifted));
 }
 @media (prefers-reduced-motion: reduce){
   .tl-collage__piece{ transition: none; }
-  .tl-card__link:hover .tl-collage__piece{ transform: rotate(var(--r)); }
+  .tl-card__hit:hover .tl-collage__piece{ transform: rotate(var(--r)); }
 }
 
 .tl-card__text{ display: grid; gap: 0; min-width: 0; }
@@ -1360,16 +1362,16 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   /* resting glow = the same coral at 0%, so hovering fades in warm instead of passing through black */
   box-shadow: 0 0 28px 6px var(--color-glow-off), 0 10px 30px -10px var(--color-glow-off);
 }
-.tl-card__link:hover .tl-card__frame,
-.tl-card__link:focus-visible .tl-card__frame,
-.tl-card__link:hover .tl-card__gallery img,
-.tl-card__link:focus-visible .tl-card__gallery img{
+.tl-card__hit:hover .tl-card__frame,
+.tl-card__hit:focus-visible .tl-card__frame,
+.tl-card__hit:hover .tl-card__gallery img,
+.tl-card__hit:focus-visible .tl-card__gallery img{
   box-shadow: 0 0 28px 6px var(--color-glow), 0 10px 30px -10px var(--color-glow);
 }
-.tl-card__link:hover .tl-collage__piece,
-.tl-card__link:focus-visible .tl-collage__piece,
-.tl-card__link:hover .tl-collage__piece.is-card + .tl-collage__piece.is-card,
-.tl-card__link:focus-visible .tl-collage__piece.is-card + .tl-collage__piece.is-card{
+.tl-card__hit:hover .tl-collage__piece,
+.tl-card__hit:focus-visible .tl-collage__piece,
+.tl-card__hit:hover .tl-collage__piece.is-card + .tl-collage__piece.is-card,
+.tl-card__hit:focus-visible .tl-collage__piece.is-card + .tl-collage__piece.is-card{
   filter: drop-shadow(0 0 18px var(--color-glow)) drop-shadow(var(--shadow-print-lifted));
 }
 @media (prefers-reduced-motion: reduce){ .tl-card__frame, .tl-card__gallery img{ transition: none; } }
@@ -1379,8 +1381,8 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   transition: transform .25s ease, filter .45s ease;
   filter: drop-shadow(0 0 10px var(--color-glow-off)) drop-shadow(0 0 22px var(--color-glow-off));
 }
-.tl-card__link:hover .tl-card__media.is-cutout img,
-.tl-card__link:focus-visible .tl-card__media.is-cutout img{
+.tl-card__hit:hover .tl-card__media.is-cutout img,
+.tl-card__hit:focus-visible .tl-card__media.is-cutout img{
   filter: drop-shadow(0 0 10px var(--color-glow)) drop-shadow(0 0 22px var(--color-glow));
 }
 

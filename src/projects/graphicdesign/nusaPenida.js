@@ -43,7 +43,6 @@ export default {
     "My brand direction: adventurers want experiences they earn, and they want to know they’re safe. So I leaned into friendliness and how many different places the island has, all centered on “Tri Hita Karana” (harmony between people, nature, and the divine).\n\n" +
     "**Keywords:** **cool, sustainable, family, friendly, recreation, bold, escape, adventure, motif, color, premium, safe**",
 
-  quote: "Adventure that feels earned, but always safe",
 
   // ✅ MP4 in slider
   video: [
@@ -113,6 +112,7 @@ finalPages: [
     paragraphs: [
       "This was a multi-week rebrand. I researched an existing brand, figured out what wasn’t working, then built a new strategy and visual system that could work in the real world.",
       "I didn’t want to just redraw a logo. I wanted a direction that came from the place, the competition, and the people visiting, and then I wanted to prove it actually works.",
+      "I wanted adventurers and families alike to see Nusa Penida as an exciting place to explore that still feels friendly and safe. My bet was that a brand centered on Tri Hita Karana, with bold but readable color, friendly yet premium type, motifs from the place, and strict layout rules, could tie all those different spots into one family.",
     ],
   },
 
@@ -245,6 +245,7 @@ finalPages: [
      paragraphs: [
       "For the final brand guide book, I used every touchpoint as a test. Where does the identity break? What feels too stiff? Which rules need to be clearer?",
       "What I ended up with is a brand kit that looks good, but also actually works, stays consistent, and can grow.",
+      "I’d know it worked if people find the safety info quickly, if the brand feels the same on every touchpoint, and if both families and adventurers say it feels like it’s for them.",
     ],
   },
 

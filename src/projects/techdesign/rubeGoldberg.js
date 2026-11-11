@@ -30,7 +30,6 @@ export default {
     "I built a physics-driven Rube Goldberg machine in Unity, where one little chain reaction after another tells a personal story. " +
     "I put together 3D models, materials, sound, motion, camera angles, and lighting so it all flows from one moment to the next.",
 
-  quote: "Missing home, one chain reaction at a time",
 
   linksBlock: {
     title: "Links",

@@ -25,7 +25,6 @@ export default {
   intro:
     "A Rotary AI Storytelling Toy for Children, Parents, and AI Literacy\n\nTellAI is a screen-free AI toy hidden inside a retro rotary phone. Kids ages 6–10 dial a character and an emotion, then have a playful voice chat with AI.\n\nIt started with a question about AI, kids, and parenting. Parents already worry about screens, and now kids are growing up with things that can talk, answer, recommend, imitate, and even respond emotionally.\n\nSo instead of AI as a hidden algorithm behind a screen, we asked: what if kids could question it, customize it, and play with it more critically?",
 
-  quote: "What if kids could question AI, not just use it?",
 
   sections: [
     { kind: "intro" },
