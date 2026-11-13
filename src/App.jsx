@@ -17,6 +17,7 @@ const PAGES = {
   Built: () => import("./pages/Built.jsx"),
   Blog: () => import("./pages/Blog.jsx"),
   StudyCase: () => import("./pages/StudyCase.jsx"),
+  StudyStory: () => import("./pages/StudyStory.jsx"),
   BlogPost: () => import("./pages/BlogPost.jsx"),
   FlipBook: () => import("./pages/FlipBook.jsx"),
 };
@@ -30,6 +31,7 @@ const Project = lazy(PAGES.Project);
 const Built = lazy(PAGES.Built);
 const Blog = lazy(PAGES.Blog);
 const StudyCase = lazy(PAGES.StudyCase);
+const StudyStory = lazy(PAGES.StudyStory);
 const BlogPost = lazy(PAGES.BlogPost);
 const FlipBook = lazy(PAGES.FlipBook);
 function usePrefetchPages() {
@@ -100,13 +102,19 @@ function crumbsFor(pathname) {
   const [, first = "", second] = pathname.split("/");
   const key = first.toLowerCase();
   if (key === "work" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, kind: "project", slug: second };
-  if (key === "study-case" && second) return { parent: { label: PAGE_NAMES["study-case"], to: "/study-case" }, kind: "project", slug: second };
+  if (key === "study-case" && second) return { parent: { label: PAGE_NAMES["study-case"], to: "/study-case" }, kind: "study", slug: second };
   if (key === "blog" && second) return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, kind: "post", slug: second };
   if (key === "book" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: BOOKS[second]?.title || second };
   return { parent: HOME, here: PAGE_NAMES[key] || first };
 }
 
 async function loadTitle(kind, slug) {
+  if (kind === "study") {
+    const { STUDY_CASES } = await import("./lib/studyCases.js");
+    const found = STUDY_CASES.find((c) => c.project === slug);
+    if (found) return found.title;
+    kind = "project";
+  }
   if (kind === "post") {
     const { default: blog } = await import("./data/blog.json");
     const post = (blog.posts || []).find((p) => p.slug === slug);
@@ -210,7 +218,7 @@ export default function App() {
         <Route path="/nutshell" element={<Navigate to="/blog" replace />} />
         <Route path="/built" element={<Built />} />
         <Route path="/study-case" element={<StudyCase />} />
-        <Route path="/study-case/:slug" element={<Project />} />
+        <Route path="/study-case/:slug" element={<StudyStory />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/book/:slug" element={<FlipBook />} />

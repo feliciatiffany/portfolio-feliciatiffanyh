@@ -1291,59 +1291,55 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .study-item.is-pending .blog-item__title,
 .study-item.is-pending .blog-item__link:hover .blog-item__title{ color: var(--muted-foreground); }
 
-/* The rule over each box draws itself left to right, led by the same small coral light as the vertical line */
+/* Everything here follows the scroll (StudyCase.jsx sets --lp on the list and --p on each box, 0 → 1).
+   The vertical line grows down the page with the small coral light at its tip. */
+.study__list{ --lp: 0; }
+.study__list::before{ transform: scaleY(var(--lp)); }
+.study__list::after{
+  content: "";
+  position: absolute;
+  top: calc(var(--lp) * 100%);
+  left: var(--line-x);
+  width: var(--space-2); height: var(--space-2);
+  margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
+  border-radius: var(--radius-round);
+  background: var(--accent);
+  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
+  opacity: clamp(0, calc((1 - var(--lp)) * 12), 1);
+  pointer-events: none;
+}
+/* The rule over each box draws left to right as the box comes up, led by the same light */
+.study-item{ --p: 0; }
 .study-item__rule{ position: absolute; top: 0; left: 0; right: 0; height: 1px; pointer-events: none; }
 .study-item__rule::before{
   content: "";
   position: absolute;
   inset: 0;
   background: var(--border);
-  transform: scaleX(0);
+  transform: scaleX(var(--p));
   transform-origin: left center;
-  transition: transform var(--duration-draw) var(--ease-in-out);
 }
 .study-item__rule::after{
   content: "";
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: calc(var(--p) * 100%);
   width: var(--space-2); height: var(--space-2);
   margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
   border-radius: var(--radius-round);
   background: var(--accent);
   box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
-  opacity: 0;
+  opacity: clamp(0, calc(min(var(--p), 1 - var(--p)) * 12), 1); /* only while the rule is being drawn */
 }
-.study-item.is-in .study-item__rule::before{ transform: scaleX(1); }
-.study-item.is-in .study-item__rule::after{ animation: rule-light var(--duration-draw) var(--ease-in-out) forwards; }
-@keyframes rule-light{
-  0%   { left: 0; opacity: 0; }
-  8%   { opacity: 1; }
-  80%  { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
+/* The picture comes back like a memory as it rises: sepia, soft and a little too close, then sharp */
+.study-item__media{ filter: sepia(calc((1 - var(--p)) * .85)) blur(calc((1 - var(--p)) * 4px)); }
+.study-item__media img{ transform: scale(calc(1.1 - var(--p) * .1)); }
+.study-item__text > *{
+  opacity: clamp(0, calc((var(--p) - .4 - var(--i, 0) * .08) * 4), 1);
+  transform: translateY(calc((1 - var(--p)) * var(--space-10)));
 }
-/* Behind the light the picture opens left to right, sepia and soft, then sharp; the text follows line by line */
-.study-item.reveal > *{ opacity: 1; filter: none; transform: none; transition: none; }
-.study-item.reveal .study-item__media{
-  clip-path: inset(0 100% 0 0);
-  filter: sepia(.85) blur(4px) brightness(1.08);
-  transition: clip-path var(--duration-draw) var(--ease-in-out), filter var(--duration-draw) var(--ease-out) var(--duration-memory);
-}
-.study-item.reveal.is-in .study-item__media{ clip-path: inset(0); filter: none; }
-.study-item.reveal .study-item__text > *{
-  opacity: 0;
-  transform: translateY(var(--space-4));
-  transition: opacity var(--duration-memory) ease, transform var(--duration-memory) var(--ease-out);
-  transition-delay: calc(var(--duration-memory) + var(--i, 0) * var(--duration-fast));
-}
-.study-item.reveal .study-item__text > *:nth-child(2){ --i: 1; }
-.study-item.reveal .study-item__text > *:nth-child(3){ --i: 2; }
-.study-item.reveal.is-in .study-item__text > *{ opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce){
-  .study-item__rule::before{ transform: none; transition: none; }
-  .study-item__rule::after{ display: none; }
-  .study-item.reveal .study-item__media{ clip-path: none; filter: none; transition: none; }
-  .study-item.reveal .study-item__text > *{ opacity: 1; transform: none; transition: none; }
-}
+.study-item__text > *:nth-child(2){ --i: 1; }
+.study-item__text > *:nth-child(3){ --i: 2; }
 @media (max-width: 800px){
   .study__list{ width: 100%; }
   .study-item__text{ padding-left: 0; }

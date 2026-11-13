@@ -1,0 +1,91 @@
+/* A study case told as a story: one reading column. Text, images and cards all keep to its edges. */
+.story{
+  --story-text: min(640px, 100%);
+
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: var(--space-page-top) var(--space-4) var(--space-18);
+}
+
+/* Title, the question it asks, and the facts */
+.story__head{ width: var(--story-text); margin-inline: auto; text-align: center; padding-bottom: var(--space-10); }
+.story__title{ margin: 0; font-size: var(--text-page-title); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
+.story__hook{ margin: var(--space-5) 0 0; font-family: var(--font-family-body); font-size: var(--text-body-lg); line-height: var(--leading-body); color: var(--muted-foreground); }
+.story__meta{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-10) 0 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  text-align: left;
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body);
+}
+.story__meta dt{ color: var(--muted-foreground); }
+.story__meta dd{ margin: var(--space-1) 0 0; }
+
+/* A section: small label, then the question or statement it answers */
+.story__section{ padding-top: var(--space-18); }
+.story__section > *{ width: var(--story-text); margin-inline: auto; }
+.story__label{
+  margin-block: 0 var(--space-3);
+  font-family: var(--font-family-body);
+  font-size: var(--text-meta);
+  color: var(--accent);
+  scroll-margin-top: var(--space-18);
+}
+.story__h{ margin-block: 0 var(--space-7); font-size: var(--text-section-title); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
+.story__p{ margin-block: 0 var(--space-paragraph); font-family: var(--font-family-body); font-size: var(--text-body); line-height: var(--leading-loose); }
+
+.story__aside{ margin-block: var(--space-7) 0; padding-left: var(--space-5); border-left: 2px solid var(--accent); font-family: var(--font-family-body); }
+.story__aside h3{ margin: 0 0 var(--space-2); font-size: var(--text-ui); font-weight: var(--font-weight-bold); }
+.story__aside p{ margin: 0; font-size: var(--text-body); line-height: var(--leading-loose); }
+
+/* Images and cards sit on the same column as the text, with more air above and below */
+.story__section > .story__wide,
+.story__section > .story__row,
+.story__section > .story__cards{ margin-block: var(--space-10); }
+.story__wide img{ display: block; width: 100%; height: auto; border-radius: var(--radius-media); background: var(--color-surface-soft); }
+.story figcaption{ margin-top: var(--space-3); font-family: var(--font-family-body); font-size: var(--text-meta); color: var(--muted-foreground); text-align: center; }
+
+/* Screens side by side on a soft surface, each with its tag underneath */
+.story__row{
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  align-items: start;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-7) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-wash-soft);
+}
+.story__row--phones{ grid-template-columns: repeat(var(--cols), minmax(0, 250px)); }
+/* paper sketches need the full column to stay readable */
+.story__row--sketches{ grid-template-columns: 1fr; }
+.story__shot{ margin: 0; }
+.story__shot img{ display: block; width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-print); }
+.story__row--sketches .story__shot img{ border-radius: var(--radius-media); }
+/* the current app sits back a little, so the eye goes to what changed */
+.story__shot[data-tag="before"] img{ opacity: .6; filter: grayscale(.5); }
+
+/* Short cards: personas, opportunities, directions */
+.story__cards{ display: grid; gap: var(--space-4); }
+.story__card{ padding: var(--space-5); border: 1px solid var(--border); border-radius: var(--radius-lg); font-family: var(--font-family-body); }
+.story__tag{ margin: 0 0 var(--space-2); font-size: var(--text-meta); color: var(--accent); }
+.story__card h3{ margin: 0 0 var(--space-3); font-size: var(--text-body-lg); font-weight: var(--font-weight-bold); }
+.story__card p:last-child{ margin: 0; font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--muted-foreground); }
+
+/* Term on the left, what it means on the right */
+.story__list{ margin-block: var(--space-5) var(--space-7); font-family: var(--font-family-body); }
+.story__list > div{ display: grid; grid-template-columns: minmax(0, 9em) minmax(0, 1fr); gap: var(--space-5); padding: var(--space-4) 0; border-top: 1px solid var(--border); }
+.story__list > div:last-child{ border-bottom: 1px solid var(--border); }
+.story__list dt{ font-size: var(--text-body); font-weight: var(--font-weight-bold); line-height: var(--leading-body); }
+.story__list dd{ margin: 0; font-size: var(--text-body); line-height: var(--leading-body); }
+
+@media (max-width: 800px){
+  .story__meta{ grid-template-columns: 1fr; }
+  .story__row--phones{ grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--space-5); }
+  .story__list > div{ grid-template-columns: 1fr; gap: var(--space-1); }
+}

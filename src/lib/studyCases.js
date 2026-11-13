@@ -4,9 +4,13 @@
 export const STUDY_CASES = [
   {
     slug: "meetup",
-    title: "Meetup",
-    status: "In progress",
+    project: "meetup", // told as a story: src/studies/meetup.js
+    title: "Joining an event on Meetup",
+    status: "Concept",
     year: 2026,
+    summary:
+      "Meetup is good at getting people to join their first event, but the flow ends at the ticket. I followed that one flow and added ways for members and organizers to keep hearing from each other before, during and after an event.",
+    image: { src: "/media/study/meetup/cover.webp", alt: "Four redesigned Meetup screens: Explore, the event page, Notifications and the after-event check-in" },
   },
   {
     slug: "sidequesting",
