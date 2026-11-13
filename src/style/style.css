@@ -1278,6 +1278,77 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   .blog-item.has-cover .blog-item__link{ grid-template-columns: 1fr; gap: var(--space-3-5); }
 }
 
+/* Study cases: the blog frame, but each box is a full-width picture with its text underneath */
+.study__list{ width: min(920px, calc(100vw - 340px)); gap: var(--space-10); } /* stays clear of the filter fixed on the left */
+.study-item .blog-item__link{ grid-template-columns: 1fr; gap: var(--space-5); max-width: none; padding-top: var(--space-7); }
+/* the picture takes the screen minus the room for its text, so just the top edge of the next case shows below */
+.study-item__media{ display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 10; max-height: max(240px, calc(100vh - 400px)); background: var(--color-surface-soft); }
+.study-item__media img{ width: 100%; height: 100%; max-height: none; object-fit: cover; }
+.study-item__text{ padding-left: var(--space-5); }
+.study-item__soon{ font-family: var(--font-family-body); font-size: var(--text-meta); color: var(--muted-foreground); }
+/* still being written: nothing to open, so it sits quieter and doesn't react like a link */
+.study-item.is-pending .blog-item__link{ cursor: default; }
+.study-item.is-pending .blog-item__title,
+.study-item.is-pending .blog-item__link:hover .blog-item__title{ color: var(--muted-foreground); }
+
+/* The rule over each box draws itself left to right, led by the same small coral light as the vertical line */
+.study-item__rule{ position: absolute; top: 0; left: 0; right: 0; height: 1px; pointer-events: none; }
+.study-item__rule::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-draw) var(--ease-in-out);
+}
+.study-item__rule::after{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: var(--space-2); height: var(--space-2);
+  margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
+  border-radius: var(--radius-round);
+  background: var(--accent);
+  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
+  opacity: 0;
+}
+.study-item.is-in .study-item__rule::before{ transform: scaleX(1); }
+.study-item.is-in .study-item__rule::after{ animation: rule-light var(--duration-draw) var(--ease-in-out) forwards; }
+@keyframes rule-light{
+  0%   { left: 0; opacity: 0; }
+  8%   { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+/* Behind the light the picture opens left to right, sepia and soft, then sharp; the text follows line by line */
+.study-item.reveal > *{ opacity: 1; filter: none; transform: none; transition: none; }
+.study-item.reveal .study-item__media{
+  clip-path: inset(0 100% 0 0);
+  filter: sepia(.85) blur(4px) brightness(1.08);
+  transition: clip-path var(--duration-draw) var(--ease-in-out), filter var(--duration-draw) var(--ease-out) var(--duration-memory);
+}
+.study-item.reveal.is-in .study-item__media{ clip-path: inset(0); filter: none; }
+.study-item.reveal .study-item__text > *{
+  opacity: 0;
+  transform: translateY(var(--space-4));
+  transition: opacity var(--duration-memory) ease, transform var(--duration-memory) var(--ease-out);
+  transition-delay: calc(var(--duration-memory) + var(--i, 0) * var(--duration-fast));
+}
+.study-item.reveal .study-item__text > *:nth-child(2){ --i: 1; }
+.study-item.reveal .study-item__text > *:nth-child(3){ --i: 2; }
+.study-item.reveal.is-in .study-item__text > *{ opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce){
+  .study-item__rule::before{ transform: none; transition: none; }
+  .study-item__rule::after{ display: none; }
+  .study-item.reveal .study-item__media{ clip-path: none; filter: none; transition: none; }
+  .study-item.reveal .study-item__text > *{ opacity: 1; transform: none; transition: none; }
+}
+@media (max-width: 800px){
+  .study__list{ width: 100%; }
+  .study-item__text{ padding-left: 0; }
+}
+
 /* One post */
 .post{ width: min(1100px, 100%); margin: 0 auto; padding: 0 var(--space-4) clamp(64px, 8vw, 120px); }
 .post__title{ margin: var(--space-page-top) auto var(--space-caption-media); max-width: 760px; text-align: center; font-size: var(--text-page-title); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
@@ -1298,7 +1369,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .post__video iframe{ position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: var(--radius-media); }
 
 /* =========================================================
-   ABOUT ME — same frame as What I've done and the blog: centered heading, one reading column
+   ABOUT ME — same frame as the Timeline and the blog: centered heading, one reading column
    ========================================================= */
 .about{ width: min(1100px, 100%); margin: 0 auto; padding: 0 var(--space-4) clamp(64px, 8vw, 120px); }
 .about-avatar{ width: clamp(80px, 8vw, 104px); margin-bottom: var(--space-heading-content); }
@@ -1478,7 +1549,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .home-glass .social-badge:focus-visible{ transform: none; box-shadow: none; }
 .home-glass--round .social-badge{ width: 100%; height: 100%; }
 
-/* ===== What I've done: header rhythm from the reference — a tight stack, then the timeline ===== */
+/* ===== Timeline: header rhythm from the reference — a tight stack, then the timeline ===== */
 .built-head{ margin-bottom: var(--space-12); }                 /* subtitle → filters */
 .built-sub{ margin-top: var(--space-5); }                       /* title → subtitle */
 .tl-filters{ margin-bottom: var(--space-8); }                   /* filters → year links */

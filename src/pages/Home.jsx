@@ -14,7 +14,7 @@ import THUMBS from "../data/domeThumbs.json"; // 640px copies for the dome tiles
 // small copy: the dithered photo samples it at ~256px, so it looks the same and loads in a blink
 const PROFILE_SRC = "/media/thumbs/profile.webp";
 
-// The dome behind the intro shows one image per project from "What I've done" (projects and the
+// The dome behind the intro shows one image per project from the Timeline (projects and the
 // Creative Side; no awards, jobs or QR codes). Video cards use a still pulled from the video, and every
 // tile uses a small 640px copy (src/data/domeThumbs.json). Decoration only, never links.
 const isImage = (src) => /\.(png|jpe?g|webp|gif|avif)$/i.test(src || "");
@@ -51,7 +51,8 @@ function useRing() {
 }
 
 const LINKS = [
-  { to: "/built", label: "What I’ve done", arrow: true },
+  { to: "/built", label: "Timeline", arrow: true },
+  { to: "/study-case", label: "Study Case" },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About me" },
 ];

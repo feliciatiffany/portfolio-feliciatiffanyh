@@ -1,5 +1,5 @@
 // src/lib/timeline.js
-// Builds the "What I've done" timeline from a curated project list + the resume.
+// Builds the Timeline page from a curated project list + the resume.
 // Each entry: { id, type, title, subtitle, date, year, month, present, desc, media, to }
 
 import tech from "../data/tech.json";

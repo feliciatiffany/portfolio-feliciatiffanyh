@@ -16,6 +16,7 @@ const PAGES = {
   Project: () => import("./pages/Project.jsx"),
   Built: () => import("./pages/Built.jsx"),
   Blog: () => import("./pages/Blog.jsx"),
+  StudyCase: () => import("./pages/StudyCase.jsx"),
   BlogPost: () => import("./pages/BlogPost.jsx"),
   FlipBook: () => import("./pages/FlipBook.jsx"),
 };
@@ -28,6 +29,7 @@ const Category = lazy(PAGES.Category);
 const Project = lazy(PAGES.Project);
 const Built = lazy(PAGES.Built);
 const Blog = lazy(PAGES.Blog);
+const StudyCase = lazy(PAGES.StudyCase);
 const BlogPost = lazy(PAGES.BlogPost);
 const FlipBook = lazy(PAGES.FlipBook);
 function usePrefetchPages() {
@@ -91,13 +93,14 @@ function CursorGlow() {
 // Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.
 // Titles of projects and posts load on demand, so every page doesn't carry all of that text.
 const projectLoaders = import.meta.glob("./projects/**/*.js", { import: "default" });
-const PAGE_NAMES = { built: "What I've done", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
+const PAGE_NAMES = { built: "Timeline", "study-case": "Study Case", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
 const HOME = { label: "Home", to: "/" };
 
 function crumbsFor(pathname) {
   const [, first = "", second] = pathname.split("/");
   const key = first.toLowerCase();
   if (key === "work" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, kind: "project", slug: second };
+  if (key === "study-case" && second) return { parent: { label: PAGE_NAMES["study-case"], to: "/study-case" }, kind: "project", slug: second };
   if (key === "blog" && second) return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, kind: "post", slug: second };
   if (key === "book" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: BOOKS[second]?.title || second };
   return { parent: HOME, here: PAGE_NAMES[key] || first };
@@ -154,9 +157,9 @@ function Layout({ children }) {
   const { pathname } = useLocation();
   useScrollToTop(pathname);
   usePrefetchPages();
-  const onProject = pathname.startsWith("/work/");
+  const onProject = /^\/(work|study-case)\/./i.test(pathname); // a study case opens as a project page
   const onHome = pathname === "/";
-  const centered = onHome || /^\/(built|blog|about|book)/i.test(pathname);
+  const centered = onHome || /^\/(built|study-case|blog|about|book)/i.test(pathname);
 
   const gridClass = `${onProject ? "page-grid--project" : centered ? "page-grid--center" : ""}${onHome ? " page-grid--home" : ""}`;
 
@@ -206,6 +209,8 @@ export default function App() {
 
         <Route path="/nutshell" element={<Navigate to="/blog" replace />} />
         <Route path="/built" element={<Built />} />
+        <Route path="/study-case" element={<StudyCase />} />
+        <Route path="/study-case/:slug" element={<Project />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/book/:slug" element={<FlipBook />} />

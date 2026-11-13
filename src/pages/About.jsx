@@ -7,7 +7,8 @@ import DitherImage from "../components/DitherImage.jsx";
 import useReveal from "../lib/useReveal.js";
 
 const ELSEWHERE = [
-  { to: "/built", label: "What I’ve done" },
+  { to: "/built", label: "Timeline" },
+  { to: "/study-case", label: "Study Case" },
   { to: "/blog", label: "Blog" },
 ];
 
