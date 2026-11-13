@@ -5,11 +5,11 @@ export const STUDY_CASES = [
   {
     slug: "meetup",
     project: "meetup", // told as a story: src/studies/meetup.js
-    title: "Joining an event on Meetup",
+    title: "Meetup, person to person",
     status: "Concept",
     year: 2026,
     summary:
-      "Meetup is good at getting people to join their first event, but the flow ends at the ticket. I followed that one flow and added ways for members and organizers to keep hearing from each other before, during and after an event.",
+      "Meetup is easy to join the first time, but hard to stay on. I looked at how person-to-person relationships between members and organizers could invite people in and give them a reason to come back.",
     image: { src: "/media/study/meetup/cover.webp", alt: "Four redesigned Meetup screens: Explore, the event page, Notifications and the after-event check-in" },
   },
   {
