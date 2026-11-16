@@ -1,5 +1,5 @@
-// Study cases: the projects told as a full story. Listed at /study-case, newest first.
-// `project` is the slug of the project page it opens (at /study-case/<slug>); without one the
+// Case studies: the projects told as a full story. Listed at /case-study, newest first.
+// `project` is the slug of the project page it opens (at /case-study/<slug>); without one the
 // item is still being written and can't be opened. `status` is Shipped, Concept or In progress; the box shows it as "Shipped / 2026".
 export const STUDY_CASES = [
   {
@@ -10,7 +10,7 @@ export const STUDY_CASES = [
     year: 2026,
     summary:
       "Meetup is easy to join the first time, but hard to stay on. I looked at how person-to-person relationships between members and organizers could invite people in and give them a reason to come back.",
-    image: { src: "/media/study/meetup/cover.webp", alt: "Four redesigned Meetup screens: Explore, the event page, Notifications and the after-event check-in" },
+    image: { src: "/media/study/meetup/cover-square.webp", alt: "Two redesigned Meetup screens: the event page and Notifications" },
   },
   {
     slug: "sidequesting",

@@ -1,6 +1,6 @@
-// src/pages/StudyStory.jsx — one study case told as a story: a title and a question, then sections
+// src/pages/StudyStory.jsx — one case study told as a story: a title and a question, then sections
 // that each open with a short label and a question or statement, answered in a few lines and a large
-// image. Stories live in src/studies/<slug>.js; a study case without one opens as a project page.
+// image. Stories live in src/studies/<slug>.js; a case study without one opens as a project page.
 import React, { useRef } from "react";
 import { useParams } from "react-router-dom";
 import Project from "./Project.jsx";
@@ -92,7 +92,7 @@ function Block({ b }) {
       return <h3 className="story__sub">{b.text}</h3>;
     case "quotes":
       return (
-        <ul className="story__quotes">
+        <ul className="story__quotes" style={{ "--cols": b.items.length === 3 ? 3 : 2 }} /* three short statements sit in one row */>
           {b.items.map((q) => (
             <li key={q.text}>
               <q>{q.text}</q>
@@ -140,6 +140,14 @@ function Block({ b }) {
       );
     case "wide":
       return <Figure {...b} />;
+    case "video":
+      // plays by itself, silent and looping, like a moving picture; it has no sound to offer
+      return (
+        <figure className="story__wide">
+          <video src={b.src} aria-label={b.alt} autoPlay muted loop playsInline preload="metadata" />
+          {b.caption && <figcaption>{b.caption}</figcaption>}
+        </figure>
+      );
     case "phones":
     case "strip":
     case "sketches":
@@ -149,6 +157,18 @@ function Block({ b }) {
             <figure key={it.src} className="story__shot" data-tag={/^before/i.test(it.label) ? "before" : undefined}>
               <img src={it.src} alt={it.alt} loading="lazy" />
               <figcaption>{it.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      );
+    case "features":
+      // two by two: each picture with a short note under it
+      return (
+        <div className="story__features">
+          {b.items.map((it) => (
+            <figure key={it.src}>
+              <img src={it.src} alt={it.alt} loading="lazy" />
+              <figcaption><strong>{it.title}.</strong> {it.text}</figcaption>
             </figure>
           ))}
         </div>
@@ -195,7 +215,7 @@ export default function StudyStory() {
         <ScrambledText as="h1" className="story__title" {...historyTitle}>
           {story.title}
         </ScrambledText>
-        <p className="story__hook">{story.hook}</p>
+        {story.hook && <p className="story__hook">{story.hook}</p>}
         <dl className="story__meta">
           {story.meta.map((m) => (
             <div key={m.label}>
@@ -207,8 +227,9 @@ export default function StudyStory() {
       </header>
 
       {story.sections.map((s) => (
-        <section key={s.label} className="story__section">
-          <p className="story__label">{s.label}</p>
+        <section key={s.label || s.title} className="story__section">
+          {/* a section without a label reads on from the one before it, and stays out of the side list */}
+          {s.label && <p className="story__label">{s.label}</p>}
           <h2 className="story__h">{s.title}</h2>
           {s.blocks.map((b, i) => (
             <Block key={i} b={b} />

@@ -1,8 +1,8 @@
-// src/pages/StudyCase.jsx — study cases, in the blog's frame: a status filter on the left, cases along
-// a line on the right. Each box is a full-width image with title, status and summary under it.
-// Nothing plays by itself: everything follows the scroll, both ways. The vertical line grows down the
-// page with a small coral light at its tip; each box's rule draws across as the box comes up, and its
-// picture goes from sepia and soft to sharp.
+// src/pages/StudyCase.jsx — case studies as a checkerboard of rounded tiles, the same shape as the
+// homepage dome: each case is a picture tile beside a text tile, and the next case swaps sides. The
+// status filter sits on the left. Nothing plays by itself: everything follows the scroll, both ways.
+// The vertical line grows down the page with a small coral light at its tip, and each picture comes
+// back like a memory, from sepia and soft to sharp, as its row comes up.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { STUDY_CASES } from "../lib/studyCases.js";
@@ -35,9 +35,12 @@ function useScrollProgress(deps) {
         const r = list.getBoundingClientRect();
         list.style.setProperty("--lp", clamp01((vh * 0.6 - r.top) / r.height).toFixed(4)); // the tip sits 60% down the screen
       }
+      // rows near the end of the page can't scroll up as far, so they settle over the scroll that's left
+      const left = document.documentElement.scrollHeight - vh - window.scrollY;
       items.forEach((it) => {
         const top = it.getBoundingClientRect().top;
-        it.style.setProperty("--p", clamp01((vh - top) / (vh * 0.65)).toFixed(4));
+        const room = Math.max(1, Math.min(vh * 0.65, vh - (top - left)));
+        it.style.setProperty("--p", clamp01((vh - top) / room).toFixed(4));
       });
     };
     const onScroll = () => (raf ||= requestAnimationFrame(update));
@@ -57,13 +60,15 @@ function useScrollProgress(deps) {
 function Box({ c }) {
   return (
     <>
-      <span className={`blog-item__media study-item__media${c.image ? " shine" : ""}`}>
+      <span className={`study-item__media${c.image ? " shine" : ""}`}>
         {c.image ? <img src={c.image.src} alt={c.image.alt} loading="lazy" /> : <span className="study-item__soon">In progress</span>}
       </span>
-      <span className="blog-item__text study-item__text">
-        <span className="blog-item__title">{c.title}</span>
-        <span className="blog-item__meta">{c.year ? `${c.status} / ${c.year}` : c.status}</span>
-        {c.summary && <span className="blog-item__sum">{c.summary}</span>}
+      <span className="study-item__text">
+        <span className="study-item__body">
+          <span className="study-item__title">{c.title}</span>
+          {c.summary && <span className="study-item__sum">{c.summary}</span>}
+        </span>
+        <span className="study-item__meta">{c.year ? `${c.status} / ${c.year}` : c.status}</span>
       </span>
     </>
   );
@@ -87,7 +92,7 @@ export default function StudyCase() {
 
   return (
     <section className="blog study" ref={root}>
-      <aside className="blog-nav" aria-label="Filter study cases">
+      <aside className="blog-nav" aria-label="Filter case studies">
         <LineFilter
           title="Status"
           items={STATUSES.map((s) => ({ key: s, label: s }))}
@@ -100,9 +105,8 @@ export default function StudyCase() {
         <ol className="blog__list study__list">
           {shown.map((c) => (
             <li key={c.slug} className={`blog-item study-item${c.project ? "" : " is-pending"}`}>
-              <span className="study-item__rule" aria-hidden="true" />
               {c.project ? (
-                <Link to={`/study-case/${c.project}`} className="blog-item__link" data-cursor="Read">
+                <Link to={`/case-study/${c.project}`} className="blog-item__link" data-cursor="Read">
                   <Box c={c} />
                 </Link>
               ) : (
@@ -115,7 +119,7 @@ export default function StudyCase() {
           ))}
         </ol>
       )}
-      {shown.length === 0 && <p className="blog__empty">Pick a status to see study cases.</p>}
+      {shown.length === 0 && <p className="blog__empty">Pick a status to see case studies.</p>}
     </section>
   );
 }

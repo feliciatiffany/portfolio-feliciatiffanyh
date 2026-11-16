@@ -8,7 +8,7 @@ import useReveal from "../lib/useReveal.js";
 
 const ELSEWHERE = [
   { to: "/built", label: "Timeline" },
-  { to: "/study-case", label: "Study Case" },
+  { to: "/case-study", label: "Case Study" },
   { to: "/blog", label: "Blog" },
 ];
 

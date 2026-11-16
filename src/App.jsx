@@ -1,6 +1,6 @@
 // src/App.jsx
 import React, { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
-import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useLocation, useParams } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 
@@ -95,14 +95,18 @@ function CursorGlow() {
 // Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.
 // Titles of projects and posts load on demand, so every page doesn't carry all of that text.
 const projectLoaders = import.meta.glob("./projects/**/*.js", { import: "default" });
-const PAGE_NAMES = { built: "Timeline", "study-case": "Study Case", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
+const PAGE_NAMES = { built: "Timeline", "case-study": "Case Study", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
 const HOME = { label: "Home", to: "/" };
+function OldCaseStudy() {
+  const { slug } = useParams();
+  return <Navigate to={`/case-study/${slug}`} replace />;
+}
 
 function crumbsFor(pathname) {
   const [, first = "", second] = pathname.split("/");
   const key = first.toLowerCase();
   if (key === "work" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, kind: "project", slug: second };
-  if (key === "study-case" && second) return { parent: { label: PAGE_NAMES["study-case"], to: "/study-case" }, kind: "study", slug: second };
+  if (key === "case-study" && second) return { parent: { label: PAGE_NAMES["case-study"], to: "/case-study" }, kind: "study", slug: second };
   if (key === "blog" && second) return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, kind: "post", slug: second };
   if (key === "book" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: BOOKS[second]?.title || second };
   return { parent: HOME, here: PAGE_NAMES[key] || first };
@@ -165,9 +169,9 @@ function Layout({ children }) {
   const { pathname } = useLocation();
   useScrollToTop(pathname);
   usePrefetchPages();
-  const onProject = /^\/(work|study-case)\/./i.test(pathname); // a study case opens as a project page
+  const onProject = /^\/(work|case-study)\/./i.test(pathname); // a case study opens as a project page
   const onHome = pathname === "/";
-  const centered = onHome || /^\/(built|study-case|blog|about|book)/i.test(pathname);
+  const centered = onHome || /^\/(built|case-study|blog|about|book)/i.test(pathname);
 
   const gridClass = `${onProject ? "page-grid--project" : centered ? "page-grid--center" : ""}${onHome ? " page-grid--home" : ""}`;
 
@@ -217,8 +221,11 @@ export default function App() {
 
         <Route path="/nutshell" element={<Navigate to="/blog" replace />} />
         <Route path="/built" element={<Built />} />
-        <Route path="/study-case" element={<StudyCase />} />
-        <Route path="/study-case/:slug" element={<StudyStory />} />
+        <Route path="/case-study" element={<StudyCase />} />
+        <Route path="/case-study/:slug" element={<StudyStory />} />
+        {/* the section used to be called Study Case: old links still land */}
+        <Route path="/study-case" element={<Navigate to="/case-study" replace />} />
+        <Route path="/study-case/:slug" element={<OldCaseStudy />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/book/:slug" element={<FlipBook />} />

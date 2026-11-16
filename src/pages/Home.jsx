@@ -52,7 +52,7 @@ function useRing() {
 
 const LINKS = [
   { to: "/built", label: "Timeline", arrow: true },
-  { to: "/study-case", label: "Study Case" },
+  { to: "/case-study", label: "Case Study" },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About me" },
 ];

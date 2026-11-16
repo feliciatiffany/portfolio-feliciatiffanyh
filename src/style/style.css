@@ -1278,20 +1278,48 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   .blog-item.has-cover .blog-item__link{ grid-template-columns: 1fr; gap: var(--space-3-5); }
 }
 
-/* Study cases: the blog frame, but each box is a full-width picture with its text underneath */
-.study__list{ width: min(920px, calc(100vw - 340px)); gap: var(--space-10); } /* stays clear of the filter fixed on the left */
-.study-item .blog-item__link{ grid-template-columns: 1fr; gap: var(--space-5); max-width: none; padding-top: var(--space-7); }
-/* the picture takes the screen minus the room for its text, so just the top edge of the next case shows below */
-.study-item__media{ display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 10; max-height: max(240px, calc(100vh - 400px)); background: var(--color-surface-soft); }
-.study-item__media img{ width: 100%; height: 100%; max-height: none; object-fit: cover; }
-.study-item__text{ padding-left: var(--space-5); }
+/* Case studies: a checkerboard of rounded tiles, the same shape as the homepage dome. Each case is a
+   picture tile beside a text tile, and the next case swaps sides. Square tiles are a little taller than
+   half the screen, so the top of the next row always shows. */
+.study__list{ box-sizing: border-box; width: min(1100px, calc(100vw - 300px)); gap: var(--space-5); } /* stays clear of the filter fixed on the left */
+.study-item .blog-item__link{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); max-width: none; }
+.study-item:nth-child(even) .study-item__media{ order: 2; }
+.study-item__media,
+.study-item__text{ position: relative; min-width: 0; aspect-ratio: 1; border-radius: var(--radius-tile); overflow: hidden; background: var(--color-surface-soft); }
+.study-item__media{ display: grid; place-items: center; }
+.study-item__media img{ display: block; width: 100%; height: 100%; object-fit: cover; }
 .study-item__soon{ font-family: var(--font-family-body); font-size: var(--text-meta); color: var(--muted-foreground); }
-/* still being written: nothing to open, so it sits quieter and doesn't react like a link */
-.study-item.is-pending .blog-item__link{ cursor: default; }
-.study-item.is-pending .blog-item__title,
-.study-item.is-pending .blog-item__link:hover .blog-item__title{ color: var(--muted-foreground); }
 
-/* Everything here follows the scroll (StudyCase.jsx sets --lp on the list and --p on each box, 0 → 1).
+/* The text tile: title and summary in the middle, status and year at the bottom */
+.study-item__text{
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--space-5);
+  padding: clamp(24px, 4vw, 48px);
+  box-sizing: border-box;
+  font-family: var(--font-family-body);
+  transition: background-color .4s ease;
+}
+.study-item__body{ display: grid; align-content: center; gap: var(--space-4); }
+.study-item__title{ font-family: var(--font-family-title); font-size: var(--text-section-title); line-height: var(--leading-title); color: var(--foreground); }
+.study-item__sum{ font-size: var(--text-body); line-height: var(--leading-loose); color: var(--muted-foreground); }
+.study-item__meta{ font-size: var(--text-meta); color: var(--muted-foreground); }
+.study-item .blog-item__link:hover .study-item__text{ background: color-mix(in srgb, var(--foreground) 6%, var(--color-surface-soft)); }
+
+/* Still being written: nothing to open, the corner of its picture tile is folded over, and it sits quieter */
+.study-item.is-pending .blog-item__link{ cursor: default; }
+.study-item.is-pending .study-item__title{ color: var(--muted-foreground); }
+.study-item.is-pending .blog-item__link:hover .study-item__text{ background: var(--color-surface-soft); }
+.study-item.is-pending .study-item__media::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: var(--space-18); height: var(--space-18);
+  border-bottom-right-radius: var(--radius-tile);
+  background: linear-gradient(135deg, var(--color-bg) 50%, color-mix(in srgb, var(--foreground) 12%, var(--color-surface-soft)) 50%);
+}
+
+/* Everything here follows the scroll (StudyCase.jsx sets --lp on the list and --p on each row, 0 → 1).
    The vertical line grows down the page with the small coral light at its tip. */
 .study__list{ --lp: 0; }
 .study__list::before{ transform: scaleY(var(--lp)); }
@@ -1308,41 +1336,22 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   opacity: clamp(0, calc((1 - var(--lp)) * 12), 1);
   pointer-events: none;
 }
-/* The rule over each box draws left to right as the box comes up, led by the same light */
+/* Each row rises into place as it comes up; the text tile follows a beat after the picture */
 .study-item{ --p: 0; }
-.study-item__rule{ position: absolute; top: 0; left: 0; right: 0; height: 1px; pointer-events: none; }
-.study-item__rule::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--border);
-  transform: scaleX(var(--p));
-  transform-origin: left center;
-}
-.study-item__rule::after{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: calc(var(--p) * 100%);
-  width: var(--space-2); height: var(--space-2);
-  margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
-  border-radius: var(--radius-round);
-  background: var(--accent);
-  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
-  opacity: clamp(0, calc(min(var(--p), 1 - var(--p)) * 12), 1); /* only while the rule is being drawn */
-}
-/* The picture comes back like a memory as it rises: sepia, soft and a little too close, then sharp */
+.study-item__media,
+.study-item__text{ transform: translateY(calc((1 - var(--p)) * var(--space-10))); }
+.study-item__text{ transform: translateY(calc((1 - var(--p)) * var(--space-14))); }
+/* The picture comes back like a memory: sepia, soft and a little too close, then sharp */
 .study-item__media{ filter: sepia(calc((1 - var(--p)) * .85)) blur(calc((1 - var(--p)) * 4px)); }
 .study-item__media img{ transform: scale(calc(1.1 - var(--p) * .1)); }
-.study-item__text > *{
-  opacity: clamp(0, calc((var(--p) - .4 - var(--i, 0) * .08) * 4), 1);
-  transform: translateY(calc((1 - var(--p)) * var(--space-10)));
-}
+.study-item__text > *{ opacity: clamp(0, calc((var(--p) - .4 - var(--i, 0) * .1) * 4), 1); }
 .study-item__text > *:nth-child(2){ --i: 1; }
-.study-item__text > *:nth-child(3){ --i: 2; }
 @media (max-width: 800px){
   .study__list{ width: 100%; }
-  .study-item__text{ padding-left: 0; }
+  .study-item .blog-item__link{ grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+  .study-item:nth-child(even) .study-item__media{ order: 0; }
+  .study-item__media{ aspect-ratio: 4 / 3; }
+  .study-item__text{ aspect-ratio: auto; }
 }
 
 /* One post */

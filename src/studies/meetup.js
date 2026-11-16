@@ -1,6 +1,7 @@
-// Study case: Meetup. Rendered by src/pages/StudyStory.jsx.
-// The order follows Fany's storyboard (FigJam, section "portfolio"): the question, overview, problem,
-// the solution up front, then how she got there (research, opportunities, ideas, testing, lessons).
+// Case study: Meetup. Rendered by src/pages/StudyStory.jsx.
+// The order and wording follow Fany's storyboard (FigJam, section "portfolio"), with the grammar fixed:
+// the question, overview, problem, the solution up front, then how she got there (research, what it
+// showed, opportunities, ideas, the changes, testing, lessons).
 // Each section is { label (short, also the left section list), title, blocks: [...] }.
 // Block kinds: p, h (small heading inside a section), aside, wide (one image), strip (all screens in
 // one row), phones (screens side by side with a tag), quotes, cards, list, stages, wires.
@@ -8,8 +9,7 @@ const M = "/media/study/meetup";
 
 export default {
   slug: "meetup",
-  title: "Meetup, person to person",
-  hook: "How can Meetup use person-to-person relationships to invite people in, and to make them want to stay on the app?",
+  title: "How might Meetup turn a first RSVP into a lasting community?",
   meta: [
     { label: "Timeline", value: "Sep – Oct 2026" },
     { label: "Scope", value: "User research, product design, prototyping, user testing" },
@@ -20,42 +20,30 @@ export default {
   sections: [
     {
       label: "Overview",
-      title: "What this project is",
+      title: "Meetup shows up as the first option to connect with people...",
       blocks: [
-        { kind: "p", text: "Meetup is an app where people find local groups and events around something they like. I looked at one workflow, which is joining an event: how you find one, how you decide to go, the days of waiting before it, and what happens after." },
-        { kind: "p", text: "I didn’t redesign the whole app. Every change I made stays inside that one flow, and most of them are new features added to screens that people already know." },
-        { kind: "aside", title: "My role", text: "I did this one by myself, from the research and the paper sketches to the Figma prototype, the user testing and two rounds of iteration." },
+        { kind: "p", text: "Meetup gives people a lot of options for social networking and for finding or organizing events. As I love going to events, Meetup was always the first place I looked, and joining was easy." },
+        { kind: "video", src: `${M}/meetup-reviews-the-but.mp4`, alt: "Animated reviews of Meetup.com: people say it helped them make friends, meet new people and step out of their comfort zone" },
       ],
     },
     {
-      label: "Problem",
       title: "It’s easy to join the first time, but hard to stay",
       blocks: [
-        { kind: "p", text: "Meetup is a really good app for getting found. It shows up when you search for things to do, it has strong marketing, and it has the potential to be the place people go when they want to find a community. But that also means Meetup needs to make people stay once they’re in the app." },
-        { kind: "p", text: "My hypothesis was that the app feels empty, and that makes people lazy to come back to it. After studying it, I found there is very little interaction between users inside the app. It’s unclear what you’re supposed to do after you sign up, and you can hardly feel the vibe of a group or an event before you go. All of that also makes the app feel less credible." },
+        { kind: "p", text: "The challenge is what happens next. After a few events, I got bored. I’d show up, leave, and nothing carried over, so I wondered whether other people felt the same. The app feels empty: event pages rarely show what a group’s vibe is actually like, there’s little interaction between members, and there are very few signals to build trust in an event. There’s little reason to come back." },
       ],
     },
     {
       label: "Solution",
       title: "So the solution I’m proposing",
       blocks: [
-        { kind: "p", text: "I added a few features along the way to an event. Each one puts a real person in front of you at a moment where the app used to feel empty." },
+        { kind: "p", text: "Set up the vibe! I added a few features along the way to an event, so the app feels like people are already there before you arrive, and still there after it ends." },
         {
-          kind: "list",
+          kind: "features",
           items: [
-            ["Explore rows", "The same events are grouped under titles that sound like an invitation, and each card shows how many of your friends are going. This helps when you can’t feel the vibe from a list."],
-            ["Activity thread", "The event page has a thread where the host posts updates in their own words and people reply. This is the user-to-user interaction that was missing."],
-            ["Personal notifications", "Each notification starts with a person, like who invited you or what the host just said. It gives you something to do after you sign up."],
-            ["Moments", "After the event you can say who you met and post a photo back to the event. This fills the empty pages with real activity, which makes a group more credible."],
-          ],
-        },
-        {
-          kind: "strip",
-          items: [
-            { src: `${M}/after-explore.webp`, alt: "Redesigned Explore with titled rows and friends going", label: "Explore rows" },
-            { src: `${M}/strip-activity.webp`, alt: "The Activity thread on the event page", label: "Activity thread" },
-            { src: `${M}/after-notifications.webp`, alt: "Notifications that start with a person", label: "Notifications" },
-            { src: `${M}/after-post.webp`, alt: "Post your moment after the event", label: "Moments" },
+            { src: `${M}/solution-greeting.webp`, alt: "The home screen greets you by name: Hey Fany, new to NYC? Let’s find your people.", title: "A personal home screen", text: "The home screen talks to you, with rows titled like an invitation and how many of your friends are going to each event." },
+            { src: `${M}/solution-invites.webp`, alt: "A notification that reads Fany invited you to an event", title: "Personal invites and text blasts", text: "Josh wants to feel invited. Invites and the host’s updates now come from a person, which creates more interaction between members." },
+            { src: `${M}/solution-activity.webp`, alt: "The host’s text blast on the event’s Activity board, with Owen attending", title: "Activity board", text: "All the information about an event in one place on its page, where people post before and after the event." },
+            { src: `${M}/solution-moments.webp`, alt: "The Post your moment sheet after an event", title: "Moments", text: "A place to post photos and see everyone from your event posting theirs, so the next person can see what the event was really like." },
           ],
         },
         { kind: "p", text: "I tested the prototype with two people. What they found interesting when joining an event was the short “what to expect”, the tags, and being able to see who is going. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
@@ -63,9 +51,10 @@ export default {
     },
     {
       label: "Research",
-      title: "How I found out about the problem",
+      title: "How I found it",
       blocks: [
-        { kind: "p", text: "I’m a passionate event joiner. But after going to some events through Meetup, I got bored with the app and I couldn’t find a sense of community in it. I was wondering if other people feel the same, so I started searching." },
+        { kind: "p", text: "I’m a passionate event joiner. But after going to some events through Meetup, I got bored with the app and I couldn’t find a sense of community in it. I was wondering if other people felt the same, so I started searching." },
+        { kind: "p", text: "I gathered online evidence from App Store reviews and Reddit to see what people say." },
         {
           kind: "quotes",
           items: [
@@ -75,18 +64,18 @@ export default {
             { text: "I’m not going to pay these guys any more money for a group that’s no longer active.", source: "App review, 1 star" },
           ],
         },
-        { kind: "p", text: "At the same time, I traced the app’s flow and all of its happy paths, screen by screen, and found some gaps in between. The biggest one is that the flow works well as a transaction, where you find an event, RSVP and get a ticket, but after the ticket there is nothing. I started ideating from these gaps." },
+        { kind: "p", text: "At the same time, I mapped the happy paths: signing up, joining an event, joining a group and chatting. Tracing the app flow screen by screen, I found some gaps in between. The biggest one is that the flow works well as a transaction, where you find an event, RSVP and get a ticket, but after the ticket there is nothing." },
         { kind: "wide", src: `${M}/flow-join.webp`, alt: "Screenshots of Meetup’s current join flow, from the event page to the ticket and email confirmation", caption: "Meetup’s current flow for joining an event. It ends at the ticket." },
-        { kind: "p", text: "I also tried other apps with a similar job to be done. None of them gave me what I needed, but I came out with a list of what each one does well, and why." },
+        { kind: "p", text: "I also tried similar apps like Partiful, Beli and Bucket, and noted what each one does well. Each has its own job to be done." },
         {
           kind: "cards",
           items: [
             { title: "Beli", tag: "Tracking and ranking restaurants", text: "Your history is visible and easy to share, and seeing what your friends did makes you want to try it too." },
             { title: "Bucket", tag: "Bucket lists with friends", text: "It shows you the goals you share with your friends, and turns a finished goal into a small story you can post." },
-            { title: "A side-quest app", tag: "Daily routines as quests", text: "Small challenges and streaks give you a reason to take the next step, and to come back tomorrow." },
+            { title: "Partiful", tag: "Invites for parties and events", text: "Invites feel warm and personal, and you can see who’s going and what guests are saying before the event." },
           ],
         },
-        { kind: "p", text: "So my research comes from three places: proof online, the main path in the app, and an analysis of the main reasons people use Meetup. From there I could build the user personas and their journey maps." },
+        { kind: "p", text: "From the reviews, the main path in the app and the main reasons people use Meetup, I built three user personas and their journey maps." },
         {
           kind: "cards",
           items: [
@@ -95,59 +84,64 @@ export default {
             { title: "David, 35", tag: "Organizer", text: "He grew his run club from three friends to 200 members, mostly unpaid. He keeps answering the same questions across DMs, comments and spreadsheets." },
           ],
         },
-        { kind: "h", text: "Where they get stuck on the way to an event" },
+      ],
+    },
+    {
+      label: "Insights",
+      title: "This research helped me find three things",
+      blocks: [
         {
-          kind: "list",
+          kind: "quotes",
           items: [
-            ["Finding", "Amy “can’t tell skill level, cost, or typical attendee age from search results alone.”"],
-            ["Deciding", "Josh “can’t tell active groups from dormant ones” and asks, “Is this group even still active?”"],
-            ["Waiting", "Josh is “nervous and second-guesses the plan until the day arrives.” David’s answers are scattered “across DMs, RSVP comments, and spreadsheets.”"],
-            ["After", "Josh needs “a way to turn one good event into an ongoing social circle rather than a one-off.”"],
+            { text: "Is this group even still active?", source: "The app looks empty" },
+            { text: "Should I message a stranger to ask?", source: "Newcomers can’t get answers" },
+            { text: "The happy path ends at the ticket.", source: "Nothing brings people back" },
           ],
         },
       ],
     },
     {
       label: "Opportunities",
-      title: "Why people don’t stay, and three ways to improve it",
+      title: "Three opportunities, mapped to the journey",
       blocks: [
         { kind: "p", text: "Understanding all of that brought me to a point where I could summarize some hypotheses on why people aren’t loyal to the app, or lose interest after trying it. The information that would encourage them is buried, the only way to ask a question is to message a stranger, and nothing connects a member and an organizer after the RSVP." },
-        { kind: "p", text: "From those I wrote three opportunities for improvement, and looked at which part of the flow each one covers." },
+        { kind: "p", text: "The gaps came from the user flow itself, and the reviews backed them up. From there I wrote three opportunities for improvement, each at a different point of the journey." },
         {
           kind: "stages",
           stages: ["Find", "Decide", "RSVP", "Wait", "Attend", "After"],
           items: [
-            { title: "1 · Vibe at a glance", from: 1, to: 2 },
-            { title: "2 · Know before you go", from: 2, to: 4 },
-            { title: "3 · Back and forth", from: 3, to: 6, chosen: true },
+            { title: "1 · Before deciding", from: 1, to: 2 },
+            { title: "2 · Before going", from: 3, to: 4 },
+            { title: "3 · After the event", from: 5, to: 6, chosen: true },
           ],
           caption: "Which steps of joining an event each opportunity covers. I chose the third.",
         },
         {
           kind: "list",
           items: [
-            ["Vibe at a glance", "Move the information that reassures people to the top of the event page. It already exists, but it’s buried, mostly behind the paywall, and missing from Explore."],
-            ["Know before you go", "A card written by the host that answers what newcomers are too shy to ask, so David doesn’t have to answer the same thing one by one."],
-            ["Back and forth", "A way for members and organizers to keep talking after the RSVP, with welcomes, updates, photos and thank-yous."],
+            ["Before deciding", "Learn more about the attendees, to build trust and credibility and to give people a “why”."],
+            ["Before going", "Know before you go: information made for each person, especially newcomers, so they feel less confused."],
+            ["After the event", "A two-way connection between members and organizers, and personal invitations, to raise participation and build the vibe."],
           ],
         },
-        { kind: "p", text: "I went with the third one because it covers the most of the flow, including the part after the ticket where the app has nothing today. If the organizer can respond when someone joins or posts, and the member gets a welcome or a thank-you back, then David can see his effort is working, and Josh and Amy get the social circle they came for." },
+        { kind: "p", text: "I chose the third one. In interviews I did with some friends, they said the main reasons they go to an event are knowing the vibe or knowing that their friends are going, and this kind of interaction supports both." },
+        { kind: "p", text: "The first option was quite good, but it’s part of Meetup’s business model, where learning more means paying more, and it raises privacy concerns. The second one adds friction to an app that already packs in a lot of information, and it’s mainly useful for newcomers." },
       ],
     },
     {
       label: "Ideas",
       title: "Three ideas for where that relationship could live",
       blocks: [
-        { kind: "p", text: "From there I developed three potential improvements in the app. I sketched them on paper first, and I wanted them to be really different from each other and not small variations." },
+        { kind: "p", text: "I explored three sketches by studying what other apps do well, and I wanted them to be really different from each other and not small variations." },
         {
           kind: "wires",
           items: [
-            { wire: "profile", title: "A · Profile", text: "A record of your events, badges and challenges. Good for long-term motivation, but it feels empty for a first-timer and the stats could become pressure." },
+            { wire: "profile", title: "A · Passport", text: "A record of your events, badges and challenges. Good for long-term motivation, but it feels empty for a first-timer and the stats could become pressure." },
             { wire: "thread", title: "B · Event thread", text: "A group chat for each event. People already know how it works, but it gets noisy, and once it’s muted nothing reaches you." },
             { wire: "phases", title: "C · Phases", text: "A stepper that shows the right option at the right moment. It’s clear, but it feels like a to-do list and ends when the event does." },
           ],
         },
-        { kind: "p", text: "After reviewing them, I didn’t think any of the three could work by itself, so I combined them. The conversation from the thread moves onto the event page, where it stays as a record like the profile. From the phases I took the idea that different things should show up before and after the event. I looked at Partiful for how warm it sounds, and at Beli for how seeing your friends’ activity makes you want to join in." },
+        { kind: "p", text: "I combined the strongest parts into Direction D: two-way, warm and social. The conversation from the thread moves onto the event page, where it stays as a record like the profile. From the phases I took the idea that different things should show up before and after the event. I looked at Partiful for how warm it sounds, and at Beli for how seeing your friends’ activity makes you want to join in." },
       ],
     },
     {
