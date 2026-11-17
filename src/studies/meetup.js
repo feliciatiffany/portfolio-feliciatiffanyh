@@ -22,14 +22,14 @@ export default {
       label: "Overview",
       title: "Meetup shows up as the first option to connect with people...",
       blocks: [
-        { kind: "p", text: "Meetup gives people a lot of options for social networking and for finding or organizing events. As I love going to events, Meetup was always the first place I looked, and joining was easy." },
+        { kind: "p", text: "Meetup gives people a lot of options for social networking and for finding or organizing events." },
         { kind: "video", src: `${M}/meetup-reviews-the-but.mp4`, alt: "Animated reviews of Meetup.com: people say it helped them make friends, meet new people and step out of their comfort zone" },
       ],
     },
     {
       title: "It’s easy to join the first time, but hard to stay",
       blocks: [
-        { kind: "p", text: "The challenge is what happens next. After a few events, I got bored. I’d show up, leave, and nothing carried over, so I wondered whether other people felt the same. The app feels empty: event pages rarely show what a group’s vibe is actually like, there’s little interaction between members, and there are very few signals to build trust in an event. There’s little reason to come back." },
+        { kind: "p", text: "The challenge is what happens next. The app feels empty: event pages rarely show what a group’s vibe is actually like, there’s little interaction between members, and there are very few signals to build trust in an event. There’s little reason to come back." },
       ],
     },
     {
