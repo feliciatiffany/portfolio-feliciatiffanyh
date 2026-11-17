@@ -117,16 +117,21 @@ function Carousel({ items }) {
           <button key={s.src} type="button" role="tab" aria-selected={j === i} aria-label={s.title} className={j === i ? "is-on" : undefined} onClick={() => setI(j)} />
         ))}
       </div>
-      <figcaption className="story__notes" key={items[i].src}>
-        <p className="story__tag">{items[i].title}</p>
-        <div className="story__notes-cols">
-          {items[i].notes.map(([head, lines]) => (
-            <div key={head}>
-              <h4>{head}</h4>
-              <ul>{lines.map((l) => <li key={l}>{l}</li>)}</ul>
+      {/* every set of notes sits in the same spot, so the space keeps the tallest one's height and nothing below moves */}
+      <figcaption className="story__notes">
+        {items.map((it, j) => (
+          <div key={it.src} className={j === i ? "story__notes-set is-on" : "story__notes-set"} aria-hidden={j !== i}>
+            <p className="story__tag">{it.title}</p>
+            <div className="story__notes-cols">
+              {it.notes.map(([head, lines]) => (
+                <div key={head}>
+                  <h4>{head}</h4>
+                  <ul>{lines.map((l) => <li key={l}>{l}</li>)}</ul>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </figcaption>
     </figure>
   );

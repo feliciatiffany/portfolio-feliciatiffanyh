@@ -177,7 +177,9 @@
 .story__carousel-dots{ display: flex; justify-content: center; gap: var(--space-2); margin-top: var(--space-3); }
 .story__carousel-dots button{ width: var(--space-2); height: var(--space-2); padding: 0; border: 0; border-radius: var(--radius-pill); background: var(--border); cursor: pointer; transition: width var(--duration-base) var(--ease-out), background var(--duration-base) var(--ease-out); }
 .story__carousel-dots button.is-on{ width: var(--space-6); background: var(--accent); }
-.story .story__notes{ margin-top: var(--space-4); text-align: left; font-family: var(--font-family-body); color: var(--foreground); animation: story-notes-in var(--duration-slow) var(--ease-out); }
+.story .story__notes{ display: grid; margin-top: var(--space-4); text-align: left; font-family: var(--font-family-body); color: var(--foreground); }
+.story__notes-set{ grid-area: 1 / 1; visibility: hidden; opacity: 0; }
+.story__notes-set.is-on{ visibility: visible; opacity: 1; animation: story-notes-in var(--duration-slow) var(--ease-out); }
 .story__notes-cols{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
 .story__notes h4{ margin: 0 0 var(--space-1); font-size: var(--text-ui); font-weight: var(--font-weight-bold); }
 .story__notes ul{ margin: 0; padding: 0; list-style: none; font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--muted-foreground); }
@@ -204,4 +206,4 @@
 @media (max-width: 800px){ .story__carousel-stage{ aspect-ratio: auto; } .story__carousel-slide{ flex-direction: column; } .story__carousel-slide img{ flex: none; width: 100%; height: auto; } }
 @keyframes story-notes-in{ from{ opacity: 0; filter: blur(2px); } to{ opacity: 1; filter: none; } }
 @media (max-width: 800px){ .story__notes-cols{ grid-template-columns: 1fr; gap: var(--space-3); } }
-@media (prefers-reduced-motion: reduce){ .story__carousel-slide, .story .story__notes{ transition: none; animation: none; } }
+@media (prefers-reduced-motion: reduce){ .story__carousel-slide, .story__notes-set.is-on{ transition: none; animation: none; } }
