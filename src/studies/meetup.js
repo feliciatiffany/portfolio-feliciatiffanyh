@@ -104,11 +104,41 @@ export default {
         { kind: "p", text: "Then I sketched some really low-fi wireframes with one main purpose:" },
         { kind: "h", text: "A two-way connection, and more invitations beyond signing up for an event" },
         {
-          kind: "wires",
+          kind: "carousel",
           items: [
-            { wire: "profile", title: "A · Passport", text: "A record of your events, badges and challenges. Good for long-term motivation, but it feels empty for a first-timer and the stats could become pressure." },
-            { wire: "thread", title: "B · Event thread", text: "A group chat for each event. People already know how it works, but it gets noisy, and once it’s muted nothing reaches you." },
-            { wire: "phases", title: "C · Phases", text: "A stepper that shows the right option at the right moment. It’s clear, but it feels like a to-do list and ends when the event does." },
+            {
+              src: `${M}/sketch-a.webp`,
+              alt: "Paper sketch of Direction A: a home screen leading to a profile with followers, events been to, groups, badges, and Activity and Challenges tabs",
+              title: "A · Profile",
+              lead: "A record of your events, badges and challenges.",
+              notes: [
+                ["Pros", ["Long-term motivation through stats and badges", "Shareable and familiar", "Gives everyone a role"]],
+                ["Cons", ["A lot of navigation and so much info", "Feels empty for a first-time user", "Stats can feel like pressure", "Member–host talk is slower and less direct than a thread"]],
+                ["Validate", ["Where should things go, and what do people want to see more of?", "What’s the hierarchy?", "Is it intimidating?"]],
+              ],
+            },
+            {
+              src: `${M}/sketch-b.webp`,
+              alt: "Paper sketch of Direction B: a Meetup group chat, automated host welcomes, a host view of first-timers and questions, and reminders on the home screen, a widget and a messaging app",
+              title: "B · Event thread",
+              lead: "A group chat for each event, like WhatsApp or Partiful. Notifications keep it active.",
+              notes: [
+                ["Pros", ["Familiar", "A sense of urgency to read it and see what needs doing", "Low learning curve"]],
+                ["Cons", ["Once it’s muted, nothing gets through", "Can get noisy and intimidating", "Too much information"]],
+                ["Validate", ["Will people read it when it isn’t urgent?", "Does it help the host, or make it harder?", "Does it lead to people muting it?"]],
+              ],
+            },
+            {
+              src: `${M}/sketch-c.webp`,
+              alt: "Paper sketch of Direction C: a stepper across eight screens, from You’re registered and RSVP to a QR code check-in, Thanks for coming with a picture, and a host report of newcomers",
+              title: "C · Phases",
+              lead: "Show the right option at the right moment, guiding people step by step.",
+              notes: [
+                ["Pros", ["Builds on what’s there now", "Clear at every step", "Less overwhelming", "Organizer and member stay in sync"]],
+                ["Cons", ["Too structured, so less free conversation", "People may not open it after the event", "Feels like a task", "Short-term"]],
+                ["Validate", ["Does the stepper raise the check-in rate?", "Completion rate for each phase", "How often hosts use the “I greeted them” tap"]],
+              ],
+            },
           ],
         },
         { kind: "p", text: "I combined the strongest parts into Direction D: two-way, warm and social. The conversation from the thread moves onto the event page, where it stays as a record like the profile. From the phases I took the idea that different things should show up before and after the event. I looked at Partiful for how warm it sounds, and at Beli for how seeing your friends’ activity makes you want to join in." },

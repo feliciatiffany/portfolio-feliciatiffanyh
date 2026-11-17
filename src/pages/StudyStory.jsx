@@ -1,7 +1,7 @@
 // src/pages/StudyStory.jsx — one case study told as a story: a title and a question, then sections
 // that each open with a short label and a question or statement, answered in a few lines and a large
 // image. Stories live in src/studies/<slug>.js; a case study without one opens as a project page.
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import Project from "./Project.jsx";
 import SectionNav from "../components/SectionNav.jsx";
@@ -84,6 +84,52 @@ function Wire({ kind }) {
   );
 }
 
+// Sketches that turn by themselves, one at a time, with their notes underneath; resting the
+// pointer (or focus) on it holds the current one, and it stays still for reduced motion
+function Carousel({ items }) {
+  const [i, setI] = useState(0);
+  const [held, setHeld] = useState(false);
+  useEffect(() => {
+    if (held || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const t = setTimeout(() => setI((n) => (n + 1) % items.length), 5000);
+    return () => clearTimeout(t);
+  }, [i, held, items.length]);
+  const it = items[i];
+  return (
+    <figure
+      className={held ? "story__carousel is-held" : "story__carousel"}
+      onMouseEnter={() => setHeld(true)}
+      onMouseLeave={() => setHeld(false)}
+      onFocus={() => setHeld(true)}
+      onBlur={() => setHeld(false)}
+      aria-roledescription="carousel"
+    >
+      <div className="story__carousel-stage">
+        {items.map((s, j) => (
+          <img key={s.src} src={s.src} alt={s.alt} loading="lazy" className={j === i ? "is-on" : undefined} aria-hidden={j !== i} />
+        ))}
+      </div>
+      <div className="story__carousel-dots" role="tablist" aria-label="Sketches">
+        {items.map((s, j) => (
+          <button key={s.src} type="button" role="tab" aria-selected={j === i} aria-label={s.title} className={j === i ? "is-on" : undefined} onClick={() => setI(j)} />
+        ))}
+      </div>
+      <figcaption className="story__notes" key={it.src} aria-live="polite">
+        <strong>{it.title}</strong>
+        <p>{it.lead}</p>
+        <div className="story__notes-cols">
+          {it.notes.map(([head, lines]) => (
+            <div key={head}>
+              <h4>{head}</h4>
+              <ul>{lines.map((l) => <li key={l}>{l}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
+
 function Block({ b }) {
   switch (b.kind) {
     case "p":
@@ -149,6 +195,8 @@ function Block({ b }) {
           ))}
         </ol>
       );
+    case "carousel":
+      return <Carousel items={b.items} />;
     case "wires":
       return (
         <div className="story__wires">

@@ -155,8 +155,10 @@
   --font-family-mono: "Source Code Pro", source-code-pro, ui-monospace, "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
   --font-family-sans: "Montserrat", system-ui, sans-serif;
   --font-family-flex: "Roboto Flex", sans-serif;
+  --font-family-hand: "Caveat", cursive;
   --font-family-title: var(--font-family-mono);
   --font-family-body: var(--font-family-sans);
+  --font-family-notes: var(--font-family-hand);
   --font-family-proximity: var(--font-family-flex);
   --font-weight-regular: 400;
   --font-weight-medium: 500;
