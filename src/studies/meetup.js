@@ -108,7 +108,7 @@ export default {
           items: [
             {
               src: `${M}/sketch-a-paper.webp`,
-              clean: `${M}/sketch-a-shapes.svg`,
+              clean: `${M}/sketch-a-plain.svg`,
               alt: "Paper sketch of Direction A: a home screen leading to a profile with followers, events been to, groups, badges, and Activity and Challenges tabs",
               title: "A · Profile",
               notes: [
@@ -119,7 +119,7 @@ export default {
             },
             {
               src: `${M}/sketch-b-paper.webp`,
-              clean: `${M}/sketch-b-shapes.svg`,
+              clean: `${M}/sketch-b-plain.svg`,
               alt: "Paper sketch of Direction B: a Meetup group chat, automated host welcomes, a host view of first-timers and questions, and reminders on the home screen, a widget and a messaging app",
               title: "B · Event thread",
               notes: [
@@ -130,7 +130,7 @@ export default {
             },
             {
               src: `${M}/sketch-c-paper.webp`,
-              clean: `${M}/sketch-c-shapes.svg`,
+              clean: `${M}/sketch-c-plain.svg`,
               alt: "Paper sketch of Direction C: a stepper across eight screens, from You’re registered and RSVP to a QR code check-in, Thanks for coming with a picture, and a host report of newcomers",
               title: "C · Phases",
               notes: [
@@ -157,7 +157,7 @@ export default {
         {
           kind: "pair",
           src: `${M}/sketch-d-paper.webp`,
-          clean: `${M}/sketch-d-shapes.svg`,
+          clean: `${M}/sketch-d-plain.svg`,
           alt: "Paper sketches for Direction D: a profile with events been to and badges, your activity, invitations, and an Explore page with titled rows",
           cleanAlt: "Direction D redrawn as six clean wireframes: 1 Home, 2 Explore, 3 Invite, 4 Event page, 5 Profile, 6 Activity",
           caption: "Direction D, sketched on paper and redrawn",
