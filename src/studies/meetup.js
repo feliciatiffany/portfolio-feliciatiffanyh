@@ -108,6 +108,7 @@ export default {
           items: [
             {
               src: `${M}/sketch-a.webp`,
+              clean: `${M}/sketch-a-clean.svg`,
               alt: "Paper sketch of Direction A: a home screen leading to a profile with followers, events been to, groups, badges, and Activity and Challenges tabs",
               title: "A · Profile",
               lead: "A record of your events, badges and challenges.",
@@ -119,6 +120,7 @@ export default {
             },
             {
               src: `${M}/sketch-b.webp`,
+              clean: `${M}/sketch-b-clean.svg`,
               alt: "Paper sketch of Direction B: a Meetup group chat, automated host welcomes, a host view of first-timers and questions, and reminders on the home screen, a widget and a messaging app",
               title: "B · Event thread",
               lead: "A group chat for each event, like WhatsApp or Partiful. Notifications keep it active.",
@@ -130,6 +132,7 @@ export default {
             },
             {
               src: `${M}/sketch-c.webp`,
+              clean: `${M}/sketch-c-clean.svg`,
               alt: "Paper sketch of Direction C: a stepper across eight screens, from You’re registered and RSVP to a QR code check-in, Thanks for coming with a picture, and a host report of newcomers",
               title: "C · Phases",
               lead: "Show the right option at the right moment, guiding people step by step.",

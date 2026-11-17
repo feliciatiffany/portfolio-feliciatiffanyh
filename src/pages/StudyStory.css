@@ -169,20 +169,21 @@
   .story__opps > li{ grid-template-columns: 1fr; gap: var(--space-4); }
 }
 
-/* Paper sketches that turn by themselves; each one resolves from a faded memory into focus */
-.story__carousel-stage{ position: relative; display: grid; width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius-media); overflow: hidden; box-shadow: inset 0 0 0 1px var(--border); }
-.story__carousel-stage img{ grid-area: 1 / 1; min-width: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; filter: sepia(0.6) blur(4px); transition: opacity var(--duration-memory) var(--ease-out), filter var(--duration-memory) var(--ease-out); }
-.story__carousel-stage img.is-on{ opacity: 1; filter: none; }
+/* Paper sketches, each above its clean redraw, that turn by themselves and resolve from a faded memory into focus */
+.story__carousel-stage{ display: grid; width: 100%; }
+.story__carousel-slide{ grid-area: 1 / 1; display: grid; gap: var(--space-3); align-content: start; opacity: 0; filter: sepia(0.6) blur(4px); transition: opacity var(--duration-memory) var(--ease-out), filter var(--duration-memory) var(--ease-out); }
+.story__carousel-slide.is-on{ opacity: 1; filter: none; }
+.story__carousel-slide img{ display: block; width: 100%; height: auto; border-radius: var(--radius-media); border: 1px solid var(--border); }
 .story__carousel-dots{ display: flex; justify-content: center; gap: var(--space-2); margin-top: var(--space-3); }
 .story__carousel-dots button{ width: var(--space-2); height: var(--space-2); padding: 0; border: 0; border-radius: var(--radius-pill); background: var(--border); cursor: pointer; transition: width var(--duration-base) var(--ease-out), background var(--duration-base) var(--ease-out); }
 .story__carousel-dots button.is-on{ width: var(--space-6); background: var(--accent); }
-.story .story__notes{ margin-top: var(--space-4); text-align: left; font-family: var(--font-family-notes); color: var(--foreground); animation: story-notes-in var(--duration-slow) var(--ease-out); }
-.story__notes strong{ display: block; font-size: var(--text-section-title); font-weight: var(--font-weight-bold); line-height: var(--leading-title); }
-.story__notes > p{ margin: var(--space-1) 0 var(--space-4); font-size: var(--text-heading-sm); line-height: var(--leading-body); }
+.story .story__notes{ margin-top: var(--space-4); text-align: left; font-family: var(--font-family-body); color: var(--foreground); animation: story-notes-in var(--duration-slow) var(--ease-out); }
+.story__notes strong{ display: block; font-size: var(--text-body-lg); font-weight: var(--font-weight-bold); line-height: var(--leading-title); }
+.story__notes > p{ margin: var(--space-1) 0 var(--space-4); font-size: var(--text-body); line-height: var(--leading-body); }
 .story__notes-cols{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
-.story__notes h4{ margin: 0 0 var(--space-1); font-size: var(--text-heading-sm); font-weight: var(--font-weight-bold); color: var(--accent); }
-.story__notes ul{ margin: 0; padding: 0; list-style: none; font-size: var(--text-body-lg); line-height: var(--leading-body); }
+.story__notes h4{ margin: 0 0 var(--space-1); font-size: var(--text-meta); font-weight: var(--font-weight-bold); color: var(--accent); }
+.story__notes ul{ margin: 0; padding: 0; list-style: none; font-size: var(--text-body-sm); color: var(--muted-foreground); line-height: var(--leading-body); }
 .story__notes li::before{ content: "– "; }
 @keyframes story-notes-in{ from{ opacity: 0; filter: blur(2px); } to{ opacity: 1; filter: none; } }
 @media (max-width: 800px){ .story__notes-cols{ grid-template-columns: 1fr; gap: var(--space-3); } }
-@media (prefers-reduced-motion: reduce){ .story__carousel-stage img, .story__notes{ transition: none; animation: none; } }
+@media (prefers-reduced-motion: reduce){ .story__carousel-slide, .story__notes{ transition: none; animation: none; } }

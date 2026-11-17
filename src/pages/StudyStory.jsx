@@ -84,7 +84,7 @@ function Wire({ kind }) {
   );
 }
 
-// Sketches that turn by themselves, one at a time, with their notes underneath; resting the
+// Sketches that turn by themselves, one at a time (the paper page above its clean redraw), with their notes underneath; resting the
 // pointer (or focus) on it holds the current one, and it stays still for reduced motion
 function Carousel({ items }) {
   const [i, setI] = useState(0);
@@ -106,7 +106,11 @@ function Carousel({ items }) {
     >
       <div className="story__carousel-stage">
         {items.map((s, j) => (
-          <img key={s.src} src={s.src} alt={s.alt} loading="lazy" className={j === i ? "is-on" : undefined} aria-hidden={j !== i} />
+          // the page as drawn on paper, then the same screens redrawn cleanly
+          <div key={s.src} className={j === i ? "story__carousel-slide is-on" : "story__carousel-slide"} aria-hidden={j !== i}>
+            <img src={s.src} alt={s.alt} loading="lazy" />
+            <img src={s.clean} alt={`${s.title}, redrawn as clean wireframes`} loading="lazy" />
+          </div>
         ))}
       </div>
       <div className="story__carousel-dots" role="tablist" aria-label="Sketches">

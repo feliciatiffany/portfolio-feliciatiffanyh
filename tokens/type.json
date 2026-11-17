@@ -32,14 +32,6 @@
         ],
         "$description": "Base. Variable font with a weight axis"
       },
-      "hand": {
-        "$type": "fontFamily",
-        "$value": [
-          "Caveat",
-          "cursive"
-        ],
-        "$description": "Base. Neat handwriting"
-      },
       "title": {
         "$type": "fontFamily",
         "$value": "{font.family.mono}",
@@ -49,11 +41,6 @@
         "$type": "fontFamily",
         "$value": "{font.family.sans}",
         "$description": "Captions, dates, descriptions, body copy"
-      },
-      "notes": {
-        "$type": "fontFamily",
-        "$value": "{font.family.hand}",
-        "$description": "Notes written beside sketches, like a notebook"
       },
       "proximity": {
         "$type": "fontFamily",
