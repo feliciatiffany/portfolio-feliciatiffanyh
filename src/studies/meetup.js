@@ -40,10 +40,10 @@ export default {
         {
           kind: "features",
           items: [
-            { src: `${M}/solution-greeting.webp`, alt: "The home screen greets you by name: Hey Fany, new to NYC? Let’s find your people.", title: "A personal home screen", text: "The home screen talks to you, with rows titled like an invitation and how many of your friends are going to each event." },
-            { src: `${M}/solution-updates.webp`, alt: "Josh’s text blast on the event card, with Jorge joining", title: "Organizer updates on the card", text: "The host’s text blast shows right on the event card, along with who’s joining, so updates come from a person and not from the app." },
-            { src: `${M}/solution-invites.webp`, alt: "Fany invited you to join this event, and Karen is interested", title: "Person-to-person invites", text: "Josh wants to feel invited. Invites now come from a person, and you can see who’s interested, which creates more interaction between members." },
-            { src: `${M}/solution-people.webp`, alt: "From your people: Karen went to Flower Making Class, with her photos", title: "From your people", text: "After an event, the moments posted by people you met show up for you, so you can see what the event was really like and who you might see again." },
+            { src: `${M}/solution-greeting.webp`, alt: "The home screen greets you by name: Hey Fany, new to NYC? Let’s find your people.", title: "A personal home screen", text: "The home screen talks to people, with rows titled like an invitation." },
+            { src: `${M}/solution-updates.webp`, alt: "Josh’s text blast on the event card, with Jorge joining", title: "Organizer updates on the card", text: "The host’s text blast shows right on the event card, for fast updates." },
+            { src: `${M}/solution-invites.webp`, alt: "Fany invited you to join this event, and Karen is interested", title: "Person-to-person invites", text: "Invites now come from a person, and you can see who’s interested and who’s joining." },
+            { src: `${M}/solution-people.webp`, alt: "From your people: Karen went to Flower Making Class, with her photos", title: "From your people", text: "After an event, the moments people post show up, so we can see what the event was really like." },
           ],
         },
         { kind: "p", text: "I tested the prototype with two people. What they found interesting when joining an event was the short “what to expect”, the tags, and being able to see who is going. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
