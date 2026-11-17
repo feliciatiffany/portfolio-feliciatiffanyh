@@ -58,10 +58,10 @@ export default {
         {
           kind: "quotes",
           items: [
-            { text: "Is it really that difficult to make friends with local New Yorkers?", source: "Reddit, r/AskNYC" },
-            { text: "Seeking friends who DON’T disappear after 3 business days.", source: "Reddit, r/MakeFriendsOver30" },
-            { text: "How do I meet people in New York", source: "Reddit, r/eastvillage" },
-            { text: "I’m not going to pay these guys any more money for a group that’s no longer active.", source: "App review, 1 star" },
+            { text: "Is it really that difficult to make friends with local New Yorkers?", source: "Reddit, r/AskNYC", href: "https://www.reddit.com/r/AskNYC/search/?q=difficult+to+make+friends+with+local+New+Yorkers&restrict_sr=1" },
+            { text: "Seeking friends who DON’T disappear after 3 business days.", source: "Reddit, r/MakeFriendsOver30", href: "https://www.reddit.com/r/MakeFriendsOver30/search/?q=disappear+after+3+business+days&restrict_sr=1" },
+            { text: "How do I meet people in New York", source: "Reddit, r/eastvillage", href: "https://www.reddit.com/r/eastvillage/search/?q=How+do+I+meet+people+in+New+York&restrict_sr=1" },
+            { text: "I’m not going to pay these guys any more money for a group that’s no longer active.", source: "App review, 1 star", href: "https://apps.apple.com/us/app/meetup-social-events-groups/id375990038?see-all=reviews" },
             { text: "Meetup is an empty shell.", source: "ComplaintsBoard, 2024", href: "https://www.complaintsboard.com/meetup-b118669" },
             { text: "…finding a group on meetup only to discover that it’s a ghost group", source: "Hacker News", href: "https://news.ycombinator.com/item?id=32676728" },
             { text: "It’s clear that many “attendees” RSVP “yes” to signal interest, but have no intention of actually going.", source: "SmartCustomer review", href: "https://www.smartcustomer.com/reviews/meetup.com?page=5" },
