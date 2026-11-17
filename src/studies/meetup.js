@@ -46,7 +46,6 @@ export default {
             { src: `${M}/solution-people.webp`, alt: "From your people: Karen went to Flower Making Class, with her photos", title: "From your people", text: "After an event, the moments people post show up, so we can see what the event was really like." },
           ],
         },
-        { kind: "p", text: "I tested the prototype with two people. What they found interesting when joining an event was the short “what to expect”, the tags, and being able to see who is going. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
       ],
     },
     {
@@ -208,6 +207,7 @@ export default {
           ],
         },
         { kind: "p", text: "For the second iteration I focused on what they wanted. Activity is now a thread with a “Say something” box, posts show when they were made, and Explore and notifications point out your friends and the people you’ve met." },
+        { kind: "p", text: "What they found interesting when joining an event was the short “what to expect”, the tags, and being able to see who is going. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
       ],
     },
     {
