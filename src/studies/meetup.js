@@ -53,6 +53,15 @@ export default {
       title: "How I found it",
       blocks: [
         { kind: "p", text: "I love going to events, meeting new people and trying new stuff. But after going to some events through Meetup, I got bored with the app and I couldn’t find a sense of community in it. I was wondering if other people felt the same, so I started searching." },
+        { kind: "h", text: "Insight: What I learned" },
+        {
+          kind: "quotes",
+          items: [
+            { text: "Is this group even still active?", source: "The app looks empty" },
+            { text: "Should I message a stranger to ask?", source: "Newcomers can’t get answers" },
+            { text: "The happy path ends at the ticket.", source: "Nothing brings people back" },
+          ],
+        },
         { kind: "p", text: "I gathered online evidence from App Store reviews, community threads, Reddit and other sites I found on Google to see what people say." },
         {
           kind: "quotes",
@@ -65,20 +74,6 @@ export default {
             { text: "…finding a group on meetup only to discover that it’s a ghost group", source: "Hacker News", href: "https://news.ycombinator.com/item?id=32676728" },
             { text: "It’s clear that many “attendees” RSVP “yes” to signal interest, but have no intention of actually going.", source: "SmartCustomer review", href: "https://www.smartcustomer.com/reviews/meetup.com?page=5" },
             { text: "For a social group it is important to see who is attending an event. You make this almost impossible.", source: "Trustpilot, 2 stars", href: "https://ca.trustpilot.com/review/meetup.com" },
-          ],
-        },
-      ],
-    },
-    {
-      label: "Insights",
-      title: "This research helped me find three things",
-      blocks: [
-        {
-          kind: "quotes",
-          items: [
-            { text: "Is this group even still active?", source: "The app looks empty" },
-            { text: "Should I message a stranger to ask?", source: "Newcomers can’t get answers" },
-            { text: "The happy path ends at the ticket.", source: "Nothing brings people back" },
           ],
         },
       ],
