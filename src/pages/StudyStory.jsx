@@ -197,6 +197,33 @@ function Block({ b }) {
           ))}
         </ol>
       );
+    case "merge":
+      // where each part of the final direction came from: the source, what I took, and the screen it became
+      return (
+        <figure className="story__merge">
+          <ol>
+            {b.items.map((m) => (
+              <li key={m.from}>
+                <span className="story__merge-from">{m.from}</span>
+                <span className="story__merge-took">{m.took}</span>
+                <span className="story__merge-to"><b>{m.to}</b>{m.screen}</span>
+              </li>
+            ))}
+          </ol>
+          <figcaption className="story__merge-into">{b.into}</figcaption>
+        </figure>
+      );
+    case "pair":
+      // the paper sketch with the same screens redrawn cleanly beside it
+      return (
+        <figure className="story__pair">
+          <div className="story__carousel-slide is-on">
+            <img src={b.src} alt={b.alt} loading="lazy" />
+            <img src={b.clean} alt={b.cleanAlt} loading="lazy" />
+          </div>
+          {b.caption && <figcaption>{b.caption}</figcaption>}
+        </figure>
+      );
     case "carousel":
       return <Carousel items={b.items} />;
     case "wires":

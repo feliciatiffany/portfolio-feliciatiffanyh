@@ -142,7 +142,26 @@ export default {
           ],
         },
         { kind: "p", text: "I combined the strongest parts into Direction D: two-way, warm and social. The conversation from the thread moves onto the event page, where it stays as a record like the profile. From the phases I took the idea that different things should show up before and after the event. I looked at Partiful for how warm it sounds, and at Beli for how seeing your friends’ activity makes you want to join in." },
-        { kind: "sketches", items: [{ src: `${M}/sketch-d.webp`, alt: "Paper sketches for Direction D: a profile with events been to and badges, your activity, invitations, and an Explore page with titled rows", label: "Direction D, sketched on paper" }] },
+        {
+          kind: "merge",
+          into: "Direction D",
+          items: [
+            { from: "A · Profile", took: "A record of the events you’ve been to, with badges", to: 5, screen: "Profile" },
+            { from: "B · Event thread", took: "The conversation, moved onto the event page", to: 4, screen: "Event page" },
+            { from: "C · Phases", took: "Different things before and after the event", to: 1, screen: "Home" },
+            { from: "Partiful", took: "Warm, personal invitations from a person", to: 3, screen: "Invite" },
+            { from: "Beli", took: "Seeing your friends’ activity makes you want to join", to: 6, screen: "Activity" },
+            { from: "Netflix", took: "Rows of events titled like an invitation", to: 2, screen: "Explore" },
+          ],
+        },
+        {
+          kind: "pair",
+          src: `${M}/sketch-d-paper.webp`,
+          clean: `${M}/sketch-d-clean.svg`,
+          alt: "Paper sketches for Direction D: a profile with events been to and badges, your activity, invitations, and an Explore page with titled rows",
+          cleanAlt: "Direction D redrawn as six clean wireframes: 1 Home, 2 Explore, 3 Invite, 4 Event page, 5 Profile, 6 Activity",
+          caption: "Direction D, sketched on paper and redrawn",
+        },
       ],
     },
     {
