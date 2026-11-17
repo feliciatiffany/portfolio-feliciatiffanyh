@@ -85,12 +85,12 @@ function Wire({ kind }) {
 }
 
 // Sketches that turn by themselves, one at a time: the paper sketch with its clean redraw right under it; resting the
-// pointer (or focus) on it holds the current one, and it stays still for reduced motion
+// pointer (or focus) on it holds the current one
 function Carousel({ items }) {
   const [i, setI] = useState(0);
   const [held, setHeld] = useState(false);
   useEffect(() => {
-    if (held || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    if (held) return undefined;
     const t = setTimeout(() => setI((n) => (n + 1) % items.length), 5000);
     return () => clearTimeout(t);
   }, [i, held, items.length]);
@@ -117,6 +117,17 @@ function Carousel({ items }) {
           <button key={s.src} type="button" role="tab" aria-selected={j === i} aria-label={s.title} className={j === i ? "is-on" : undefined} onClick={() => setI(j)} />
         ))}
       </div>
+      <figcaption className="story__notes" key={items[i].src}>
+        <p className="story__tag">{items[i].title}</p>
+        <div className="story__notes-cols">
+          {items[i].notes.map(([head, lines]) => (
+            <div key={head}>
+              <h4>{head}</h4>
+              <ul>{lines.map((l) => <li key={l}>{l}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </figcaption>
     </figure>
   );
 }

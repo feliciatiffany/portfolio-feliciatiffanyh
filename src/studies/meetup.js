@@ -111,18 +111,33 @@ export default {
               clean: `${M}/sketch-a-clean.svg`,
               alt: "Paper sketch of Direction A: a home screen leading to a profile with followers, events been to, groups, badges, and Activity and Challenges tabs",
               title: "A · Profile",
+              notes: [
+                ["Validate", ["Where to place things, and what’s interesting to see more of", "The bigger picture?", "What’s the hierarchy? Maybe look at it from the pain points", "Is it intimidating?"]],
+                ["Pros", ["Long-term motivation through stats and badges", "Shareable and familiar", "Gives everyone a role"]],
+                ["Cons", ["A lot of navigation and so much info", "Feels empty for a first-time user", "Stats can feel like pressure", "Member–host talk is slower and less direct than a thread"]],
+              ],
             },
             {
               src: `${M}/sketch-b.webp`,
               clean: `${M}/sketch-b-clean.svg`,
               alt: "Paper sketch of Direction B: a Meetup group chat, automated host welcomes, a host view of first-timers and questions, and reminders on the home screen, a widget and a messaging app",
               title: "B · Event thread",
+              notes: [
+                ["Validate", ["Will people read it, since it isn’t urgent?", "Does it actually help the host, or make it harder because it’s very technical?", "How should the language sound?", "Does it lead to people muting it?"]],
+                ["Pros", ["Familiar", "A sense of urgency to read it and notice what needs to be done", "Low learning curve"]],
+                ["Cons", ["Once it’s muted, nothing gets through", "Can get noisy and intimidating", "Too much information"]],
+              ],
             },
             {
               src: `${M}/sketch-c.webp`,
               clean: `${M}/sketch-c-clean.svg`,
               alt: "Paper sketch of Direction C: a stepper across eight screens, from You’re registered and RSVP to a QR code check-in, Thanks for coming with a picture, and a host report of newcomers",
               title: "C · Phases",
+              notes: [
+                ["Validate", ["Does the stepper raise the check-in rate?", "Completion rate for each phase", "How often hosts use the “I greeted them” tap"]],
+                ["Pros", ["Builds on what’s there now", "Clear at every step", "Less overwhelming", "Organizer and member stay in sync"]],
+                ["Cons", ["Too structured, so less free-form conversation", "People may not open it after the event", "Feels very much like a task", "Short-term"]],
+              ],
             },
           ],
         },
