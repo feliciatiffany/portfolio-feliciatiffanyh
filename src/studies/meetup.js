@@ -58,9 +58,9 @@ export default {
         {
           kind: "quotes",
           items: [
-            { text: "Is it really that difficult to make friends with local New Yorkers?", source: "Reddit, r/AskNYC", href: "https://www.reddit.com/r/AskNYC/search/?q=difficult+to+make+friends+with+local+New+Yorkers&restrict_sr=1" },
-            { text: "Seeking friends who DON’T disappear after 3 business days.", source: "Reddit, r/MakeFriendsOver30", href: "https://www.reddit.com/r/MakeFriendsOver30/search/?q=disappear+after+3+business+days&restrict_sr=1" },
-            { text: "How do I meet people in New York", source: "Reddit, r/eastvillage", href: "https://www.reddit.com/r/eastvillage/search/?q=How+do+I+meet+people+in+New+York&restrict_sr=1" },
+            { text: "Meetup (went to 3 events, spoke to nobody for more than 5 minutes)", source: "Reddit, r/Adulting", href: "https://www.reddit.com/r/Adulting/comments/1ry40c8/making_friends_as_an_adult_is_genuinely_broken/" },
+            { text: "Tried Meetup, but most groups seem pretty dead.", source: "Reddit, r/AskTheTravelers", href: "https://www.reddit.com/r/AskTheTravelers/comments/1x4q9cw/any_genuine_solo_travel_groups_worth_joining/" },
+            { text: "…last time I used it most of the groups were dead or two very strange men in a room playing board games, lol.", source: "Reddit, r/childfree", href: "https://www.reddit.com/r/childfree/comments/1wode35/i_feel_like_due_to_being_childfree_i_have_no_real/pbmsj4l/" },
             { text: "I’m not going to pay these guys any more money for a group that’s no longer active.", source: "App review, 1 star", href: "https://apps.apple.com/us/app/meetup-social-events-groups/id375990038?see-all=reviews" },
             { text: "Meetup is an empty shell.", source: "ComplaintsBoard, 2024", href: "https://www.complaintsboard.com/meetup-b118669" },
             { text: "…finding a group on meetup only to discover that it’s a ghost group", source: "Hacker News", href: "https://news.ycombinator.com/item?id=32676728" },
@@ -79,7 +79,7 @@ export default {
         },
         { kind: "h", text: "Three opportunities, mapped to the journey" },
         { kind: "p", text: "At the same time, I mapped all the happy paths." },
-        { kind: "wide", src: `${M}/flow-join.webp`, alt: "Screenshots of Meetup’s current join flow, from the event page to the ticket and email confirmation", caption: "Meetup’s current flow for joining an event. It ends at the ticket." },
+        { kind: "video", src: `${M}/happy-paths-timelapse.mp4`, alt: "A timelapse of the happy-path board filling in: sign-up, questionnaire, filter, joining an event, saving an event, joining and creating a group, group features, creating an event, event settings and chat", caption: "Every happy path I mapped in Meetup, from sign-up to chat." },
         { kind: "p", text: "Mapping out the user flow helped me find some gaps, backed up by the three main struggles from people’s reviews." },
         {
           kind: "opps",
