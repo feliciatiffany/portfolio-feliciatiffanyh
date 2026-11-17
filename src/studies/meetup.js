@@ -165,9 +165,9 @@ export default {
         {
           kind: "iterate",
           label: "Iteration 2",
-          src: `${M}/iteration-2-shapes.svg`,
-          alt: "The final product as six clean wireframes: 1 Home with a greeting, 2 Explore with titled rows and friends going, 3 Notifications that start with a person, 4 the event page with who is going and what to expect, 5 the Activity thread with the host’s text blast and replies, 6 after the event, a rating and who did you meet",
-          caption: "Iteration 2: the final product, after testing",
+          src: `${M}/iteration-2-highlights.svg`,
+          alt: "The final wireframe as six screens, with each update to the Meetup app boxed in coral: 1 Home with a greeting, 2 Explore with titled rows and friends going, 3 Notifications that start with a person, 4 the event page with who is going and what to expect, 5 the Activity thread with the host’s text blast and replies, 6 after the event, a rating and who did you meet",
+          caption: "Iteration 2: the final wireframe, adding updates to the Meetup app",
         },
       ],
     },
