@@ -128,23 +128,23 @@ function Block({ b }) {
         </figure>
       );
     case "opps":
-      // each opportunity: where it sits in the flow, the struggle behind it, and what could change
+      // each opportunity: a phone recording of that moment in the flow, with the struggle behind it and what could change beside it
       return (
         <ol className="story__opps">
           {b.items.map((o, i) => (
             <li key={o.title} className={o.chosen ? "is-chosen" : undefined}>
-              <p className="story__tag">{i + 1} · {o.title}{o.chosen && " · chosen"}</p>
-              <ol className="story__flow" style={{ "--n": b.stages.length }} aria-label="Steps of joining an event">
-                {b.stages.map((st, j) => (
-                  <li key={st} className={j + 1 >= o.from && j + 1 <= o.to ? "is-on" : undefined}>{st}</li>
-                ))}
-              </ol>
-              <dl>
-                <dt>Problem</dt>
-                <dd><q>{o.problem}</q> {o.note}</dd>
-                <dt>Opportunity</dt>
-                <dd>{o.text}</dd>
-              </dl>
+              <div className="story__opp-media">
+                <video src={o.video} aria-label={`Phone recording: ${o.title.toLowerCase()}, ${b.stages.slice(o.from - 1, o.to).join(" and ")}`} autoPlay muted loop playsInline preload="metadata" />
+              </div>
+              <div className="story__opp-text">
+                <p className="story__tag">{i + 1} · {o.title}{o.chosen && " · chosen"}</p>
+                <dl>
+                  <dt>Problem</dt>
+                  <dd><q>{o.problem}</q> {o.note}</dd>
+                  <dt>Opportunity</dt>
+                  <dd>{o.text}</dd>
+                </dl>
+              </div>
             </li>
           ))}
         </ol>

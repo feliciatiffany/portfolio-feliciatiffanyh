@@ -85,9 +85,9 @@ export default {
           kind: "opps",
           stages: ["Find", "Decide", "RSVP", "Wait", "Attend", "After"],
           items: [
-            { title: "Before deciding", from: 1, to: 2, problem: "Is this group even still active?", note: "The event and the app look empty.", text: "Learn more about the attendees and their bios." },
-            { title: "Before going", from: 3, to: 4, problem: "Should I message a stranger to ask?", note: "New event joiners can’t get enough information.", text: "Know before you go, customized to each user." },
-            { title: "After the event", from: 5, to: 6, chosen: true, problem: "The happy path ends at the ticket.", note: "Nothing brings people back.", text: "A two-way connection between members and organizers, and personal invitations, to increase participation and build the vibe." },
+            { title: "Before deciding", from: 1, to: 2, video: `${M}/meetup-journey-1-before-deciding.mp4`, problem: "Is this group even still active?", note: "The event and the app look empty.", text: "Learn more about the attendees and their bios." },
+            { title: "Before going", from: 3, to: 4, video: `${M}/meetup-journey-2-before-going.mp4`, problem: "Should I message a stranger to ask?", note: "New event joiners can’t get enough information.", text: "Know before you go, customized to each user." },
+            { title: "After the event", from: 5, to: 6, video: `${M}/meetup-journey-3-after-the-event.mp4`, chosen: true, problem: "The happy path ends at the ticket.", note: "Nothing brings people back.", text: "A two-way connection between members and organizers, and personal invitations, to increase participation and build the vibe." },
           ],
         },
         { kind: "p", text: "I chose number 3 because, in interviews I did with some friends, they said the main reason they go to an event is either knowing the vibe or knowing that their friends are going, and this interaction supports that. The first option was quite good, but it’s part of Meetup’s business model to make money, where learning more means paying more, and it raises privacy concerns. The second option creates more friction in an app that already has so much condensed information, and it’s mainly useful for newcomers." },

@@ -119,12 +119,13 @@
 
 /* Three opportunities, each on the part of the flow it covers */
 .story__opps{ list-style: none; padding: 0; display: grid; gap: var(--space-4); font-family: var(--font-family-body); }
-.story__opps > li{ padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-surface-lavender); box-shadow: inset 0 0 0 1px transparent; }
-.story__opps > li.is-chosen{ box-shadow: inset 0 0 0 1px var(--accent); }
-.story__flow{ display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: var(--space-2); list-style: none; margin: var(--space-3) 0 var(--space-4); padding: 0; }
-.story__flow li{ padding: var(--space-1) 0; border-radius: var(--radius-pill); border: 1px solid var(--border); text-align: center; font-size: var(--text-meta); color: var(--muted-foreground); }
-.story__flow li.is-on{ border-color: var(--foreground); background: var(--foreground); color: var(--background); }
-.story__opps dl{ display: grid; grid-template-columns: minmax(0, 7em) minmax(0, 1fr); gap: var(--space-2) var(--space-4); margin: 0; }
+.story__opps > li{ display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-6); align-items: center; }
+.story__opp-media{ padding: var(--space-4); border-radius: var(--radius-lg); background: var(--color-surface-lavender); }
+.story__opp-media video{ display: block; width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius-md); }
+.story__opps > li.is-chosen .story__opp-media{ box-shadow: inset 0 0 0 1px var(--accent); }
+.story__opp-text .story__tag{ margin: 0 0 var(--space-3); }
+.story__opps dl{ display: grid; gap: var(--space-1); margin: 0; }
+.story__opps dd + dt{ margin-top: var(--space-3); }
 .story__opps dt{ font-size: var(--text-meta); color: var(--muted-foreground); line-height: var(--leading-body); }
 .story__opps dd{ margin: 0; font-size: var(--text-body); line-height: var(--leading-body); }
 .story__opps q{ quotes: "“" "”"; }
@@ -156,5 +157,5 @@
   .story__row--strip{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .story__row--phones{ grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--space-5); }
   .story__list > div{ grid-template-columns: 1fr; gap: var(--space-1); }
-  .story__opps dl{ grid-template-columns: 1fr; gap: var(--space-1); }
+  .story__opps > li{ grid-template-columns: 1fr; gap: var(--space-4); }
 }
