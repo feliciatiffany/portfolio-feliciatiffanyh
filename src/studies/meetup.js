@@ -56,6 +56,7 @@ export default {
         { kind: "p", text: "I gathered online evidence from App Store reviews, community threads, Reddit and other sites I found on Google to see what people say." },
         {
           kind: "quotes",
+          cols: 4,
           items: [
             { text: "Is it really that difficult to make friends with local New Yorkers?", source: "Reddit, r/AskNYC" },
             { text: "Seeking friends who DON’T disappear after 3 business days.", source: "Reddit, r/MakeFriendsOver30" },

@@ -92,7 +92,7 @@ function Block({ b }) {
       return <h3 className="story__sub">{b.text}</h3>;
     case "quotes":
       return (
-        <ul className="story__quotes" style={{ "--cols": b.items.length === 3 ? 3 : 2 }} /* three short statements sit in one row */>
+        <ul className="story__quotes" style={{ "--cols": b.cols || (b.items.length === 3 ? 3 : 2) }} data-cols={b.cols} /* three short statements sit in one row; a block can ask for more */>
           {b.items.map((q) => (
             <li key={q.text}>
               {q.href ? (
