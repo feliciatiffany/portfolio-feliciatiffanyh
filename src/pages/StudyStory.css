@@ -119,10 +119,8 @@
 
 /* Three opportunities, each on the part of the flow it covers */
 .story__opps{ list-style: none; padding: 0; display: grid; gap: var(--space-4); font-family: var(--font-family-body); }
-.story__opps > li{ display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-6); align-items: center; }
-.story__opp-media{ padding: var(--space-4); border-radius: var(--radius-lg); background: var(--color-surface-lavender); }
-.story__opp-media video{ display: block; width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius-md); }
-.story__opps > li.is-chosen .story__opp-media{ box-shadow: inset 0 0 0 1px var(--accent); }
+.story__opps > li{ display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-6); align-items: center; }
+.story__opp-media video{ display: block; width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius-lg); }
 .story__opp-text .story__tag{ margin: 0 0 var(--space-3); }
 .story__opps dl{ display: grid; gap: var(--space-1); margin: 0; }
 .story__opps dd + dt{ margin-top: var(--space-3); }
