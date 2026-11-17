@@ -105,11 +105,10 @@ function Carousel({ items }) {
     >
       <div className="story__carousel-stage">
         {items.map((s, j) => (
-          // the screens as drawn on paper, and beside them the same screens redrawn cleanly;
-          // each grows by its width-to-height ratio, so the two come out the same height
+          // the screens as drawn on paper, and beside them the same screens redrawn cleanly
           <div key={s.src} className={j === i ? "story__carousel-slide is-on" : "story__carousel-slide"} aria-hidden={j !== i}>
-            <img src={s.src} alt={s.alt} loading="lazy" style={{ "--r": s.ratio[0] }} />
-            <img src={s.clean} alt={`${s.title}, redrawn as clean wireframes`} loading="lazy" style={{ "--r": s.ratio[1] }} />
+            <img src={s.src} alt={s.alt} loading="lazy" />
+            <img src={s.clean} alt={`${s.title}, redrawn as clean wireframes`} loading="lazy" />
           </div>
         ))}
       </div>
@@ -218,9 +217,11 @@ function Block({ b }) {
       // the paper sketch with the same screens redrawn cleanly beside it
       return (
         <figure className="story__pair">
-          <div className="story__carousel-slide is-on">
-            <img src={b.src} alt={b.alt} loading="lazy" style={{ "--r": b.ratio[0] }} />
-            <img src={b.clean} alt={b.cleanAlt} loading="lazy" style={{ "--r": b.ratio[1] }} />
+          <div className="story__carousel-stage">
+            <div className="story__carousel-slide is-on">
+              <img src={b.src} alt={b.alt} loading="lazy" />
+              <img src={b.clean} alt={b.cleanAlt} loading="lazy" />
+            </div>
           </div>
           {b.caption && <figcaption>{b.caption}</figcaption>}
         </figure>
