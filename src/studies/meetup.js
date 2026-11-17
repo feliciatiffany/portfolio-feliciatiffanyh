@@ -96,9 +96,9 @@ export default {
         {
           kind: "cards",
           items: [
-            { title: "Beli", tag: "Tracking and ranking restaurants", text: "Your history is visible and easy to share, and seeing what your friends did makes you want to try it too." },
-            { title: "Bucket", tag: "Bucket lists with friends", text: "It shows you the goals you share with your friends, and turns a finished goal into a small story you can post." },
-            { title: "Partiful", tag: "Invites for parties and events", text: "Invites feel warm and personal, and you can see who’s going and what guests are saying before the event." },
+            { title: "Beli", tag: "Tracking and ranking restaurants", icon: `${M}/app-beli-icon.webp`, shots: [`${M}/app-beli-1.webp`, `${M}/app-beli-2.webp`], alt: ["Beli’s feed, with featured lists and what friends ranked", "A Beli profile with places been to, rank and current streak"], points: ["Your history is visible and easy to share.", "Clear and easy to navigate.", "Built around achievements."] },
+            { title: "Bucket", tag: "Bucket lists with friends", icon: `${M}/app-bucket-icon.webp`, shots: [`${M}/app-bucket-1.webp`, `${M}/app-bucket-2.webp`], alt: ["Bucket’s lists screen: see what you share with others", "Bucket turns a finished goal into a photo story you can share"], points: ["It shows you the goals you share with your friends.", "It turns a finished goal into a small story you can post.", "Customizable."] },
+            { title: "Partiful", tag: "Invites for parties and events", icon: `${M}/app-partiful-icon.webp`, shots: [`${M}/app-partiful-1.webp`, `${M}/app-partiful-2.webp`], alt: ["A Partiful invite shared by link, text or DM", "Partiful’s photo album and activity feed, where guests comment and reply"], points: ["Invites feel warm and personal.", "You can see who’s going.", "It shows what guests are saying before the event."] },
           ],
         },
         {

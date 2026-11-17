@@ -98,6 +98,15 @@
 .story__tag{ margin: 0 0 var(--space-2); font-size: var(--text-meta); color: var(--accent); }
 .story__card h3{ margin: 0 0 var(--space-3); font-size: var(--text-body-lg); font-weight: var(--font-weight-bold); }
 .story__card p:last-child{ margin: 0; font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--muted-foreground); }
+/* Apps I studied: icon and screens in a frame, what each does well underneath */
+.story__cards--apps{ grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
+.story__card--app{ padding: 0; border: 0; border-radius: 0; }
+.story__app{ display: grid; justify-items: center; gap: var(--space-4); margin-bottom: var(--space-4); padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.story__app-icon{ width: 30%; aspect-ratio: 1; border-radius: 22%; }
+.story__app-shots{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); width: 100%; }
+.story__app-shots img{ display: block; width: 100%; height: auto; border-radius: var(--radius-md); }
+.story__card--app h3{ margin-bottom: var(--space-2); }
+.story__card--app ul{ margin: 0; padding-left: 1.1em; font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--muted-foreground); }
 
 /* What people say, word for word */
 .story__quotes{ list-style: none; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); gap: var(--space-4); font-family: var(--font-family-body); }
@@ -151,6 +160,7 @@
   .story__quotes,
   .story__wires,
   .story__features{ grid-template-columns: 1fr; }
+  .story__cards--apps{ grid-template-columns: 1fr; }
   .story__wire{ max-width: 240px; margin-inline: auto; }
   .story__row--strip{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .story__row--phones{ grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--space-5); }

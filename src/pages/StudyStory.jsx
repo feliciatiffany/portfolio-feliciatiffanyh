@@ -207,12 +207,21 @@ function Block({ b }) {
       );
     case "cards":
       return (
-        <div className="story__cards">
+        <div className={b.items.some((c) => c.icon) ? "story__cards story__cards--apps" : "story__cards"}>
           {b.items.map((c) => (
-            <article key={c.title} className="story__card">
+            <article key={c.title} className={c.icon ? "story__card story__card--app" : "story__card"}>
+              {c.icon && (
+                // the app's own icon and two of its App Store screens, for what it does well
+                <div className="story__app">
+                  <img className="story__app-icon" src={c.icon} alt={`${c.title} app icon`} loading="lazy" />
+                  <div className="story__app-shots">
+                    {c.shots.map((src, j) => <img key={src} src={src} alt={c.alt[j]} loading="lazy" />)}
+                  </div>
+                </div>
+              )}
               <p className="story__tag">{c.tag}</p>
               <h3>{c.title}</h3>
-              <p>{c.text}</p>
+              {c.points ? <ul>{c.points.map((t) => <li key={t}>{t}</li>)}</ul> : <p>{c.text}</p>}
             </article>
           ))}
         </div>
