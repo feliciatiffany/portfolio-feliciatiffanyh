@@ -101,7 +101,8 @@ export default {
             { title: "Partiful", tag: "Invites for parties and events", icon: `${M}/app-partiful-icon.webp`, shots: [`${M}/app-partiful-1.webp`, `${M}/app-partiful-2.webp`], alt: ["A Partiful invite shared by link, text or DM", "Partiful’s photo album and activity feed, where guests comment and reply"], points: ["Invites feel warm and personal.", "You can see who’s going.", "It shows what guests are saying before the event."] },
           ],
         },
-        { kind: "p", text: "Then I sketched some really low-fi wireframes with one main purpose: “a two-way connection, and more invitations beyond signing up for an event.”" },
+        { kind: "h", text: "A two-way connection, and more invitations beyond signing up for an event" },
+        { kind: "p", text: "Then I sketched some really low-fi wireframes with this as the main purpose." },
         {
           kind: "wires",
           items: [
