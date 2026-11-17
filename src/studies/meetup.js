@@ -165,7 +165,7 @@ export default {
         {
           kind: "iterate",
           label: "Iteration 2",
-          src: `${M}/iteration-2-four.svg`,
+          src: `${M}/iteration-2-final.svg`,
           alt: "The final wireframe as four screens, with each update to the Meetup app boxed in coral: 1 Home with a greeting that talks to you, 2 Notifications where every alert starts with a person, 3 the Activity thread with the host’s update and everyone’s replies, 4 after the event, who you met and your moment",
           caption: "Iteration 2: the final wireframe, adding updates to the Meetup app",
         },
