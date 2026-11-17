@@ -169,9 +169,9 @@
   .story__opps > li{ grid-template-columns: 1fr; gap: var(--space-4); }
 }
 
-/* Paper sketches, each above its clean redraw, that turn by themselves and resolve from a faded memory into focus */
+/* Paper sketches, each beside its clean redraw, that turn by themselves and resolve from a faded memory into focus */
 .story__carousel-stage{ display: grid; width: 100%; }
-.story__carousel-slide{ grid-area: 1 / 1; align-self: start; display: grid; align-content: start; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-media); opacity: 0; filter: sepia(0.6) blur(4px); transition: opacity var(--duration-memory) var(--ease-out), filter var(--duration-memory) var(--ease-out); }
+.story__carousel-slide{ grid-area: 1 / 1; align-self: start; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-media); opacity: 0; filter: sepia(0.6) blur(4px); transition: opacity var(--duration-slow) var(--ease-out), filter var(--duration-slow) var(--ease-out); }
 .story__carousel-slide.is-on{ opacity: 1; filter: none; }
 .story__carousel-slide img{ display: block; width: 100%; height: auto; }
 .story__carousel-dots{ display: flex; justify-content: center; gap: var(--space-2); margin-top: var(--space-3); }
@@ -183,6 +183,8 @@
 .story__notes ul{ margin: 0; padding: 0; list-style: none; font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--muted-foreground); }
 .story__notes li + li{ margin-top: var(--space-1); }
 .story__notes li::before{ content: "– "; }
+.story__section > .story__carousel{ width: 100%; }
+@media (max-width: 800px){ .story__carousel-slide{ grid-template-columns: 1fr; } }
 @keyframes story-notes-in{ from{ opacity: 0; filter: blur(2px); } to{ opacity: 1; filter: none; } }
 @media (max-width: 800px){ .story__notes-cols{ grid-template-columns: 1fr; gap: var(--space-3); } }
 @media (prefers-reduced-motion: reduce){ .story__carousel-slide, .story .story__notes{ transition: none; animation: none; } }

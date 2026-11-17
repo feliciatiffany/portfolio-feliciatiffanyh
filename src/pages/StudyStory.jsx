@@ -84,14 +84,14 @@ function Wire({ kind }) {
   );
 }
 
-// Sketches that turn by themselves, one at a time: the paper sketch with its clean redraw right under it; resting the
+// Sketches that turn by themselves, one at a time: the paper sketch with its clean redraw right beside it; resting the
 // pointer (or focus) on it holds the current one
 function Carousel({ items }) {
   const [i, setI] = useState(0);
   const [held, setHeld] = useState(false);
   useEffect(() => {
     if (held) return undefined;
-    const t = setTimeout(() => setI((n) => (n + 1) % items.length), 5000);
+    const t = setTimeout(() => setI((n) => (n + 1) % items.length), 2000);
     return () => clearTimeout(t);
   }, [i, held, items.length]);
   return (
@@ -105,7 +105,7 @@ function Carousel({ items }) {
     >
       <div className="story__carousel-stage">
         {items.map((s, j) => (
-          // the page as drawn on paper, then the same screens redrawn cleanly
+          // the screens as drawn on paper, and beside them the same screens redrawn cleanly
           <div key={s.src} className={j === i ? "story__carousel-slide is-on" : "story__carousel-slide"} aria-hidden={j !== i}>
             <img src={s.src} alt={s.alt} loading="lazy" />
             <img src={s.clean} alt={`${s.title}, redrawn as clean wireframes`} loading="lazy" />
