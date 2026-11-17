@@ -84,7 +84,7 @@ function Wire({ kind }) {
   );
 }
 
-// Sketches that turn by themselves, one at a time (the paper page above its clean redraw), with their notes underneath; resting the
+// Sketches that turn by themselves, one at a time: the paper sketch with its clean redraw right under it; resting the
 // pointer (or focus) on it holds the current one, and it stays still for reduced motion
 function Carousel({ items }) {
   const [i, setI] = useState(0);
@@ -94,7 +94,6 @@ function Carousel({ items }) {
     const t = setTimeout(() => setI((n) => (n + 1) % items.length), 5000);
     return () => clearTimeout(t);
   }, [i, held, items.length]);
-  const it = items[i];
   return (
     <figure
       className={held ? "story__carousel is-held" : "story__carousel"}
@@ -118,18 +117,6 @@ function Carousel({ items }) {
           <button key={s.src} type="button" role="tab" aria-selected={j === i} aria-label={s.title} className={j === i ? "is-on" : undefined} onClick={() => setI(j)} />
         ))}
       </div>
-      <figcaption className="story__notes" key={it.src} aria-live="polite">
-        <strong>{it.title}</strong>
-        <p>{it.lead}</p>
-        <div className="story__notes-cols">
-          {it.notes.map(([head, lines]) => (
-            <div key={head}>
-              <h4>{head}</h4>
-              <ul>{lines.map((l) => <li key={l}>{l}</li>)}</ul>
-            </div>
-          ))}
-        </div>
-      </figcaption>
     </figure>
   );
 }
