@@ -95,8 +95,18 @@ function Block({ b }) {
         <ul className="story__quotes" style={{ "--cols": b.items.length === 3 ? 3 : 2 }} /* three short statements sit in one row */>
           {b.items.map((q) => (
             <li key={q.text}>
-              <q>{q.text}</q>
-              <span>{q.source}</span>
+              {q.href ? (
+                // a review found online opens where it was posted
+                <a href={q.href} target="_blank" rel="noopener noreferrer" data-cursor="Read">
+                  <q>{q.text}</q>
+                  <span>{q.source} ↗</span>
+                </a>
+              ) : (
+                <>
+                  <q>{q.text}</q>
+                  <span>{q.source}</span>
+                </>
+              )}
             </li>
           ))}
         </ul>
