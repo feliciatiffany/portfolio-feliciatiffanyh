@@ -4,6 +4,7 @@
   /* colors.json */
   --color-coral: #DE826D;
   --color-cream: #F3E0D1;
+  --color-lavender: #EDE8FD;
   --color-rose: #9C575D;
   --color-peach: #E8B19D;
   --color-blush: #B76E78;
@@ -41,6 +42,7 @@
   --color-accent-strong: color-mix(in srgb, var(--color-coral) 55%, var(--color-maroon));
   --color-surface-soft: var(--color-cream);
   --color-surface-sand: var(--color-sand);
+  --color-surface-lavender: var(--color-lavender);
   --color-glow: color-mix(in srgb, var(--color-coral) 42%, transparent);
   --color-cursor: var(--color-coral);
   --color-dither-1: var(--color-grey-900);
@@ -212,6 +214,7 @@
   --color-wash-strong: color-mix(in srgb, var(--color-accent-strong) 13%, transparent);
   --color-wash-soft: color-mix(in srgb, var(--color-surface-soft) 13%, transparent);
   --color-wash-sand: color-mix(in srgb, var(--color-surface-sand) 13%, transparent);
+  --color-wash-lavender: color-mix(in srgb, var(--color-surface-lavender) 13%, transparent);
 }
 
 /* dark mode, chosen by the visitor */
@@ -233,6 +236,7 @@
   --color-accent-strong: var(--color-grey-100);
   --color-surface-soft: var(--color-soot);
   --color-surface-sand: var(--color-grey-600);
+  --color-surface-lavender: var(--color-soot);
   --color-glow: color-mix(in srgb, var(--color-paper) 22%, transparent);
   --color-cursor: var(--color-grey-200);
   --color-line-old: var(--color-grey-600);
@@ -292,6 +296,7 @@
     --color-accent-strong: var(--color-grey-100);
     --color-surface-soft: var(--color-soot);
     --color-surface-sand: var(--color-grey-600);
+    --color-surface-lavender: var(--color-soot);
     --color-glow: color-mix(in srgb, var(--color-paper) 22%, transparent);
     --color-cursor: var(--color-grey-200);
     --color-line-old: var(--color-grey-600);

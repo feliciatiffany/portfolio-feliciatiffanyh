@@ -18,6 +18,7 @@ export const darkTokens = Object.freeze({
   "color-accent-strong": "#F2F2F2",
   "color-surface-soft": "#262626",
   "color-surface-sand": "#5C5C5C",
+  "color-surface-lavender": "#262626",
   "color-glow": "color-mix(in srgb, #FFFFFF 22%, transparent)",
   "color-cursor": "#D4D4D4",
   "color-line-old": "#5C5C5C",
@@ -61,6 +62,7 @@ export const darkTokens = Object.freeze({
 export const tokens = Object.freeze({
   "color-coral": "#DE826D",
   "color-cream": "#F3E0D1",
+  "color-lavender": "#EDE8FD",
   "color-rose": "#9C575D",
   "color-peach": "#E8B19D",
   "color-blush": "#B76E78",
@@ -98,6 +100,7 @@ export const tokens = Object.freeze({
   "color-accent-strong": "color-mix(in srgb, #DE826D 55%, #62232D)",
   "color-surface-soft": "#F3E0D1",
   "color-surface-sand": "#E6BD89",
+  "color-surface-lavender": "#EDE8FD",
   "color-glow": "color-mix(in srgb, #DE826D 42%, transparent)",
   "color-cursor": "#DE826D",
   "color-dither-1": "#0D0D0D",
@@ -259,10 +262,11 @@ export const tokens = Object.freeze({
   "color-wash-strong": "13% of color-mix(in srgb, #DE826D 55%, #62232D)",
   "color-wash-soft": "13% of #F3E0D1",
   "color-wash-sand": "13% of #E6BD89",
+  "color-wash-lavender": "13% of #EDE8FD",
 });
 
 /** Colour base swatches: only roles may point at these (checked by npm run lint:tokens). */
-export const baseColors = Object.freeze(["color-coral","color-cream","color-rose","color-peach","color-blush","color-mauve","color-sand","color-maroon","color-gold","color-amber","color-ink","color-paper","color-grey-900","color-grey-600","color-grey-300","color-grey-100","color-grey-200","color-grey-400","color-grey-500","color-night","color-umber","color-soot","color-parchment"]);
+export const baseColors = Object.freeze(["color-coral","color-cream","color-lavender","color-rose","color-peach","color-blush","color-mauve","color-sand","color-maroon","color-gold","color-amber","color-ink","color-paper","color-grey-900","color-grey-600","color-grey-300","color-grey-100","color-grey-200","color-grey-400","color-grey-500","color-night","color-umber","color-soot","color-parchment"]);
 
 /** token('color-cursor') → '#DE826D'. Throws on a typo so a wrong name can't fall back silently. */
 export function token(name, mode = "light") {

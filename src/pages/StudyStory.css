@@ -100,12 +100,12 @@
 
 /* What people say, word for word */
 .story__quotes{ list-style: none; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); gap: var(--space-4); font-family: var(--font-family-body); }
-.story__quotes li{ display: grid; align-content: space-between; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-wash-soft); }
+.story__quotes li{ display: grid; align-content: space-between; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-surface-lavender); }
 .story__quotes q{ font-size: var(--text-body); line-height: var(--leading-body); quotes: "“" "”"; }
 .story__quotes span{ font-size: var(--text-meta); color: var(--muted-foreground); }
 .story__quotes li:has(> a){ padding: 0; align-content: stretch; }
 .story__quotes a{ display: grid; align-content: space-between; gap: var(--space-4); height: 100%; box-sizing: border-box; padding: var(--space-5); border-radius: inherit; color: inherit; text-decoration: none; transition: background var(--duration-base) var(--ease-out); }
-.story__quotes a:hover{ background: color-mix(in srgb, var(--foreground) 5%, var(--color-wash-soft)); }
+.story__quotes a:hover{ background: color-mix(in srgb, var(--foreground) 5%, var(--color-surface-lavender)); }
 .story__quotes a:hover span{ color: var(--foreground); }
 
 /* The steps of joining an event in one row, with a bar under the steps each opportunity covers */
