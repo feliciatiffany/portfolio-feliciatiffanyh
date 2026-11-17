@@ -67,8 +67,6 @@ export default {
             { text: "For a social group it is important to see who is attending an event. You make this almost impossible.", source: "Trustpilot, 2 stars", href: "https://ca.trustpilot.com/review/meetup.com" },
           ],
         },
-        { kind: "p", text: "At the same time, I mapped the happy paths: signing up, joining an event, joining a group and chatting. Tracing the app flow screen by screen, I found some gaps in between. The biggest one is that the flow works well as a transaction, where you find an event, RSVP and get a ticket, but after the ticket there is nothing." },
-        { kind: "wide", src: `${M}/flow-join.webp`, alt: "Screenshots of Meetup’s current join flow, from the event page to the ticket and email confirmation", caption: "Meetup’s current flow for joining an event. It ends at the ticket." },
         { kind: "p", text: "I also tried similar apps like Partiful, Beli and Bucket, and noted what each one does well. Each has its own job to be done." },
         {
           kind: "cards",
@@ -107,8 +105,17 @@ export default {
       label: "Opportunities",
       title: "Three opportunities, mapped to the journey",
       blocks: [
-        { kind: "p", text: "Understanding all of that brought me to a point where I could summarize some hypotheses on why people aren’t loyal to the app, or lose interest after trying it. The information that would encourage them is buried, the only way to ask a question is to message a stranger, and nothing connects a member and an organizer after the RSVP." },
-        { kind: "p", text: "The gaps came from the user flow itself, and the reviews backed them up. From there I wrote three opportunities for improvement, each at a different point of the journey." },
+        { kind: "p", text: "At the same time, I mapped all the happy paths." },
+        { kind: "wide", src: `${M}/flow-join.webp`, alt: "Screenshots of Meetup’s current join flow, from the event page to the ticket and email confirmation", caption: "Meetup’s current flow for joining an event. It ends at the ticket." },
+        { kind: "p", text: "Some gaps showed up in the user flow itself, backed up by the reviews from before. These three are the biggest ones:" },
+        {
+          kind: "list",
+          items: [
+            ["Before deciding", "Learn more about the attendees, to increase trust and credibility and to create the “why”."],
+            ["Before going", "Know before you go, customized to each user, especially newcomers, so they feel less confused."],
+            ["After the event", "A two-way connection between members and organizers, and personal invitations, to increase participation and build the vibe."],
+          ],
+        },
         {
           kind: "stages",
           stages: ["Find", "Decide", "RSVP", "Wait", "Attend", "After"],
@@ -118,14 +125,6 @@ export default {
             { title: "3 · After the event", from: 5, to: 6, chosen: true },
           ],
           caption: "Which steps of joining an event each opportunity covers. I chose the third.",
-        },
-        {
-          kind: "list",
-          items: [
-            ["Before deciding", "Learn more about the attendees, to build trust and credibility and to give people a “why”."],
-            ["Before going", "Know before you go: information made for each person, especially newcomers, so they feel less confused."],
-            ["After the event", "A two-way connection between members and organizers, and personal invitations, to raise participation and build the vibe."],
-          ],
         },
         { kind: "p", text: "I chose the third one. In interviews I did with some friends, they said the main reasons they go to an event are knowing the vibe or knowing that their friends are going, and this kind of interaction supports both." },
         { kind: "p", text: "The first option was quite good, but it’s part of Meetup’s business model, where learning more means paying more, and it raises privacy concerns. The second one adds friction to an app that already packs in a lot of information, and it’s mainly useful for newcomers." },
