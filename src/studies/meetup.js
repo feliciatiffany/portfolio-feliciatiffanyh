@@ -56,7 +56,6 @@ export default {
         { kind: "p", text: "I gathered online evidence from App Store reviews, community threads, Reddit and other sites I found on Google to see what people say." },
         {
           kind: "quotes",
-          cols: 4,
           items: [
             { text: "Is it really that difficult to make friends with local New Yorkers?", source: "Reddit, r/AskNYC" },
             { text: "Seeking friends who DON’T disappear after 3 business days.", source: "Reddit, r/MakeFriendsOver30" },
@@ -66,24 +65,6 @@ export default {
             { text: "…finding a group on meetup only to discover that it’s a ghost group", source: "Hacker News", href: "https://news.ycombinator.com/item?id=32676728" },
             { text: "It’s clear that many “attendees” RSVP “yes” to signal interest, but have no intention of actually going.", source: "SmartCustomer review", href: "https://www.smartcustomer.com/reviews/meetup.com?page=5" },
             { text: "For a social group it is important to see who is attending an event. You make this almost impossible.", source: "Trustpilot, 2 stars", href: "https://ca.trustpilot.com/review/meetup.com" },
-          ],
-        },
-        { kind: "p", text: "I also tried similar apps like Partiful, Beli and Bucket, and noted what each one does well. Each has its own job to be done." },
-        {
-          kind: "cards",
-          items: [
-            { title: "Beli", tag: "Tracking and ranking restaurants", text: "Your history is visible and easy to share, and seeing what your friends did makes you want to try it too." },
-            { title: "Bucket", tag: "Bucket lists with friends", text: "It shows you the goals you share with your friends, and turns a finished goal into a small story you can post." },
-            { title: "Partiful", tag: "Invites for parties and events", text: "Invites feel warm and personal, and you can see who’s going and what guests are saying before the event." },
-          ],
-        },
-        { kind: "p", text: "From the reviews, the main path in the app and the main reasons people use Meetup, I built three user personas and their journey maps." },
-        {
-          kind: "cards",
-          items: [
-            { title: "Josh, 25", tag: "Shy newcomer", text: "He moved to New York three months ago and knows almost no one outside of work. He wants to feel invited into a group, “not like he’s cold-walking into a room of strangers.”" },
-            { title: "Amy, 18", tag: "Age-matched hobbyist", text: "She shoots film and wants to meet people her own age. Right now she has to message a stranger just to ask what the crowd is like." },
-            { title: "David, 35", tag: "Organizer", text: "He grew his run club from three friends to 200 members, mostly unpaid. He keeps answering the same questions across DMs, comments and spreadsheets." },
           ],
         },
       ],
@@ -108,6 +89,15 @@ export default {
       blocks: [
         { kind: "p", text: "At the same time, I mapped all the happy paths." },
         { kind: "wide", src: `${M}/flow-join.webp`, alt: "Screenshots of Meetup’s current join flow, from the event page to the ticket and email confirmation", caption: "Meetup’s current flow for joining an event. It ends at the ticket." },
+        { kind: "p", text: "From the reviews, the main path in the app and the main reasons people use Meetup, I built three user personas and their journey maps." },
+        {
+          kind: "cards",
+          items: [
+            { title: "Josh, 25", tag: "Shy newcomer", text: "He moved to New York three months ago and knows almost no one outside of work. He wants to feel invited into a group, “not like he’s cold-walking into a room of strangers.”" },
+            { title: "Amy, 18", tag: "Age-matched hobbyist", text: "She shoots film and wants to meet people her own age. Right now she has to message a stranger just to ask what the crowd is like." },
+            { title: "David, 35", tag: "Organizer", text: "He grew his run club from three friends to 200 members, mostly unpaid. He keeps answering the same questions across DMs, comments and spreadsheets." },
+          ],
+        },
         { kind: "p", text: "Some gaps showed up in the user flow itself, backed up by the reviews from before. These three are the biggest ones:" },
         {
           kind: "list",
@@ -135,6 +125,15 @@ export default {
       label: "Ideas",
       title: "Three ideas for where that relationship could live",
       blocks: [
+        { kind: "p", text: "I also tried similar apps like Partiful, Beli and Bucket, and noted what each one does well. Each has its own job to be done." },
+        {
+          kind: "cards",
+          items: [
+            { title: "Beli", tag: "Tracking and ranking restaurants", text: "Your history is visible and easy to share, and seeing what your friends did makes you want to try it too." },
+            { title: "Bucket", tag: "Bucket lists with friends", text: "It shows you the goals you share with your friends, and turns a finished goal into a small story you can post." },
+            { title: "Partiful", tag: "Invites for parties and events", text: "Invites feel warm and personal, and you can see who’s going and what guests are saying before the event." },
+          ],
+        },
         { kind: "p", text: "I explored three sketches by studying what other apps do well, and I wanted them to be really different from each other and not small variations." },
         {
           kind: "wires",

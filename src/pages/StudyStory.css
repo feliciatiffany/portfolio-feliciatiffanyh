@@ -103,12 +103,6 @@
 .story__quotes li{ display: grid; align-content: space-between; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-surface-lavender); }
 .story__quotes q{ font-size: var(--text-body); line-height: var(--leading-body); quotes: "“" "”"; }
 .story__quotes span{ font-size: var(--text-meta); color: var(--muted-foreground); }
-/* four across: narrow cards, so smaller words and less padding */
-.story__quotes[data-cols="4"]{ gap: var(--space-3); width: min(60rem, 100vw - 2 * var(--space-18)); margin-left: 50%; transform: translateX(-50%); }
-.story__quotes[data-cols="4"] li,
-.story__quotes[data-cols="4"] a{ padding: var(--space-4); }
-.story__quotes[data-cols="4"] li:has(> a){ padding: 0; }
-.story__quotes[data-cols="4"] q{ font-size: var(--text-body-sm); }
 .story__quotes li:has(> a){ padding: 0; align-content: stretch; }
 .story__quotes a{ display: grid; align-content: space-between; gap: var(--space-4); height: 100%; box-sizing: border-box; padding: var(--space-5); border-radius: inherit; color: inherit; text-decoration: none; transition: background var(--duration-base) var(--ease-out); }
 .story__quotes a:hover{ background: color-mix(in srgb, var(--foreground) 5%, var(--color-surface-lavender)); }
@@ -145,7 +139,6 @@
   .story__quotes,
   .story__wires,
   .story__features{ grid-template-columns: 1fr; }
-  .story__quotes[data-cols="4"]{ grid-template-columns: repeat(2, minmax(0, 1fr)); width: auto; margin-left: 0; transform: none; }
   .story__wire{ max-width: 240px; margin-inline: auto; }
   .story__row--strip{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .story__row--phones{ grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--space-5); }
