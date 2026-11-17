@@ -79,7 +79,7 @@ export default {
         },
         { kind: "h", text: "Three opportunities, mapped to the journey" },
         { kind: "p", text: "At the same time, I mapped all the happy paths." },
-        { kind: "video", src: `${M}/happy-paths-build.mp4`, alt: "A timelapse of the happy-path board filling in: sign-up, questionnaire, filter, joining an event, saving an event, joining and creating a group, group features, creating an event, event settings and chat", caption: "Every happy path I mapped in Meetup, from sign-up to chat." },
+        { kind: "video", src: `${M}/happy-paths-mapping.mp4`, alt: "A timelapse of the happy-path board filling in: sign-up, questionnaire, filter, joining an event, saving an event, joining and creating a group, group features, creating an event, event settings and chat", caption: "Every happy path I mapped in Meetup, from sign-up to chat." },
         { kind: "p", text: "Mapping out the user flow helped me find some gaps, backed up by the three main struggles from people’s reviews." },
         {
           kind: "opps",
