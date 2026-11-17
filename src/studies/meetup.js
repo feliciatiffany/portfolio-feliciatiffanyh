@@ -162,6 +162,13 @@ export default {
           cleanAlt: "Direction D redrawn as six clean wireframes: 1 Home, 2 Explore, 3 Invite, 4 Event page, 5 Profile, 6 Activity",
           caption: "Direction D, sketched on paper and redrawn",
         },
+        {
+          kind: "iterate",
+          label: "Iteration 2",
+          src: `${M}/iteration-2-wire.svg`,
+          alt: "The final product as six clean wireframes: 1 Home with a greeting, 2 Explore with titled rows and friends going, 3 Notifications that start with a person, 4 the event page with who is going and what to expect, 5 the Activity thread with the host’s text blast and replies, 6 after the event, a rating and who did you meet",
+          caption: "Iteration 2: the final product, after testing",
+        },
       ],
     },
     {

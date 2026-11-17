@@ -201,6 +201,11 @@
 .story .story__merge-into::before{ content: ""; position: absolute; left: 50%; bottom: 100%; height: var(--space-6); border-left: 2px solid var(--foreground); }
 .story .story__merge-into::after{ content: "↓"; position: absolute; left: 50%; top: 100%; transform: translateX(-50%); color: var(--foreground); font-size: var(--text-body-lg); line-height: var(--leading-body); }
 .story__merge + .story__pair{ margin-top: var(--space-8); }
+.story__section > .story__iterate{ width: 100%; margin-block: 0 var(--space-16); }
+.story .story__iterate-label{ margin-top: 0; margin-bottom: var(--space-8); font-family: var(--font-family-body); }
+.story .story__iterate-label::before{ height: var(--space-10); }
+.story__iterate img{ display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: var(--radius-media); }
+.story__pair:has(+ .story__iterate){ margin-bottom: var(--space-10); }
 .story__pair .story__carousel-slide{ opacity: 1; filter: none; }
 @media (max-width: 800px){ .story__merge li{ grid-template-columns: 1fr; gap: var(--space-1); } }
 @media (max-width: 800px){ .story__carousel-stage{ aspect-ratio: auto; } .story__carousel-slide{ flex-direction: column; } .story__carousel-slide img{ flex: none; width: 100%; height: auto; } }

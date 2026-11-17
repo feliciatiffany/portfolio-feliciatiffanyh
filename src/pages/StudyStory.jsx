@@ -231,6 +231,15 @@ function Block({ b }) {
           {b.caption && <figcaption>{b.caption}</figcaption>}
         </figure>
       );
+    case "iterate":
+      // an arrow down from the direction before, then the screens as they ended up
+      return (
+        <figure className="story__iterate">
+          <p className="story__merge-into story__iterate-label">{b.label}</p>
+          <img src={b.src} alt={b.alt} loading="lazy" />
+          {b.caption && <figcaption>{b.caption}</figcaption>}
+        </figure>
+      );
     case "carousel":
       return <Carousel items={b.items} />;
     case "wires":
