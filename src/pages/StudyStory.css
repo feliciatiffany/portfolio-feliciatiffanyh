@@ -52,6 +52,7 @@
 .story__section > .story__quotes,
 .story__section > .story__stages,
 .story__section > .story__wires,
+.story__section > .story__opps,
 .story__section > .story__features{ margin-block: var(--space-5); }
 
 /* A smaller heading for a step inside a section */
@@ -116,6 +117,18 @@
 .story__span.is-chosen{ background: var(--accent); color: var(--accent-foreground); }
 .story__stages figcaption{ grid-column: 1 / -1; }
 
+/* Three opportunities, each on the part of the flow it covers */
+.story__opps{ list-style: none; padding: 0; display: grid; gap: var(--space-4); font-family: var(--font-family-body); }
+.story__opps > li{ padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-surface-lavender); box-shadow: inset 0 0 0 1px transparent; }
+.story__opps > li.is-chosen{ box-shadow: inset 0 0 0 1px var(--accent); }
+.story__flow{ display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: var(--space-2); list-style: none; margin: var(--space-3) 0 var(--space-4); padding: 0; }
+.story__flow li{ padding: var(--space-1) 0; border-radius: var(--radius-pill); border: 1px solid var(--border); text-align: center; font-size: var(--text-meta); color: var(--muted-foreground); }
+.story__flow li.is-on{ border-color: var(--foreground); background: var(--foreground); color: var(--background); }
+.story__opps dl{ display: grid; grid-template-columns: minmax(0, 7em) minmax(0, 1fr); gap: var(--space-2) var(--space-4); margin: 0; }
+.story__opps dt{ font-size: var(--text-meta); color: var(--muted-foreground); line-height: var(--leading-body); }
+.story__opps dd{ margin: 0; font-size: var(--text-body); line-height: var(--leading-body); }
+.story__opps q{ quotes: "“" "”"; }
+
 /* Three line wireframes side by side, each with what it is and what it costs */
 .story__wires{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
 .story__wires figure{ margin: 0; }
@@ -143,4 +156,5 @@
   .story__row--strip{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .story__row--phones{ grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--space-5); }
   .story__list > div{ grid-template-columns: 1fr; gap: var(--space-1); }
+  .story__opps dl{ grid-template-columns: 1fr; gap: var(--space-1); }
 }

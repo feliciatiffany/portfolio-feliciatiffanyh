@@ -53,15 +53,7 @@ export default {
       title: "How I found it",
       blocks: [
         { kind: "p", text: "I love going to events, meeting new people and trying new stuff. But after going to some events through Meetup, I got bored with the app and I couldn’t find a sense of community in it. I was wondering if other people felt the same, so I started searching." },
-        { kind: "h", text: "Insight: What I learned" },
-        {
-          kind: "quotes",
-          items: [
-            { text: "Is this group even still active?", source: "The app looks empty" },
-            { text: "Should I message a stranger to ask?", source: "Newcomers can’t get answers" },
-            { text: "The happy path ends at the ticket.", source: "Nothing brings people back" },
-          ],
-        },
+        { kind: "h", text: "Insight: I wondered about and identified what people struggle with online" },
         { kind: "p", text: "I gathered online evidence from App Store reviews, community threads, Reddit and other sites I found on Google to see what people say." },
         {
           kind: "quotes",
@@ -76,51 +68,31 @@ export default {
             { text: "For a social group it is important to see who is attending an event. You make this almost impossible.", source: "Trustpilot, 2 stars", href: "https://ca.trustpilot.com/review/meetup.com" },
           ],
         },
-      ],
-    },
-    {
-      label: "Opportunities",
-      title: "Three opportunities, mapped to the journey",
-      blocks: [
+        { kind: "p", text: "And three main struggles came up again and again:" },
+        {
+          kind: "quotes",
+          items: [
+            { text: "Is this group even still active?", source: "The event and the app look empty" },
+            { text: "Should I message a stranger to ask?", source: "New event joiners can’t get enough information" },
+            { text: "The happy path ends at the ticket.", source: "Nothing brings people back" },
+          ],
+        },
+        { kind: "h", text: "Three opportunities, mapped to the journey" },
         { kind: "p", text: "At the same time, I mapped all the happy paths." },
         { kind: "wide", src: `${M}/flow-join.webp`, alt: "Screenshots of Meetup’s current join flow, from the event page to the ticket and email confirmation", caption: "Meetup’s current flow for joining an event. It ends at the ticket." },
-        { kind: "p", text: "From the reviews, the main path in the app and the main reasons people use Meetup, I built three user personas and their journey maps." },
+        { kind: "p", text: "Mapping out the user flow helped me find some gaps, backed up by the three main struggles from people’s reviews." },
         {
-          kind: "cards",
-          items: [
-            { title: "Josh, 25", tag: "Shy newcomer", text: "He moved to New York three months ago and knows almost no one outside of work. He wants to feel invited into a group, “not like he’s cold-walking into a room of strangers.”" },
-            { title: "Amy, 18", tag: "Age-matched hobbyist", text: "She shoots film and wants to meet people her own age. Right now she has to message a stranger just to ask what the crowd is like." },
-            { title: "David, 35", tag: "Organizer", text: "He grew his run club from three friends to 200 members, mostly unpaid. He keeps answering the same questions across DMs, comments and spreadsheets." },
-          ],
-        },
-        { kind: "p", text: "Some gaps showed up in the user flow itself, backed up by the reviews from before. These three are the biggest ones:" },
-        {
-          kind: "list",
-          items: [
-            ["Before deciding", "Learn more about the attendees, to increase trust and credibility and to create the “why”."],
-            ["Before going", "Know before you go, customized to each user, especially newcomers, so they feel less confused."],
-            ["After the event", "A two-way connection between members and organizers, and personal invitations, to increase participation and build the vibe."],
-          ],
-        },
-        {
-          kind: "stages",
+          kind: "opps",
           stages: ["Find", "Decide", "RSVP", "Wait", "Attend", "After"],
           items: [
-            { title: "1 · Before deciding", from: 1, to: 2 },
-            { title: "2 · Before going", from: 3, to: 4 },
-            { title: "3 · After the event", from: 5, to: 6, chosen: true },
+            { title: "Before deciding", from: 1, to: 2, problem: "Is this group even still active?", note: "The event and the app look empty.", text: "Learn more about the attendees and their bios." },
+            { title: "Before going", from: 3, to: 4, problem: "Should I message a stranger to ask?", note: "New event joiners can’t get enough information.", text: "Know before you go, customized to each user." },
+            { title: "After the event", from: 5, to: 6, chosen: true, problem: "The happy path ends at the ticket.", note: "Nothing brings people back.", text: "A two-way connection between members and organizers, and personal invitations, to increase participation and build the vibe." },
           ],
-          caption: "Which steps of joining an event each opportunity covers. I chose the third.",
         },
-        { kind: "p", text: "I chose the third one. In interviews I did with some friends, they said the main reasons they go to an event are knowing the vibe or knowing that their friends are going, and this kind of interaction supports both." },
-        { kind: "p", text: "The first option was quite good, but it’s part of Meetup’s business model, where learning more means paying more, and it raises privacy concerns. The second one adds friction to an app that already packs in a lot of information, and it’s mainly useful for newcomers." },
-      ],
-    },
-    {
-      label: "Ideas",
-      title: "Three ideas for where that relationship could live",
-      blocks: [
-        { kind: "p", text: "I also tried similar apps like Partiful, Beli and Bucket, and noted what each one does well. Each has its own job to be done." },
+        { kind: "p", text: "I chose number 3 because, in interviews I did with some friends, they said the main reason they go to an event is either knowing the vibe or knowing that their friends are going, and this interaction supports that. The first option was quite good, but it’s part of Meetup’s business model to make money, where learning more means paying more, and it raises privacy concerns. The second option creates more friction in an app that already has so much condensed information, and it’s mainly useful for newcomers." },
+        { kind: "h", text: "Exploration: iteration on the go" },
+        { kind: "p", text: "With the opportunity chosen, I explored these sketches by studying what other apps with a similar job to be done do well." },
         {
           kind: "cards",
           items: [
@@ -129,7 +101,6 @@ export default {
             { title: "Partiful", tag: "Invites for parties and events", text: "Invites feel warm and personal, and you can see who’s going and what guests are saying before the event." },
           ],
         },
-        { kind: "p", text: "I explored three sketches by studying what other apps do well, and I wanted them to be really different from each other and not small variations." },
         {
           kind: "wires",
           items: [
@@ -139,6 +110,7 @@ export default {
           ],
         },
         { kind: "p", text: "I combined the strongest parts into Direction D: two-way, warm and social. The conversation from the thread moves onto the event page, where it stays as a record like the profile. From the phases I took the idea that different things should show up before and after the event. I looked at Partiful for how warm it sounds, and at Beli for how seeing your friends’ activity makes you want to join in." },
+        { kind: "sketches", items: [{ src: `${M}/sketch-d.webp`, alt: "Paper sketches for Direction D: a profile with events been to and badges, your activity, invitations, and an Explore page with titled rows", label: "Direction D, sketched on paper" }] },
       ],
     },
     {

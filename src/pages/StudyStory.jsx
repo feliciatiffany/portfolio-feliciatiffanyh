@@ -127,6 +127,28 @@ function Block({ b }) {
           {b.caption && <figcaption>{b.caption}</figcaption>}
         </figure>
       );
+    case "opps":
+      // each opportunity: where it sits in the flow, the struggle behind it, and what could change
+      return (
+        <ol className="story__opps">
+          {b.items.map((o, i) => (
+            <li key={o.title} className={o.chosen ? "is-chosen" : undefined}>
+              <p className="story__tag">{i + 1} · {o.title}{o.chosen && " · chosen"}</p>
+              <ol className="story__flow" style={{ "--n": b.stages.length }} aria-label="Steps of joining an event">
+                {b.stages.map((st, j) => (
+                  <li key={st} className={j + 1 >= o.from && j + 1 <= o.to ? "is-on" : undefined}>{st}</li>
+                ))}
+              </ol>
+              <dl>
+                <dt>Problem</dt>
+                <dd><q>{o.problem}</q> {o.note}</dd>
+                <dt>Opportunity</dt>
+                <dd>{o.text}</dd>
+              </dl>
+            </li>
+          ))}
+        </ol>
+      );
     case "wires":
       return (
         <div className="story__wires">
