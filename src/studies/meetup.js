@@ -170,10 +170,10 @@ export default {
             ["What worked", "What to expect, the tags and the Explore rows. One of them said the name, text and reaction format in Activity was interesting."],
             ["What confused them", "Whether “Going” shows friends or strangers, and whether anyone can send a text blast or only organizers."],
             ["What was too much", "The rows of events were a little too much for mobile, and some testers felt the profile and badges added one more thing to relearn when navigating the app."],
-            ["What they wanted", "A text box in Activity, timestamps, and a way to tell friends from strangers."],
+            ["What they wanted", "A text box in Activity, timestamps, a way to tell friends from strangers, and a conversation that continues even after signing up."],
           ],
         },
-        { kind: "p", text: "For the second iteration I focused on what they wanted. What they found interesting when joining an event was the short “what to expect”, being able to see who is going, and the conversation that keeps going even after signing up. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
+        { kind: "p", text: "For the second iteration I focused on what they wanted. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
         {
           kind: "iterate",
           label: "Iteration 2",
