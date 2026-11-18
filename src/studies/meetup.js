@@ -169,6 +169,7 @@ export default {
           alt: "The final wireframe as four screens, with each update to the Meetup app highlighted in purple: 1 Home with a greeting that talks to you, 2 Notifications where every alert starts with a person, 3 the Activity thread with the host’s update and everyone’s replies, 4 after the event, who you met and your moment",
           caption: "Iteration 2: the final wireframe, adding updates to the Meetup app",
         },
+        { kind: "p", text: "For the final iteration, I kept the profile and the individual invite so the change wouldn’t shift the whole mental model of the business. Instead, I pushed further on notifications and on the interaction between members and organizers before and after the event." },
       ],
     },
     {
