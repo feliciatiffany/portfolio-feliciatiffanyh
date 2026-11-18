@@ -289,10 +289,12 @@ function Block({ b }) {
     case "features":
       // two by two: each picture with a short note under it
       return (
-        <div className="story__features">
+        <div className={b.clips ? "story__features story__features--clips" : "story__features"}>
           {b.items.map((it) => (
-            <figure key={it.src}>
-              <img src={it.src} alt={it.alt} loading="lazy" />
+            <figure key={it.src || it.video}>
+              {it.video
+                ? <video src={it.video} aria-label={it.alt} autoPlay muted loop playsInline preload="metadata" />
+                : <img src={it.src} alt={it.alt} loading="lazy" />}
               <figcaption><strong>{it.title}.</strong> {it.text}</figcaption>
             </figure>
           ))}

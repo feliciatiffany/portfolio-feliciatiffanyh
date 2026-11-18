@@ -186,51 +186,19 @@ export default {
     },
     {
       label: "Changes",
-      title: "What changed in the app, step by step",
+      title: "What changed in the app",
       blocks: [
-        { kind: "h", text: "Choosing an event" },
         {
-          kind: "phones",
+          kind: "features",
+          clips: true,
           items: [
-            { src: `${M}/before-explore.webp`, alt: "Meetup’s current Explore screen: filter chips and a single list of large event cards", label: "Before" },
-            { src: `${M}/after-explore.webp`, alt: "Redesigned Explore: rows titled Trending in New York, Stay Healthy and Tech and industries, with a line on each card saying how many friends are going", label: "After" },
+            { video: `${M}/change-1-personal-home.mp4`, alt: "Home opens with Hey Fany, New to NYC? Let’s find your people, above the Upcoming, Saved, Past and Your Events tabs and your event cards", title: "Personal home", text: "Home opens on your own plans, sorted into Upcoming, Saved, Past and Your Events, instead of a feed of strangers’ events." },
+            { video: `${M}/change-2-organizer-updates.mp4`, alt: "A tap on Open thread under Josh’s text blast leads to the event’s Activity, where Owen, Jorge, Karen and Catherine reply", title: "Organizer updates", text: "Open thread leads to the event’s Activity, where guests answer the host in one tap (attending, interested or 50/50) or write back." },
+            { video: `${M}/change-3-invites.mp4`, alt: "Notifications scroll by Today, This Week and Last Week: invites from Fany, Jorge and Radhika, and 3 people you met are going to Flower Making Class", title: "Person-to-person invites", text: "Notifications are sorted by Today, This Week and Last Week, and the people you met come back as a reason to join, like “3 people you met are going”." },
+            { video: `${M}/change-4-your-people.mp4`, alt: "After the event: rate it, pick Owen and Catherine as who you met, post a photo with a caption, and it appears on Home under From your people", title: "From your people", text: "The check-in after an event takes three steps (rate it, tag who you met, add a photo), and your moment lands on Home for the people you met." },
           ],
         },
-        { kind: "p", text: "Explore used to be one long list under a row of filters. I regrouped the same events into rows with titles that feel more like an invitation, like “Trending in New York”, “Stay Healthy” and “Creative souls”. I got the idea from how Netflix names its rows. In the second iteration I added how many of your friends are going to each card." },
-
-        { kind: "h", text: "Deciding to go" },
-        {
-          kind: "phones",
-          items: [
-            { src: `${M}/before-event.webp`, alt: "Meetup’s current event page: title, date, location, organizer rating and a long description", label: "Before" },
-            { src: `${M}/after-event-top.webp`, alt: "Redesigned event page: a banner saying you and 13 guests are going, a short What to Expect, tags, and who is hosting and going", label: "After" },
-            { src: `${M}/after-event-activity.webp`, alt: "The Activity thread on the event page: a text blast from the host, people’s replies such as attending and 50/50, and a box to say something", label: "After · Activity" },
-          ],
-        },
-        { kind: "p", text: "The event page tells you what and when, but not really who you’ll meet. I moved “what to expect”, the tags and who is going above the long description, and hid the sections that stay empty until the event is done. Then I added the Activity thread. The host’s update shows up there in their own words, like what time it starts and “find me in blue t-shirt and a cap”, and people can respond with one tap that they’re attending, interested, or 50/50." },
-        { kind: "p", text: "The downside is the page got longer. That’s why I was careful with the order, so the things you need to decide come first and the conversation comes after." },
-
-        { kind: "h", text: "Waiting for the day" },
-        {
-          kind: "phones",
-          items: [
-            { src: `${M}/before-notifications.webp`, alt: "Meetup’s current notifications: a list of system announcements about new groups and last chances", label: "Before" },
-            { src: `${M}/after-notifications.webp`, alt: "Redesigned notifications: Fany invited you to an event, Jorge invited you to join Lucky Cat Mahjong, Karen sent a text blast with her message quoted, and three people you met are going to Flower Making Class", label: "After" },
-          ],
-        },
-        { kind: "p", text: "The notifications Meetup sends before an event are mostly announcements, like a new group just started or last chance to get your spot. I rewrote them so each one starts with a person and not with the event. So it says “Jorge invited you to join Lucky Cat Mahjong”, or “Karen sent a text blast” with her message right under it." },
-
-        { kind: "h", text: "After the event" },
-        {
-          kind: "phones",
-          items: [
-            { src: `${M}/before-review.webp`, alt: "Meetup’s current prompt after an event: How did you find it, with five stars", label: "Before" },
-            { src: `${M}/after-feel.webp`, alt: "Redesigned check-in: the same rating, followed by Who did you meet with attendees to tap", label: "After · Check-in" },
-            { src: `${M}/after-post.webp`, alt: "Post your moment: add a photo and a caption", label: "After · Moment" },
-            { src: `${M}/after-moments.webp`, alt: "The event’s Activity thread after the event, with photos posted by Karen and by the host", label: "After · On the event" },
-          ],
-        },
-        { kind: "p", text: "Meetup already asks “How did you find it?” with five stars. I kept the rating and added two more steps to the same sheet: “Who did you meet?” and “Post your moment”. The moments go into the event’s Activity thread, so the empty Photos section finally has real pictures and the next newcomer can see what the event actually looks like. The people you tapped are also how the app can tell you later that “3 people you met are going” to another event." },
+        { kind: "p", text: "Together, these turn Meetup from a list of events into a loop: Home gives you a reason to open the app, organizers talk with their guests in one place, invitations come from people, and every event ends by bringing real faces and photos to the next one." },
       ],
     },
     {
