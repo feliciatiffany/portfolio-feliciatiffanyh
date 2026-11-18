@@ -52,7 +52,7 @@ export default {
       label: "Research",
       title: "How I found it",
       blocks: [
-        { kind: "p", text: "I love going to events, meeting new people and trying new stuff. But after going to some events through Meetup, I got bored with the app and I couldn’t find a sense of community in it. I was wondering if other people felt the same, so I started searching." },
+        { kind: "p", text: "I love going to events, meeting new people and trying new things. But after going to some events through Meetup, I got bored with the app and stopped feeling a pull to join anything new. I wondered if other people felt the same, so I started searching." },
         { kind: "h", text: "Insight: I wondered about and identified what people struggle with online" },
         { kind: "p", text: "I gathered online evidence from App Store reviews, community threads, Reddit and other sites I found on Google to see what people say." },
         {
