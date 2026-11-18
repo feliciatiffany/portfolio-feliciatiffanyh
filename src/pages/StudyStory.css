@@ -90,6 +90,8 @@
 .story__features{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-10) var(--space-6); }
 .story__features figure{ margin: 0; }
 .story__features img{ display: block; width: 100%; height: auto; aspect-ratio: 1480 / 860; object-fit: cover; border-radius: var(--radius-media); background: var(--color-surface-soft); }
+/* The final results: one clip at a time, each with its caption underneath */
+.story__features--clips{ grid-template-columns: 1fr; gap: var(--space-12); }
 .story__features--clips video{ display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-media); background: var(--color-surface-soft); }
 .story__features figcaption{ text-align: left; font-size: var(--text-body-sm); line-height: var(--leading-body); }
 .story__features strong{ color: var(--foreground); font-weight: var(--font-weight-bold); }
