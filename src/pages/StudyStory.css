@@ -202,6 +202,8 @@
 .story .story__merge-into::after{ content: "↓"; position: absolute; left: 50%; top: 100%; transform: translateX(-50%); color: var(--foreground); font-size: var(--text-body-lg); line-height: var(--leading-body); }
 .story__merge + .story__pair{ margin-top: var(--space-8); }
 .story__section > .story__iterate{ width: 100%; margin-block: 0 var(--space-16); }
+.story__section > :not(.story__pair) + .story__iterate{ margin-top: var(--space-12); }
+.story__section > :not(.story__pair) + .story__iterate .story__iterate-label::before{ display: none; }
 .story .story__iterate-label{ margin-top: 0; margin-bottom: var(--space-8); font-family: var(--font-family-body); }
 .story .story__iterate-label::before{ height: var(--space-10); }
 .story__iterate img{ display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: var(--radius-media); }

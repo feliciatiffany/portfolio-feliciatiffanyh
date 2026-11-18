@@ -162,6 +162,19 @@ export default {
           cleanAlt: "Direction D redrawn as six clean wireframes: 1 Home, 2 Explore, 3 Invite, 4 Event page, 5 Profile, 6 Activity",
           caption: "Direction D, sketched on paper and redrawn",
         },
+        { kind: "h", text: "I conducted user testing" },
+        { kind: "p", text: "Before testing I wrote down six hypotheses and how I’d know if each one was true. For example, I believed that personal wording would feel more inviting than event wording, and that members could find an organizer’s update and act on it without help. I gave each tester the same situation: you moved to New York a few months ago, it’s Thursday evening, and your weekend is free." },
+        {
+          kind: "list",
+          items: [
+            ["What worked", "What to expect, the tags and the Explore rows. One of them said the name, text and reaction format in Activity was interesting."],
+            ["What confused them", "Whether “Going” shows friends or strangers, and whether anyone can send a text blast or only organizers."],
+            ["What was too much", "The review block repeated the title, and one tester felt notifications and activity overlap."],
+            ["What they wanted", "A text box in Activity, timestamps, and a way to tell friends from strangers."],
+          ],
+        },
+        { kind: "p", text: "For the second iteration I focused on what they wanted. Activity is now a thread with a “Say something” box, posts show when they were made, and Explore and notifications point out your friends and the people you’ve met." },
+        { kind: "p", text: "What they found interesting when joining an event was the short “what to expect”, the tags, and being able to see who is going. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
         {
           kind: "iterate",
           label: "Iteration 2",
@@ -219,24 +232,6 @@ export default {
           ],
         },
         { kind: "p", text: "Meetup already asks “How did you find it?” with five stars. I kept the rating and added two more steps to the same sheet: “Who did you meet?” and “Post your moment”. The moments go into the event’s Activity thread, so the empty Photos section finally has real pictures and the next newcomer can see what the event actually looks like. The people you tapped are also how the app can tell you later that “3 people you met are going” to another event." },
-      ],
-    },
-    {
-      label: "Testing",
-      title: "I conducted user testing",
-      blocks: [
-        { kind: "p", text: "Before testing I wrote down six hypotheses and how I’d know if each one was true. For example, I believed that personal wording would feel more inviting than event wording, and that members could find an organizer’s update and act on it without help. I gave each tester the same situation: you moved to New York a few months ago, it’s Thursday evening, and your weekend is free." },
-        {
-          kind: "list",
-          items: [
-            ["What worked", "What to expect, the tags and the Explore rows. One of them said the name, text and reaction format in Activity was interesting."],
-            ["What confused them", "Whether “Going” shows friends or strangers, and whether anyone can send a text blast or only organizers."],
-            ["What was too much", "The review block repeated the title, and one tester felt notifications and activity overlap."],
-            ["What they wanted", "A text box in Activity, timestamps, and a way to tell friends from strangers."],
-          ],
-        },
-        { kind: "p", text: "For the second iteration I focused on what they wanted. Activity is now a thread with a “Say something” box, posts show when they were made, and Explore and notifications point out your friends and the people you’ve met." },
-        { kind: "p", text: "What they found interesting when joining an event was the short “what to expect”, the tags, and being able to see who is going. One of them also pointed out the way the thread shows a name, their text and the reactions. Both said that in real life they decide based on whether the event sounds interesting and whether someone they know is going, which is what these features try to show." },
       ],
     },
     {
