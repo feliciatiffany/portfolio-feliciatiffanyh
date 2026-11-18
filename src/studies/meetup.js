@@ -141,7 +141,7 @@ export default {
             },
           ],
         },
-        { kind: "p", text: "I combined the strongest parts into Direction D: two-way, warm and social. The conversation from the thread moves onto the event page, where it stays as a record like the profile. From the phases I took the idea that different things should show up before and after the event. I looked at Partiful for how warm it sounds, and at Beli for how seeing your friends’ activity makes you want to join in." },
+        { kind: "p", text: "I combined the strongest parts into Direction D: two-way, warm and social. It combines parts of the profile, the conversation from the event thread, and the idea that different things should show up before and after the event. I looked at Partiful for how warm it sounds, and at Beli for how seeing your friends’ activity makes you want to join in." },
         {
           kind: "merge",
           into: "Direction D",
