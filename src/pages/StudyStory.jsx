@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Project from "./Project.jsx";
 import SectionNav from "../components/SectionNav.jsx";
 import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
+import LazyVideo from "../components/LazyVideo.jsx";
 import "./StudyStory.css";
 
 const modules = import.meta.glob("../studies/*.js", { eager: true, import: "default" });
@@ -346,6 +347,16 @@ export default function StudyStory() {
   return (
     <article className="story" ref={root}>
       <SectionNav rootRef={root} selector=".story__label" first="Top" deps={[slug]} />
+
+      {story.cover && (
+        <figure className="story__cover">
+          {story.cover.type === "video" ? (
+            <LazyVideo src={story.cover.src} aria-label={story.cover.alt} autoPlay />
+          ) : (
+            <img src={story.cover.src} alt={story.cover.alt} />
+          )}
+        </figure>
+      )}
 
       <header className="story__head">
         <ScrambledText as="h1" className="story__title" {...historyTitle}>

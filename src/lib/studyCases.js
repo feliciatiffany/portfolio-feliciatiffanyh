@@ -10,7 +10,25 @@ export const STUDY_CASES = [
     year: 2026,
     summary:
       "Meetup is easy to join the first time, but hard to stay on. I looked at how person-to-person relationships between members and organizers could invite people in and give them a reason to come back.",
-    image: { src: "/media/study/meetup/cover-square.webp", alt: "Two redesigned Meetup screens: the event page and Notifications" },
+    image: {
+      type: "video",
+      src: "/media/study/meetup/thumbnail.mp4",
+      alt: "Meetup notifications: Fany invites you to Mahjong Mixer Community, Owen joins Lucky Cat Mahjong, Jorge invites you to join on Sunday",
+    },
+  },
+  {
+    slug: "tell-ai",
+    project: "tell-ai",
+    title: "TellAI",
+    status: "Shipped",
+    year: 2026,
+    summary:
+      "A screen-free AI toy inside a rotary phone. Kids dial a character and an emotion, then talk with AI out loud. I looked at how making AI physical, slower and easier to question could help kids and parents meet it more honestly.",
+    image: {
+      type: "video",
+      src: "/media/techdesign/tellai/thumbnail.web.mp4",
+      alt: "TellAI: a rotary phone AI storytelling toy for kids",
+    },
   },
   {
     slug: "sidequesting",

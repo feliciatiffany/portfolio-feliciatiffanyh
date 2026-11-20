@@ -7,7 +7,10 @@
   padding: var(--space-page-top) var(--space-4) var(--space-18);
 }
 
-/* Title, the question it asks, and the facts */
+/* Cover sits above the title; title and facts stay on the reading column */
+.story__cover{ margin: 0 0 var(--space-8); }
+.story__cover img,
+.story__cover video{ display: block; width: 100%; height: auto; border-radius: var(--radius-media); background: var(--color-surface-soft); }
 .story__head{ width: var(--story-text); margin-inline: auto; text-align: center; padding-bottom: var(--space-10); }
 .story__title{ margin: 0; font-size: var(--text-page-title); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
 .story__hook{ margin: var(--space-5) 0 0; font-family: var(--font-family-body); font-size: var(--text-body-lg); line-height: var(--leading-body); color: var(--muted-foreground); }
