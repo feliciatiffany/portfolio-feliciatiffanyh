@@ -7,6 +7,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { STUDY_CASES } from "../lib/studyCases.js";
 import LineFilter from "../components/LineFilter.jsx";
+import LazyVideo from "../components/LazyVideo.jsx";
 
 const STATUS_ORDER = ["Shipped", "Concept", "In progress"];
 const STATUSES = STATUS_ORDER.filter((s) => STUDY_CASES.some((c) => c.status === s));
@@ -61,7 +62,13 @@ function Box({ c }) {
   return (
     <>
       <span className={`study-item__media${c.image ? " shine" : ""}`}>
-        {c.image ? <img src={c.image.src} alt={c.image.alt} loading="lazy" /> : <span className="study-item__soon">In progress</span>}
+        {c.image?.type === "video" ? (
+          <LazyVideo src={c.image.src} aria-label={c.image.alt} autoPlay />
+        ) : c.image ? (
+          <img src={c.image.src} alt={c.image.alt} loading="lazy" />
+        ) : (
+          <span className="study-item__soon">In progress</span>
+        )}
       </span>
       <span className="study-item__text">
         <span className="study-item__body">

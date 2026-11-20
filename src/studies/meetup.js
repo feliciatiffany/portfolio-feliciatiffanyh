@@ -15,7 +15,11 @@ export default {
     { label: "Scope", value: "User research, product design, prototyping, user testing" },
     { label: "Type", value: "Concept · class project, solo" },
   ],
-  cover: { src: `${M}/cover.webp`, alt: "Four redesigned Meetup screens: Explore, the event page, Notifications and the after-event check-in" },
+  cover: {
+    type: "video",
+    src: `${M}/thumbnail.mp4`,
+    alt: "Meetup notifications: Fany invites you to Mahjong Mixer Community, Owen joins Lucky Cat Mahjong, Jorge invites you to join on Sunday",
+  },
 
   sections: [
     {
