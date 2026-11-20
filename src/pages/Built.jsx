@@ -1,4 +1,4 @@
-// src/pages/Built.jsx — "What I've done": center-line timeline with category filters
+// src/pages/Built.jsx — Timeline: center-line timeline with category filters
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TYPES, ENTRIES, groupByYear } from "../lib/timeline";
@@ -171,7 +171,7 @@ export default function Built() {
     <section className="built" ref={root}>
       <header className="built-head">
         <ScrambledText as="h1" className="built-title" {...historyTitle}>
-          What I’ve done - A Timeline
+          Timeline
         </ScrambledText>
         <p className="built-sub">
           Putting things on a timeline shows the bigger picture, and how each moment shapes the next.

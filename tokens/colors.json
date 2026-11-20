@@ -10,6 +10,11 @@
       "$value": "#F3E0D1",
       "$description": "Base swatch"
     },
+    "lavender": {
+      "$type": "color",
+      "$value": "#EDE8FD",
+      "$description": "Base swatch. The light purple behind the Meetup case study images"
+    },
     "rose": {
       "$type": "color",
       "$value": "#9C575D",
@@ -277,6 +282,16 @@
         "$extensions": {
           "mode": {
             "dark": "{color.grey-600}"
+          }
+        }
+      },
+      "lavender": {
+        "$type": "color",
+        "$value": "{color.lavender}",
+        "$description": "Light purple cards in the Meetup case study, matching its images",
+        "$extensions": {
+          "mode": {
+            "dark": "{color.soot}"
           }
         }
       }
