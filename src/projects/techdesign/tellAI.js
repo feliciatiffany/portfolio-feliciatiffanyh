@@ -15,6 +15,7 @@ const FILES = [
 export default {
   slug: "tell-ai",
   title: "TellAI",
+  coverAboveTitle: true,
 
   meta: {
     category: ["Creative Tech", "AI", "Tangible Interaction"],
@@ -23,49 +24,303 @@ export default {
   },
 
   intro:
-    "A Rotary AI Storytelling Toy for Children, Parents, and AI Literacy\n\nTellAI is a screen-free AI toy hidden inside a retro rotary phone. Kids ages 6–10 dial a character and an emotion, then have a playful voice chat with AI.\n\nIt started with a question about AI, kids, and parenting. Parents already worry about screens, and now kids are growing up with things that can talk, answer, recommend, imitate, and even respond emotionally.\n\nSo instead of AI as a hidden algorithm behind a screen, we asked: what if kids could question it, customize it, and play with it more critically?",
+    "We started by thinking about AI, kids, and parenting together. Parents already have to make decisions about screen time and technology. Now their kids are growing up with AI that can talk, answer questions, make recommendations, imitate people, and even respond emotionally.\n\nAs AI becomes part of everyday life, we wondered how we might introduce it to kids.",
 
 
   sections: [
-    { kind: "intro" },
-    { kind: "youtube", title: "Project Video", videoId: "V5OOpycZYlE" },
-    { kind: "diagram", src: "/media/techdesign/tellai/diagram.jpeg", alt: "Interaction Flow Diagram" },
+    {
+      kind: "intro",
+      title: "Overview",
+      question: "What happens when AI becomes part of how kids play and parents raise them?",
+      questionsTitle: "Four questions guided our study",
+      questions: [
+        "How do parents feel when they see their children interact with AI?",
+        "What do parents think about introducing AI through toys?",
+        "At what age do parents think children should start using or learning about AI?",
+        "What boundaries would parents want for an AI toy designed for children?",
+      ],
+    },
+    { kind: "desc", dataPath: "introductionBlock" },
+    { kind: "youtube", title: null, videoId: "V5OOpycZYlE", autoplay: true },
+    {
+      kind: "media",
+      layout: "video",
+      items: [
+        {
+          src: "/media/techdesign/tellai/core-flow.mp4",
+          poster: "/media/techdesign/tellai/core-flow-poster.jpg",
+          alt: "TellAI core flow: pick up the phone, dial a character and an emotion, hear the ringtone, then talk with the AI character",
+        },
+      ],
+    },
+    { kind: "desc", dataPath: "researchHeadBlock" },
+    {
+      kind: "media",
+      className: "proj-fullImage",
+      items: [
+        {
+          type: "image",
+          src: "/media/techdesign/tellai/brainstorm.jpg",
+          alt: "Brainstorming board: references from OK Go, Moonharvey, Boris Acket, Refik Anadol and others, sticky notes on must-haves (physical hardware, AI as a key component, playful), early ideas like an AI drawing robot and a collaborative AI whiteboard, leading to a rotary telephone where kids dial half a character and half an emotion",
+        },
+      ],
+    },
+    { kind: "desc", dataPath: "researchBlock" },
+    { kind: "desc", dataPath: "prototypingHeadBlock" },
+    {
+      kind: "media",
+      className: "proj-fullImage",
+      items: [
+        {
+          type: "image",
+          src: "/media/techdesign/tellai/dial-wiring.jpg",
+          alt: "Wiring diagram: the rotary dial connected to an Arduino Nano through a 10k resistor, so each turn of the dial reads as a number",
+        },
+      ],
+    },
+    { kind: "desc", dataPath: "prototypingWeeksBlock" },
+    { kind: "diagram", src: "/media/techdesign/tellai/diagram.jpeg", alt: "TellAI architecture: the rotary dial and Arduino handle input, Deepgram turns speech into text, Claude writes the reply, and ElevenLabs speaks it through the handset" },
     { kind: "desc", dataPath: "interactionFlowBlock" },
+    { kind: "desc", dataPath: "scenariosBlock" },
+    { kind: "desc", dataPath: "dialBlock" },
+    { kind: "twoCol", leftPath: "conversationStartersBlock", rightPath: "fillerBlock" },
     { kind: "media", layout: "slider", items: FILES },
-    { kind: "twoCol", leftPath: "designBlock", rightPath: "researchBlock" },
-    { kind: "twoCol", leftPath: "playtestingBlock", rightPath: "findingsBlock" },
-    { kind: "references", title: "Bibliography", itemsPath: "references" },
+    { kind: "twoCol", leftPath: "playtestingBlock", rightPath: "findingsBlock", className: "proj-divider" },
+    { kind: "desc", dataPath: "conclusionBlock" },
+    { kind: "references", title: "Bibliography", itemsPath: "references", className: "proj-divider" },
   ],
+
+  introductionBlock: {
+    label: "Solution",
+    title: "TellAI",
+    paragraphs: [
+      "TellAI is a screen-free AI toy hidden inside a retro rotary phone. Kids ages 6–10 dial a character and an emotion, then have a playful voice chat with AI.",
+    ],
+  },
+
+  researchHeadBlock: {
+    label: "Research",
+    title: "How we started...",
+    paragraphs: ["We let ourselves ideate freely on the medium and the concept at the same time."],
+  },
+
+  researchBlock: {
+    sections: [
+      {
+        title: "And what we found",
+        paragraphs: [
+          "Before generative AI went mainstream, screens were parents' biggest worry. **98%** of 2-year-olds watch screens daily, and **54%** of parents feel their child is addicted to screens.",
+          "Now AI goes beyond the screen. It can talk, answer, imitate, and respond emotionally, and kids meet it earlier than we ever imagined. **33%** of U.S. parents strongly worry about data privacy when their kids use AI, and **25%** strongly worry it could weaken their kids' ability to think for themselves.",
+        ],
+      },
+      {
+        label: "Exploring Design",
+        title: "Exploring product direction and form factor",
+        paragraphs: [
+          "We explored product direction and form factor, and designed the shape and experience to help answer our four main questions and to work for our users, who are kids. So we kept this question in mind while designing TellAI from a kid's perspective:",
+          "“Instead of meeting AI as a hidden algorithm inside a screen, what if kids could question it, customize it, and play with it critically?”",
+        ],
+      },
+      {
+        headline: true,
+        title: "How and why we designed it this way",
+        paragraphs: [
+          "Our big inspiration was Inclusive AI Literacy for Kids Around the World by Druga, Vu, Likhith, and Qiu. They observed **102** children ages **7–12** across the U.S., Germany, Denmark, and Sweden to see how they imagine smart devices and understand AI. They found that AI for kids shouldn't trick them, should be easier to understand, and should let kids teach, customize, or \"program\" it. Their design guidelines became our starting point and our main rule:",
+        ],
+        columns: [
+          {
+            title: "Avoid deceiving technologies",
+            text: "TellAI shows the AI as AI. It never pretends to be a real human friend or hides that a machine is answering.",
+          },
+          {
+            title: "Don't define intelligence as human imitation",
+            text: "Instead of feeling magical or human, intelligence shows up as choices, storytelling, patterns, and responses.",
+          },
+          {
+            title: "Put kids in the agent's shoes",
+            text: "Kids mix and match a character and an emotion, so they see that AI behavior is designed and shaped.",
+          },
+          {
+            title: "Let kids teach, customize, and program",
+            text: "The rotary dial becomes a playful way to control the AI's personality, tone, and story.",
+          },
+        ],
+        afterParagraphs: [
+          "We didn't want an AI toy that hides behind magic or pretends to be human. Kids can see the AI change based on what they dial.",
+          "We picked a rotary phone because it's the opposite of a fast, flat screen. You have to dial, wait, listen, and answer. And it was fun to give old tech a new life next to new tech.",
+          "The goal isn't to replace a child's creativity. It's to spark curiosity, storytelling, and back-and-forth talk, while the child stays in charge.",
+        ],
+      },
+    ],
+  },
+
+  prototypingHeadBlock: {
+    label: "Prototyping",
+    title: "From a rotary phone to a talking toy",
+    paragraphs: [
+      "Once we chose the rotary phone, we built and playtested a new version every week. Each round told us what to fix next.",
+    ],
+  },
+
+  prototypingWeeksBlock: {
+    sections: [
+      {
+        title: "Week 1 · Making the dial talk",
+        paragraphs: [
+          "We wired the rotary dial to an Arduino so each turn reads as a number. We also chose our emotions and decided that every character and emotion pair would get its own voice, so mixing them feels real.",
+        ],
+      },
+      {
+        title: "Week 2 · Playtest 1",
+        paragraphs: [
+          "People picked up the phone and didn't know what to say. So the AI now talks first and asks a question. We also shortened its replies, made it keep listening until a pause, added a way to stop it mid-sentence, and drew stickers for the dial so kids know what each number does.",
+        ],
+      },
+      {
+        title: "Week 3 · Connecting the pieces",
+        paragraphs: [
+          "We mapped the full flow: mic → Arduino Uno Q → Deepgram → Claude → ElevenLabs → speaker. We picked and named all 16 voices, from Kelly the neutral girl to Parth the angry duck. Waiting for the voice reply felt too long, so we added a ringtone to fill the pause.",
+        ],
+      },
+      {
+        title: "Week 4 · Fixing the dial input",
+        paragraphs: [
+          "Kids now dial one character and one emotion to start a call, and hear a hint if they dial something else. Spare numbers became surprises, like a quick joke. We added verbal ticks (\"mmm\", \"hold on…\", \"let me think…\") and opening questions, so the AI never starts with \"How can I help you?\"",
+        ],
+      },
+      {
+        title: "Final week · Shorter, warmer, clearer",
+        paragraphs: [
+          "Replies became one or two sentences that always end with a question, and filler sentences cover the thinking time. Instead of announcing the emotion, TellAI now says \"Now calling…\" and plays the ringtone. One character also changed from a child to a duck.",
+        ],
+      },
+    ],
+  },
 
   interactionFlowBlock: {
     title: "How it works",
     paragraphs: [
-      "Kids pick up the phone, dial a character and an emotion, and talk into the handset. The rotary dial is the input, so talking to AI becomes slower, more on purpose, and more hands-on than typing into a chatbot.",
-      "Deepgram turns the child's voice into text, Claude writes a playful reply, and ElevenLabs turns it back into a character voice that plays through the phone.",
+      "Kids can call 16 different AI characters, made from 4 characters and 4 emotions. They pick up the handset and TellAI greets them: \"Hi! This is TellAI! Choose a character and emotion to call.\" The rotary dial is the only input, so talking to AI becomes slower, more deliberate, and more hands-on than typing into a chatbot.",
+      "They dial a character, then an emotion. If they dial two characters in a row, TellAI asks for an emotion, and the other way around. Once both are set, TellAI says \"Great! You're now calling…\" and the ringtone plays while the call connects.",
+      "The character introduces itself and opens with a surprising question, so kids never face a blank line. From there, Deepgram turns the child's voice into text, Claude writes a reply in that character and mood, and ElevenLabs speaks it through the handset.",
+      "Claude plays a curious friend, not an assistant. Every reply is one or two sentences and ends with a question, so the child keeps talking and stays in charge of the story.",
     ],
     bullets: [
-      "Rotary Dial → Character / Emotion Selection → Child Voice → Deepgram STT → Claude AI → ElevenLabs TTS → Phone Speaker",
+      "Rotary Dial → Character / Emotion → Ringtone → Character Greeting → Child Voice → Deepgram STT → Claude AI → ElevenLabs TTS → Phone Speaker",
     ],
   },
 
-  designBlock: {
-    title: "Why we designed it this way",
+  dialBlock: {
+    title: "Who you can call",
     paragraphs: [
-      "Our big inspiration was Inclusive AI Literacy for Kids Around the World by Druga, Vu, Likhith, and Qiu. They argue that AI for kids shouldn't trick them, should be easier to understand, and should let kids teach, customize, or \"program\" it.",
-      "That became our main rule. We didn't want an AI toy that hides behind magic or pretends to be human. Kids can see the AI change based on what they dial.",
-      "We picked a rotary phone because it's the opposite of a fast, flat screen. You have to dial, wait, listen, and answer. And it was fun to give old tech a new life next to new tech.",
-      "The goal isn't to replace a child's creativity. It's to spark curiosity, storytelling, and back-and-forth talk, while the child stays in charge.",
+      "Digits 1–4 pick a character and 5–8 pick an emotion. Each of the 16 combinations has its own name and its own ElevenLabs voice, so the same character sounds different when it's happy or angry.",
+      "The emotion also goes to Claude. Its instructions add \"You are playing the character: Duck. Your emotional tone is: chill. Stay in character,\" so the words change along with the voice.",
+    ],
+    table: {
+      headers: ["", "5 · Neutral", "6 · Happy", "7 · Chill", "8 · Angry"],
+      rows: [
+        ["1 · Girl", "Kelly", "Lala", "Ireen", "Karen"],
+        ["2 · Duck", "Merry", "Sam", "Brad", "Parth"],
+        ["3 · Boy", "Harry", "Jayden", "Alex", "Ben"],
+        ["4 · Cartoon Mouse", "Mickey", "Katelyn", "Radhika", "Fany"],
+      ],
+    },
+    bullets: [
+      { label: "Neutral:", text: "calm and straightforward" },
+      { label: "Happy:", text: "upbeat and enthusiastic" },
+      { label: "Chill:", text: "relaxed and laid-back" },
+      { label: "Angry:", text: "irritated and sharp" },
+      { label: "Extras (9–12):", text: "skip the call for a quick joke, song pick, fun fact, or piece of advice, each kept under 30 words" },
     ],
   },
 
-  researchBlock: {
-    title: "What we wanted to find out",
-    paragraphs: ["With TellAI, we were curious about:"],
+  scenariosBlock: {
+    title: "Interaction flow",
+    paragraphs: ["We mapped what happens when the call goes right, and when it doesn't."],
+    tree: {
+      label: "Kid picks up and dials",
+      tone: "start",
+      children: [
+        {
+          when: "Call connects",
+          label: "Character answers with a surprising question",
+          children: [
+            {
+              label: "Back-and-forth conversation",
+              tone: "loop",
+              children: [
+                {
+                  when: "Kid goes silent",
+                  label: "\"Are you still there?\"",
+                  children: [
+                    { when: "Kid answers", label: "Conversation continues", note: "Loops back to the conversation", tone: "loop" },
+                    {
+                      when: "Still silent",
+                      label: "Character says bye",
+                      children: [{ label: "Auto hang-up", tone: "end" }],
+                    },
+                  ],
+                },
+                {
+                  when: "Hangs up mid-call",
+                  label: "Dials a different number",
+                  children: [{ label: "New character, fresh conversation", tone: "loop" }],
+                },
+                {
+                  when: "Hangs up at the end",
+                  label: "Phone resets",
+                  tone: "end",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          when: "Call fails",
+          label: "\"The line is fuzzy, try again!\"",
+          children: [{ label: "Returns to idle", tone: "end" }],
+        },
+      ],
+    },
+  },
+
+  conversationStartersBlock: {
+    collapsible: true,
+    title: "12 conversation starters for kids",
+    paragraphs: ["Each call opens with a question, so kids always know what to say."],
     bullets: [
-      "How do parents feel seeing their children interact with AI?",
-      "What do parents think about introducing AI through toys?",
-      "At what age do parents think children should start using or learning about AI?",
-      "What boundaries would parents want in an AI toy for children?",
+      "What is one thing you are curious about today?",
+      "If you could invent anything, what would you make?",
+      "What is something interesting you saw today?",
+      "If your toy could talk, what would you ask it?",
+      "If you could ask Santa Claus for anything, what would you ask for? Candy? A toy?",
+      "If you could mix two animals together, what would you create?",
+      "What do you want to be in the future?",
+      "If you had a robot helper, what would you want it to help you with?",
+      "What is your favorite character or cartoon, and why?",
+      "If you could meet someone in person, who would you want to meet?",
+      "What is your favorite food right now? I want to know.",
+      "If you had a superpower, what superpower would you choose?",
+    ],
+  },
+
+  fillerBlock: {
+    collapsible: true,
+    title: "12 filler sentences while the AI is thinking",
+    paragraphs: ["While the reply loads, the character fills the pause, so waiting feels like thinking, not lag."],
+    bullets: [
+      "Ooh, that's interesting. Let me think about it for a moment.",
+      "Hmm, I like what you said. Let's see where our imagination goes.",
+      "Okay, I'm listening. Give me a little time to think.",
+      "Give me a second. Let me take a moment to understand that.",
+      "Hmm, that's a good one. I'm thinking about it now.",
+      "That's a fun thought. Give me time to put it together.",
+      "I'm thinking carefully so I can help you better.",
+      "Nice! Let me take a second to understand that.",
+      "Wait, that sounds fun. Let me think of something.",
+      "Good idea. I'm thinking about what we can do next.",
+      "Okay, interesting. Let me pause for a second and think.",
+      "Good thinking! I like what you said. Let me think.",
     ],
   },
 
@@ -75,6 +330,12 @@ export default {
       "Since kids were involved, privacy and consent came first. We made a parent consent form explaining how we'd take photos and videos, kept children's faces out of everything, deleted the data after testing, and never used any of it for AI training.",
       "We asked parents what they liked and didn't, whether they'd allow something like this at home, what limits they'd want in an AI toy, and when kids should start learning about AI.",
       "We asked the kids simpler things, like who they thought was talking on the phone and whether they'd want to talk to it again.",
+    ],
+    links: [
+      {
+        href: "https://docs.google.com/forms/d/e/1FAIpQLScA6HQU_iprkP1zRdTgmxx2S9qkQHtndU83aN13TTZPTeiUKg/viewform",
+        label: "Parental consent form",
+      },
     ],
   },
 
@@ -86,6 +347,16 @@ export default {
       "It also showed how sensitive this topic is. Kids were curious but impatient, often spinning the dial or pressing parts of the phone before the AI could answer.",
       "Parents were more hesitant. Out of nine parent-child groups we asked, seven said no to playtesting. One parent said they were against AI, and two didn't want their kids using AI so young.",
       "So TellAI became both a prototype and a research tool. It's about introducing AI to kids through play, but with more honesty, limits, and parents in the loop. Instead of making AI feel invisible or magical, it makes it physical, visible, and easier to question.",
+    ],
+  },
+
+  conclusionBlock: {
+    label: "Conclusion",
+    title: "Play, care, and critical curiosity",
+    paragraphs: [
+      "TellAI isn't only a toy. It's a way to study how families respond when AI enters children's play.",
+      "The parents' responses showed that AI for kids isn't just a technical question. It's also about trust, boundaries, safety, and imagination.",
+      "TellAI asks how children should meet AI: not through fear, and not through blind adoption, but through play, care, and critical curiosity.",
     ],
   },
 
@@ -116,6 +387,5 @@ export default {
     },
   ],
 
-  media: [],
   row6: null,
 };

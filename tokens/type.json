@@ -46,6 +46,15 @@
         "$type": "fontFamily",
         "$value": "{font.family.flex}",
         "$description": "Words that grow heavier near the cursor (About page)"
+      },
+      "diagram": {
+        "$type": "fontFamily",
+        "$value": [
+          "Myriad Pro",
+          "Source Sans 3",
+          "sans-serif"
+        ],
+        "$description": "Hand-built diagrams, matched to the Myriad lettering in the project's exported diagram images"
       }
     },
     "weight": {
@@ -220,6 +229,33 @@
         "$value": "clamp(12px, 3cqw, 15px)",
         "$description": "Creative Side card date"
       }
+    },
+    "case": {
+      "h1": {
+        "$type": "dimension",
+        "$value": "{text.meta}",
+        "$description": "Case study h1: the small accent label that opens a section (Solution, Research, Conclusion)"
+      },
+      "h2": {
+        "$type": "dimension",
+        "$value": "{text.section-title}",
+        "$description": "Case study h2: the big statement headline under the label (We let ourselves ideate freely…)"
+      },
+      "h3": {
+        "$type": "dimension",
+        "$value": "{text.subtitle}",
+        "$description": "Case study h3: a sub-headline inside a section (Why we designed it this way, How it works)"
+      },
+      "column": {
+        "$type": "dimension",
+        "$value": "{text.body}",
+        "$description": "Case study column title: same size as the text under it, set apart by colour"
+      },
+      "body": {
+        "$type": "dimension",
+        "$value": "{text.body}",
+        "$description": "Case study reading text under any heading"
+      }
     }
   },
   "leading": {
@@ -267,6 +303,11 @@
       "$type": "number",
       "$value": "{leading.relaxed}",
       "$description": "Long reading text (blog posts, project write-ups)"
+    },
+    "case-body": {
+      "$type": "number",
+      "$value": "{leading.loose}",
+      "$description": "Case study reading text: loose, so muted paragraphs stay easy to read"
     }
   }
 }

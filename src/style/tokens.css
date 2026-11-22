@@ -151,6 +151,12 @@
   --space-stack: var(--space-4);
   --space-paragraph: 1em;
   --space-rule-heading: var(--space-8);
+  --space-case-h1-h2: var(--space-2);
+  --space-case-h2-body: var(--space-3);
+  --space-case-h3-body: var(--space-2);
+  --space-case-paragraph: var(--space-4);
+  --space-case-group: var(--space-12);
+  --space-case-columns: var(--space-8);
   /* type.json */
   --font-family-mono: "Source Code Pro", source-code-pro, ui-monospace, "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
   --font-family-sans: "Montserrat", system-ui, sans-serif;
@@ -158,6 +164,7 @@
   --font-family-title: var(--font-family-mono);
   --font-family-body: var(--font-family-sans);
   --font-family-proximity: var(--font-family-flex);
+  --font-family-diagram: "Myriad Pro", "Source Sans 3", sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -191,6 +198,11 @@
   --text-card-body: clamp(13px, 3.5cqw, 17px);
   --text-card-title-sm: clamp(15px, 4.2cqw, 21px);
   --text-card-meta-sm: clamp(12px, 3cqw, 15px);
+  --text-case-h1: var(--text-meta);
+  --text-case-h2: var(--text-section-title);
+  --text-case-h3: var(--text-subtitle);
+  --text-case-column: var(--text-body);
+  --text-case-body: var(--text-body);
   --leading-none: 1;
   --leading-tight: 1.15;
   --leading-snug: 1.3;
@@ -200,6 +212,7 @@
   --leading-title: var(--leading-tight);
   --leading-body: var(--leading-normal);
   --leading-prose: var(--leading-relaxed);
+  --leading-case-body: var(--leading-loose);
   /* colors.json */
   --color-wash-name: color-mix(in srgb, var(--color-accent-name) 13%, transparent);
   --color-wash-tech: color-mix(in srgb, var(--color-accent-tech) 13%, transparent);

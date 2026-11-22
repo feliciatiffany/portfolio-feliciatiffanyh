@@ -1,5 +1,14 @@
 // src/components/DescriptionProject1.jsx
 import React from "react";
+import FlowTree from "./FlowTree.jsx";
+
+// **text** inside a paragraph renders bold.
+function Inline({ text }) {
+  if (typeof text !== "string" || !text.includes("**")) return text;
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? <strong key={i}>{part.slice(2, -2)}</strong> : part
+  );
+}
 
 function BulletList({ bullets }) {
   if (!Array.isArray(bullets) || !bullets.length) return null;
@@ -60,23 +69,73 @@ function Table({ table }) {
   );
 }
 
+function Columns({ columns }) {
+  if (!Array.isArray(columns) || !columns.length) return null;
+
+  return (
+    <ul className="proj-intro__questions proj-columns" role="list">
+      {columns.map((c, i) => (
+        <li key={i}>
+          {c.title ? <strong className="proj-columns__title case-column">{c.title}</strong> : null}
+          {Array.isArray(c.steps) ? (
+            <ol className="proj-columns__steps">
+              {c.steps.map((step) => <li key={step}>{step}</li>)}
+            </ol>
+          ) : null}
+          {c.text ? <p className="proj-columns__text case-body">{c.text}</p> : null}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function RenderSection({ s }) {
   if (!s) return null;
 
+  if (s.collapsible) {
+    return (
+      <details className="proj-desc-section proj-dropdown">
+        <summary className="proj-dropdown__summary">{s.title}</summary>
+        <div className="proj-dropdown__body">
+          {s.paragraphs?.map((p, i) => (
+            <p key={i} className="proj-desc">
+              {p}
+            </p>
+          ))}
+          <BulletList bullets={s.bullets} />
+        </div>
+      </details>
+    );
+  }
+
   return (
-    <div className="proj-desc-section">
-      {s.title ? <h3 className="proj-minihead">{s.title}</h3> : null}
+    <div className={s.label ? "proj-desc-section proj-divider" : "proj-desc-section"}>
+      {s.label && <p className="proj-minihead proj-desc-section__label case-h1">{s.label}</p>}
+      {s.title && (
+        s.label || s.headline
+          ? <h2 className="proj-intro__subheading case-h2">{s.title}</h2>
+          : <h3 className="proj-minihead case-h3">{s.title}</h3>
+      )}
 
       {typeof s.html === "string" ? <p className="proj-desc" dangerouslySetInnerHTML={{ __html: s.html }} /> : null}
 
       {Array.isArray(s.paragraphs)
         ? s.paragraphs.map((p, i) => (
-            <p key={i} className="proj-desc">
-              {p}
+            <p key={i} className="proj-desc case-body">
+              <Inline text={p} />
             </p>
           ))
         : null}
 
+      <Columns columns={s.columns} />
+      {Array.isArray(s.afterParagraphs)
+        ? s.afterParagraphs.map((p, i) => (
+            <p key={i} className="proj-desc case-body">
+              <Inline text={p} />
+            </p>
+          ))
+        : null}
+      {s.tree ? <FlowTree tree={s.tree} label={s.title} /> : null}
       <BulletList bullets={s.bullets} />
       <Table table={s.table} />
       <Links links={s.links} />

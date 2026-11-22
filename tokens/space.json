@@ -164,6 +164,38 @@
       "$type": "dimension",
       "$value": "{space.8}",
       "$description": "Hairline at the top of a section → its heading"
+    },
+    "case": {
+      "h1-h2": {
+        "$type": "dimension",
+        "$value": "{space.2}",
+        "$description": "Case study h1 label → h2 headline"
+      },
+      "h2-body": {
+        "$type": "dimension",
+        "$value": "{space.3}",
+        "$description": "Case study h2 headline → its body text"
+      },
+      "h3-body": {
+        "$type": "dimension",
+        "$value": "{space.2}",
+        "$description": "Case study h3 sub-headline → its body text"
+      },
+      "paragraph": {
+        "$type": "dimension",
+        "$value": "{space.4}",
+        "$description": "Case study paragraph → paragraph"
+      },
+      "group": {
+        "$type": "dimension",
+        "$value": "{space.12}",
+        "$description": "Case study: between one headline group and the next"
+      },
+      "columns": {
+        "$type": "dimension",
+        "$value": "{space.8}",
+        "$description": "Case study: gap between columns, and space above and below a row of columns"
+      }
     }
   }
 }

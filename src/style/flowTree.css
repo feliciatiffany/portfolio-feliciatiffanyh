@@ -1,0 +1,116 @@
+/* Flow tree: top-down branching diagram, drawn to match the project's exported
+   diagram images: plain black lettering, no boxes, thin black lines, open V arrowheads. */
+.flow-tree{
+  --flow-gap: clamp(var(--space-4), 5cqw, var(--space-7));
+  --flow-line: var(--foreground);
+  container-type: inline-size;
+  margin: var(--space-5) 0 0;
+  max-width: 100%;
+  font-family: var(--font-family-diagram);
+  color: var(--foreground);
+}
+
+.flow-tree__list{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+  padding: var(--flow-gap) 0 0;
+  list-style: none;
+}
+.flow-tree__root{ padding-top: 0; width: 100%; }
+
+/* stem from the parent step down to the branch bar */
+.flow-tree__list .flow-tree__list::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: var(--flow-gap);
+  border-left: 1px solid var(--flow-line);
+}
+
+.flow-tree__item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: var(--flow-gap) var(--space-1) 0;
+}
+.flow-tree__root > .flow-tree__item{ padding-top: 0; }
+
+/* the branch bar and the drop into each child */
+.flow-tree__item::before,
+.flow-tree__item::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: var(--flow-gap);
+  border-top: 1px solid var(--flow-line);
+}
+.flow-tree__item::after{
+  right: auto;
+  left: 50%;
+  border-left: 1px solid var(--flow-line);
+}
+.flow-tree__item:first-child::before,
+.flow-tree__item:last-child::after{ border: 0 none; }
+.flow-tree__item:last-child::before{ border-right: 1px solid var(--flow-line); }
+.flow-tree__item:only-child::before,
+.flow-tree__item:only-child::after{ display: none; }
+/* a single child hangs straight off the stem, with no branch bar to drop from */
+.flow-tree__item:only-child{ padding-top: 0; }
+.flow-tree__root > .flow-tree__item::before,
+.flow-tree__root > .flow-tree__item::after{ display: none; }
+
+.flow-tree__node{
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  width: 100%;
+  max-width: 10em;
+  padding-top: var(--space-2);
+  font-size: var(--text-body);
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-height: var(--leading-title);
+  text-align: center;
+}
+.flow-tree__root > .flow-tree__item > .flow-tree__node{ padding-top: 0; }
+
+/* open V arrowhead into every step but the first */
+.flow-tree__list .flow-tree__list .flow-tree__node::before{
+  content: "";
+  position: absolute;
+  top: -0.8em; /* puts the V's tip where the line ends */
+  left: 50%;
+  width: 0.65em;
+  height: 0.65em;
+  border-right: 1px solid var(--flow-line);
+  border-bottom: 1px solid var(--flow-line);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.flow-tree__when{
+  font-size: 0.75em;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.flow-tree__note{
+  color: var(--muted-foreground);
+  font-size: 0.75em;
+}
+
+.flow-tree__node[data-tone="start"] .flow-tree__label{ font-weight: var(--font-weight-semibold); }
+
+/* step the lettering down so all five branches stay inside the frame */
+@container (max-width: 760px){
+  .flow-tree__node{ font-size: var(--text-body-sm); }
+}
+@container (max-width: 560px){
+  .flow-tree__node{ font-size: var(--text-micro); }
+}

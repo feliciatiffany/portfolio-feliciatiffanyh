@@ -22,7 +22,44 @@ function isChapter(el, root) {
   return !!section.querySelector("p, dl, ul, article"); // a section of only images or video is a caption
 }
 
-const ytEmbed = (id) => `https://www.youtube.com/embed/${id}`;
+const ytEmbed = (id, autoplay = false) =>
+  `https://www.youtube.com/embed/${id}` +
+  (autoplay ? `?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${id}` : "");
+
+// Browsers only allow muted autoplay, so the video starts muted once it scrolls into view.
+function YouTubeEmbed({ videoId, title, autoplay }) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(!autoplay);
+
+  useEffect(() => {
+    if (!autoplay || inView || !ref.current) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [autoplay, inView]);
+
+  return (
+    <div className="yt-wrap" ref={ref}>
+      {inView ? (
+        <iframe
+          className="yt-embed"
+          src={ytEmbed(videoId, autoplay)}
+          title={title || "YouTube video"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ) : null}
+    </div>
+  );
+}
 
 function AutoVideo({ src, alt, poster }) {
   const type =
@@ -121,7 +158,7 @@ function joinClasses(...parts) {
 
 const asList = (v) => (Array.isArray(v) ? v : v ? [v] : []);
 
-// Big media under the title: first item of project.media
+// Main project cover: first item of project.media
 function Hero({ item }) {
   if (!item?.src) return null;
   return (
@@ -283,6 +320,8 @@ export default function ProjectTemplate({ project }) {
       if (!project.intro) return null;
       return (
         <section key={i} className={joinClasses("proj-section proj-intro", s.className)}>
+          {s.title && <p className="proj-minihead">{s.title}</p>}
+          {s.question && <h2 className="proj-intro__question">{s.question}</h2>}
           {project.intro
             ? String(project.intro)
                 .split(/\n\s*\n/)
@@ -290,6 +329,16 @@ export default function ProjectTemplate({ project }) {
                   <p key={j} className="proj-text">{para}</p>
                 ))
             : null}
+          {s.questions?.length > 0 && (
+            <>
+              <h3 className="proj-intro__subheading case-h3">{s.questionsTitle}</h3>
+              <ul className="proj-intro__questions" role="list">
+                {s.questions.map((question) => <li key={question}>{question}</li>)}
+              </ul>
+            </>
+          )}
+          {s.closingTitle && <h3 className="proj-intro__subheading">{s.closingTitle}</h3>}
+          {s.closing && <p className="proj-text">{s.closing}</p>}
         </section>
       );
     }
@@ -440,16 +489,8 @@ export default function ProjectTemplate({ project }) {
 
       return (
         <section key={i} className={joinClasses("proj-row6", s.className)}>
-          <h3 className="proj-minihead">{s.title || "Video"}</h3>
-          <div className="yt-wrap">
-            <iframe
-              className="yt-embed"
-              src={ytEmbed(videoId)}
-              title={s.title || "YouTube video"}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
+          {s.title === null ? null : <h3 className="proj-minihead">{s.title || "Video"}</h3>}
+          <YouTubeEmbed videoId={videoId} title={s.title} autoplay={!!s.autoplay} />
         </section>
       );
     }
@@ -562,13 +603,14 @@ export default function ProjectTemplate({ project }) {
 
   return (
     <div className="project-template" data-layout={layoutAttr}>
-      <SectionNav rootRef={bodyRef} selector=".proj-minihead" accept={isChapter} deps={[project?.slug]} />
-      <main className="proj-body" ref={bodyRef}>
+      <SectionNav rootRef={bodyRef} selector=".proj-minihead" accept={isChapter} first={project.coverAboveTitle ? "Top" : undefined} deps={[project?.slug]} />
+      <main className={joinClasses("proj-body", !project.bare && project.coverAboveTitle && "case-study")} data-wide-cover={(!project.bare && project.coverAboveTitle) || undefined} ref={bodyRef}>
+        {!project.bare && project.coverAboveTitle && <Hero item={project.media?.[0]} />}
         <ScrambledText as="h1" className="proj-page-title" {...historyTitle}>
           {project.title}
         </ScrambledText>
         {/* `bare` pages (e.g. Past Work) are just the description followed by every image */}
-        {!project.bare && <Hero item={project.media?.[0]} />}
+        {!project.bare && !project.coverAboveTitle && <Hero item={project.media?.[0]} />}
         {!project.bare && <MetaRow project={project} />}
         {sections.map(renderSection)}
       </main>
