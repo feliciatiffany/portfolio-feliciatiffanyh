@@ -12,6 +12,30 @@ const FILES = [
   { type: "image", src: "/media/techdesign/tellai/File 11.jpg", alt: "TellAI" },
 ];
 
+// Behind the scenes and user testing, from the team's BTS folder.
+const T = "/media/techdesign/tellai/testing";
+const TESTING_PHOTOS = [
+  { type: "image", src: `${T}/photo-1.jpg`, alt: "Testing the rotary dial for the first time" },
+  { type: "image", src: `${T}/photo-2.jpg`, alt: "Checking the dial's wiring with a multimeter" },
+  { type: "image", src: `${T}/photo-3.jpg`, alt: "The phone opened up, with the dial, boards, and wires inside" },
+  { type: "image", src: `${T}/photo-4.jpg`, alt: "Two teammates trying the dial at the studio table" },
+  { type: "image", src: `${T}/photo-5.jpg`, alt: "Coding the voice agent next to the phone" },
+  { type: "image", src: `${T}/photo-6.jpg`, alt: "A teammate debugging the code beside the phone" },
+  { type: "image", src: `${T}/photo-7.jpg`, alt: "A classmate testing the phone and taking notes" },
+  { type: "image", src: `${T}/photo-8.jpg`, alt: "Fitting a new speaker into the handset" },
+  { type: "image", src: `${T}/photo-9.jpg`, alt: "The speaker and Arduino wired to the phone base" },
+  { type: "image", src: `${T}/photo-10.jpg`, alt: "A classmate playtesting a call" },
+  { type: "image", src: `${T}/photo-11.jpg`, alt: "Drilling the handset to fit the new parts" },
+];
+const TESTING_VIDEOS = [
+  { src: `${T}/playtest-1.mp4`, alt: "The prototype on the table: the phone, an Arduino, and the code running on a laptop" },
+  { src: `${T}/playtest-2.mp4`, alt: "A classmate talking to a character on the phone" },
+  { src: `${T}/playtest-3.mp4`, alt: "A professor dialing and listening during a playtest" },
+  { src: `${T}/playtest-4.mp4`, alt: "A classmate dialing a character and an emotion" },
+  { src: `${T}/playtest-5.mp4`, alt: "A classmate in the middle of a conversation with the toy" },
+  { src: `${T}/playtest-6.mp4`, alt: "Laughing together after a playtest" },
+];
+
 export default {
   slug: "tell-ai",
   title: "TellAI",
@@ -60,30 +84,44 @@ export default {
       items: [
         {
           type: "image",
-          src: "/media/techdesign/tellai/brainstorm.jpg",
-          alt: "Brainstorming board: references from OK Go, Moonharvey, Boris Acket, Refik Anadol and others, sticky notes on must-haves (physical hardware, AI as a key component, playful), early ideas like an AI drawing robot and a collaborative AI whiteboard, leading to a rotary telephone where kids dial half a character and half an emotion",
+          src: "/media/techdesign/tellai/exploring-moodboard.jpg",
+          alt: "Exploring moodboard: references from OK Go, Moonharvey, Boris Acket, Matt Ross, Refik Anadol and others, notes on our interests and must-haves (physical hardware, AI as a key component, playful), and early ideas like an AI drawing robot and a collaborative AI whiteboard, leading to a story-telling rotary telephone",
         },
       ],
     },
     { kind: "desc", dataPath: "researchBlock" },
-    { kind: "desc", dataPath: "prototypingHeadBlock" },
     {
       kind: "media",
       className: "proj-fullImage",
       items: [
         {
           type: "image",
-          src: "/media/techdesign/tellai/dial-wiring.jpg",
-          alt: "Wiring diagram: the rotary dial connected to an Arduino Nano through a 10k resistor, so each turn of the dial reads as a number",
+          src: "/media/techdesign/tellai/prototyping-flow.jpg",
+          alt: "How the idea evolved: a rotary phone that tells stories, then asking why a rotary, then giving each number a different AI personality, then multiple personalities through the dial, then half character and half emotion, and finally asking kids to pick one character and one emotion to start a call, with 0, * and # as surprises",
         },
       ],
     },
+    { kind: "desc", dataPath: "designClosingBlock" },
+    { kind: "desc", dataPath: "prototypingHeadBlock" },
+    { kind: "media", layout: "slider", items: TESTING_PHOTOS },
     { kind: "desc", dataPath: "prototypingWeeksBlock" },
-    { kind: "diagram", src: "/media/techdesign/tellai/diagram.jpeg", alt: "TellAI architecture: the rotary dial and Arduino handle input, Deepgram turns speech into text, Claude writes the reply, and ElevenLabs speaks it through the handset" },
+    { kind: "media", layout: "video", videoGridClassName: "proj-videoGrid--pair", items: TESTING_VIDEOS },
     { kind: "desc", dataPath: "interactionFlowBlock" },
+    {
+      kind: "media",
+      layout: "video",
+      items: [
+        {
+          src: "/media/techdesign/tellai/core-flow.mp4",
+          poster: "/media/techdesign/tellai/core-flow-poster.jpg",
+          alt: "TellAI core flow: pick up the phone, dial a character and an emotion, hear the ringtone, then talk with the AI character",
+        },
+      ],
+    },
+    { kind: "desc", dataPath: "howItWorksBlock" },
+    { kind: "diagram", src: "/media/techdesign/tellai/diagram.jpeg", alt: "TellAI architecture: the rotary dial and Arduino handle input, Deepgram turns speech into text, Claude writes the reply, and ElevenLabs speaks it through the handset" },
     { kind: "desc", dataPath: "scenariosBlock" },
-    { kind: "desc", dataPath: "dialBlock" },
-    { kind: "twoCol", leftPath: "conversationStartersBlock", rightPath: "fillerBlock" },
+    { kind: "desc", dataPath: "variationsBlock" },
     { kind: "media", layout: "slider", items: FILES },
     { kind: "twoCol", leftPath: "playtestingBlock", rightPath: "findingsBlock", className: "proj-divider" },
     { kind: "desc", dataPath: "conclusionBlock" },
@@ -145,12 +183,15 @@ export default {
             text: "The rotary dial becomes a playful way to control the AI's personality, tone, and story.",
           },
         ],
-        afterParagraphs: [
-          "We didn't want an AI toy that hides behind magic or pretends to be human. Kids can see the AI change based on what they dial.",
-          "We picked a rotary phone because it's the opposite of a fast, flat screen. You have to dial, wait, listen, and answer. And it was fun to give old tech a new life next to new tech.",
-          "The goal isn't to replace a child's creativity. It's to spark curiosity, storytelling, and back-and-forth talk, while the child stays in charge.",
-        ],
       },
+    ],
+  },
+
+  designClosingBlock: {
+    paragraphs: [
+      "We didn't want an AI toy that hides behind magic or pretends to be human. Kids can see the AI change based on what they dial.",
+      "We picked a rotary phone because it's the opposite of a fast, flat screen. You have to dial, wait, listen, and answer. And it was fun to give old tech a new life next to new tech.",
+      "The goal isn't to replace a child's creativity. It's to spark curiosity, storytelling, and back-and-forth talk, while the child stays in charge.",
     ],
   },
 
@@ -164,10 +205,11 @@ export default {
 
   prototypingWeeksBlock: {
     sections: [
+      { headline: true, title: "Every week is user testing" },
       {
         title: "Week 1 · Making the dial talk",
         paragraphs: [
-          "We wired the rotary dial to an Arduino so each turn reads as a number. We also chose our emotions and decided that every character and emotion pair would get its own voice, so mixing them feels real.",
+          "We wired the rotary dial to an Arduino so each turn reads as a number. We also chose our emotions and decided that every character and emotion pair would get its own voice, picking voices that feel close to kids.",
         ],
       },
       {
@@ -189,28 +231,42 @@ export default {
         ],
       },
       {
-        title: "Final week · Shorter, warmer, clearer",
+        title: "Final week · Polishing everything",
         paragraphs: [
-          "Replies became one or two sentences that always end with a question, and filler sentences cover the thinking time. Instead of announcing the emotion, TellAI now says \"Now calling…\" and plays the ringtone. One character also changed from a child to a duck.",
+          "Replies became one or two sentences that always end with a question, and filler sentences cover the thinking time. Instead of announcing the emotion, TellAI now says \"Now calling…\" and plays the ringtone. We also played as impatient kids eager to try the toy, and did our best to break it.",
         ],
       },
     ],
   },
 
   interactionFlowBlock: {
-    title: "How it works",
+    label: "Final Design, Hardware, & Interaction Flow",
+    title: "We managed to bring our toy to life!",
+  },
+
+  howItWorksBlock: {
     paragraphs: [
       "Kids can call 16 different AI characters, made from 4 characters and 4 emotions. They pick up the handset and TellAI greets them: \"Hi! This is TellAI! Choose a character and emotion to call.\" The rotary dial is the only input, so talking to AI becomes slower, more deliberate, and more hands-on than typing into a chatbot.",
       "They dial a character, then an emotion. If they dial two characters in a row, TellAI asks for an emotion, and the other way around. Once both are set, TellAI says \"Great! You're now calling…\" and the ringtone plays while the call connects.",
       "The character introduces itself and opens with a surprising question, so kids never face a blank line. From there, Deepgram turns the child's voice into text, Claude writes a reply in that character and mood, and ElevenLabs speaks it through the handset.",
       "Claude plays a curious friend, not an assistant. Every reply is one or two sentences and ends with a question, so the child keeps talking and stays in charge of the story.",
     ],
-    bullets: [
-      "Rotary Dial → Character / Emotion → Ringtone → Character Greeting → Child Voice → Deepgram STT → Claude AI → ElevenLabs TTS → Phone Speaker",
-    ],
+  },
+
+  // One heading with three dropdowns under it.
+  get variationsBlock() {
+    return {
+      sections: [
+        { title: "See more for data variations" },
+        this.dialBlock,
+        this.conversationStartersBlock,
+        this.fillerBlock,
+      ],
+    };
   },
 
   dialBlock: {
+    collapsible: true,
     title: "Who you can call",
     paragraphs: [
       "Digits 1–4 pick a character and 5–8 pick an emotion. Each of the 16 combinations has its own name and its own ElevenLabs voice, so the same character sounds different when it's happy or angry.",

@@ -98,10 +98,11 @@ function RenderSection({ s }) {
         <summary className="proj-dropdown__summary">{s.title}</summary>
         <div className="proj-dropdown__body">
           {s.paragraphs?.map((p, i) => (
-            <p key={i} className="proj-desc">
-              {p}
+            <p key={i} className="proj-desc case-body">
+              <Inline text={p} />
             </p>
           ))}
+          <Table table={s.table} />
           <BulletList bullets={s.bullets} />
         </div>
       </details>

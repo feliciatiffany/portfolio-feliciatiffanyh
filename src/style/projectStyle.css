@@ -727,6 +727,17 @@
   border-radius: 0;
 }
 
+/* Two clips per row, cropped to one shape so the rows line up (videoGridClassName: "proj-videoGrid--pair") */
+.project-template .proj-videoGrid--pair{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.project-template .proj-videoGrid--pair .proj-videoWide__video{
+  aspect-ratio: 4 / 3;
+}
+@media (max-width: 560px){
+  .project-template .proj-videoGrid--pair{ grid-template-columns: 1fr; }
+}
+
 /* Blossom layout hooks */
 .project-template[data-layout="blossom-grid"] .proj-body{
   gap: var(--space-7);
