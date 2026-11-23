@@ -148,7 +148,7 @@
     "action": {
       "hover": {
         "$type": "color",
-        "$value": "{color.maroon}",
+        "$value": "{color.grey-600}",
         "$description": "Link and control hover",
         "$extensions": {
           "mode": {
@@ -160,7 +160,7 @@
     "accent": {
       "name": {
         "$type": "color",
-        "$value": "{color.peach}",
+        "$value": "{color.ink}",
         "$description": "Name, Fany",
         "$extensions": {
           "mode": {
@@ -170,7 +170,7 @@
       },
       "tech": {
         "$type": "color",
-        "$value": "{color.coral}",
+        "$value": "{color.ink}",
         "$description": "Tech, projects, home role",
         "$extensions": {
           "mode": {
@@ -180,7 +180,7 @@
       },
       "digital": {
         "$type": "color",
-        "$value": "{color.maroon}",
+        "$value": "{color.grey-900}",
         "$description": "Digital product and other work",
         "$extensions": {
           "mode": {
@@ -190,7 +190,7 @@
       },
       "graphic": {
         "$type": "color",
-        "$value": "{color.mauve}",
+        "$value": "{color.grey-600}",
         "$description": "Graphic design",
         "$extensions": {
           "mode": {
@@ -200,7 +200,7 @@
       },
       "creative": {
         "$type": "color",
-        "$value": "{color.blush}",
+        "$value": "{color.grey-600}",
         "$description": "Creative side of the timeline",
         "$extensions": {
           "mode": {
@@ -210,7 +210,7 @@
       },
       "work": {
         "$type": "color",
-        "$value": "{color.amber}",
+        "$value": "{color.grey-600}",
         "$description": "Work on the timeline",
         "$extensions": {
           "mode": {
@@ -220,7 +220,7 @@
       },
       "award": {
         "$type": "color",
-        "$value": "{color.gold}",
+        "$value": "{color.grey-600}",
         "$description": "Awards",
         "$extensions": {
           "mode": {
@@ -230,7 +230,7 @@
       },
       "love": {
         "$type": "color",
-        "$value": "{color.coral}",
+        "$value": "{color.ink}",
         "$description": "What I love",
         "$extensions": {
           "mode": {
@@ -240,7 +240,7 @@
       },
       "think": {
         "$type": "color",
-        "$value": "{color.rose}",
+        "$value": "{color.grey-900}",
         "$description": "What I think",
         "$extensions": {
           "mode": {
@@ -250,7 +250,7 @@
       },
       "fear": {
         "$type": "color",
-        "$value": "{color.maroon}",
+        "$value": "{color.grey-900}",
         "$description": "What I fear",
         "$extensions": {
           "mode": {
@@ -260,7 +260,7 @@
       },
       "strong": {
         "$type": "color",
-        "$value": "color-mix(in srgb, {color.coral} 55%, {color.maroon})",
+        "$value": "{color.ink}",
         "$description": "Brick: coral deepened with maroon, for highlighted words that must stay readable (homepage name and role)",
         "$extensions": {
           "mode": {
@@ -272,7 +272,7 @@
     "surface": {
       "soft": {
         "$type": "color",
-        "$value": "{color.cream}",
+        "$value": "{color.grey-100}",
         "$description": "Selection, empty image wells, soft rings",
         "$extensions": {
           "mode": {
@@ -282,7 +282,7 @@
       },
       "sand": {
         "$type": "color",
-        "$value": "{color.sand}",
+        "$value": "{color.grey-200}",
         "$description": "Warm surface, portrait ring",
         "$extensions": {
           "mode": {
@@ -292,7 +292,7 @@
       },
       "lavender": {
         "$type": "color",
-        "$value": "{color.lavender}",
+        "$value": "{color.grey-100}",
         "$description": "Light purple cards in the Meetup case study, matching its images",
         "$extensions": {
           "mode": {
@@ -303,7 +303,7 @@
     },
     "glow": {
       "$type": "color",
-      "$value": "color-mix(in srgb, {color.coral} 42%, transparent)",
+      "$value": "color-mix(in srgb, {color.ink} 18%, transparent)",
       "$description": "Warm light behind hovered images; also the cursor light",
       "$extensions": {
         "mode": {
@@ -313,7 +313,7 @@
     },
     "cursor": {
       "$type": "color",
-      "$value": "{color.coral}",
+      "$value": "{color.ink}",
       "$description": "Cursor light (WebGL, read from src/lib/tokens.js)",
       "$extensions": {
         "mode": {
@@ -361,7 +361,7 @@
     "line": {
       "old": {
         "$type": "color",
-        "$value": "{color.sand}",
+        "$value": "{color.grey-300}",
         "$description": "Timeline line where it fades into the oldest years",
         "$extensions": {
           "mode": {
@@ -372,7 +372,7 @@
     },
     "glow-off": {
       "$type": "color",
-      "$value": "rgb(from {color.coral} r g b / 0)",
+      "$value": "rgb(from {color.ink} r g b / 0)",
       "$description": "The glow's resting state: same coral, fully transparent, so it fades in warm instead of from black",
       "$extensions": {
         "mode": {
@@ -460,7 +460,7 @@
   },
   "primary": {
     "$type": "color",
-    "$value": "{color.maroon}",
+    "$value": "{color.ink}",
     "$description": "Primary action",
     "$extensions": {
       "mode": {
@@ -480,7 +480,7 @@
   },
   "secondary": {
     "$type": "color",
-    "$value": "{color.cream}",
+    "$value": "{color.grey-100}",
     "$description": "Secondary surface",
     "$extensions": {
       "mode": {
@@ -490,7 +490,7 @@
   },
   "secondary-foreground": {
     "$type": "color",
-    "$value": "{color.maroon}",
+    "$value": "{color.ink}",
     "$description": "Text on a secondary surface",
     "$extensions": {
       "mode": {
@@ -500,7 +500,7 @@
   },
   "muted": {
     "$type": "color",
-    "$value": "{color.cream}",
+    "$value": "{color.grey-100}",
     "$description": "Soft band",
     "$extensions": {
       "mode": {
@@ -520,7 +520,7 @@
   },
   "accent": {
     "$type": "color",
-    "$value": "{color.coral}",
+    "$value": "{color.ink}",
     "$description": "Accent mark and active item",
     "$extensions": {
       "mode": {
@@ -530,7 +530,7 @@
   },
   "accent-foreground": {
     "$type": "color",
-    "$value": "{color.maroon}",
+    "$value": "{color.ink}",
     "$description": "Text on the accent",
     "$extensions": {
       "mode": {
@@ -540,7 +540,7 @@
   },
   "destructive": {
     "$type": "color",
-    "$value": "{color.rose}",
+    "$value": "{color.grey-900}",
     "$description": "Error and destructive",
     "$extensions": {
       "mode": {
@@ -575,7 +575,7 @@
   },
   "ring": {
     "$type": "color",
-    "$value": "{color.sand}",
+    "$value": "{color.grey-400}",
     "$description": "Focus ring",
     "$extensions": {
       "mode": {
@@ -585,7 +585,7 @@
   },
   "chart-1": {
     "$type": "color",
-    "$value": "{color.coral}",
+    "$value": "{color.ink}",
     "$description": "Chart accent",
     "$extensions": {
       "mode": {
@@ -595,7 +595,7 @@
   },
   "chart-2": {
     "$type": "color",
-    "$value": "{color.rose}",
+    "$value": "{color.grey-900}",
     "$description": "Chart accent",
     "$extensions": {
       "mode": {
@@ -605,7 +605,7 @@
   },
   "chart-3": {
     "$type": "color",
-    "$value": "{color.sand}",
+    "$value": "{color.grey-600}",
     "$description": "Chart accent",
     "$extensions": {
       "mode": {
@@ -615,7 +615,7 @@
   },
   "chart-4": {
     "$type": "color",
-    "$value": "{color.gold}",
+    "$value": "{color.grey-400}",
     "$description": "Chart accent",
     "$extensions": {
       "mode": {
@@ -625,7 +625,7 @@
   },
   "chart-5": {
     "$type": "color",
-    "$value": "{color.blush}",
+    "$value": "{color.grey-300}",
     "$description": "Chart accent",
     "$extensions": {
       "mode": {
@@ -655,7 +655,7 @@
   },
   "sidebar-primary": {
     "$type": "color",
-    "$value": "{color.maroon}",
+    "$value": "{color.ink}",
     "$description": "Sidebar rail",
     "$extensions": {
       "mode": {
@@ -675,7 +675,7 @@
   },
   "sidebar-accent": {
     "$type": "color",
-    "$value": "{color.coral}",
+    "$value": "{color.ink}",
     "$description": "Active sidebar item",
     "$extensions": {
       "mode": {
@@ -685,7 +685,7 @@
   },
   "sidebar-accent-foreground": {
     "$type": "color",
-    "$value": "{color.maroon}",
+    "$value": "{color.ink}",
     "$description": "Text on the active sidebar item",
     "$extensions": {
       "mode": {
@@ -695,7 +695,7 @@
   },
   "sidebar-border": {
     "$type": "color",
-    "$value": "{color.maroon}",
+    "$value": "{color.grey-300}",
     "$description": "Sidebar branch line",
     "$extensions": {
       "mode": {
@@ -705,7 +705,7 @@
   },
   "sidebar-ring": {
     "$type": "color",
-    "$value": "{color.sand}",
+    "$value": "{color.grey-400}",
     "$description": "Sidebar focus",
     "$extensions": {
       "mode": {
@@ -715,7 +715,7 @@
   },
   "surface": {
     "$type": "color",
-    "$value": "{color.cream}",
+    "$value": "{color.grey-100}",
     "$description": "Secondary surface",
     "$extensions": {
       "mode": {

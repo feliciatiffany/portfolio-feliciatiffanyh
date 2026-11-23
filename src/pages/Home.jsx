@@ -31,7 +31,8 @@ const BOT_LINES = [
 
 const RAIL = [
   { href: "#case-study", label: "Case Study", active: true },
-  { to: "/blog", label: "Playground" },
+  { to: "/blog", label: "Playground" }, // no playground page yet: opens the blog for now
+  { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
 ];
 
@@ -145,12 +146,20 @@ export default function Home() {
 
   // the opening plays in steps (BlockBot): 0 empty, 1 lines, 2 text, 3 photo, 4 done
   const [intro, setIntro] = useState(() => (introWillPlay() ? 0 : 4));
+  // the links only show once the page has scrolled past the first screen's intro
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 24);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
   const shellRef = useRef(null);
   const avatarRef = useRef(null);
   const heroRef = useRef(null);
 
   return (
-    <div className="home-shell" ref={shellRef} data-intro={intro < 4 ? intro : undefined}>
+    <div className="home-shell" ref={shellRef} data-intro={intro < 4 ? intro : undefined} data-scrolled={scrolled || undefined}>
       <BlockBot shellRef={shellRef} avatarRef={avatarRef} heroRef={heroRef} lines={BOT_LINES} onStep={setIntro} />
       {/* Top-left cell: avatar centered on the hero band */}
       <div className="home-mark-cell">
@@ -192,7 +201,7 @@ export default function Home() {
 
       {/* Lower-left: nav + socials, white like the page */}
       <aside className="home-rail" aria-label="Site">
-        {/* nav and links stay put together while the cases scroll */}
+        {/* the nav stays put, level with the cards, while the cases scroll */}
         <div className="home-rail__stick">
           <nav className="home-rail__nav" aria-label="Sections">
             {RAIL.map((item) =>
@@ -211,9 +220,10 @@ export default function Home() {
               )
             )}
           </nav>
-          <div className="home-rail__foot">
-            <Socials />
-          </div>
+        </div>
+        {/* the links sit in the screen's bottom-left corner the whole time (Scroll is in the right one) */}
+        <div className="home-rail__foot">
+          <Socials />
         </div>
       </aside>
 

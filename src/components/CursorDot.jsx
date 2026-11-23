@@ -1,4 +1,4 @@
-// CursorDot — a small coral circle that sits exactly on the pointer (mouse and trackpad only).
+// CursorDot — a small near-black square that sits exactly on the pointer (mouse and trackpad only).
 // Over anything with data-cursor="…" it shows that label beside it ("View project"); over other
 // links and buttons it shrinks to a point; over text it becomes a thin line, like a text cursor.
 import { useEffect, useRef } from "react";

@@ -9,7 +9,7 @@ import Built from "./Built.jsx";
 
 const ELSEWHERE = [
   { to: "/#case-study", label: "Case Study" },
-  { to: "/blog", label: "Playground" },
+  { to: "/blog", label: "Blog" },
 ];
 
 export default function About() {

@@ -1,4 +1,4 @@
-// Social links: icons in small filled circles (homepage) or a plain " · " text row (footer)
+// Social links: icons in small filled circles, or words with a small black-and-white mark before each
 import React from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Mail01Icon, Linkedin01Icon, GithubIcon, Asterisk02Icon } from "@hugeicons/core-free-icons";
@@ -37,6 +37,8 @@ export default function Socials({ icons = false, wrap }) {
         className="foot-link"
         {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
       >
+        {/* a small black-and-white mark before the word; it takes the text colour */}
+        <HugeiconsIcon icon={l.icon} size={14} strokeWidth={1.6} className="foot-link__icon" aria-hidden="true" />
         {l.label}
       </a>
     </React.Fragment>

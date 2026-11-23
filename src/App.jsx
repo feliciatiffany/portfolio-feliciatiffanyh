@@ -51,7 +51,7 @@ import { BOOKS } from "./lib/books.js";
 const reduceMotion =
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// The cursor is a plain coral dot: no glow, no trail.
+// The cursor is a plain near-black square block: no glow, no trail.
 const finePointer =
   typeof window !== "undefined" && window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
 
@@ -63,7 +63,7 @@ function CursorGlow() {
 // Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.
 // Titles of projects and posts load on demand, so every page doesn't carry all of that text.
 const projectLoaders = import.meta.glob("./projects/**/*.js", { import: "default" });
-const PAGE_NAMES = { built: "About", "case-study": "Case Study", blog: "Playground", about: "About", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
+const PAGE_NAMES = { built: "About", "case-study": "Case Study", blog: "Blog", about: "About", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
 const HOME = { label: "Home", to: "/" };
 function OldCaseStudy() {
   const { slug } = useParams();

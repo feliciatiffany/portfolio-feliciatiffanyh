@@ -172,6 +172,7 @@ body{
 }
 
 .foot-link{
+  display: inline-flex; align-items: center; gap: var(--space-1-5);
   color:inherit; text-decoration:none;
   transition: font-size .22s var(--ease-out), letter-spacing .22s ease, color .18s ease;
 }
@@ -710,7 +711,12 @@ body{
   grid-template-rows: 1fr;
   grid-template-areas: "content";
 }
-.page-grid--home .main{ display: block; min-height: 0; overflow: visible; }
+.page-grid--home .main{
+  display: block; min-height: 0; overflow: visible;
+  /* the intro and the photo size themselves to this width; the container sits here, above the
+     homepage grid, so the links inside the grid can still pin to the screen's corner */
+  container-type: inline-size;
+}
 /* the homepage scrolls the window like every other page (smooth scrolling drives the window) */
 html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 
@@ -722,7 +728,6 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   --home-gap: var(--space-5); /* the same distance from the photo and the text to the lines */
   --home-intro-lines: 2;
   --home-avatar: calc(var(--text-home-intro) * var(--leading-tight) * var(--home-intro-lines)); /* as tall as the intro */
-  container-type: inline-size; /* the intro and the photo size themselves to this grid */
   --home-pad-x: clamp(var(--space-6), 3.5vw, var(--space-12));
   --home-rail-w: calc(var(--home-avatar) + var(--home-gap) * 4.5); /* the rail fits the photo, with more room on its left */
   display: grid;
@@ -759,7 +764,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 .home-scroll{
   position: absolute;
   top: calc(100dvh - var(--home-gap));
-  right: calc(var(--home-rail-w) + var(--home-pad-x)); /* the right edge of the framed column */
+  right: var(--space-5); /* bottom-right corner of the screen, the same inset as the nav on the left */
   transform: translateY(-100%);
   font-family: var(--font-family-title);
   font-size: var(--text-body);
@@ -812,11 +817,6 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 .home-rail__stick{
   position: sticky;
   top: var(--home-rest);
-  height: calc(100dvh - var(--home-rest) - var(--space-6));
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-8);
 }
 .home-rail__nav{
   display: flex;
@@ -837,6 +837,10 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 .home-rail__a.is-active{ color: var(--foreground); }
 .home-rail__a:not(.is-active){ color: var(--muted-foreground); font-weight: var(--font-weight-regular); }
 .home-rail__foot{
+  position: fixed; /* the screen's bottom-left corner, the whole time */
+  left: var(--space-5);
+  bottom: var(--space-6);
+  z-index: 4;
   display: flex;
   flex-direction: column; /* one link per line, like the mockup */
   align-items: flex-start;
@@ -844,6 +848,9 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   font-size: var(--text-body-sm);
   line-height: var(--leading-snug);
 }
+/* not on the first screen: the links fade in once the page scrolls to the cases */
+.home-shell:not([data-scrolled]) .home-rail__foot{ opacity: 0; visibility: hidden; }
+.home-rail__foot{ transition: opacity var(--duration-slow) ease, visibility var(--duration-slow); }
 .home-rail__foot .foot-link{ font-size: inherit; }
 .home-rail__foot .foot-sep{ display: none; }
 .home-intro{
@@ -963,6 +970,8 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   .home-scroll{ display: none; } /* no tall first screen on phones */
   .home-edge{ display: none; } /* one column on phones: no side margins to frame */
   .home-rail__stick{ display: contents; } /* the rail is a row on phones */
+  .home-rail__foot{ position: static; }
+  .home-shell:not([data-scrolled]) .home-rail__foot{ opacity: 1; visibility: visible; } /* phones: always in the rail row */
   .home-intro{ font-size: var(--text-intro-narrow); font-weight: var(--font-weight-regular); max-width: none; white-space: normal; }
   .home-cases{ padding: var(--space-6) var(--space-5) var(--space-12); }
   .home-rail__foot{ flex-direction: row; flex-wrap: wrap; gap: var(--space-3); }
@@ -1398,7 +1407,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   background: linear-gradient(to bottom, var(--sidebar-border) 0%, var(--sidebar-border) 55%, transparent 100%);
   transform-origin: top center;
 }
-/* ===== Lines draw themselves once they reach the screen, led by a small coral light ===== */
+/* ===== Lines draw themselves once they reach the screen, led by a small dot ===== */
 .tl-list{ --line-x: 50%; }
 .blog__list{ --line-x: 1px; }
 .line-reveal::before{
