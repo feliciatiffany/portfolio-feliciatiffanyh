@@ -50,9 +50,9 @@ function useRing() {
   return ring;
 }
 
+const FEATURED = { to: "/case-study", label: "Case Study" };
 const LINKS = [
   { to: "/built", label: "Timeline", arrow: true },
-  { to: "/case-study", label: "Case Study" },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About me" },
 ];
@@ -133,7 +133,12 @@ export default function Home() {
       </h1>
 
       <nav className="home-links" aria-label="Explore">
-        {/* each button sits in its own glass pill */}
+        {/* Case Study on top, full width of the three links below */}
+        <GlassSurface className="home-glass home-glass--feature" {...GLASS} width="100%" height="auto">
+          <Link to={FEATURED.to} className="home-pill">
+            {FEATURED.label}
+          </Link>
+        </GlassSurface>
         {LINKS.map((l) => (
           <GlassSurface key={l.to} className="home-glass" {...GLASS} width="fit-content" height="auto">
             <Link to={l.to} className="home-pill">

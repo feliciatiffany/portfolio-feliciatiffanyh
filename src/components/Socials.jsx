@@ -31,7 +31,7 @@ export default function Socials({ icons = false, wrap }) {
   }
   return SOCIALS.map((l, i) => (
     <React.Fragment key={l.label}>
-      {i > 0 && <span aria-hidden> · </span>}
+      {i > 0 && <span className="foot-sep" aria-hidden> · </span>}
       <a
         href={l.href}
         className="foot-link"

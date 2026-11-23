@@ -72,9 +72,9 @@
   .line-filter__label{ transform: none !important; transition: none; }
 }
 
-/* ── Vertical nav, quieter: muted heading, items in muted ink; switched-off items just fade (no strike) ── */
+/* ── Vertical nav, quieter: muted heading; switched-off items are struck through, not faded ── */
 .line-filter--column .line-filter__h{ font-weight: var(--font-weight-regular); color: var(--muted-foreground); margin-bottom: var(--space-2); }
-.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ text-decoration: none; opacity: calc(.35 + var(--effect, 0) * .45); filter: none; }
+.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ opacity: 1; filter: none; text-decoration: line-through; text-decoration-thickness: 1px; }
 .line-filter--column .line-filter__item[aria-pressed="true"] .line-filter__label::before{
   content: "";
   position: absolute;

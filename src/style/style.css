@@ -100,7 +100,7 @@ body{
   min-height: var(--space-8);
   max-width: calc(100vw - var(--space-18) - var(--space-10)); /* leaves room for the FanyLLM button */
   font-size: var(--text-ui);
-  line-height: var(--leading-none);
+  line-height: 1;
   white-space: nowrap;
   /* a soft frosted backing so it reads over whatever scrolls underneath */
   margin: calc(var(--space-1) * -1) calc(var(--space-2-5) * -1);
@@ -110,15 +110,26 @@ body{
   -webkit-backdrop-filter: blur(var(--space-2));
   backdrop-filter: blur(var(--space-2));
 }
-.crumbs__back{
+.crumbs__back,
+.crumbs__sep,
+.crumbs__here{
   display: inline-flex;
   align-items: center;
+  height: 1em; /* same box for Home, /, and the page name so they share one line */
+  line-height: 1;
+}
+.crumbs__back{
   gap: var(--space-1);
   color: var(--muted-foreground);
   text-decoration: none;
   transition: color var(--duration-fast) ease;
 }
-.crumbs__icon{ transition: transform var(--duration-base) var(--ease-out); }
+.crumbs__icon{
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  transition: transform var(--duration-base) var(--ease-out);
+}
 .crumbs__back:hover,
 .crumbs__back:focus-visible{ color: var(--accent); outline: none; }
 .crumbs__back:hover .crumbs__icon{ transform: translateX(calc(var(--space-1) * -1)); }
@@ -639,6 +650,22 @@ body{
 }
 .page-grid--center .main{ display: block; }
 .page-grid--center .foot{ justify-content: center; }
+/* Wide screens: the links sit on one row at the bottom-left, under the filters */
+@media (min-width: 801px){
+  .page-grid .foot{
+    position: fixed;
+    left: var(--space-5); /* same left edge as .blog-nav and the breadcrumb */
+    bottom: var(--space-6);
+    z-index: 35;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0;
+    padding: 0;
+    max-width: 11rem;
+  }
+  .page-grid .foot .foot-sep{ display: inline; }
+}
 
 /* ===== Round avatar ===== */
 .avatar{
@@ -1137,8 +1164,9 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .blog{ width: min(1100px, 100%); margin: 0 auto; padding: var(--space-page-top) var(--space-4) clamp(64px, 8vw, 120px); }
 .blog-nav{
   position: fixed;
-  top: clamp(96px, 28vh, 300px); /* sits in the upper third, clear of the breadcrumb */
-  left: 20px;
+  /* same top line as the first card (header + page-top + the list's own top padding) */
+  top: calc(var(--space-12) + var(--space-page-top) + var(--space-6));
+  left: var(--space-5);
   z-index: 35;
   display: grid;
   gap: clamp(40px, 7vh, 72px);
@@ -1285,11 +1313,11 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   padding-left: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
-  gap: var(--space-5);
+  gap: var(--space-8); /* between the two columns */
 }
 .study__list::before,
 .study__list::after{ display: none; } /* no growing line here: the cards carry the page */
-.study__col{ display: grid; gap: var(--space-14); margin: 0; padding: 0; list-style: none; }
+.study__col{ display: grid; gap: var(--space-10); /* caption to the next picture: a little more than the column gap, so each card reads as one unit */ margin: 0; padding: 0; list-style: none; }
 .study-item .blog-item__link{ display: grid; gap: var(--space-3); max-width: none; color: inherit; text-decoration: none; }
 .study-item__media{
   position: relative;
@@ -1331,13 +1359,13 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 /* Each card rises into place as it comes up (StudyCase.jsx sets --p, 0 → 1), and its picture comes
    back like a memory: sepia, soft and a little too close, then sharp. */
 .study-item{ --p: 0; }
-.study-item .blog-item__link{ transform: translateY(calc((1 - var(--p)) * var(--space-10))); } /* the link moves, not the row, so the scroll maths stays steady */
+.study-item .blog-item__link{ transform: translateY(calc((1 - var(--p)) * var(--space-6))); } /* the link moves, not the row, so the scroll maths stays steady */
 .study-item__media{ filter: sepia(calc((1 - var(--p)) * .85)) blur(calc((1 - var(--p)) * 4px)); }
 .study-item__media img,
 .study-item__media video{ transform: scale(calc(1.1 - var(--p) * .1)); }
 .study-item__caption{ opacity: clamp(0, calc((var(--p) - .4) * 4), 1); }
 @media (max-width: 800px){
-  .study__list{ width: 100%; grid-template-columns: minmax(0, 1fr); gap: var(--space-14); }
+  .study__list{ width: 100%; grid-template-columns: minmax(0, 1fr); gap: var(--space-10); }
   .study__col--right .study-item__media{ aspect-ratio: 16 / 9; }
 }
 
@@ -1481,8 +1509,17 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .home-typed[data-typing="true"] .home-typed__caret{ animation: none; }
 @keyframes home-caret{ 50%{ opacity: 0; } }
 
-/* buttons: solid paper pills with a hairline and a soft shadow, so they read over the dome */
-.home-links{ display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-top: var(--space-2); }
+/* buttons: Case Study on top spanning the row, then Timeline / Blog / About underneath */
+.home-links{
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: center;
+  justify-items: stretch;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.home-glass--feature{ grid-column: 1 / -1; width: 100%; }
+.home-glass--feature .home-pill{ width: 100%; justify-content: center; }
 .home-pill{
   display: inline-flex;
   align-items: center;
@@ -1520,6 +1557,12 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .social-badge:hover,
 .social-badge:focus-visible{ transform: translateY(calc(var(--space-0-5) * -1)); box-shadow: var(--shadow-print-lifted); color: var(--color-accent-strong); outline: none; }
 
+.home--narrow .home-links{
+  grid-template-columns: max-content;
+  justify-content: start;
+  justify-items: stretch;
+}
+.home--narrow .home-glass--feature{ width: auto; }
 .home--narrow .home-links,
 .home--narrow .home-socials{ justify-content: flex-start; }
 @media (prefers-reduced-motion: reduce){
