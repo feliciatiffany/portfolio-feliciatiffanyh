@@ -41,11 +41,8 @@ function usePrefetchPages() {
     return () => (window.cancelIdleCallback || clearTimeout)(id);
   }, []);
 }
-import GhostCursor from "./components/GhostCursor.jsx";
 import CursorDot from "./components/CursorDot.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
-import { useTheme } from "./lib/theme.js";
-import { token } from "./lib/tokens.js";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Socials from "./components/Socials.jsx";
@@ -56,40 +53,13 @@ import { BOOKS } from "./lib/books.js";
 const reduceMotion =
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// The cursor is just a light: a coral glow with a long smoky trail. It stays lit while the mouse rests.
+// The cursor is a plain coral dot: no glow, no trail.
 const finePointer =
   typeof window !== "undefined" && window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
 
 function CursorGlow() {
-  const theme = useTheme();
   if (reduceMotion || !finePointer) return null;
-  const dark = theme === "dark";
-  return (
-    <>
-      <CursorDot />
-      <GhostCursor
-        key={theme} /* rebuild the light for the new mode */
-        theme={dark ? "dark" : "light"}
-        color={token("color-cursor", theme)} /* WebGL needs the real value: coral by day, grey at night */
-        mixBlendMode={dark ? "screen" : "multiply"} /* a glow adds light on dark paper, tints on white */
-        size={18}
-        trailLength={30} /* a soft trace behind the dot; the glow itself stays locked on */
-        inertia={0} /* locked to the dot */
-        turbulence={0.35}
-        drift={0.12}
-        detail={0.45}
-        bloomStrength={0.35}
-        bloomRadius={0.8}
-        grainIntensity={0.1}
-        clickPuff
-        intro={false}
-        fadeDelayMs={600000}
-        fadeDurationMs={2600}
-        zIndex={2147483000}
-        style={{ position: "fixed", opacity: 0.32 }} /* a faint trace behind the dot */
-      />
-    </>
-  );
+  return <CursorDot />;
 }
 
 // Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.

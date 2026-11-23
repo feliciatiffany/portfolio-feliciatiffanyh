@@ -17,4 +17,4 @@ React 18 + Vite + react-router. Deployed to GitHub Pages with `npm run deploy` (
 
 ## Site style
 
-Theme: timeline, lost in history, time passing. Motion should feel like memory resolving (sepia/blur → sharp), never bouncy UI. Images on the homepage never link anywhere and never cover text. No dashed lines. The cursor is a small coral dot with a faint light trail; labelled links show a word beside it (data-cursor).
+Theme: timeline, lost in history, time passing. Motion should feel like memory resolving (sepia/blur → sharp), never bouncy UI. Images on the homepage never link anywhere and never cover text. No dashed lines. The cursor is a plain, flat coral dot: no glow, trail or blur; labelled links show a word beside it (data-cursor). No coloured glows on hover either; use the print shadows.

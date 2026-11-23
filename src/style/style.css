@@ -1023,16 +1023,16 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   height: auto;
   transform: rotate(var(--r));
   transition: transform .5s var(--ease-spring), filter .4s ease;
-  filter: drop-shadow(0 0 18px var(--color-glow-off)) drop-shadow(var(--shadow-print));
+  filter: drop-shadow(var(--shadow-print));
 }
 .tl-collage__piece.is-card{ border-radius: var(--radius-card); }
-.tl-collage__piece.is-card + .tl-collage__piece.is-card{ filter: drop-shadow(0 0 18px var(--color-glow-off)) drop-shadow(var(--shadow-print-raised)); }
+.tl-collage__piece.is-card + .tl-collage__piece.is-card{ filter: drop-shadow(var(--shadow-print-raised)); }
 .tl-collage__piece:nth-child(2){ transition-delay: .04s; }
 .tl-collage__piece:nth-child(3){ transition-delay: .08s; }
 .tl-card__hit:hover .tl-collage__piece,
 .tl-card__hit:focus-visible .tl-collage__piece{
   transform: translate(var(--hx), var(--hy)) rotate(var(--hr)) scale(var(--hs));
-  filter: drop-shadow(0 0 18px var(--color-glow)) drop-shadow(var(--shadow-print-lifted));
+  filter: drop-shadow(var(--shadow-print-lifted));
 }
 @media (prefers-reduced-motion: reduce){
   .tl-collage__piece{ transition: none; }
@@ -1201,7 +1201,6 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
   border-radius: var(--radius-round);
   background: var(--accent);
-  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
   opacity: 0;
   pointer-events: none;
 }
@@ -1278,39 +1277,48 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   .blog-item.has-cover .blog-item__link{ grid-template-columns: 1fr; gap: var(--space-3-5); }
 }
 
-/* Case studies: a checkerboard of rounded tiles, the same shape as the homepage dome. Each case is a
-   picture tile beside a text tile, and the next case swaps sides. Square tiles are a little taller than
-   half the screen, so the top of the next row always shows. */
-.study__list{ box-sizing: border-box; width: min(1100px, calc(100vw - 300px)); gap: var(--space-5); } /* stays clear of the filter fixed on the left */
-.study-item .blog-item__link{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); max-width: none; }
-.study-item:nth-child(even) .study-item__media{ order: 2; }
-.study-item__media,
-.study-item__text{ position: relative; min-width: 0; aspect-ratio: 1; border-radius: var(--radius-tile); overflow: hidden; background: var(--color-surface-soft); }
-.study-item__media{ display: grid; place-items: center; }
+/* Case studies: two staggered columns of rounded picture cards, each with "Title / Status Year" under it.
+   The left column uses wide pictures and the right a taller shape, so the rows never line up flat. */
+.study__list{
+  box-sizing: border-box;
+  width: min(1200px, calc(100vw - 300px)); /* stays clear of the filter fixed on the left */
+  padding-left: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-5);
+}
+.study__list::before,
+.study__list::after{ display: none; } /* no growing line here: the cards carry the page */
+.study__col{ display: grid; gap: var(--space-14); margin: 0; padding: 0; list-style: none; }
+.study-item .blog-item__link{ display: grid; gap: var(--space-3); max-width: none; color: inherit; text-decoration: none; }
+.study-item__media{
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-tile);
+  overflow: hidden;
+  background: var(--color-surface-soft);
+}
+.study__col--right .study-item__media{ aspect-ratio: 5 / 4; }
 .study-item__media img,
 .study-item__media video{ display: block; width: 100%; height: 100%; object-fit: cover; }
 .study-item__soon{ font-family: var(--font-family-body); font-size: var(--text-meta); color: var(--muted-foreground); }
 
-/* The text tile: title and summary in the middle, status and year at the bottom */
-.study-item__text{
-  display: grid;
-  grid-template-rows: 1fr auto;
-  gap: var(--space-5);
-  padding: clamp(24px, 4vw, 48px);
-  box-sizing: border-box;
+/* Caption: the title, then a slash and the status and year in a quieter grey */
+.study-item__caption{
+  margin: 0;
   font-family: var(--font-family-body);
-  transition: background-color .4s ease;
+  font-size: var(--text-subtitle);
+  line-height: var(--leading-title);
+  color: var(--foreground);
 }
-.study-item__body{ display: grid; align-content: center; gap: var(--space-4); }
-.study-item__title{ font-family: var(--font-family-title); font-size: var(--text-section-title); line-height: var(--leading-title); color: var(--foreground); }
-.study-item__sum{ font-size: var(--text-body); line-height: var(--leading-loose); color: var(--muted-foreground); }
-.study-item__meta{ font-size: var(--text-meta); color: var(--muted-foreground); }
-.study-item .blog-item__link:hover .study-item__text{ background: color-mix(in srgb, var(--foreground) 6%, var(--color-surface-soft)); }
+.study-item__meta{ color: var(--muted-foreground); }
+.study-item__meta::before{ content: "/"; margin: 0 var(--space-2); color: var(--muted-foreground); }
 
-/* Still being written: nothing to open, the corner of its picture tile is folded over, and it sits quieter */
+/* Still being written: nothing to open, the corner of its picture is folded over, and it sits quieter */
 .study-item.is-pending .blog-item__link{ cursor: default; }
-.study-item.is-pending .study-item__title{ color: var(--muted-foreground); }
-.study-item.is-pending .blog-item__link:hover .study-item__text{ background: var(--color-surface-soft); }
+.study-item.is-pending .study-item__caption{ color: var(--muted-foreground); }
 .study-item.is-pending .study-item__media::before{
   content: "";
   position: absolute;
@@ -1320,40 +1328,17 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   background: linear-gradient(135deg, var(--color-bg) 50%, color-mix(in srgb, var(--foreground) 12%, var(--color-surface-soft)) 50%);
 }
 
-/* Everything here follows the scroll (StudyCase.jsx sets --lp on the list and --p on each row, 0 → 1).
-   The vertical line grows down the page with the small coral light at its tip. */
-.study__list{ --lp: 0; }
-.study__list::before{ transform: scaleY(var(--lp)); }
-.study__list::after{
-  content: "";
-  position: absolute;
-  top: calc(var(--lp) * 100%);
-  left: var(--line-x);
-  width: var(--space-2); height: var(--space-2);
-  margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
-  border-radius: var(--radius-round);
-  background: var(--accent);
-  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
-  opacity: clamp(0, calc((1 - var(--lp)) * 12), 1);
-  pointer-events: none;
-}
-/* Each row rises into place as it comes up; the text tile follows a beat after the picture */
+/* Each card rises into place as it comes up (StudyCase.jsx sets --p, 0 → 1), and its picture comes
+   back like a memory: sepia, soft and a little too close, then sharp. */
 .study-item{ --p: 0; }
-.study-item__media,
-.study-item__text{ transform: translateY(calc((1 - var(--p)) * var(--space-10))); }
-.study-item__text{ transform: translateY(calc((1 - var(--p)) * var(--space-14))); }
-/* The picture comes back like a memory: sepia, soft and a little too close, then sharp */
+.study-item .blog-item__link{ transform: translateY(calc((1 - var(--p)) * var(--space-10))); } /* the link moves, not the row, so the scroll maths stays steady */
 .study-item__media{ filter: sepia(calc((1 - var(--p)) * .85)) blur(calc((1 - var(--p)) * 4px)); }
 .study-item__media img,
 .study-item__media video{ transform: scale(calc(1.1 - var(--p) * .1)); }
-.study-item__text > *{ opacity: clamp(0, calc((var(--p) - .4 - var(--i, 0) * .1) * 4), 1); }
-.study-item__text > *:nth-child(2){ --i: 1; }
+.study-item__caption{ opacity: clamp(0, calc((var(--p) - .4) * 4), 1); }
 @media (max-width: 800px){
-  .study__list{ width: 100%; }
-  .study-item .blog-item__link{ grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
-  .study-item:nth-child(even) .study-item__media{ order: 0; }
-  .study-item__media{ aspect-ratio: 4 / 3; }
-  .study-item__text{ aspect-ratio: auto; }
+  .study__list{ width: 100%; grid-template-columns: minmax(0, 1fr); gap: var(--space-14); }
+  .study__col--right .study-item__media{ aspect-ratio: 16 / 9; }
 }
 
 /* One post */
@@ -1433,35 +1418,34 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   html, body, *{ cursor: none !important; }
 }
 
-/* Hover glow: a soft warm light behind timeline images, like a lamp held up to an old photo */
+/* Hover: timeline images lift slightly, with a plain print shadow (no coloured glow) */
 .tl-card__frame,
 .tl-card__gallery img{
   transition: transform .25s ease, box-shadow .45s ease;
-  /* resting glow = the same coral at 0%, so hovering fades in warm instead of passing through black */
-  box-shadow: 0 0 28px 6px var(--color-glow-off), 0 10px 30px -10px var(--color-glow-off);
+  box-shadow: var(--shadow-print);
 }
 .tl-card__hit:hover .tl-card__frame,
 .tl-card__hit:focus-visible .tl-card__frame,
 .tl-card__hit:hover .tl-card__gallery img,
 .tl-card__hit:focus-visible .tl-card__gallery img{
-  box-shadow: 0 0 28px 6px var(--color-glow), 0 10px 30px -10px var(--color-glow);
+  box-shadow: var(--shadow-print-lifted);
 }
 .tl-card__hit:hover .tl-collage__piece,
 .tl-card__hit:focus-visible .tl-collage__piece,
 .tl-card__hit:hover .tl-collage__piece.is-card + .tl-collage__piece.is-card,
 .tl-card__hit:focus-visible .tl-collage__piece.is-card + .tl-collage__piece.is-card{
-  filter: drop-shadow(0 0 18px var(--color-glow)) drop-shadow(var(--shadow-print-lifted));
+  filter: drop-shadow(var(--shadow-print-lifted));
 }
 @media (prefers-reduced-motion: reduce){ .tl-card__frame, .tl-card__gallery img{ transition: none; } }
-/* Cut-out image (transparent background): no frame, the glow hugs each item's own outline */
+/* Cut-out image (transparent background): no frame, the shadow follows each item's own outline */
 .tl-card__media.is-cutout .tl-card__frame{ overflow: visible; border-radius: 0; box-shadow: none !important; }
 .tl-card__media.is-cutout img{
   transition: transform .25s ease, filter .45s ease;
-  filter: drop-shadow(0 0 10px var(--color-glow-off)) drop-shadow(0 0 22px var(--color-glow-off));
+  filter: drop-shadow(var(--shadow-print));
 }
 .tl-card__hit:hover .tl-card__media.is-cutout img,
 .tl-card__hit:focus-visible .tl-card__media.is-cutout img{
-  filter: drop-shadow(0 0 10px var(--color-glow)) drop-shadow(0 0 22px var(--color-glow));
+  filter: drop-shadow(var(--shadow-print-lifted));
 }
 
 /* ===== Homepage, from the sketch: darker bolder type, solid pill buttons, filled icon circles ===== */
