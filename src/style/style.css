@@ -100,7 +100,7 @@ body{
   min-height: var(--space-8);
   max-width: calc(100vw - var(--space-18) - var(--space-10)); /* leaves room for the FanyLLM button */
   font-size: var(--text-ui);
-  line-height: 1;
+  line-height: var(--leading-none);
   white-space: nowrap;
   /* a soft frosted backing so it reads over whatever scrolls underneath */
   margin: calc(var(--space-1) * -1) calc(var(--space-2-5) * -1);
@@ -116,7 +116,7 @@ body{
   display: inline-flex;
   align-items: center;
   height: 1em; /* same box for Home, /, and the page name so they share one line */
-  line-height: 1;
+  line-height: var(--leading-none);
 }
 .crumbs__back{
   gap: var(--space-1);
