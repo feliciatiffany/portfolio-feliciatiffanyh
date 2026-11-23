@@ -5,7 +5,8 @@
   left: var(--space-5);
   z-index: 30;
   transform: translateY(-50%);
-  max-width: calc((100vw - 640px) / 2 - var(--space-10)); /* stays clear of the centred column */
+  /* stays clear of the centred column and of wide cover images; long names wrap */
+  max-width: min(12rem, calc((100vw - 640px) / 2 - var(--space-10)));
   font-family: var(--font-family-body);
   font-size: var(--text-ui);
   line-height: var(--leading-snug);

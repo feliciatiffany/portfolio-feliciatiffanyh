@@ -85,6 +85,13 @@ export default function FanyLLM() {
     return () => document.documentElement.classList.remove("fanyllm-open");
   }, [open]);
 
+  // other parts of the page can open it (Fany bot on the homepage does, when tapped)
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener("fanyllm:open", onOpen);
+    return () => window.removeEventListener("fanyllm:open", onOpen);
+  }, []);
+
   // Esc closes; the page behind can still be read and scrolled
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && setOpen(false);
@@ -164,7 +171,7 @@ export default function FanyLLM() {
           </span>
         </header>
 
-        <div ref={logRef} className="fany-llm__log" aria-live="polite">
+        <div ref={logRef} className="fany-llm__log" aria-live="polite" data-lenis-prevent>
           {messages.length === 0 ? (
             <div className="fany-llm__empty">
               <p className="fany-llm__hello">Ask me anything.</p>

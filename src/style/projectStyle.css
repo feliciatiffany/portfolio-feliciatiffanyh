@@ -56,7 +56,7 @@
 }
 
 .project-template .proj-head__text{
-  font-size: var(--text-subtitle);
+  font-size: var(--text-subtitle); font-weight: var(--font-weight-h3);
   line-height: var(--leading-title);
   padding: 0 var(--space-2-5);
 }
@@ -73,7 +73,7 @@
   justify-self: start;
 
   font-size: var(--text-subtitle);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-h3);
 
   background-color: color-mix(in srgb, var(--background) 70%, transparent);
   border-left: 1px solid var(--border);
@@ -382,7 +382,7 @@
   color: var(--color-action-hover);
   width: 44px;
   height: 44px;
-  font-size: var(--text-heading-sm);
+  font-size: var(--text-heading-sm); font-weight: var(--font-weight-nav);
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -548,7 +548,7 @@
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--background) 92%, transparent);
   cursor: pointer;
-  font-size: var(--text-heading-sm);
+  font-size: var(--text-heading-sm); font-weight: var(--font-weight-h3);
   line-height: var(--leading-none);
   display: grid;
   place-items: center;
@@ -814,7 +814,7 @@ gap: var(--space-3);
 }
 .project-template .proj-page-title{
   margin: 0;
-  font-size: var(--text-page-title);
+  font-size: var(--text-page-title); font-weight: var(--font-weight-h1);
   line-height: var(--leading-title);
 }
 
@@ -853,7 +853,7 @@ gap: var(--space-3);
 }
 .project-template .proj-page-title{
   font-family: var(--font-family-title);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-h1);
   text-align: center;
   font-size: var(--text-page-title);
   margin: var(--space-2) 0 var(--space-3);
@@ -990,7 +990,7 @@ gap: var(--space-3);
   margin: 0;
   font-family: var(--font-family-title);
   font-size: var(--text-section-title);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-h2);
   line-height: var(--leading-title);
 }
 .project-template .proj-desc-section .proj-desc-section__label{
@@ -1035,7 +1035,7 @@ gap: var(--space-3);
 /* Paper: the full write-up, overview first, the rest folded away */
 .project-template .proj-paper__doc{ display: grid; gap: var(--space-section); }
 .project-template .proj-paper__head{ display: grid; gap: var(--space-caption-media); }
-.project-template .proj-paper__title{ margin: 0; font-family: var(--font-family-title); font-size: var(--text-heading-sm); line-height: var(--leading-title); }
+.project-template .proj-paper__title{ margin: 0; font-family: var(--font-family-title); font-size: var(--text-heading-sm); font-weight: var(--font-weight-h3); line-height: var(--leading-title); }
 .project-template .proj-paper__by{ margin: 0; font-size: var(--text-meta); color: var(--muted-foreground); }
 .project-template .proj-paper__part{ display: grid; gap: var(--space-heading-content); }
 .project-template .proj-paper__h{ margin: 0; font-size: var(--text-ui); font-weight: var(--font-weight-bold); color: var(--color-accent-tech); }
@@ -1087,8 +1087,8 @@ gap: var(--space-3);
   text-transform: none;
   color: var(--foreground);
 }
-.project-template .case-study .case-h2{ font-size: var(--text-case-h2); margin-bottom: var(--space-case-h2-body); }
-.project-template .case-study .case-h3{ font-size: var(--text-case-h3); }
+.project-template .case-study .case-h2{ font-size: var(--text-case-h2); font-weight: var(--font-weight-h2); margin-bottom: var(--space-case-h2-body); }
+.project-template .case-study .case-h3{ font-size: var(--text-case-h3); font-weight: var(--font-weight-h3); }
 .project-template .case-study .case-body{
   margin: 0;
   font-size: var(--text-case-body);

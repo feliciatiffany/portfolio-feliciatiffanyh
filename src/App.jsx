@@ -1,6 +1,7 @@
 // src/App.jsx
 import React, { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
-import { Routes, Route, Link, Navigate, useLocation, useParams } from "react-router-dom";
+import { startSmoothScroll, scrollToTopNow } from "./lib/smoothScroll.js";
+import { Routes, Route, Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 
@@ -16,7 +17,6 @@ const PAGES = {
   Project: () => import("./pages/Project.jsx"),
   Built: () => import("./pages/Built.jsx"),
   Blog: () => import("./pages/Blog.jsx"),
-  StudyCase: () => import("./pages/StudyCase.jsx"),
   StudyStory: () => import("./pages/StudyStory.jsx"),
   BlogPost: () => import("./pages/BlogPost.jsx"),
   FlipBook: () => import("./pages/FlipBook.jsx"),
@@ -28,9 +28,7 @@ const Others = lazy(PAGES.Others);
 const About = lazy(PAGES.About);
 const Category = lazy(PAGES.Category);
 const Project = lazy(PAGES.Project);
-const Built = lazy(PAGES.Built);
 const Blog = lazy(PAGES.Blog);
-const StudyCase = lazy(PAGES.StudyCase);
 const StudyStory = lazy(PAGES.StudyStory);
 const BlogPost = lazy(PAGES.BlogPost);
 const FlipBook = lazy(PAGES.FlipBook);
@@ -65,20 +63,46 @@ function CursorGlow() {
 // Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.
 // Titles of projects and posts load on demand, so every page doesn't carry all of that text.
 const projectLoaders = import.meta.glob("./projects/**/*.js", { import: "default" });
-const PAGE_NAMES = { built: "Timeline", "case-study": "Case Study", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
+const PAGE_NAMES = { built: "About", "case-study": "Case Study", blog: "Playground", about: "About", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
 const HOME = { label: "Home", to: "/" };
 function OldCaseStudy() {
   const { slug } = useParams();
   return <Navigate to={`/case-study/${slug}`} replace />;
 }
 
+// Case study list lives on the homepage; land on / and scroll to the grid
+function ToHomeCases() {
+  const nav = useNavigate();
+  useEffect(() => {
+    nav("/", { replace: true });
+    const t = window.setTimeout(() => {
+      document.getElementById("case-study")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+    return () => window.clearTimeout(t);
+  }, [nav]);
+  return null;
+}
+
+// Timeline lives on About; old /built links scroll to that section
+function ToAboutTimeline() {
+  const nav = useNavigate();
+  useEffect(() => {
+    nav("/about", { replace: true });
+    const t = window.setTimeout(() => {
+      document.getElementById("timeline")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => window.clearTimeout(t);
+  }, [nav]);
+  return null;
+}
+
 function crumbsFor(pathname) {
   const [, first = "", second] = pathname.split("/");
   const key = first.toLowerCase();
-  if (key === "work" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, kind: "project", slug: second };
-  if (key === "case-study" && second) return { parent: { label: PAGE_NAMES["case-study"], to: "/case-study" }, kind: "study", slug: second };
+  if (key === "work" && second) return { parent: { label: "About", to: "/about" }, kind: "project", slug: second };
+  if (key === "case-study" && second) return { parent: { label: PAGE_NAMES["case-study"], to: "/" }, kind: "study", slug: second };
   if (key === "blog" && second) return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, kind: "post", slug: second };
-  if (key === "book" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: BOOKS[second]?.title || second };
+  if (key === "book" && second) return { parent: { label: "About", to: "/about" }, here: BOOKS[second]?.title || second };
   return { parent: HOME, here: PAGE_NAMES[key] || first };
 }
 
@@ -131,12 +155,13 @@ function Breadcrumb({ pathname }) {
 if (typeof window !== "undefined" && "scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
 function useScrollToTop(pathname) {
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    scrollToTopNow();
   }, [pathname]);
 }
 
 function Layout({ children }) {
   const { pathname } = useLocation();
+  useEffect(() => void startSmoothScroll(), []);
   useScrollToTop(pathname);
   usePrefetchPages();
   const onProject = /^\/(work|case-study)\/./i.test(pathname); // a case study opens as a project page
@@ -160,7 +185,7 @@ function Layout({ children }) {
         <Suspense fallback={null}>{children}</Suspense>
       </main>
 
-      {/* the homepage carries its social icons in the intro, under the buttons */}
+      {/* homepage carries socials in its left rail */}
       {!onProject && !onHome && (
         <footer className="foot">
           <Socials />
@@ -190,12 +215,15 @@ export default function App() {
         <Route path="/Others" element={<Others />} />
 
         <Route path="/nutshell" element={<Navigate to="/blog" replace />} />
-        <Route path="/built" element={<Built />} />
-        <Route path="/case-study" element={<StudyCase />} />
+        {/* Timeline lives on About now; old /built links still land */}
+        <Route path="/built" element={<ToAboutTimeline />} />
+        {/* Case studies sit on the homepage; list URL scrolls there */}
+        <Route path="/case-study" element={<ToHomeCases />} />
         <Route path="/case-study/:slug" element={<StudyStory />} />
         {/* the section used to be called Study Case: old links still land */}
-        <Route path="/study-case" element={<Navigate to="/case-study" replace />} />
+        <Route path="/study-case" element={<ToHomeCases />} />
         <Route path="/study-case/:slug" element={<OldCaseStudy />} />
+        <Route path="/playground" element={<Navigate to="/blog" replace />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/book/:slug" element={<FlipBook />} />

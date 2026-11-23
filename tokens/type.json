@@ -34,8 +34,8 @@
       },
       "title": {
         "$type": "fontFamily",
-        "$value": "{font.family.mono}",
-        "$description": "Titles, names, navigation, page default"
+        "$value": "{font.family.sans}",
+        "$description": "Titles, names, navigation, page default (Montserrat, like the body: one typeface across the site)"
       },
       "body": {
         "$type": "fontFamily",
@@ -77,6 +77,36 @@
         "$type": "fontWeight",
         "$value": 700,
         "$description": "Subtitles and small headings"
+      },
+      "h1": {
+        "$type": "fontWeight",
+        "$value": 700,
+        "$description": "Hero / H1 (Montserrat scale)"
+      },
+      "h2": {
+        "$type": "fontWeight",
+        "$value": 650,
+        "$description": "Section / H2: between semibold and bold (Montserrat is variable, 400-700)"
+      },
+      "h3": {
+        "$type": "fontWeight",
+        "$value": 600,
+        "$description": "Subheading / H3"
+      },
+      "body": {
+        "$type": "fontWeight",
+        "$value": 400,
+        "$description": "Body text"
+      },
+      "nav": {
+        "$type": "fontWeight",
+        "$value": 500,
+        "$description": "Buttons / nav"
+      },
+      "caption": {
+        "$type": "fontWeight",
+        "$value": 400,
+        "$description": "Captions / small"
       }
     },
     "size": {
@@ -120,63 +150,68 @@
   "text": {
     "micro": {
       "$type": "dimension",
-      "$value": "{font.size.2xs}",
+      "$value": "{text.scale.caption}",
       "$description": "Tiny labels under a details row"
     },
     "meta": {
       "$type": "dimension",
-      "$value": "{font.size.xs}",
+      "$value": "{text.scale.caption}",
       "$description": "Dates, tags, footer, captions under media"
     },
     "ui": {
       "$type": "dimension",
-      "$value": "{font.size.sm}",
+      "$value": "{text.scale.nav}",
       "$description": "Filters, small headings, form labels"
     },
     "body-sm": {
       "$type": "dimension",
-      "$value": "{font.size.md}",
+      "$value": "{text.scale.nav}",
       "$description": "Summaries and secondary paragraphs"
     },
     "body": {
       "$type": "dimension",
-      "$value": "{font.size.base}",
+      "$value": "{text.scale.body}",
       "$description": "Reading text"
     },
     "body-lg": {
       "$type": "dimension",
-      "$value": "{font.size.lg}",
+      "$value": "{text.scale.body}",
       "$description": "Headings inside an article"
     },
     "heading-sm": {
       "$type": "dimension",
-      "$value": "{font.size.xl}",
+      "$value": "{text.scale.h3}",
       "$description": "Small fixed headings"
     },
     "lead": {
       "$type": "dimension",
-      "$value": "clamp(14px, 1.4vw, 17px)",
+      "$value": "{text.scale.body}",
       "$description": "Fluid lead text and filter rows"
     },
     "small": {
       "$type": "dimension",
-      "$value": "clamp(12px, 1vw, 14px)",
+      "$value": "{text.scale.nav}",
       "$description": "Fluid small text"
     },
     "subtitle": {
       "$type": "dimension",
-      "$value": "clamp(16px, 1.6vw, 22px)",
+      "$value": "{text.scale.h3}",
       "$description": "Fluid subtitles under a page title"
     },
     "section-title": {
       "$type": "dimension",
-      "$value": "clamp(20px, 2.4vw, 30px)",
+      "$value": "{text.scale.h2}",
       "$description": "Home intro, year headings, post titles in a list"
     },
     "page-title": {
       "$type": "dimension",
-      "$value": "clamp(26px, 3.4vw, 40px)",
+      "$value": "{text.scale.h1}",
       "$description": "One per page: What I've done, Blog post, project title"
+    },
+    "home-intro": {
+      "$type": "dimension",
+      "$value": "min(clamp(26px, calc(20px + 1.1vw), 36px), 2.9cqw)",
+      "$description": "Homepage intro: about 36px on desktop, regular weight, two lines; shrunk to the homepage grid so its long first line (~45 characters) never wraps beside the rail"
     },
     "intro-narrow": {
       "$type": "dimension",
@@ -185,22 +220,22 @@
     },
     "hero": {
       "$type": "dimension",
-      "$value": "clamp(18px, 4vw, 44px)",
+      "$value": "{text.scale.h1}",
       "$description": "Big hero line"
     },
     "nav": {
       "$type": "dimension",
-      "$value": "clamp(18px, 1.6vw, 20px)",
+      "$value": "{text.scale.nav}",
       "$description": "Hero sub line and category links"
     },
     "footer": {
       "$type": "dimension",
-      "$value": "clamp(14px, 1.5vw, 18px)",
+      "$value": "{text.scale.nav}",
       "$description": "Footer text links"
     },
     "list": {
       "$type": "dimension",
-      "$value": "clamp(12px, 1.5vw, 16px)",
+      "$value": "{text.scale.body}",
       "$description": "Resume and project list rows"
     },
     "card": {
@@ -256,6 +291,38 @@
         "$value": "{text.body}",
         "$description": "Case study reading text under any heading"
       }
+    },
+    "scale": {
+      "h1": {
+        "$type": "dimension",
+        "$value": "clamp(32px, calc(24px + 2.2vw), 56px)",
+        "$description": "Hero / H1: 32-40px on phones, up to 56px on desktop"
+      },
+      "h2": {
+        "$type": "dimension",
+        "$value": "clamp(24px, calc(20.3px + 1.08vw), 36px)",
+        "$description": "Section / H2: 24-28px on phones, up to 36px on desktop"
+      },
+      "h3": {
+        "$type": "dimension",
+        "$value": "clamp(18px, calc(16.5px + 0.52vw), 24px)",
+        "$description": "Subheading / H3: 18-20px on phones, up to 24px on desktop"
+      },
+      "body": {
+        "$type": "dimension",
+        "$value": "clamp(15px, calc(14.6px + 0.1vw), 16px)",
+        "$description": "Body text: 15-16px"
+      },
+      "nav": {
+        "$type": "dimension",
+        "$value": "clamp(14px, calc(13.6px + 0.1vw), 15px)",
+        "$description": "Buttons / nav: 14-15px"
+      },
+      "caption": {
+        "$type": "dimension",
+        "$value": "clamp(12px, calc(11.6px + 0.1vw), 13px)",
+        "$description": "Captions / small: 12-13px"
+      }
     }
   },
   "leading": {
@@ -291,12 +358,12 @@
     },
     "title": {
       "$type": "number",
-      "$value": "{leading.tight}",
+      "$value": "{leading.h1}",
       "$description": "Every title and subtitle"
     },
     "body": {
       "$type": "number",
-      "$value": "{leading.normal}",
+      "$value": "{leading.body-text}",
       "$description": "Descriptions, captions, lists"
     },
     "prose": {
@@ -306,8 +373,38 @@
     },
     "case-body": {
       "$type": "number",
-      "$value": "{leading.loose}",
+      "$value": "{leading.body-text}",
       "$description": "Case study reading text: loose, so muted paragraphs stay easy to read"
+    },
+    "h1": {
+      "$type": "number",
+      "$value": 1.15,
+      "$description": "Hero / H1"
+    },
+    "h2": {
+      "$type": "number",
+      "$value": 1.25,
+      "$description": "Section / H2"
+    },
+    "h3": {
+      "$type": "number",
+      "$value": 1.35,
+      "$description": "Subheading / H3"
+    },
+    "body-text": {
+      "$type": "number",
+      "$value": 1.55,
+      "$description": "Body text (1.5-1.6)"
+    },
+    "nav": {
+      "$type": "number",
+      "$value": 1.1,
+      "$description": "Buttons / nav"
+    },
+    "caption": {
+      "$type": "number",
+      "$value": 1.4,
+      "$description": "Captions / small"
     }
   }
 }

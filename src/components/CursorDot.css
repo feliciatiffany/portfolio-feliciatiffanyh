@@ -1,4 +1,4 @@
-/* Coral dot cursor. Every change of state is animated:
+/* Block cursor: a small near-black square. Every change of state is animated:
    resting dot → (link) shrinks to a point · (text) stretches into a thin line · (labelled link) small bullet while the label wipes in · (press) squeezes */
 .cursor-dot{
   position: fixed;
@@ -19,8 +19,8 @@
   top: 0;
   width: var(--w);
   height: var(--h);
-  border-radius: var(--radius-pill);
-  background: var(--accent);
+  border-radius: var(--radius-none); /* a small square block, like Fany bot */
+  background: var(--foreground);
   transform: translate(-50%, -50%);
   transition:
     width var(--duration-base) var(--ease-spring),

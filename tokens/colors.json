@@ -57,8 +57,8 @@
     },
     "ink": {
       "$type": "color",
-      "$value": "#000000",
-      "$description": "Base. Body text."
+      "$value": "#1D1D1F",
+      "$description": "Base. Body text: a soft near-black instead of pure black."
     },
     "paper": {
       "$type": "color",
@@ -67,8 +67,8 @@
     },
     "grey-900": {
       "$type": "color",
-      "$value": "#0D0D0D",
-      "$description": "Base. Darkest dither shade."
+      "$value": "#333333",
+      "$description": "Base. The second near-black: darkest dither shade."
     },
     "grey-600": {
       "$type": "color",
@@ -94,6 +94,11 @@
       "$type": "color",
       "$value": "#9E9E9E",
       "$description": "Base. Dark-mode mid grey"
+    },
+    "blue": {
+      "$type": "color",
+      "$value": "#0D99FF",
+      "$description": "Selection blue, the colour of a selected layer in a design tool"
     },
     "grey-500": {
       "$type": "color",
@@ -315,6 +320,21 @@
           "dark": "{color.grey-200}"
         }
       }
+    },
+    "block": {
+      "$type": "color",
+      "$value": "{color.grey-200}",
+      "$description": "Fany bot, the block character on the homepage (a plain placeholder grey)",
+      "$extensions": {
+        "mode": {
+          "dark": "{color.grey-600}"
+        }
+      }
+    },
+    "selection": {
+      "$type": "color",
+      "$value": "{color.blue}",
+      "$description": "Outline and handles of something picked up, like a selected layer"
     },
     "dither": {
       "1": {

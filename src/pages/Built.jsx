@@ -133,7 +133,7 @@ function readUnlocked() {
   }
 }
 
-export default function Built() {
+export default function Built({ embedded = false }) {
   const [active, setActive] = useState(() => new Set(TYPES.map((t) => t.key)));
   const [unlocked, setUnlocked] = useState(readUnlocked);
   const [status, setStatus] = useState("idle");
@@ -167,10 +167,12 @@ export default function Built() {
     window.setTimeout(() => setUnlocked(true), 900);
   };
 
+  const TitleTag = embedded ? "h2" : "h1";
+
   return (
-    <section className="built" ref={root}>
+    <section className={`built${embedded ? " built--embedded" : ""}`} ref={root}>
       <header className="built-head">
-        <ScrambledText as="h1" className="built-title" {...historyTitle}>
+        <ScrambledText as={TitleTag} className="built-title" {...historyTitle}>
           Timeline
         </ScrambledText>
         <p className="built-sub">

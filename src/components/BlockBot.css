@@ -1,0 +1,78 @@
+/* Fany bot: a plain grey block. It tips over its edges to move (blockbot.js); dragged,
+   it shows a selected-layer frame with corner handles; its name tag sits above it. */
+.blockbot{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+}
+.blockbot[data-appear="true"]{ animation: blockbot-appear var(--duration-slow) var(--ease-out) both; }
+@keyframes blockbot-appear{ from{ opacity: 0; } to{ opacity: 1; } }
+
+.blockbot__body{
+  position: absolute;
+  inset: 0;
+  background: var(--color-block);
+}
+
+/* selected: a thin blue frame with four square handles */
+.blockbot__frame{
+  position: absolute;
+  inset: 0;
+  outline: calc(var(--space-px) * 1.5) solid var(--color-selection);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast) ease;
+}
+.blockbot__frame i{
+  position: absolute;
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  border: var(--space-px) solid var(--color-selection);
+  background: var(--background);
+  transform: translate(-50%, -50%);
+}
+.blockbot__frame i:nth-child(1){ left: 0; top: 0; }
+.blockbot__frame i:nth-child(2){ left: 100%; top: 0; }
+.blockbot__frame i:nth-child(3){ left: 0; top: 100%; }
+.blockbot__frame i:nth-child(4){ left: 100%; top: 100%; }
+.blockbot[data-selected="true"] .blockbot__frame{ opacity: 1; }
+.blockbot[data-tipping] .blockbot__frame{ opacity: 0; } /* the frame doesn't tip with it */
+
+/* name tag above, a little to the right, like the one in the sketch; it shows what the bot says */
+.blockbot__tag{
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  left: 50%;
+  padding: var(--space-0-5) var(--space-2);
+  background: var(--color-block);
+  color: var(--foreground);
+  font-family: var(--font-family-body);
+  font-size: var(--text-micro);
+  line-height: var(--leading-snug);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-base) ease;
+}
+.blockbot[data-ready] .blockbot__tag{ opacity: 1; }
+.blockbot[data-dragging] .blockbot__tag,
+.blockbot[data-tipping] .blockbot__tag{ opacity: 0; }
+
+@media (max-width: 700px){
+  .blockbot{ display: none; }
+}
+
+/* little keycaps for "I can move around with the arrow keys" */
+.blockbot__tag kbd{
+  display: inline-block;
+  margin-left: var(--space-1);
+  padding: 0 var(--space-1);
+  border: var(--space-px) solid var(--foreground);
+  border-radius: var(--radius-xs);
+  background: var(--background);
+  font: inherit;
+}
