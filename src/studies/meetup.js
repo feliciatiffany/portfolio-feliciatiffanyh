@@ -13,7 +13,7 @@ export default {
   meta: [
     { label: "Date", value: "Sep – Oct 2026" },
     { label: "Stacks", value: "Figma" },
-    { label: "Category", value: "Product Design · Solo class concept" },
+    { label: "Category", value: ["Product Design", "Solo class concept"] },
   ],
   cover: {
     type: "video",

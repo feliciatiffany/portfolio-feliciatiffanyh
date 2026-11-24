@@ -5,7 +5,6 @@ import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 import DitherImage from "../components/DitherImage.jsx";
 import BlockBot, { introWillPlay } from "../components/BlockBot.jsx";
 import ScrollHint from "../components/ScrollHint.jsx";
-import { glideTo } from "../lib/smoothScroll.js";
 import Socials from "../components/Socials.jsx";
 import LazyVideo from "../components/LazyVideo.jsx";
 import { STUDY_CASES } from "../lib/studyCases.js";
@@ -18,6 +17,8 @@ const ANYTHING = [
   "designs graphics",
   "builds side projects",
   "goes on side quests",
+  "builds communities",
+  "travels",
 ];
 
 // What Fany bot says, one line every 5 seconds nobody plays with it
@@ -112,38 +113,6 @@ export default function Home() {
     return () => window.clearTimeout(t);
   }, []);
 
-  // Two resting places: the intro at the top, and the cases with 25% empty paper above them.
-  // A scroll that stops in between glides on to the next one in the direction it was going.
-  // Past the cases' resting place the page scrolls freely (the side rail stays put).
-  useEffect(() => {
-    if (window.matchMedia("(max-width: 700px)").matches) return; // phones: no tall first screen
-    const restY = () => {
-      const g = document.querySelector(".home-cases__grid");
-      const rest = parseFloat(getComputedStyle(document.querySelector(".home-shell")).getPropertyValue("--home-rest")) || 25;
-      return g ? g.getBoundingClientRect().top + window.scrollY - (window.innerHeight * rest) / 100 : 0;
-    };
-    let last = window.scrollY;
-    let dir = 1;
-    let timer;
-    const settle = () => {
-      const y = window.scrollY;
-      const r = restY();
-      if (y > 2 && y < r - 2) glideTo(dir > 0 ? r : 0);
-    };
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (y !== last) dir = Math.sign(y - last);
-      last = y;
-      clearTimeout(timer);
-      timer = setTimeout(settle, 140);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
   // the opening plays in steps (BlockBot): 0 empty, 1 lines, 2 text, 3 photo, 4 done
   const [intro, setIntro] = useState(() => (introWillPlay() ? 0 : 4));
   // the links only show once the page has scrolled past the first screen's intro
@@ -163,7 +132,17 @@ export default function Home() {
       <BlockBot shellRef={shellRef} avatarRef={avatarRef} heroRef={heroRef} lines={BOT_LINES} onStep={setIntro} />
       {/* Top-left cell: avatar centered on the hero band */}
       <div className="home-mark-cell">
-        <Link to="/" className="home-rail__logo" aria-label="Home" ref={avatarRef}>
+        <Link
+          to="/"
+          className="home-rail__logo"
+          aria-label="Home"
+          ref={avatarRef}
+          onClick={(e) => {
+            // already home: just back to the top, nothing reloads or replays
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
           <DitherImage
             className="avatar avatar--scramble home-rail__avatar"
             src={PROFILE_SRC}
@@ -201,7 +180,7 @@ export default function Home() {
 
       {/* Lower-left: nav + socials, white like the page */}
       <aside className="home-rail" aria-label="Site">
-        {/* the nav stays put, level with the cards, while the cases scroll */}
+        {/* nav and links come in level with the cards, then stay put while the cases scroll on */}
         <div className="home-rail__stick">
           <nav className="home-rail__nav" aria-label="Sections">
             {RAIL.map((item) =>
@@ -220,10 +199,11 @@ export default function Home() {
               )
             )}
           </nav>
-        </div>
-        {/* the links sit in the screen's bottom-left corner the whole time (Scroll is in the right one) */}
-        <div className="home-rail__foot">
-          <Socials />
+          {/* the links ride in the same block, at the bottom of the screen: scrolling up, they move
+              down and away together with the nav instead of hanging on screen */}
+          <div className="home-rail__foot">
+            <Socials />
+          </div>
         </div>
       </aside>
 

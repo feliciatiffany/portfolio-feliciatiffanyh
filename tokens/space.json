@@ -196,6 +196,16 @@
         "$value": "{space.8}",
         "$description": "Case study: gap between columns, and space above and below a row of columns"
       }
+    },
+    "bot-gap": {
+      "$type": "dimension",
+      "$value": "{space.5}",
+      "$description": "Fany bot: the air between the bot and whatever it sits on (text, the photo, a line, the links)"
+    },
+    "frame": {
+      "$type": "dimension",
+      "$value": "{space.8}",
+      "$description": "The default gap (32px): from the photo and the intro to the grid lines, between the case study images, and the default space between things inside the homepage frame"
     }
   }
 }

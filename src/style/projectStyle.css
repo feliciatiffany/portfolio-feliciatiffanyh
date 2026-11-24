@@ -841,7 +841,7 @@ gap: var(--space-3);
 
 /* =========================================================
    PROJECT PAGE — centered title, hero, Date/Stacks/Category row,
-   body copy in Montserrat (mockup layout)
+   body copy in the site sans (mockup layout)
    ========================================================= */
 .project-template .proj-body{
   max-width: 640px;
@@ -891,7 +891,7 @@ gap: var(--space-3);
 .project-template .proj-intro{ display: grid; gap: var(--space-3); }
 .project-template .proj-text{ white-space: normal; line-height: var(--leading-prose); }
 
-/* Section headings: Montserrat bold instead of tiny caps */
+/* Section headings: bold sans instead of tiny caps */
 .project-template .proj-minihead{
   font-family: var(--font-family-body);
   font-size: var(--text-body-lg);
@@ -1130,3 +1130,25 @@ gap: var(--space-3);
     grid-template-columns: 1fr;
   }
 }
+
+/* Case study pages: a smaller title, and nothing bold anywhere (titles, headings, labels,
+   bold words in the text all use the regular weight; hierarchy comes from size and colour) */
+.project-template .proj-page-title{ font-size: var(--text-case-title); line-height: var(--leading-h1); }
+.project-template .case-study .case-h2{ font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+.project-template .case-study .case-h3{ font-size: var(--text-case-sub); line-height: var(--leading-h3); }
+.project-template .case-study .case-h1{ color: var(--muted-foreground); font-size: var(--text-case-label); }
+/* the overview: grey label with room under it, the question as a statement, then quiet grey text */
+.project-template .case-study .proj-minihead,
+.project-template .proj-body.case-study[data-wide-cover] .proj-intro > .proj-minihead{ font-size: var(--text-case-label); }
+.project-template .case-study .proj-intro > .proj-minihead{ color: var(--muted-foreground); margin-bottom: var(--space-4); }
+.project-template .proj-body.case-study[data-wide-cover] .proj-intro > .proj-intro__question,
+.project-template .case-study .proj-intro > .proj-intro__question{ margin-top: 0; font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+/* reading text in a quiet grey; headings, column titles and facts stay near-black */
+.project-template .case-study .proj-text,
+.project-template .case-study .proj-intro__questions li,
+.project-template .case-study p:not([class*="minihead"]){ color: var(--muted-foreground); }
+.project-template .case-study .proj-text,
+.project-template .case-study .case-body,
+.project-template .case-study .proj-intro__questions li{ font-size: var(--text-case-read); }
+.project-template,
+.project-template *{ font-weight: var(--font-weight-regular) !important; }

@@ -102,6 +102,7 @@
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
   --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1.15);
   --ease-in-out: cubic-bezier(0.45, 0, 0.2, 1);
+  --ease-tip: cubic-bezier(0.45, 0.05, 0.8, 0.55);
   --scale-hover: 1.03;
   /* shape.json */
   --radius-none: 0;
@@ -160,9 +161,11 @@
   --space-case-paragraph: var(--space-4);
   --space-case-group: var(--space-12);
   --space-case-columns: var(--space-8);
+  --space-bot-gap: var(--space-5);
+  --space-frame: var(--space-8);
   /* type.json */
-  --font-family-mono: "Source Code Pro", source-code-pro, ui-monospace, "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
-  --font-family-sans: "Montserrat", system-ui, sans-serif;
+  --font-family-mono: "Geist Mono Variable", ui-monospace, "SF Mono", "Menlo", monospace;
+  --font-family-sans: -apple-system, "BlinkMacSystemFont", "SF Pro Display", "SF Pro Text", "Inter Variable", "Inter", system-ui, sans-serif;
   --font-family-flex: "Roboto Flex", sans-serif;
   --font-family-title: var(--font-family-sans);
   --font-family-body: var(--font-family-sans);
@@ -197,7 +200,7 @@
   --text-subtitle: var(--text-scale-h3);
   --text-section-title: var(--text-scale-h2);
   --text-page-title: var(--text-scale-h1);
-  --text-home-intro: min(clamp(26px, calc(20px + 1.1vw), 36px), 2.9cqw);
+  --text-home-intro: min(clamp(20px, calc(16px + 0.8vw), 28px), 2.9cqw);
   --text-intro-narrow: clamp(18px, 5.4vw, 24px);
   --text-hero: var(--text-scale-h1);
   --text-nav: var(--text-scale-nav);
@@ -219,6 +222,11 @@
   --text-scale-body: clamp(15px, calc(14.6px + 0.1vw), 16px);
   --text-scale-nav: clamp(14px, calc(13.6px + 0.1vw), 15px);
   --text-scale-caption: clamp(12px, calc(11.6px + 0.1vw), 13px);
+  --text-case-title: clamp(30px, calc(22px + 1.5vw), 44px);
+  --text-case-statement: clamp(24px, calc(19px + 0.9vw), 32px);
+  --text-case-sub: clamp(18px, calc(16px + 0.3vw), 20px);
+  --text-case-read: 14px;
+  --text-case-label: 12px;
   --leading-none: 1;
   --leading-tight: 1.15;
   --leading-snug: 1.3;

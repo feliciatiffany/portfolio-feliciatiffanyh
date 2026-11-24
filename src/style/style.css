@@ -725,15 +725,20 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   --home-rest: 25dvh; /* scrolled to the cases, they rest with this much empty paper above them */
   --home-hero-h: 58dvh; /* the intro band fills a little over half the first screen, like the mockup */
   --home-below: calc(100dvh - var(--home-hero-h)); /* the first screen is only the intro and the photo; cases begin below the fold */
-  --home-gap: var(--space-5); /* the same distance from the photo and the text to the lines */
+  --home-gap: var(--space-frame); /* the default gap (32px): photo and text to the lines, and between the case images */
   --home-intro-lines: 2;
-  --home-avatar: calc(var(--text-home-intro) * var(--leading-tight) * var(--home-intro-lines)); /* as tall as the intro */
-  --home-pad-x: clamp(var(--space-6), 3.5vw, var(--space-12));
-  --home-rail-w: calc(var(--home-avatar) + var(--home-gap) * 4.5); /* the rail fits the photo, with more room on its left */
+  /* as tall as the intro's ink: from the top of its capitals (0.72 ≈ the sans' cap height) down to
+     the underline under the typed words (0.26em below the baseline), so the photo and the text
+     both sit exactly the same distance above the line */
+  --home-intro-under: 0.26;
+  --home-avatar: calc(var(--text-home-intro) * (var(--leading-tight) * (var(--home-intro-lines) - 1) + 0.72 + var(--home-intro-under)));
+  --home-pad-x: var(--home-gap); /* text and cards start the same distance from the rail line as the photo sits from it */
+  --home-rail-w: 15%; /* the side rail: about a seventh of the page's width */
+  --home-edge-w: calc(var(--home-avatar) + var(--home-gap) * 4.5); /* the empty right margin */
   display: grid;
   /* equal margins on both sides; a thin vertical line only on the left (the rail), and the
      horizontal line under the intro running edge to edge */
-  grid-template-columns: var(--home-rail-w) 1fr var(--home-rail-w);
+  grid-template-columns: var(--home-rail-w) minmax(0, 1fr) var(--home-edge-w);
   grid-template-rows: auto 1fr;
   grid-template-areas:
     "mark hero edge-top"
@@ -808,24 +813,33 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-8);
-  padding: var(--home-below) var(--space-5) var(--space-16);
+  /* bottom padding no deeper than the links' gap, so at the very end of the page the nav and
+     links still hold their place instead of being pushed up */
+  padding: var(--home-below) var(--space-5) var(--space-6);
   background: transparent;
   border-right: var(--space-px) solid var(--border);
 }
 /* the side rail stays put while the cases scroll: one block, the nav level with the cards' top
    and the links at the bottom of the screen, so the two can never slide into each other */
+/* it scrolls in level with the first row of projects, then stays put at their resting height
+   (25% down the screen) however far the page scrolls on */
 .home-rail__stick{
   position: sticky;
   top: var(--home-rest);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* from the cards' top down to the bottom of the screen: nav at the top, links at the bottom */
+  height: calc(100dvh - var(--home-rest) - var(--space-6));
 }
 .home-rail__nav{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-3);
-  font-size: var(--text-body);
+  gap: var(--space-2-5); /* about 25px from line to line */
+  font-size: var(--text-ui); /* nav size (14–15px), like the reference */
   line-height: var(--leading-none);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
 }
 .home-rail__a{
   color: var(--foreground);
@@ -837,17 +851,19 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 .home-rail__a.is-active{ color: var(--foreground); }
 .home-rail__a:not(.is-active){ color: var(--muted-foreground); font-weight: var(--font-weight-regular); }
 .home-rail__foot{
-  position: fixed; /* the screen's bottom-left corner, the whole time */
-  left: var(--space-5);
-  bottom: var(--space-6);
+  position: relative;
   z-index: 4;
   display: flex;
   flex-direction: column; /* one link per line, like the mockup */
   align-items: flex-start;
-  gap: var(--space-1-5);
-  font-size: var(--text-body-sm);
-  line-height: var(--leading-snug);
+  /* set exactly like the nav above it: same size, grey, the same spacing between lines */
+  gap: var(--space-2-5);
+  font-size: var(--text-ui);
+  line-height: var(--leading-none);
+  color: var(--muted-foreground);
 }
+.home-rail__foot .foot-link:hover,
+.home-rail__foot .foot-link:focus-visible{ font-size: inherit; letter-spacing: normal; color: var(--foreground); }
 /* not on the first screen: the links fade in once the page scrolls to the cases */
 .home-shell:not([data-scrolled]) .home-rail__foot{ opacity: 0; visibility: hidden; }
 .home-rail__foot{ transition: opacity var(--duration-slow) ease, visibility var(--duration-slow); }
@@ -862,6 +878,8 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   font-size: var(--text-home-intro);
   line-height: var(--leading-tight);
   color: var(--foreground);
+  text-box: trim-both cap alphabetic; /* no empty leading above the capitals or below the baseline */
+  padding-bottom: calc(1em * var(--home-intro-under)); /* room for the typed words' underline, the lowest ink */
 }
 /* the scramble runs inline here, so the typed words follow "who also" on the same line */
 .home-intro .scrambled-text,
@@ -889,8 +907,12 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-8) var(--space-6);
+  gap: var(--space-frame); /* the default gap, the same as from the photo and text to the lines */
   width: 100%; /* fills the framed column */
+}
+/* Ask Fany open beside the page: the cases stack in one column */
+@media (min-width: 900px){
+  .fanyllm-open .home-cases__grid{ grid-template-columns: minmax(0, 1fr); }
 }
 .home-case__link{
   display: grid;
@@ -925,7 +947,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   font-size: var(--text-body-sm);
   line-height: var(--leading-snug);
 }
-.home-case__title{ color: var(--foreground); font-weight: var(--font-weight-medium); }
+.home-case__title{ color: var(--foreground); font-weight: var(--font-weight-regular); }
 .home-case__meta{ color: var(--muted-foreground); }
 .home-case__meta::before{ content: "/"; margin: 0 var(--space-2); color: var(--muted-foreground); }
 .home-case.is-pending .home-case__link{ cursor: default; }
@@ -975,7 +997,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   .home-intro{ font-size: var(--text-intro-narrow); font-weight: var(--font-weight-regular); max-width: none; white-space: normal; }
   .home-cases{ padding: var(--space-6) var(--space-5) var(--space-12); }
   .home-rail__foot{ flex-direction: row; flex-wrap: wrap; gap: var(--space-3); }
-  .home-cases__grid{ grid-template-columns: 1fr; gap: var(--space-8); }
+  .home-cases__grid{ grid-template-columns: 1fr; gap: var(--space-frame); }
 }
 
 /* =========================================================
@@ -1623,7 +1645,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   .built-sub{ animation: none; }
 }
 
-/* ===== Small text & captions: Montserrat ===== */
+/* ===== Small text & captions: the site sans ===== */
 .foot,
 .built-sub{ font-family: var(--font-family-body); }
 .foot{ font-size: var(--text-meta); }

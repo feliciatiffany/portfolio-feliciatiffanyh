@@ -56,6 +56,16 @@
         1
       ],
       "$description": "Slow drift both ways (reveals, lines)"
+    },
+    "tip": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.45,
+        0.05,
+        0.8,
+        0.55
+      ],
+      "$description": "Fany bot tipping over: slow up onto its edge, then falling faster onto the next face, so tips run on smoothly one after another"
     }
   },
   "scale": {

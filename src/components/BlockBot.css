@@ -1,4 +1,4 @@
-/* Fany bot: a plain grey block. It tips over its edges to move (blockbot.js); dragged,
+/* Fany bot: a block with a face (eyes and a small mouth), drawn as a little 3D cube. It tips over its edges to move (blockbot.js); dragged,
    it shows a selected-layer frame with corner handles; its name tag sits above it. */
 .blockbot{
   position: absolute;
@@ -9,14 +9,53 @@
   user-select: none;
   will-change: transform;
 }
+/* sitting on the links: fixed to the screen with them, so scrolling either way can't leave it behind */
+.blockbot[data-pinned="true"]{ position: fixed; }
 .blockbot[data-appear="true"]{ animation: blockbot-appear var(--duration-slow) var(--ease-out) both; }
 @keyframes blockbot-appear{ from{ opacity: 0; } to{ opacity: 1; } }
 
 .blockbot__body{
   position: absolute;
   inset: 0;
-  background: var(--color-block);
+  perspective: calc(var(--bb-s) * 4.4);
 }
+/* turning left and right: about its own upright axis, so it stays on the ground */
+.blockbot__yaw,
+.blockbot__cube{
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+/* leaning back to look up: about its bottom back edge, the one resting on the floor */
+.blockbot__cube{ transform-origin: 50% 100% calc(var(--bb-s) / -2); }
+.blockbot__face{
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  background: var(--foreground);
+}
+.blockbot__face--front{ transform: translateZ(calc(var(--bb-s) / 2)); }
+.blockbot__face--back{ transform: rotateY(180deg) translateZ(calc(var(--bb-s) / 2)); }
+.blockbot__face--right{
+  transform: rotateY(90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 94%, var(--background));
+}
+.blockbot__face--left{
+  transform: rotateY(-90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 88%, var(--background));
+}
+.blockbot__face--top{
+  transform: rotateX(90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 84%, var(--background));
+}
+.blockbot__face--bottom{
+  transform: rotateX(-90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 96%, var(--background));
+}
+.blockbot__face svg{ position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.blockbot__feat{ transform-box: view-box; transform-origin: 50% 50%; }
+.blockbot__eye,
+.blockbot__mouth{ fill: var(--background); }
 
 /* selected: a thin blue frame with four square handles */
 .blockbot__frame{
@@ -76,3 +115,88 @@
   background: var(--background);
   font: inherit;
 }
+
+/* the stairs the line folds into when the bot has to climb (blockbot.js climb) */
+.blockbot-stair{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 4;
+}
+.blockbot-stair path{
+  fill: none;
+  stroke: var(--border);
+  stroke-width: var(--space-px);
+}
+
+/* asleep: the block without its face, until it opens its eyes in the opening */
+.blockbot__feat{ transition: opacity var(--duration-slow) var(--ease-out); }
+.blockbot[data-asleep] .blockbot__feat{ opacity: 0; }
+
+/* ---- the opening (BlockBot.jsx): a terminal, then the bot assembling out of characters ---- */
+.bot-term{
+  position: absolute;
+  top: 45dvh;
+  left: calc(var(--home-rail-w) + var(--home-gap));
+  z-index: 6;
+  font-family: var(--font-family-mono);
+  font-size: var(--text-ui);
+  line-height: var(--leading-snug);
+  color: var(--foreground);
+  transition: opacity var(--duration-slow) ease;
+}
+.bot-term[data-gone="true"]{ opacity: 0; }
+.bot-term__line{ display: flex; align-items: center; gap: var(--space-frame); min-height: var(--space-8); }
+.bot-term__cmd::before{ content: "$ "; color: var(--muted-foreground); }
+.bot-term__key{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1-5) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-none);
+  background: var(--color-block);
+  color: var(--foreground);
+  font: inherit;
+  font-family: var(--font-family-body);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(var(--space-1));
+  transition: opacity var(--duration-base) var(--ease-out), transform var(--duration-base) var(--ease-out);
+}
+.bot-term__key[data-show="true"]{ opacity: 1; transform: none; }
+.bot-term__key[data-pressed="true"]{ transform: translateY(var(--space-0-5)); }
+.bot-term__key svg{ width: var(--space-5); height: var(--space-4); fill: none; stroke: currentColor; stroke-width: 1.6; }
+.bot-term__log{ margin-top: var(--space-2); color: var(--muted-foreground); white-space: pre; }
+.bot-term__row--ok{ color: var(--foreground); }
+
+.bot-build{
+  position: absolute;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  grid-template-rows: repeat(var(--n), 1fr);
+  font-family: var(--font-family-mono);
+  font-size: var(--text-micro);
+  line-height: var(--leading-none);
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+.bot-build span{ display: grid; place-items: center; overflow: hidden; }
+.bot-build span[data-solid="true"]{ background: var(--foreground); }
+
+.bot-skip{ position: fixed; right: var(--space-5); bottom: var(--space-5); z-index: 7; }
+.bot-skip button{
+  border: 0;
+  background: none;
+  color: var(--muted-foreground);
+  font-family: var(--font-family-body);
+  font-size: var(--text-ui);
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+.bot-skip button:hover,
+.bot-skip button:focus-visible{ color: var(--foreground); outline: none; }

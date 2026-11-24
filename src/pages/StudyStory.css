@@ -220,3 +220,19 @@
 @keyframes story-notes-in{ from{ opacity: 0; filter: blur(2px); } to{ opacity: 1; filter: none; } }
 @media (max-width: 800px){ .story__notes-cols{ grid-template-columns: 1fr; gap: var(--space-3); } }
 @media (prefers-reduced-motion: reduce){ .story__carousel-slide, .story__notes-set.is-on{ transition: none; animation: none; } }
+
+/* Case studies: nothing bold anywhere; hierarchy comes from size and colour, like the reference:
+   title biggest → section statement → sub-heading; labels and reading text in a quiet grey,
+   names, facts and small titles in the near-black */
+.story .story__title{ font-size: var(--text-case-title); line-height: var(--leading-h1); }
+.story .story__h{ font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+.story .story__sub{ font-size: var(--text-case-sub); line-height: var(--leading-h3); }
+.story .story__label{ color: var(--muted-foreground); font-size: var(--text-case-label); }
+.story .story__p,
+.story .story__hook,
+.story .story__aside p,
+.story .story__card p,
+.story li{ color: var(--muted-foreground); font-size: var(--text-case-read); }
+.story .story__aside{ border-left-color: var(--border); }
+.story,
+.story *{ font-weight: var(--font-weight-regular) !important; }
