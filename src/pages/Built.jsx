@@ -1,7 +1,8 @@
 // src/pages/Built.jsx — Timeline: center-line timeline with category filters
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { TYPES, ENTRIES, groupByYear } from "../lib/timeline";
+// projects and the creative side moved to the Playground page; the timeline keeps the rest
+import { TIMELINE_TYPES as TYPES, TIMELINE as ENTRIES, groupByYear } from "../lib/timeline";
 import LineFilter from "../components/LineFilter.jsx";
 import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
 import CodeSlots from "../components/CodeSlots.jsx";

@@ -214,6 +214,7 @@ export const tokens = Object.freeze({
   "space-case-columns": "32px",
   "space-bot-gap": "20px",
   "space-frame": "32px",
+  "space-nav-gap": "16px",
   "font-family-mono": "\"Geist Mono Variable\", ui-monospace, \"SF Mono\", \"Menlo\", monospace",
   "font-family-sans": "-apple-system, \"BlinkMacSystemFont\", \"SF Pro Display\", \"SF Pro Text\", \"Inter Variable\", \"Inter\", system-ui, sans-serif",
   "font-family-flex": "\"Roboto Flex\", sans-serif",

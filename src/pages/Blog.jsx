@@ -1,9 +1,10 @@
 // src/pages/Blog.jsx — writing list: category + year filters on the left, posts along a line on the right
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import data from "../data/blog.json";
 import LineFilter from "../components/LineFilter.jsx";
 import useReveal from "../lib/useReveal.js";
+import useDotFilter from "../lib/useDotFilter.js";
 
 export const POSTS = data.posts.map((p) => ({ ...p, year: Number(p.date.slice(0, 4)) }));
 export const CATEGORIES = [...new Set(POSTS.map((p) => p.category))].sort();
@@ -13,24 +14,15 @@ export function formatDate(iso) {
   return new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-function useToggleSet(all) {
-  const [set, setSet] = useState(() => new Set(all));
-  const toggle = (v) =>
-    setSet((prev) => {
-      const next = new Set(prev);
-      next.has(v) ? next.delete(v) : next.add(v);
-      return next;
-    });
-  return [set, toggle];
-}
-
 export default function Blog() {
-  const [cats, toggleCat] = useToggleSet(CATEGORIES);
-  const [years, toggleYear] = useToggleSet(YEARS);
+  // each list starts on "All"; picking items narrows to just those (marked with a dot)
+  const cats = useDotFilter(CATEGORIES);
+  const years = useDotFilter(YEARS);
 
   const shown = useMemo(
-    () => POSTS.filter((p) => cats.has(p.category) && years.has(p.year)),
-    [cats, years]
+    () => POSTS.filter((p) => cats.shows(p.category) && years.shows(p.year)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cats.pressed, years.pressed]
   );
   const byYear = useMemo(() => {
     const groups = new Map();
@@ -47,15 +39,15 @@ export default function Blog() {
       <aside className="blog-nav" aria-label="Filter posts">
         <LineFilter
           title="Categories"
-          items={CATEGORIES.map((c) => ({ key: c, label: c }))}
-          pressed={cats}
-          onToggle={toggleCat}
+          items={cats.withAll(CATEGORIES.map((c) => ({ key: c, label: c })))}
+          pressed={cats.pressed}
+          onToggle={cats.toggle}
         />
         <LineFilter
           title="Year"
-          items={YEARS.map((y) => ({ key: y, label: String(y) }))}
-          pressed={years}
-          onToggle={toggleYear}
+          items={years.withAll(YEARS.map((y) => ({ key: y, label: String(y) })))}
+          pressed={years.pressed}
+          onToggle={years.toggle}
         />
       </aside>
 

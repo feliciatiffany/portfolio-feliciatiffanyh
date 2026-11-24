@@ -32,7 +32,7 @@ const BOT_LINES = [
 
 const RAIL = [
   { href: "#case-study", label: "Case Study", active: true },
-  { to: "/blog", label: "Playground" }, // no playground page yet: opens the blog for now
+  { to: "/playground", label: "Playground" },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
 ];

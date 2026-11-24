@@ -163,6 +163,7 @@
   --space-case-columns: var(--space-8);
   --space-bot-gap: var(--space-5);
   --space-frame: var(--space-8);
+  --space-nav-gap: var(--space-4);
   /* type.json */
   --font-family-mono: "Geist Mono Variable", ui-monospace, "SF Mono", "Menlo", monospace;
   --font-family-sans: -apple-system, "BlinkMacSystemFont", "SF Pro Display", "SF Pro Text", "Inter Variable", "Inter", system-ui, sans-serif;

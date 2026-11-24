@@ -672,11 +672,15 @@ body{
     z-index: 35;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-1-5);
+    gap: var(--space-nav-gap); /* set like the homepage's links: same size, grey, same spacing */
     padding: 0;
-    font-size: var(--text-body-sm);
+    font-size: var(--text-ui);
+    line-height: var(--leading-none);
+    color: var(--muted-foreground);
   }
   .page-grid .foot .foot-sep{ display: none; }
+  .page-grid .foot .foot-link:hover,
+  .page-grid .foot .foot-link:focus-visible{ font-size: inherit; letter-spacing: normal; color: var(--foreground); }
 }
 
 /* ===== Round avatar ===== */
@@ -725,6 +729,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   --home-rest: 25dvh; /* scrolled to the cases, they rest with this much empty paper above them */
   --home-hero-h: 58dvh; /* the intro band fills a little over half the first screen, like the mockup */
   --home-below: calc(100dvh - var(--home-hero-h)); /* the first screen is only the intro and the photo; cases begin below the fold */
+  --home-cases-top: calc(var(--home-below) + 20dvh); /* and a good stretch of empty paper more before the first case */
   --home-gap: var(--space-frame); /* the default gap (32px): photo and text to the lines, and between the case images */
   --home-intro-lines: 2;
   /* as tall as the intro's ink: from the top of its capitals (0.72 ≈ the sans' cap height) down to
@@ -815,7 +820,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   gap: var(--space-8);
   /* bottom padding no deeper than the links' gap, so at the very end of the page the nav and
      links still hold their place instead of being pushed up */
-  padding: var(--home-below) var(--space-5) var(--space-6);
+  padding: var(--home-cases-top) var(--space-5) var(--space-6);
   background: transparent;
   border-right: var(--space-px) solid var(--border);
 }
@@ -836,7 +841,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-2-5); /* about 25px from line to line */
+  gap: var(--space-nav-gap); /* the shared side-menu spacing */
   font-size: var(--text-ui); /* nav size (14–15px), like the reference */
   line-height: var(--leading-none);
   font-weight: var(--font-weight-regular);
@@ -846,10 +851,26 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   text-decoration: none;
   transition: color var(--duration-fast) ease;
 }
-.home-rail__a:hover,
-.home-rail__a:focus-visible{ color: var(--color-action-hover); outline: none; }
 .home-rail__a.is-active{ color: var(--foreground); }
 .home-rail__a:not(.is-active){ color: var(--muted-foreground); font-weight: var(--font-weight-regular); }
+/* hover: the word darkens and a small square slides in beside it, like the case study side list */
+.home-rail__a{ position: relative; }
+.home-rail__a::before{
+  content: "";
+  position: absolute;
+  left: calc(var(--space-3) * -1);
+  top: 50%;
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  background: var(--foreground);
+  transform: translateY(-50%) scale(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.home-rail__a:hover,
+.home-rail__a:focus-visible{ color: var(--foreground); outline: none; }
+.home-rail__a:hover::before,
+.home-rail__a:focus-visible::before{ transform: translateY(-50%) scale(1); }
+.home-rail__a{ transition: color var(--duration-fast) ease; }
 .home-rail__foot{
   position: relative;
   z-index: 4;
@@ -857,7 +878,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
   flex-direction: column; /* one link per line, like the mockup */
   align-items: flex-start;
   /* set exactly like the nav above it: same size, grey, the same spacing between lines */
-  gap: var(--space-2-5);
+  gap: var(--space-nav-gap);
   font-size: var(--text-ui);
   line-height: var(--leading-none);
   color: var(--muted-foreground);
@@ -898,8 +919,8 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 
 .home-cases{
   grid-area: cases;
-  padding: var(--home-below) var(--home-pad-x) var(--space-16);
-  scroll-margin-top: calc(var(--home-rest) - var(--home-below)); /* the Case Study link lands where scrolling rests: the cards with 25% paper above */
+  padding: var(--home-cases-top) var(--home-pad-x) var(--space-16);
+  scroll-margin-top: calc(var(--home-rest) - var(--home-cases-top)); /* the Case Study link lands where scrolling rests: the cards with 25% paper above */
 }
 .home-cases__grid{
   list-style: none;
@@ -1378,11 +1399,12 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 /* =========================================================
    BLOG — filters on the left, posts along a line on the right
    ========================================================= */
-.blog{ width: min(1100px, 100%); margin: 0 auto; padding: var(--space-page-top) var(--space-4) clamp(64px, 8vw, 120px); }
+/* the posts start on the same line as the filters beside them: 25% down the screen
+   (the page's header bar above is --space-12 tall) */
+.blog{ width: min(1100px, 100%); margin: 0 auto; padding: calc(25dvh - var(--space-12)) var(--space-4) clamp(64px, 8vw, 120px); }
 .blog-nav{
   position: fixed;
-  /* same top line as the first card (header + page-top + the list's own top padding) */
-  top: calc(var(--space-12) + var(--space-page-top) + var(--space-6));
+  top: 25dvh; /* the same height as the homepage's side nav */
   left: var(--space-5);
   z-index: 35;
   display: grid;
@@ -1513,8 +1535,51 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 .blog-item__sum{ font-family: var(--font-family-body); font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--muted-foreground); margin-top: var(--space-sub-body); }
 .blog__empty{ font-family: var(--font-family-body); color: var(--muted-foreground); }
 
+/* ---- Blog, framed like the homepage: the side rail behind a thin line, posts beside it,
+   thin full-width lines between the years, regular weight throughout ---- */
+@media (min-width: 801px){
+  .blog{
+    --blog-rail: 15vw; /* same width as the homepage's side rail */
+    width: auto;
+    margin: 0;
+    padding-left: calc(var(--blog-rail) + var(--space-frame));
+    padding-right: 0;
+  }
+  .blog::before{ /* the rail's line, top to bottom, like the homepage */
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: var(--blog-rail);
+    width: var(--space-px);
+    background: var(--border);
+    pointer-events: none;
+  }
+  .blog-year{
+    padding-top: var(--space-frame);
+    margin-top: var(--space-16);
+    border-top: var(--space-px) solid var(--border); /* runs from the rail's line to the right edge */
+    margin-left: calc(var(--space-frame) * -1);
+    padding-left: var(--space-frame);
+  }
+  .blog-year:first-of-type{ margin-top: 0; padding-top: 0; border-top: 0; }
+  .blog-year__h,
+  .blog__list{ width: min(760px, 100%); margin-left: 0; margin-right: 0; }
+}
+/* no timeline bar or travelling dot here: the frame lines do that job */
+.blog__list::before,
+.blog__list::after{ display: none; }
+.blog__list{ padding: var(--space-frame) 0 0; gap: var(--space-12); }
+.blog-year__h{ margin-bottom: 0; font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+.blog-item__title{ font-size: var(--text-case-sub); line-height: var(--leading-h3); }
+.blog-item__meta{ font-size: var(--text-case-label); margin-top: var(--space-1-5); }
+.blog-item__sum{ font-size: var(--text-case-read); line-height: var(--leading-body); }
+.blog,
+.blog *{ font-weight: var(--font-weight-regular) !important; }
+
 @media (max-width: 800px){
   .blog-nav{ position: static; margin: var(--space-2) 0 var(--space-7); }
+  .blog{ padding-top: var(--space-page-top); } /* filters sit above the posts on phones */
   .blog__layout{ grid-template-columns: 1fr; }
   .blog__side{ position: static; }
   .blog-filter{ grid-auto-flow: column; align-items: baseline; gap: var(--space-3); }

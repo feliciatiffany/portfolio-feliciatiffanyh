@@ -206,6 +206,11 @@
       "$type": "dimension",
       "$value": "{space.8}",
       "$description": "The default gap (32px): from the photo and the intro to the grid lines, between the case study images, and the default space between things inside the homepage frame"
+    },
+    "nav-gap": {
+      "$type": "dimension",
+      "$value": "{space.4}",
+      "$description": "Space between the lines of every side menu (homepage nav and links, blog filters, case study chapters)"
     }
   }
 }

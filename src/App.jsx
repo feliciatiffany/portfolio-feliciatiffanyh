@@ -17,6 +17,7 @@ const PAGES = {
   Project: () => import("./pages/Project.jsx"),
   Built: () => import("./pages/Built.jsx"),
   Blog: () => import("./pages/Blog.jsx"),
+  Playground: () => import("./pages/Playground.jsx"),
   StudyStory: () => import("./pages/StudyStory.jsx"),
   BlogPost: () => import("./pages/BlogPost.jsx"),
   FlipBook: () => import("./pages/FlipBook.jsx"),
@@ -29,6 +30,7 @@ const About = lazy(PAGES.About);
 const Category = lazy(PAGES.Category);
 const Project = lazy(PAGES.Project);
 const Blog = lazy(PAGES.Blog);
+const Playground = lazy(PAGES.Playground);
 const StudyStory = lazy(PAGES.StudyStory);
 const BlogPost = lazy(PAGES.BlogPost);
 const FlipBook = lazy(PAGES.FlipBook);
@@ -63,7 +65,7 @@ function CursorGlow() {
 // Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.
 // Titles of projects and posts load on demand, so every page doesn't carry all of that text.
 const projectLoaders = import.meta.glob("./projects/**/*.js", { import: "default" });
-const PAGE_NAMES = { built: "About", "case-study": "Case Study", blog: "Blog", about: "About", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
+const PAGE_NAMES = { built: "About", "case-study": "Case Study", blog: "Blog", playground: "Playground", about: "About", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
 const HOME = { label: "Home", to: "/" };
 function OldCaseStudy() {
   const { slug } = useParams();
@@ -223,7 +225,7 @@ export default function App() {
         {/* the section used to be called Study Case: old links still land */}
         <Route path="/study-case" element={<ToHomeCases />} />
         <Route path="/study-case/:slug" element={<OldCaseStudy />} />
-        <Route path="/playground" element={<Navigate to="/blog" replace />} />
+        <Route path="/playground" element={<Playground />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/book/:slug" element={<FlipBook />} />
