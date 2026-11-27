@@ -110,15 +110,26 @@ body{
   -webkit-backdrop-filter: blur(var(--space-2));
   backdrop-filter: blur(var(--space-2));
 }
-.crumbs__back{
+.crumbs__back,
+.crumbs__sep,
+.crumbs__here{
   display: inline-flex;
   align-items: center;
+  height: 1em; /* same box for Home, /, and the page name so they share one line */
+  line-height: var(--leading-none);
+}
+.crumbs__back{
   gap: var(--space-1);
   color: var(--muted-foreground);
   text-decoration: none;
   transition: color var(--duration-fast) ease;
 }
-.crumbs__icon{ transition: transform var(--duration-base) var(--ease-out); }
+.crumbs__icon{
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  transition: transform var(--duration-base) var(--ease-out);
+}
 .crumbs__back:hover,
 .crumbs__back:focus-visible{ color: var(--accent); outline: none; }
 .crumbs__back:hover .crumbs__icon{ transform: translateX(calc(var(--space-1) * -1)); }
@@ -161,6 +172,7 @@ body{
 }
 
 .foot-link{
+  display: inline-flex; align-items: center; gap: var(--space-1-5);
   color:inherit; text-decoration:none;
   transition: font-size .22s var(--ease-out), letter-spacing .22s ease, color .18s ease;
 }
@@ -185,7 +197,7 @@ body{
 
 .intro{
   line-height:var(--leading-title);
-  font-size: var(--text-hero);
+  font-size: var(--text-hero); font-weight: var(--font-weight-h1);
   max-width:100%;
   word-spacing: clamp(2px,.3vw,10px);
   letter-spacing:-0.003em;
@@ -231,19 +243,31 @@ body{
 .grow-band[data-role="tech"]{ color:var(--color-accent-tech); }
 .grow-band[data-role="digital"]{ color:var(--color-accent-digital); }
 .grow-band[data-role="graphic"]{ color:var(--color-accent-graphic); }
-.grow-band[data-role="others"]{ color:var(--color-accent-digital); }
+.grow-band[data-role="others"]{ color:var(--color-accent-creative); }
 .grow-band[data-role="fany"]{ color:var(--color-accent-name); }
 .grow-band[data-role="fany"]::before{ background:var(--color-wash-name); }
 .grow-band[data-role="tech"]::before{ background:var(--color-wash-tech); }
 .grow-band[data-role="digital"]::before{ background:var(--color-wash-digital); }
 .grow-band[data-role="graphic"]::before{ background:var(--color-wash-graphic); }
-.grow-band[data-role="others"]::before{ background:var(--color-wash-digital); }
+.grow-band[data-role="others"]::before{ background:var(--color-wash-creative); }
 
 /* Active (page) word equals hover size; shrink if other word hovered */
 .grow-band.is-current { font-size: var(--hover-size); }
 .grow-band.is-current::before{ opacity:1; }
 .intro:has(.grow-band:hover) .grow-band.is-current:not(:hover){ font-size:inherit; }
 .intro:has(.grow-band:hover) .grow-band.is-current:not(:hover)::before{ opacity:0; }
+
+/* Soft pulse on homepage role words (portfolio-2025 hint) */
+@keyframes home-soft-hint{
+  0%, 100%{ opacity: 1; filter: brightness(1); }
+  50%{ opacity: 0.72; filter: brightness(1.25); }
+}
+.home .grow-band:not(:hover):not(:focus-visible){
+  animation: home-soft-hint 2s var(--ease-out) infinite;
+}
+@media (prefers-reduced-motion: reduce){
+  .home .grow-band{ animation: none !important; }
+}
 
 
 /* =========================================================
@@ -639,6 +663,25 @@ body{
 }
 .page-grid--center .main{ display: block; }
 .page-grid--center .foot{ justify-content: center; }
+/* Wide screens: the links stack at the bottom-left, under the filters, one per line like the homepage */
+@media (min-width: 801px){
+  .page-grid .foot{
+    position: fixed;
+    left: var(--space-5); /* same left edge as .blog-nav and the breadcrumb */
+    bottom: var(--space-6);
+    z-index: 35;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-nav-gap); /* set like the homepage's links: same size, grey, same spacing */
+    padding: 0;
+    font-size: var(--text-ui);
+    line-height: var(--leading-none);
+    color: var(--muted-foreground);
+  }
+  .page-grid .foot .foot-sep{ display: none; }
+  .page-grid .foot .foot-link:hover,
+  .page-grid .foot .foot-link:focus-visible{ font-size: inherit; letter-spacing: normal; color: var(--foreground); }
+}
 
 /* ===== Round avatar ===== */
 .avatar{
@@ -659,102 +702,330 @@ body{
 .shine:focus-visible img,
 .shine:focus-visible video{ transform: scale(var(--scale-hover)); }
 
-/* ===== Home: photo + intro, with a spiral of equal images around the title ===== */
-.home{
-  position: relative;
-  min-height: calc(100dvh - 70px);
-  display: grid;
-  place-items: center;
-  padding: var(--space-6) var(--space-4);
-  overflow: hidden;
-}
-/* the dome fills the whole screen behind everything, including the footer */
-.home-dome{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-/* soft paper glow behind the intro so the words always read clearly over the dome */
-.home-dome::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  pointer-events: none;
-  background: radial-gradient(ellipse 28% 34% at 50% 50%, color-mix(in srgb, var(--background) 90%, transparent) 0%, color-mix(in srgb, var(--background) 70%, transparent) 50%, transparent 100%);
-}
-.home--narrow .home-dome::after{
-  background: radial-gradient(ellipse 85% 42% at 30% 50%, color-mix(in srgb, var(--background) 95%, transparent) 0%, color-mix(in srgb, var(--background) 82%, transparent) 50%, transparent 100%);
-}
-.home__center{ z-index: 10; }
-.home__center{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(6px, .8vw, 10px); /* photo sits close to the title */
-  text-align: center;
-  pointer-events: none;
-}
-.home__center a,
-.home-intro,
-.home-links{ pointer-events: auto; }
-.home .avatar{ width: clamp(92px, 9vw, 120px); }
-/* Homepage photo: no ring, printed as a dithered old photo on a canvas */
+/* ===== Home: grid mockup — left rail + hero, scroll into case studies ===== */
 .avatar--scramble{ box-shadow: none; pointer-events: auto; border-radius: var(--radius-round); }
 .avatar--scramble canvas{ display: block; width: 100%; height: 100%; }
-.home-intro{
-  margin: 0;
-  font-weight: var(--font-weight-regular);
-  font-size: var(--text-section-title);
-  line-height: var(--leading-title);
-}
-.home-intro__name{
-  color: var(--color-accent-name);
-  text-decoration: none;
-  transition: color .2s ease;
-}
-.home-intro__name:hover,
-.home-intro__name:focus-visible{ color: var(--color-accent-tech); outline: none; }
-.home-intro__role{ color: var(--color-accent-tech); }
 
-.home-links{
+.page-grid.page-grid--home{
+  height: auto;
+  padding: 0; /* the homepage grid runs edge to edge at every width */
+  min-height: 100dvh;
+  overflow: visible;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "content";
+}
+.page-grid--home .main{
+  display: block; min-height: 0; overflow: visible;
+  /* the intro and the photo size themselves to this width; the container sits here, above the
+     homepage grid, so the links inside the grid can still pin to the screen's corner */
+  container-type: inline-size;
+}
+/* the homepage scrolls the window like every other page (smooth scrolling drives the window) */
+html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
+
+/* Crosshair grid: white everywhere, hairlines only — no fill on the side */
+.home-shell{
+  --home-rest: 25dvh; /* scrolled to the cases, they rest with this much empty paper above them */
+  --home-hero-h: 58dvh; /* the intro band fills a little over half the first screen, like the mockup */
+  --home-below: calc(100dvh - var(--home-hero-h)); /* the first screen is only the intro and the photo; cases begin below the fold */
+  --home-cases-top: calc(var(--home-below) + 20dvh); /* and a good stretch of empty paper more before the first case */
+  --home-gap: var(--space-frame); /* the default gap (32px): photo and text to the lines, and between the case images */
+  --home-intro-lines: 2;
+  /* as tall as the intro's ink: from the top of its capitals (0.72 ≈ the sans' cap height) down to
+     the underline under the typed words (0.26em below the baseline), so the photo and the text
+     both sit exactly the same distance above the line */
+  --home-intro-under: 0.26;
+  --home-avatar: calc(var(--text-home-intro) * (var(--leading-tight) * (var(--home-intro-lines) - 1) + 0.72 + var(--home-intro-under)));
+  --home-pad-x: var(--home-gap); /* text and cards start the same distance from the rail line as the photo sits from it */
+  --home-rail-w: 15%; /* the side rail: about a seventh of the page's width */
+  --home-edge-w: calc(var(--home-avatar) + var(--home-gap) * 4.5); /* the empty right margin */
+  display: grid;
+  /* equal margins on both sides; a thin vertical line only on the left (the rail), and the
+     horizontal line under the intro running edge to edge */
+  grid-template-columns: var(--home-rail-w) minmax(0, 1fr) var(--home-edge-w);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "mark hero edge-top"
+    "rail cases edge-bottom";
+  min-height: 100dvh;
+}
+.home-edge{ transition: border-color var(--duration-slow) ease; } /* the right margin has no vertical line */
+.home-edge--top{ grid-area: edge-top; border-bottom: var(--space-px) solid var(--border); }
+.home-edge--bottom{ grid-area: edge-bottom; }
+
+/* The opening (BlockBot.jsx sets data-intro 0 → 3, then removes it): an empty page, then the
+   lines, then the text, then the photo. Everything fades; nothing slides. */
+.home-mark-cell,
+.home-hero,
+.home-rail{ transition: border-color var(--duration-slow) ease; }
+.home-intro,
+.home-rail__logo,
+.home-rail__nav,
+.home-rail__foot{ transition: opacity var(--duration-slow) ease; }
+.home-shell[data-intro="0"] :is(.home-mark-cell, .home-hero, .home-rail, .home-edge){ border-color: transparent; }
+.home-shell:is([data-intro="0"], [data-intro="1"], [data-intro="2"]) .home-intro{ opacity: 0; }
+.home-shell[data-intro] :is(.home-rail__logo, .home-rail__nav, .home-rail__foot){ opacity: 0; }
+.home-shell[data-intro] .home-scroll{ visibility: hidden; } /* its own fades are ScrollHint's (GSAP) */
+.home-shell:is([data-intro="2"], [data-intro="3"]) .home-rail__logo{ opacity: 1; }
+/* the intro is typed in by the opening, letter by letter: nothing of it shows early, and the
+   words that retype themselves wait until it is done */
+.home-shell[data-typing] .home-intro{ transition: none; }
+.home-shell[data-typing="wait"] .home-intro__lines,
+.home-shell[data-typing] .home-typed,
+.home-intro__lines [data-unseen]{ visibility: hidden; }
+
+/* "Scroll ↓" in the bottom-right corner of the first screen; it scrolls away with the page */
+.home-shell{ position: relative; }
+.home-scroll{
+  position: absolute;
+  top: calc(100dvh - var(--home-gap));
+  right: var(--space-5); /* bottom-right corner of the screen, the same inset as the nav on the left */
+  transform: translateY(-100%);
+  font-family: var(--font-family-title);
+  font-size: var(--text-body);
+  line-height: var(--leading-none);
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+.home-scroll:hover,
+.home-scroll:focus-visible{ color: var(--color-action-hover); outline: none; }
+
+.home-mark-cell{
+  grid-area: mark;
+  display: grid;
+  place-items: end end; /* tucked into the corner where the two lines meet */
+  padding: 0 var(--home-gap) var(--home-gap) 0;
+  border-right: var(--space-px) solid var(--border);
+  border-bottom: var(--space-px) solid var(--border);
+  background: transparent;
+}
+.home-rail__logo{ display: block; width: fit-content; line-height: 0; }
+.home-mark-cell .home-rail__avatar{
+  width: var(--home-avatar);
+  background: var(--color-surface-soft);
+}
+
+.home-hero{
+  grid-area: hero;
+  display: flex;
+  align-items: flex-end;
+  min-height: var(--home-hero-h);
+  box-sizing: border-box;
+  padding: var(--space-10) var(--home-pad-x) var(--home-gap);
+  border-bottom: var(--space-px) solid var(--border);
+  background: transparent;
+}
+
+.home-rail{
+  grid-area: rail;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-8);
+  /* bottom padding no deeper than the links' gap, so at the very end of the page the nav and
+     links still hold their place instead of being pushed up */
+  padding: var(--home-cases-top) var(--space-5) var(--space-6);
+  background: transparent;
+  border-right: var(--space-px) solid var(--border);
+}
+/* the side rail stays put while the cases scroll: one block, the nav level with the cards' top
+   and the links at the bottom of the screen, so the two can never slide into each other */
+/* it scrolls in level with the first row of projects, then stays put at their resting height
+   (25% down the screen) however far the page scrolls on */
+.home-rail__stick{
+  position: sticky;
+  top: var(--home-rest);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* from the cards' top down to the bottom of the screen: nav at the top, links at the bottom */
+  height: calc(100dvh - var(--home-rest) - var(--space-6));
+}
+.home-rail__nav{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-nav-gap); /* the shared side-menu spacing */
+  font-size: var(--text-ui); /* nav size (14–15px), like the reference */
+  line-height: var(--leading-none);
+  font-weight: var(--font-weight-regular);
+}
+.home-rail__a{
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+.home-rail__a.is-active{ color: var(--foreground); }
+.home-rail__a:not(.is-active){ color: var(--muted-foreground); font-weight: var(--font-weight-regular); }
+/* hover: the word darkens and a small square slides in beside it, like the case study side list */
+.home-rail__a{ position: relative; }
+.home-rail__a::before{
+  content: "";
+  position: absolute;
+  left: calc(var(--space-3) * -1);
+  top: 50%;
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  background: var(--foreground);
+  transform: translateY(-50%) scale(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.home-rail__a:hover,
+.home-rail__a:focus-visible{ color: var(--foreground); outline: none; }
+.home-rail__a:hover::before,
+.home-rail__a:focus-visible::before{ transform: translateY(-50%) scale(1); }
+.home-rail__a{ transition: color var(--duration-fast) ease; }
+.home-rail__foot{
   position: relative;
   z-index: 4;
-  margin-top: clamp(8px, 1.2vw, 14px);
+  display: flex;
+  flex-direction: column; /* one link per line, like the mockup */
+  align-items: flex-start;
+  /* set exactly like the nav above it: same size, grey, the same spacing between lines */
+  gap: var(--space-nav-gap);
+  font-size: var(--text-ui);
+  line-height: var(--leading-none);
+  color: var(--muted-foreground);
 }
-.home-links .line-filter__list{ grid-template-columns: repeat(3, auto); gap: var(--space-2) clamp(22px, 3vw, 44px); }
-/* Homepage is one screen: nothing scrolls, the dome and intro fit the viewport */
-.page-grid.page-grid--home{ height: 100dvh; min-height: 0; overflow: hidden; }
-.page-grid--home .main{ min-height: 0; overflow: hidden; }
-.page-grid--home .home{ min-height: 0; height: 100%; }
-html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; overscroll-behavior: none; }
-@media (max-width: 700px){ .home-links .line-filter__list{ grid-template-columns: repeat(3, auto); } }
-.home-links__a{
+.home-rail__foot .foot-link:hover,
+.home-rail__foot .foot-link:focus-visible{ font-size: inherit; letter-spacing: normal; color: var(--foreground); }
+/* not on the first screen: the links fade in once the page scrolls to the cases */
+.home-shell:not([data-scrolled]) .home-rail__foot{ opacity: 0; visibility: hidden; }
+.home-rail__foot{ transition: opacity var(--duration-slow) ease, visibility var(--duration-slow); }
+.home-rail__foot .foot-link{ font-size: inherit; }
+.home-rail__foot .foot-sep{ display: none; }
+.home-intro{
+  margin: 0;
+  max-width: none;
+  white-space: nowrap; /* each line of the intro stays whole */
+  font-weight: var(--font-weight-regular);
+  /* the longest line is about 31 characters (≈18.6em in the mono face), so it always fits the band */
+  font-size: var(--text-home-intro);
+  line-height: var(--leading-tight);
+  color: var(--foreground);
+  text-box: trim-both cap alphabetic; /* no empty leading above the capitals or below the baseline */
+  padding-bottom: calc(1em * var(--home-intro-under)); /* room for the typed words' underline, the lowest ink */
+}
+/* the scramble runs inline here, so the typed words follow "who also" on the same line */
+.home-intro .scrambled-text,
+.home-intro .scrambled-text__inner{ display: inline; }
+.home-mark{
+  text-decoration: none;
+  font-weight: inherit; /* same weight as the rest of the intro */
+}
+/* no colour in the intro: every word in the same near-black */
+.home-mark{ color: inherit; }
+.home-mark[data-role="fany"]:hover,
+.home-mark[data-role="fany"]:focus-visible{ color: var(--muted-foreground); outline: none; }
+
+/* no soft-hint pulse on the mockup marks */
+.home .home-mark{ animation: none; }
+
+.home-cases{
+  grid-area: cases;
+  padding: var(--home-cases-top) var(--home-pad-x) var(--space-16);
+  scroll-margin-top: calc(var(--home-rest) - var(--home-cases-top)); /* the Case Study link lands where scrolling rests: the cards with 25% paper above */
+}
+.home-cases__grid{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-frame); /* the default gap, the same as from the photo and text to the lines */
+  width: 100%; /* fills the framed column */
+}
+/* Ask Fany open beside the page: the cases stack in one column */
+@media (min-width: 900px){
+  .fanyllm-open .home-cases__grid{ grid-template-columns: minmax(0, 1fr); }
+}
+.home-case__link{
+  display: grid;
+  gap: var(--space-2-5);
   color: inherit;
   text-decoration: none;
-  padding: var(--space-0-5) var(--space-1);
-  border-radius: var(--radius-media);
-  transition: background-color .2s ease, color .2s ease;
 }
-.home-links__a:hover,
-.home-links__a:focus-visible{ color: var(--color-action-hover); background: var(--color-wash-tech); outline: none; }
+.home-case__media{
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--color-surface-soft);
+}
+.home-case__media img,
+.home-case__media video{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home-case__soon{
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.home-case__caption{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-snug);
+}
+.home-case__title{ color: var(--foreground); font-weight: var(--font-weight-regular); }
+.home-case__meta{ color: var(--muted-foreground); }
+.home-case__meta::before{ content: "/"; margin: 0 var(--space-2); color: var(--muted-foreground); }
+.home-case.is-pending .home-case__link{ cursor: default; }
+.home-case.is-pending .home-case__caption{ color: var(--muted-foreground); }
 
+.about-timeline{
+  margin-top: var(--space-16);
+  padding-top: var(--space-12);
+  border-top: var(--space-px) solid var(--border);
+  scroll-margin-top: var(--space-8);
+}
+.built--embedded .built-head{ margin-bottom: var(--space-8); }
 
-/* ===== Home on phones: text left-aligned over the dome, links stacked ===== */
-.home--narrow{
-  place-items: center start;
-  padding: var(--space-18) var(--space-5);
+@media (max-width: 700px){
+  .home-shell{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "mark"
+      "hero"
+      "rail"
+      "cases";
+  }
+  .home-mark-cell{
+    border-right: 0;
+    justify-items: start;
+    padding: var(--space-5);
+  }
+  .home-rail{
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border-right: 0;
+    border-bottom: var(--space-px) solid var(--border);
+  }
+  .home-rail__nav{ flex-direction: row; flex-wrap: wrap; gap: var(--space-4); }
+  .home-rail__foot{ flex-direction: row; max-width: none; width: 100%; }
+  .home-hero{ min-height: 0; padding: var(--space-6) var(--space-5); }
+  .home-scroll{ display: none; } /* no tall first screen on phones */
+  .home-edge{ display: none; } /* one column on phones: no side margins to frame */
+  .home-rail__stick{ display: contents; } /* the rail is a row on phones */
+  .home-rail__foot{ position: static; }
+  .home-shell:not([data-scrolled]) .home-rail__foot{ opacity: 1; visibility: visible; } /* phones: always in the rail row */
+  .home-intro{ font-size: var(--text-intro-narrow); font-weight: var(--font-weight-regular); max-width: none; white-space: normal; }
+  .home-cases{ padding: var(--space-6) var(--space-5) var(--space-12); }
+  .home-rail__foot{ flex-direction: row; flex-wrap: wrap; gap: var(--space-3); }
+  .home-cases__grid{ grid-template-columns: 1fr; gap: var(--space-frame); }
 }
-.home--narrow .home__center{
-  align-items: flex-start;
-  text-align: left;
-  gap: var(--space-3);
-}
-.home--narrow .home-intro{ font-size: var(--text-intro-narrow); }
-.home--narrow .home-links{ margin-top: var(--space-2-5); }
-.home--narrow .home-links .line-filter__list{ grid-template-columns: 1fr; gap: var(--space-3); justify-items: start; }
-.home--narrow .home-links .line-filter__item{ font-size: var(--text-body); }
 
 /* =========================================================
    WHAT I'VE DONE — center-line timeline (roomy spacing)
@@ -782,7 +1053,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   text-align: center;
   margin: var(--space-page-top) 0 var(--space-title-content);
 }
-.built-title{ margin: 0; font-size: var(--text-page-title); font-weight: var(--font-weight-regular); }
+.built-title{ margin: 0; font-size: var(--text-page-title); font-weight: var(--font-weight-h1); }
 .built-sub{
   max-width: 36ch;
   margin: var(--space-heading-content) auto 0;
@@ -866,7 +1137,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   margin: 0 0 clamp(24px, 2vw, 40px);
   text-align: center;
   font-size: var(--text-section-title);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-h2);
   display: grid;
   justify-items: center;
   gap: var(--space-2-5);
@@ -1023,16 +1294,16 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   height: auto;
   transform: rotate(var(--r));
   transition: transform .5s var(--ease-spring), filter .4s ease;
-  filter: drop-shadow(0 0 18px var(--color-glow-off)) drop-shadow(var(--shadow-print));
+  filter: drop-shadow(var(--shadow-print));
 }
 .tl-collage__piece.is-card{ border-radius: var(--radius-card); }
-.tl-collage__piece.is-card + .tl-collage__piece.is-card{ filter: drop-shadow(0 0 18px var(--color-glow-off)) drop-shadow(var(--shadow-print-raised)); }
+.tl-collage__piece.is-card + .tl-collage__piece.is-card{ filter: drop-shadow(var(--shadow-print-raised)); }
 .tl-collage__piece:nth-child(2){ transition-delay: .04s; }
 .tl-collage__piece:nth-child(3){ transition-delay: .08s; }
 .tl-card__hit:hover .tl-collage__piece,
 .tl-card__hit:focus-visible .tl-collage__piece{
   transform: translate(var(--hx), var(--hy)) rotate(var(--hr)) scale(var(--hs));
-  filter: drop-shadow(0 0 18px var(--color-glow)) drop-shadow(var(--shadow-print-lifted));
+  filter: drop-shadow(var(--shadow-print-lifted));
 }
 @media (prefers-reduced-motion: reduce){
   .tl-collage__piece{ transition: none; }
@@ -1083,7 +1354,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   font-family: var(--font-family-title); /* same title font as the rest of the site */
   font-size: var(--text-section-title);
   line-height: var(--leading-title);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-h2);
   color: var(--color-text);
 }
 .tl-outro p{ margin: 0 0 1.5em; } /* one blank line between paragraphs */
@@ -1134,11 +1405,13 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 /* =========================================================
    BLOG — filters on the left, posts along a line on the right
    ========================================================= */
-.blog{ width: min(1100px, 100%); margin: 0 auto; padding: var(--space-page-top) var(--space-4) clamp(64px, 8vw, 120px); }
+/* the posts start on the same line as the filters beside them: 25% down the screen
+   (the page's header bar above is --space-12 tall) */
+.blog{ width: min(1100px, 100%); margin: 0 auto; padding: calc(25dvh - var(--space-12)) var(--space-4) clamp(64px, 8vw, 120px); }
 .blog-nav{
   position: fixed;
-  top: clamp(96px, 28vh, 300px); /* sits in the upper third, clear of the breadcrumb */
-  left: 20px;
+  top: 25dvh; /* the same height as the homepage's side nav */
+  left: var(--space-5);
   z-index: 35;
   display: grid;
   gap: clamp(40px, 7vh, 72px);
@@ -1184,7 +1457,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   background: linear-gradient(to bottom, var(--sidebar-border) 0%, var(--sidebar-border) 55%, transparent 100%);
   transform-origin: top center;
 }
-/* ===== Lines draw themselves once they reach the screen, led by a small coral light ===== */
+/* ===== Lines draw themselves once they reach the screen, led by a small dot ===== */
 .tl-list{ --line-x: 50%; }
 .blog__list{ --line-x: 1px; }
 .line-reveal::before{
@@ -1201,7 +1474,6 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
   border-radius: var(--radius-round);
   background: var(--accent);
-  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
   opacity: 0;
   pointer-events: none;
 }
@@ -1263,14 +1535,57 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 .blog-item__media img{ display: block; width: 100%; height: auto; max-height: 160px; object-fit: contain; background: var(--color-surface-soft); transition: transform .4s ease; }
 .blog-item__link:hover .blog-item__media img{ transform: scale(1.05); }
 .blog-item__text{ display: grid; gap: 0; min-width: 0; }
-.blog-item__title{ font-size: var(--text-section-title); line-height: var(--leading-title); }
+.blog-item__title{ font-size: var(--text-section-title); font-weight: var(--font-weight-h2); line-height: var(--leading-title); }
 .blog-item__link:hover .blog-item__title{ color: var(--color-action-hover); }
 .blog-item__meta{ font-family: var(--font-family-body); font-size: var(--text-meta); color: var(--muted-foreground); margin-top: calc(var(--space-title-date) * 2); }
 .blog-item__sum{ font-family: var(--font-family-body); font-size: var(--text-body-sm); line-height: var(--leading-body); color: var(--muted-foreground); margin-top: var(--space-sub-body); }
 .blog__empty{ font-family: var(--font-family-body); color: var(--muted-foreground); }
 
+/* ---- Blog, framed like the homepage: the side rail behind a thin line, posts beside it,
+   thin full-width lines between the years, regular weight throughout ---- */
+@media (min-width: 801px){
+  .blog{
+    --blog-rail: 15vw; /* same width as the homepage's side rail */
+    width: auto;
+    margin: 0;
+    padding-left: calc(var(--blog-rail) + var(--space-frame));
+    padding-right: 0;
+  }
+  .blog::before{ /* the rail's line, top to bottom, like the homepage */
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: var(--blog-rail);
+    width: var(--space-px);
+    background: var(--border);
+    pointer-events: none;
+  }
+  .blog-year{
+    padding-top: var(--space-frame);
+    margin-top: var(--space-16);
+    border-top: var(--space-px) solid var(--border); /* runs from the rail's line to the right edge */
+    margin-left: calc(var(--space-frame) * -1);
+    padding-left: var(--space-frame);
+  }
+  .blog-year:first-of-type{ margin-top: 0; padding-top: 0; border-top: 0; }
+  .blog-year__h,
+  .blog__list{ width: min(760px, 100%); margin-left: 0; margin-right: 0; }
+}
+/* no timeline bar or travelling dot here: the frame lines do that job */
+.blog__list::before,
+.blog__list::after{ display: none; }
+.blog__list{ padding: var(--space-frame) 0 0; gap: var(--space-12); }
+.blog-year__h{ margin-bottom: 0; font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+.blog-item__title{ font-size: var(--text-case-sub); line-height: var(--leading-h3); }
+.blog-item__meta{ font-size: var(--text-case-label); margin-top: var(--space-1-5); }
+.blog-item__sum{ font-size: var(--text-case-read); line-height: var(--leading-body); }
+.blog,
+.blog *{ font-weight: var(--font-weight-regular) !important; }
+
 @media (max-width: 800px){
   .blog-nav{ position: static; margin: var(--space-2) 0 var(--space-7); }
+  .blog{ padding-top: var(--space-page-top); } /* filters sit above the posts on phones */
   .blog__layout{ grid-template-columns: 1fr; }
   .blog__side{ position: static; }
   .blog-filter{ grid-auto-flow: column; align-items: baseline; gap: var(--space-3); }
@@ -1278,39 +1593,49 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   .blog-item.has-cover .blog-item__link{ grid-template-columns: 1fr; gap: var(--space-3-5); }
 }
 
-/* Case studies: a checkerboard of rounded tiles, the same shape as the homepage dome. Each case is a
-   picture tile beside a text tile, and the next case swaps sides. Square tiles are a little taller than
-   half the screen, so the top of the next row always shows. */
-.study__list{ box-sizing: border-box; width: min(1100px, calc(100vw - 300px)); gap: var(--space-5); } /* stays clear of the filter fixed on the left */
-.study-item .blog-item__link{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); max-width: none; }
-.study-item:nth-child(even) .study-item__media{ order: 2; }
-.study-item__media,
-.study-item__text{ position: relative; min-width: 0; aspect-ratio: 1; border-radius: var(--radius-tile); overflow: hidden; background: var(--color-surface-soft); }
-.study-item__media{ display: grid; place-items: center; }
+/* Case studies: two staggered columns of rounded picture cards, each with "Title / Status Year" under it.
+   The left column uses wide pictures and the right a taller shape, so the rows never line up flat. */
+.study__list{
+  box-sizing: border-box;
+  width: min(1200px, calc(100vw - 300px)); /* stays clear of the filter fixed on the left */
+  padding-left: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-8); /* between the two columns */
+}
+.study__list::before,
+.study__list::after{ display: none; } /* no growing line here: the cards carry the page */
+.study__col{ display: grid; gap: var(--space-10); /* caption to the next picture: a little more than the column gap, so each card reads as one unit */ margin: 0; padding: 0; list-style: none; }
+.study-item .blog-item__link{ display: grid; gap: var(--space-3); max-width: none; color: inherit; text-decoration: none; }
+.study-item__media{
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-tile);
+  overflow: hidden;
+  background: var(--color-surface-soft);
+}
+.study__col--right .study-item__media{ aspect-ratio: 5 / 4; }
 .study-item__media img,
 .study-item__media video{ display: block; width: 100%; height: 100%; object-fit: cover; }
 .study-item__soon{ font-family: var(--font-family-body); font-size: var(--text-meta); color: var(--muted-foreground); }
 
-/* The text tile: title and summary in the middle, status and year at the bottom */
-.study-item__text{
-  display: grid;
-  grid-template-rows: 1fr auto;
-  gap: var(--space-5);
-  padding: clamp(24px, 4vw, 48px);
-  box-sizing: border-box;
+/* Caption: the title, then a slash and the status and year in a quieter grey */
+.study-item__caption{
+  margin: 0;
   font-family: var(--font-family-body);
-  transition: background-color .4s ease;
+  font-size: var(--text-subtitle); font-weight: var(--font-weight-regular);
+  line-height: var(--leading-title);
+  color: var(--foreground);
 }
-.study-item__body{ display: grid; align-content: center; gap: var(--space-4); }
-.study-item__title{ font-family: var(--font-family-title); font-size: var(--text-section-title); line-height: var(--leading-title); color: var(--foreground); }
-.study-item__sum{ font-size: var(--text-body); line-height: var(--leading-loose); color: var(--muted-foreground); }
-.study-item__meta{ font-size: var(--text-meta); color: var(--muted-foreground); }
-.study-item .blog-item__link:hover .study-item__text{ background: color-mix(in srgb, var(--foreground) 6%, var(--color-surface-soft)); }
+.study-item__title{ font-weight: var(--font-weight-medium); }
+.study-item__meta{ color: var(--muted-foreground); }
+.study-item__meta::before{ content: "/"; margin: 0 var(--space-2); color: var(--muted-foreground); }
 
-/* Still being written: nothing to open, the corner of its picture tile is folded over, and it sits quieter */
+/* Still being written: nothing to open, the corner of its picture is folded over, and it sits quieter */
 .study-item.is-pending .blog-item__link{ cursor: default; }
-.study-item.is-pending .study-item__title{ color: var(--muted-foreground); }
-.study-item.is-pending .blog-item__link:hover .study-item__text{ background: var(--color-surface-soft); }
+.study-item.is-pending .study-item__caption{ color: var(--muted-foreground); }
 .study-item.is-pending .study-item__media::before{
   content: "";
   position: absolute;
@@ -1320,45 +1645,22 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   background: linear-gradient(135deg, var(--color-bg) 50%, color-mix(in srgb, var(--foreground) 12%, var(--color-surface-soft)) 50%);
 }
 
-/* Everything here follows the scroll (StudyCase.jsx sets --lp on the list and --p on each row, 0 → 1).
-   The vertical line grows down the page with the small coral light at its tip. */
-.study__list{ --lp: 0; }
-.study__list::before{ transform: scaleY(var(--lp)); }
-.study__list::after{
-  content: "";
-  position: absolute;
-  top: calc(var(--lp) * 100%);
-  left: var(--line-x);
-  width: var(--space-2); height: var(--space-2);
-  margin: calc(var(--space-1) * -1) 0 0 calc(var(--space-1) * -1);
-  border-radius: var(--radius-round);
-  background: var(--accent);
-  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--accent) 60%, transparent);
-  opacity: clamp(0, calc((1 - var(--lp)) * 12), 1);
-  pointer-events: none;
-}
-/* Each row rises into place as it comes up; the text tile follows a beat after the picture */
+/* Each card rises into place as it comes up (StudyCase.jsx sets --p, 0 → 1), and its picture comes
+   back like a memory: sepia, soft and a little too close, then sharp. */
 .study-item{ --p: 0; }
-.study-item__media,
-.study-item__text{ transform: translateY(calc((1 - var(--p)) * var(--space-10))); }
-.study-item__text{ transform: translateY(calc((1 - var(--p)) * var(--space-14))); }
-/* The picture comes back like a memory: sepia, soft and a little too close, then sharp */
+.study-item .blog-item__link{ transform: translateY(calc((1 - var(--p)) * var(--space-6))); } /* the link moves, not the row, so the scroll maths stays steady */
 .study-item__media{ filter: sepia(calc((1 - var(--p)) * .85)) blur(calc((1 - var(--p)) * 4px)); }
 .study-item__media img,
 .study-item__media video{ transform: scale(calc(1.1 - var(--p) * .1)); }
-.study-item__text > *{ opacity: clamp(0, calc((var(--p) - .4 - var(--i, 0) * .1) * 4), 1); }
-.study-item__text > *:nth-child(2){ --i: 1; }
+.study-item__caption{ opacity: clamp(0, calc((var(--p) - .4) * 4), 1); }
 @media (max-width: 800px){
-  .study__list{ width: 100%; }
-  .study-item .blog-item__link{ grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
-  .study-item:nth-child(even) .study-item__media{ order: 0; }
-  .study-item__media{ aspect-ratio: 4 / 3; }
-  .study-item__text{ aspect-ratio: auto; }
+  .study__list{ width: 100%; grid-template-columns: minmax(0, 1fr); gap: var(--space-10); }
+  .study__col--right .study-item__media{ aspect-ratio: 16 / 9; }
 }
 
 /* One post */
 .post{ width: min(1100px, 100%); margin: 0 auto; padding: 0 var(--space-4) clamp(64px, 8vw, 120px); }
-.post__title{ margin: var(--space-page-top) auto var(--space-caption-media); max-width: 760px; text-align: center; font-size: var(--text-page-title); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
+.post__title{ margin: var(--space-page-top) auto var(--space-caption-media); max-width: 760px; text-align: center; font-size: var(--text-page-title); font-weight: var(--font-weight-h1); line-height: var(--leading-title); }
 .post__meta{ margin: 0 0 var(--space-title-content); text-align: center; font-family: var(--font-family-body); font-size: var(--text-ui); color: var(--muted-foreground); }
 .post__body{
   max-width: 560px;
@@ -1414,7 +1716,7 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   .built-sub{ animation: none; }
 }
 
-/* ===== Small text & captions: Montserrat ===== */
+/* ===== Small text & captions: the site sans ===== */
 .foot,
 .built-sub{ font-family: var(--font-family-body); }
 .foot{ font-size: var(--text-meta); }
@@ -1433,94 +1735,58 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
   html, body, *{ cursor: none !important; }
 }
 
-/* Hover glow: a soft warm light behind timeline images, like a lamp held up to an old photo */
+/* Hover: timeline images lift slightly, with a plain print shadow (no coloured glow) */
 .tl-card__frame,
 .tl-card__gallery img{
   transition: transform .25s ease, box-shadow .45s ease;
-  /* resting glow = the same coral at 0%, so hovering fades in warm instead of passing through black */
-  box-shadow: 0 0 28px 6px var(--color-glow-off), 0 10px 30px -10px var(--color-glow-off);
+  box-shadow: var(--shadow-print);
 }
 .tl-card__hit:hover .tl-card__frame,
 .tl-card__hit:focus-visible .tl-card__frame,
 .tl-card__hit:hover .tl-card__gallery img,
 .tl-card__hit:focus-visible .tl-card__gallery img{
-  box-shadow: 0 0 28px 6px var(--color-glow), 0 10px 30px -10px var(--color-glow);
+  box-shadow: var(--shadow-print-lifted);
 }
 .tl-card__hit:hover .tl-collage__piece,
 .tl-card__hit:focus-visible .tl-collage__piece,
 .tl-card__hit:hover .tl-collage__piece.is-card + .tl-collage__piece.is-card,
 .tl-card__hit:focus-visible .tl-collage__piece.is-card + .tl-collage__piece.is-card{
-  filter: drop-shadow(0 0 18px var(--color-glow)) drop-shadow(var(--shadow-print-lifted));
+  filter: drop-shadow(var(--shadow-print-lifted));
 }
 @media (prefers-reduced-motion: reduce){ .tl-card__frame, .tl-card__gallery img{ transition: none; } }
-/* Cut-out image (transparent background): no frame, the glow hugs each item's own outline */
+/* Cut-out image (transparent background): no frame, the shadow follows each item's own outline */
 .tl-card__media.is-cutout .tl-card__frame{ overflow: visible; border-radius: 0; box-shadow: none !important; }
 .tl-card__media.is-cutout img{
   transition: transform .25s ease, filter .45s ease;
-  filter: drop-shadow(0 0 10px var(--color-glow-off)) drop-shadow(0 0 22px var(--color-glow-off));
+  filter: drop-shadow(var(--shadow-print));
 }
 .tl-card__hit:hover .tl-card__media.is-cutout img,
 .tl-card__hit:focus-visible .tl-card__media.is-cutout img{
-  filter: drop-shadow(0 0 10px var(--color-glow)) drop-shadow(0 0 22px var(--color-glow));
+  filter: drop-shadow(var(--shadow-print-lifted));
 }
 
-/* ===== Homepage, from the sketch: darker bolder type, solid pill buttons, filled icon circles ===== */
-.home__center{ gap: var(--space-5); }
+/* Typing line: underlined word + block caret */
 .home .avatar{ width: clamp(96px, 9vw, 128px); }
-.avatar--scramble{ box-shadow: 0 0 0 1px var(--foreground), var(--shadow-print); }
-.home-intro{
-  margin: 0;
-  font-size: var(--text-page-title);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--leading-title);
-  color: var(--foreground);
-}
-.home-intro__lines{ display: block; }
-.home-intro__name,
-.home-intro__role{ color: var(--color-accent-strong); }
-.home-intro__name:hover,
-.home-intro__name:focus-visible{ color: var(--color-action-hover); }
-
-/* last line types itself: underlined word + a block caret */
+.avatar--scramble{ box-shadow: 0 0 0 var(--space-px) var(--foreground), var(--shadow-print); }
 .home-typed{ display: inline-flex; align-items: center; height: calc(1em * var(--leading-title)); vertical-align: top; }
 .home-typed__word{
-  padding: 0 .05em;
-  border-bottom: 2px solid var(--color-accent-strong);
+  padding: 0 0.05em;
+  border-bottom: var(--space-0-5) solid var(--foreground);
 }
 .home-typed__caret{
-  width: .45em;
+  width: 0.45em;
   height: 1em;
-  margin-left: .08em;
-  background: var(--color-accent-strong);
+  margin-left: 0.08em;
+  background: var(--foreground);
   animation: home-caret 1s steps(1) infinite;
 }
 .home-typed[data-typing="true"] .home-typed__caret{ animation: none; }
 @keyframes home-caret{ 50%{ opacity: 0; } }
-
-/* buttons: solid paper pills with a hairline and a soft shadow, so they read over the dome */
-.home-links{ display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-top: var(--space-2); }
-.home-pill{
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1-5);
-  padding: var(--space-2-5) var(--space-5);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--background) 92%, transparent);
-  box-shadow: var(--shadow-print);
-  font-size: var(--text-ui);
-  line-height: var(--leading-none);
-  color: var(--foreground);
-  text-decoration: none;
-  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) ease, color var(--duration-fast) ease, border-color var(--duration-fast) ease;
+@media (prefers-reduced-motion: reduce){
+  .home-typed__caret{ animation: none; }
 }
-.home-pill:hover,
-.home-pill:focus-visible{ transform: translateY(calc(var(--space-0-5) * -1)); box-shadow: var(--shadow-print-lifted); color: var(--color-accent-strong); border-color: color-mix(in srgb, var(--color-accent-strong) 40%, transparent); outline: none; }
-.home-pill__arrow{ transition: transform var(--duration-base) var(--ease-out); }
-.home-pill:hover .home-pill__arrow{ transform: translateX(var(--space-1)); }
 
-/* icons: small filled circles right under the buttons */
-.home-socials{ display: flex; justify-content: center; gap: var(--space-2-5); pointer-events: auto; }
+/* Icon badges (kept for any non-home uses of Socials icons=true) */
 .social-badge{
   display: grid;
   place-items: center;
@@ -1535,26 +1801,6 @@ html:has(.page-grid--home), body:has(.page-grid--home){ overflow: hidden; oversc
 }
 .social-badge:hover,
 .social-badge:focus-visible{ transform: translateY(calc(var(--space-0-5) * -1)); box-shadow: var(--shadow-print-lifted); color: var(--color-accent-strong); outline: none; }
-
-.home--narrow .home-links,
-.home--narrow .home-socials{ justify-content: flex-start; }
-@media (prefers-reduced-motion: reduce){
-  .home-typed__caret{ animation: none; }
-  .home-pill, .social-badge{ transition: none; }
-}
-
-/* Glass is the box for the homepage buttons and icons (GlassSurface); the links inside are just type */
-.home-glass{ transition: transform var(--duration-base) var(--ease-out); }
-.home-glass:hover,
-.home-glass:focus-within{ transform: translateY(calc(var(--space-0-5) * -1)); }
-.home-glass .glass-surface__content{ padding: 0; }
-.home-glass .home-pill,
-.home-glass .social-badge{ border: 0; background: none; box-shadow: none; transform: none; }
-.home-glass .home-pill:hover,
-.home-glass .home-pill:focus-visible,
-.home-glass .social-badge:hover,
-.home-glass .social-badge:focus-visible{ transform: none; box-shadow: none; }
-.home-glass--round .social-badge{ width: 100%; height: 100%; }
 
 /* ===== Timeline: header rhythm from the reference — a tight stack, then the timeline ===== */
 .built-head{ margin-bottom: var(--space-12); }                 /* subtitle → filters */

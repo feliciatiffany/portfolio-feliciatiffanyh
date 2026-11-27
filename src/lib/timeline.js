@@ -7,6 +7,7 @@ import digital from "../data/digital.json";
 import graphic from "../data/graphic.json";
 import others from "../data/others.json";
 import { experience, awards } from "./resume";
+import { STUDY_CASES } from "./studyCases.js";
 
 /* ── Categories (order = filter order). Colors live in style.css ── */
 export const TYPES = [
@@ -106,6 +107,7 @@ const EXTRA_AWARDS = [
   {
     title: "Drop Zone",
     subtitle: "Hackathon",
+    playground: ["Hackathon"], // lives on the Playground page, not the timeline
     date: "Dec 2025",
     desc: "Didn’t win, but learned a lot about team handling.",
   },
@@ -164,6 +166,29 @@ const DETAIL = Object.values(modules)
   .filter(Boolean)
   .reduce((acc, p) => (p?.slug ? { ...acc, [p.slug]: p } : acc), {});
 
+/* ── Playground tags: where a project belongs on the Playground page (a project can have several) ── */
+const IN = (list, slug) => list.projects.some((q) => q.slug === slug);
+const SIDEQUEST = ["nycresistor", "tdvj", "ppeCoolerBox"]; // the fun detours: DJ/VJ sets, the PPE cooler box…
+const CREATIVE_TECH = ["tdvj", "ThunderTD", "a-week-of-blender"]; // TouchDesigner and 3D pieces not in the tech list
+const GAMES = ["sunney", "redDoors"]; // games count as code, with the websites
+const VIDEO = ["theTrueLight"];
+const ART = ["theTrueLight", "past-2024", "greatest-dreamer", "collages"];
+const RESEARCH = ["ppeCoolerBox"];
+function playgroundTags(p) {
+  if (STUDY_CASES.some((c) => c.slug === p.slug || c.project === p.slug)) return []; // already a case study
+  const tags = [];
+  if (SIDEQUEST.includes(p.slug)) tags.push("SideQuest");
+  if (IN(graphic, p.slug)) tags.push("Graphic Design");
+  if (IN(digital, p.slug) || GAMES.includes(p.slug)) tags.push("Code");
+  if (IN(tech, p.slug) || CREATIVE_TECH.includes(p.slug)) tags.push("Creative Tech");
+  if (VIDEO.includes(p.slug)) tags.push("Video Editing");
+  if (ART.includes(p.slug)) tags.push("Art");
+  if (RESEARCH.includes(p.slug)) tags.push("Research");
+  return tags;
+}
+/* the Playground menu, in this order (only the ones with something in them show) */
+export const PLAYGROUND_TAGS = ["SideQuest", "Graphic Design", "Code", "Creative Tech", "Video Editing", "Hackathon", "Art", "Research"];
+
 /* ── build ── */
 function projectEntries() {
   return PROJECTS.map((p) => {
@@ -173,6 +198,7 @@ function projectEntries() {
     return {
       id: `p-${p.slug}`,
       type: p.highlight ? "projects" : "creative",
+      playground: playgroundTags(p),
       title: (p.title || base.title || detail.title || p.slug).trim(),
       subtitle: base.label || "",
       date: p.date,
@@ -246,6 +272,11 @@ function resumeEntries() {
 }
 
 export const ENTRIES = [...projectEntries(), ...resumeEntries()];
+/* all work, side projects and creative side: the Playground page (newest first) */
+export const PLAYGROUND = ENTRIES.filter((e) => e.playground?.length).sort((a, b) => b.year - a.year || b.month - a.month);
+/* what stays on the About timeline: work, organizations, milestones, awards */
+export const TIMELINE = ENTRIES.filter((e) => !e.playground?.length && e.type !== "projects" && e.type !== "creative");
+export const TIMELINE_TYPES = TYPES.filter((t) => TIMELINE.some((e) => e.type === t.key));
 
 /** Shown date for a project page ("Sept – Dec 2024"), or undefined. */
 export function projectDate(slug) {

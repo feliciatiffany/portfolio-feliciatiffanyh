@@ -1,6 +1,7 @@
 // src/App.jsx
 import React, { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
-import { Routes, Route, Link, Navigate, useLocation, useParams } from "react-router-dom";
+import { startSmoothScroll, scrollToTopNow } from "./lib/smoothScroll.js";
+import { Routes, Route, Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 
@@ -16,7 +17,7 @@ const PAGES = {
   Project: () => import("./pages/Project.jsx"),
   Built: () => import("./pages/Built.jsx"),
   Blog: () => import("./pages/Blog.jsx"),
-  StudyCase: () => import("./pages/StudyCase.jsx"),
+  Playground: () => import("./pages/Playground.jsx"),
   StudyStory: () => import("./pages/StudyStory.jsx"),
   BlogPost: () => import("./pages/BlogPost.jsx"),
   FlipBook: () => import("./pages/FlipBook.jsx"),
@@ -28,9 +29,8 @@ const Others = lazy(PAGES.Others);
 const About = lazy(PAGES.About);
 const Category = lazy(PAGES.Category);
 const Project = lazy(PAGES.Project);
-const Built = lazy(PAGES.Built);
 const Blog = lazy(PAGES.Blog);
-const StudyCase = lazy(PAGES.StudyCase);
+const Playground = lazy(PAGES.Playground);
 const StudyStory = lazy(PAGES.StudyStory);
 const BlogPost = lazy(PAGES.BlogPost);
 const FlipBook = lazy(PAGES.FlipBook);
@@ -41,74 +41,71 @@ function usePrefetchPages() {
     return () => (window.cancelIdleCallback || clearTimeout)(id);
   }, []);
 }
-import GhostCursor from "./components/GhostCursor.jsx";
 import CursorDot from "./components/CursorDot.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
-import { useTheme } from "./lib/theme.js";
-import { token } from "./lib/tokens.js";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Socials from "./components/Socials.jsx";
 import FanyLLM from "./components/FanyLLM.jsx";
+import PageBot from "./components/PageBot.jsx";
 import { getProject } from "./lib/projects.js";
 import { BOOKS } from "./lib/books.js";
 
 const reduceMotion =
   typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// The cursor is just a light: a coral glow with a long smoky trail. It stays lit while the mouse rests.
+// The cursor is a plain near-black square block: no glow, no trail.
 const finePointer =
   typeof window !== "undefined" && window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
 
 function CursorGlow() {
-  const theme = useTheme();
   if (reduceMotion || !finePointer) return null;
-  const dark = theme === "dark";
-  return (
-    <>
-      <CursorDot />
-      <GhostCursor
-        key={theme} /* rebuild the light for the new mode */
-        theme={dark ? "dark" : "light"}
-        color={token("color-cursor", theme)} /* WebGL needs the real value: coral by day, grey at night */
-        mixBlendMode={dark ? "screen" : "multiply"} /* a glow adds light on dark paper, tints on white */
-        size={18}
-        trailLength={30} /* a soft trace behind the dot; the glow itself stays locked on */
-        inertia={0} /* locked to the dot */
-        turbulence={0.35}
-        drift={0.12}
-        detail={0.45}
-        bloomStrength={0.35}
-        bloomRadius={0.8}
-        grainIntensity={0.1}
-        clickPuff
-        intro={false}
-        fadeDelayMs={600000}
-        fadeDurationMs={2600}
-        zIndex={2147483000}
-        style={{ position: "fixed", opacity: 0.32 }} /* a faint trace behind the dot */
-      />
-    </>
-  );
+  return <CursorDot />;
 }
 
 // Top-left breadcrumb: "← Parent / This page", on one line with the FanyLLM button.
 // Titles of projects and posts load on demand, so every page doesn't carry all of that text.
 const projectLoaders = import.meta.glob("./projects/**/*.js", { import: "default" });
-const PAGE_NAMES = { built: "Timeline", "case-study": "Case Study", blog: "Blog", about: "About me", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
+const PAGE_NAMES = { built: "About", "case-study": "Case Study", blog: "Blog", playground: "Playground", about: "About", tech: "Tech", digital: "Digital", graphic: "Graphic", others: "Others" };
 const HOME = { label: "Home", to: "/" };
 function OldCaseStudy() {
   const { slug } = useParams();
   return <Navigate to={`/case-study/${slug}`} replace />;
 }
 
+// Case study list lives on the homepage; land on / and scroll to the grid
+function ToHomeCases() {
+  const nav = useNavigate();
+  useEffect(() => {
+    nav("/", { replace: true });
+    const t = window.setTimeout(() => {
+      document.getElementById("case-study")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+    return () => window.clearTimeout(t);
+  }, [nav]);
+  return null;
+}
+
+// Timeline lives on About; old /built links scroll to that section
+function ToAboutTimeline() {
+  const nav = useNavigate();
+  useEffect(() => {
+    nav("/about", { replace: true });
+    const t = window.setTimeout(() => {
+      document.getElementById("timeline")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => window.clearTimeout(t);
+  }, [nav]);
+  return null;
+}
+
 function crumbsFor(pathname) {
   const [, first = "", second] = pathname.split("/");
   const key = first.toLowerCase();
-  if (key === "work" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, kind: "project", slug: second };
-  if (key === "case-study" && second) return { parent: { label: PAGE_NAMES["case-study"], to: "/case-study" }, kind: "study", slug: second };
+  if (key === "work" && second) return { parent: { label: "About", to: "/about" }, kind: "project", slug: second };
+  if (key === "case-study" && second) return { parent: { label: PAGE_NAMES["case-study"], to: "/" }, kind: "study", slug: second };
   if (key === "blog" && second) return { parent: { label: PAGE_NAMES.blog, to: "/blog" }, kind: "post", slug: second };
-  if (key === "book" && second) return { parent: { label: PAGE_NAMES.built, to: "/built" }, here: BOOKS[second]?.title || second };
+  if (key === "book" && second) return { parent: { label: "About", to: "/about" }, here: BOOKS[second]?.title || second };
   return { parent: HOME, here: PAGE_NAMES[key] || first };
 }
 
@@ -161,12 +158,19 @@ function Breadcrumb({ pathname }) {
 if (typeof window !== "undefined" && "scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
 function useScrollToTop(pathname) {
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    scrollToTopNow();
   }, [pathname]);
+}
+
+// which set of lines Fany bot uses on this page (src/lib/botLines.js)
+function botPage(pathname) {
+  const first = pathname.split("/")[1]?.toLowerCase() || "";
+  return ["playground", "blog", "about", "case-study", "work"].includes(first) ? first : "other";
 }
 
 function Layout({ children }) {
   const { pathname } = useLocation();
+  useEffect(() => void startSmoothScroll(), []);
   useScrollToTop(pathname);
   usePrefetchPages();
   const onProject = /^\/(work|case-study)\/./i.test(pathname); // a case study opens as a project page
@@ -185,12 +189,15 @@ function Layout({ children }) {
       )}
       <FanyLLM />
       <ThemeToggle />
+      {/* Fany bot follows along on every page (the homepage has its own, with the opening);
+          not in the flip book, where the arrow keys turn pages */}
+      {!onHome && !/^\/book\//i.test(pathname) && <PageBot key={pathname} page={botPage(pathname)} />}
 
       <main className={`main ${onProject ? "main--project" : ""}`}>
         <Suspense fallback={null}>{children}</Suspense>
       </main>
 
-      {/* the homepage carries its social icons in the intro, under the buttons */}
+      {/* homepage carries socials in its left rail */}
       {!onProject && !onHome && (
         <footer className="foot">
           <Socials />
@@ -220,12 +227,15 @@ export default function App() {
         <Route path="/Others" element={<Others />} />
 
         <Route path="/nutshell" element={<Navigate to="/blog" replace />} />
-        <Route path="/built" element={<Built />} />
-        <Route path="/case-study" element={<StudyCase />} />
+        {/* Timeline lives on About now; old /built links still land */}
+        <Route path="/built" element={<ToAboutTimeline />} />
+        {/* Case studies sit on the homepage; list URL scrolls there */}
+        <Route path="/case-study" element={<ToHomeCases />} />
         <Route path="/case-study/:slug" element={<StudyStory />} />
         {/* the section used to be called Study Case: old links still land */}
-        <Route path="/study-case" element={<Navigate to="/case-study" replace />} />
+        <Route path="/study-case" element={<ToHomeCases />} />
         <Route path="/study-case/:slug" element={<OldCaseStudy />} />
+        <Route path="/playground" element={<Playground />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/book/:slug" element={<FlipBook />} />

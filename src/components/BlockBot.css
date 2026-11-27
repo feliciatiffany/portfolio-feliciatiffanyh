@@ -1,0 +1,293 @@
+/* Fany bot: a block with a face (eyes and a small mouth), drawn as a little 3D cube. It tips over its edges to move (blockbot.js); dragged,
+   it shows a selected-layer frame with corner handles; its name tag sits above it. */
+.blockbot{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+}
+/* sitting on the links: fixed to the screen with them, so scrolling either way can't leave it behind */
+.blockbot[data-pinned="true"]{ position: fixed; }
+.blockbot[data-appear="true"]{ animation: blockbot-appear var(--duration-slow) var(--ease-out) both; }
+@keyframes blockbot-appear{ from{ opacity: 0; } to{ opacity: 1; } }
+
+.blockbot__body{
+  position: absolute;
+  inset: 0;
+  perspective: calc(var(--bb-s) * 4.4);
+}
+/* turning left and right: about its own upright axis, so it stays on the ground */
+.blockbot__yaw,
+.blockbot__cube{
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+/* leaning back to look up: about its bottom back edge, the one resting on the floor */
+.blockbot__cube{ transform-origin: 50% 100% calc(var(--bb-s) / -2); }
+.blockbot__face{
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  background: var(--foreground);
+}
+.blockbot__face--front{ transform: translateZ(calc(var(--bb-s) / 2)); }
+.blockbot__face--back{ transform: rotateY(180deg) translateZ(calc(var(--bb-s) / 2)); }
+.blockbot__face--right{
+  transform: rotateY(90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 94%, var(--background));
+}
+.blockbot__face--left{
+  transform: rotateY(-90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 88%, var(--background));
+}
+.blockbot__face--top{
+  transform: rotateX(90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 84%, var(--background));
+}
+.blockbot__face--bottom{
+  transform: rotateX(-90deg) translateZ(calc(var(--bb-s) / 2));
+  background: color-mix(in srgb, var(--foreground) 96%, var(--background));
+}
+.blockbot__face svg{ position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.blockbot__feat{ transform-box: view-box; transform-origin: 50% 50%; }
+.blockbot__eye,
+.blockbot__mouth{ fill: var(--background); }
+/* what it says, for screen readers: once per line, not letter by letter */
+.blockbot__sr{
+  position: absolute;
+  width: var(--space-px);
+  height: var(--space-px);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* selected: a thin blue frame with four square handles */
+.blockbot__frame{
+  position: absolute;
+  inset: 0;
+  outline: calc(var(--space-px) * 1.5) solid var(--color-selection);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast) ease;
+}
+.blockbot__frame i{
+  position: absolute;
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  border: var(--space-px) solid var(--color-selection);
+  background: var(--background);
+  transform: translate(-50%, -50%);
+}
+.blockbot__frame i:nth-child(1){ left: 0; top: 0; }
+.blockbot__frame i:nth-child(2){ left: 100%; top: 0; }
+.blockbot__frame i:nth-child(3){ left: 0; top: 100%; }
+.blockbot__frame i:nth-child(4){ left: 100%; top: 100%; }
+.blockbot[data-selected="true"] .blockbot__frame{ opacity: 1; }
+.blockbot[data-tipping] .blockbot__frame{ opacity: 0; } /* the frame doesn't tip with it */
+
+/* Its name tag, and what it says: a solid block like the bot itself, square, near-black with
+   paper-coloured words, joined to it by one small square. It sits above, a little to the right. */
+.blockbot__tag{
+  position: absolute;
+  /* always clear of the bot: above the highest its head reaches when it leans back or lands */
+  bottom: calc(100% + var(--bb-s) * 0.3 + var(--space-2));
+  left: 50%;
+  width: max-content;
+  max-width: 17rem;
+  padding: var(--space-1) var(--space-2);
+  background: var(--foreground);
+  color: var(--background);
+  font-family: var(--font-family-body);
+  font-size: var(--text-micro);
+  line-height: var(--leading-snug);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-base) ease;
+}
+.blockbot__tag::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  background: var(--foreground);
+}
+/* near the right edge of the page it opens to the left */
+.blockbot[data-side="left"] .blockbot__tag{ left: auto; right: 50%; }
+.blockbot[data-side="left"] .blockbot__tag::after{ left: auto; right: 0; }
+.blockbot[data-ready] .blockbot__tag,
+.blockbot[data-talking] .blockbot__tag{ opacity: 1; } /* in the opening it only shows while it talks */
+.blockbot[data-dragging] .blockbot__tag,
+.blockbot[data-tipping]:not([data-talking]) .blockbot__tag{ opacity: 0; }
+/* talking while it rolls: the bubble rides higher, above the corner that swings up as it tips */
+.blockbot[data-tipping] .blockbot__tag{ transform: translateY(calc(var(--bb-s) * -0.3)); }
+/* while it types, a block caret like the one after the homepage's typed words */
+.blockbot[data-talking] .blockbot__say::after{
+  content: "";
+  display: inline-block;
+  width: 0.45em;
+  height: 0.9em;
+  margin-left: 0.15em;
+  vertical-align: -0.08em;
+  background: var(--background);
+}
+
+@media (max-width: 700px){
+  .blockbot{ display: none; }
+}
+
+/* little keycaps for "I can move around with the arrow keys" */
+.blockbot__tag kbd{
+  display: inline-block;
+  margin-left: var(--space-1);
+  padding: 0 var(--space-1);
+  border: var(--space-px) solid var(--background);
+  border-radius: var(--radius-xs);
+  font: inherit;
+}
+
+/* the stairs the line folds into when the bot has to climb (blockbot.js climb) */
+.blockbot-stair{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--space-px);
+  height: var(--space-px);
+  overflow: visible;
+  pointer-events: none;
+  z-index: 4;
+}
+.blockbot-stair path{
+  fill: none;
+  stroke: var(--border);
+  stroke-width: var(--space-px);
+}
+
+/* asleep: the block without its face, until it opens its eyes in the opening */
+.blockbot__feat{ transition: opacity var(--duration-slow) var(--ease-out); }
+.blockbot[data-asleep] .blockbot__feat{ opacity: 0; }
+
+/* ---- the opening (BlockBot.jsx): a terminal, the build pouring down the page, then the log
+   turning to dots that fly together into the bot ---- */
+.bot-log{
+  position: absolute;
+  top: 0;
+  left: calc(var(--home-rail-w) + var(--home-gap));
+  right: var(--space-5);
+  height: 100dvh;
+  box-sizing: border-box;
+  padding-bottom: var(--space-8);
+  overflow: hidden;
+  z-index: 6;
+  font-family: var(--font-family-mono);
+  font-size: var(--text-ui);
+  line-height: var(--leading-snug);
+  color: var(--foreground);
+  pointer-events: none;
+}
+/* starts level with where the intro will sit, grows down, then pushes up and out of the top */
+.bot-log__roll{
+  position: absolute;
+  top: 45dvh;
+  left: 0;
+  right: 0;
+  will-change: transform;
+  transition: opacity var(--duration-memory) var(--ease-in-out);
+}
+.bot-log__row{ white-space: pre; overflow: hidden; }
+.bot-log__row--dim{ color: var(--muted-foreground); }
+.bot-log__row--strong{ font-weight: var(--font-weight-medium); }
+/* the log fades into the past as its letters turn to dots */
+.bot-log[data-melting] .bot-log__roll{ opacity: 0; }
+.bot-log[data-melting] .bot-log__row{ color: var(--muted-foreground); }
+
+.bot-term__line{ display: flex; align-items: center; gap: var(--space-frame); min-height: var(--space-8); }
+.bot-term__cmd::before{ content: "$ "; color: var(--muted-foreground); }
+.bot-term__key{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1-5) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-none);
+  background: var(--foreground); /* a solid black key, like the bot and its bubble */
+  color: var(--background);
+  font: inherit;
+  font-family: var(--font-family-body);
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(var(--space-1));
+  transition: opacity var(--duration-base) var(--ease-out), transform var(--duration-base) var(--ease-out);
+}
+.bot-term__key[data-show="true"]{ opacity: 1; transform: none; }
+.bot-term__key[data-show="false"]{ visibility: hidden; }
+.bot-term__key[data-pressed="true"]{ transform: translateY(var(--space-0-5)); }
+.bot-term__key svg{ width: var(--space-5); height: var(--space-4); fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+/* the body, cell by cell: each cell arrives as a dot and turns solid when it lands */
+.bot-build{
+  position: absolute;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  grid-template-rows: repeat(var(--n), 1fr);
+  font-family: var(--font-family-mono);
+  font-size: var(--text-ui);
+  line-height: var(--leading-none);
+  color: var(--foreground);
+  pointer-events: none;
+}
+.bot-build span{ display: grid; place-items: center; }
+/* the outline closes the hairline seams between cells, so the finished body is one solid block */
+.bot-build span[data-solid="true"]{ background: var(--foreground); outline: var(--space-px) solid var(--foreground); }
+
+/* the caret that types the intro in during the opening, like the one after the typed words */
+.bot-caret{
+  position: absolute;
+  z-index: 6;
+  background: var(--foreground);
+  pointer-events: none;
+}
+
+.bot-skip{ position: fixed; right: var(--space-5); bottom: var(--space-5); z-index: 7; }
+.bot-skip button{
+  border: 0;
+  background: none;
+  color: var(--muted-foreground);
+  font-family: var(--font-family-body);
+  font-size: var(--text-ui);
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+.bot-skip button:hover,
+.bot-skip button:focus-visible{ color: var(--foreground); outline: none; }
+
+/* ---- on every other page (PageBot.jsx): a stage laid over the page, which scrolls with it ---- */
+.bot-stage{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  z-index: 36; /* over the links it sits on, under the breadcrumb */
+  pointer-events: none;
+}
+.bot-stage .blockbot{ pointer-events: auto; }
+
+/* ---- the bot walked into a card (or stomped on it): the card reacts as it does under the
+   cursor, with a small shove, then lets go ---- */
+[data-bot-hit] :is(img, video){ transform: scale(var(--scale-hover)); }
+[data-bot-hit] :is(.home-case__media, .pg-card__media, .blog-item__media){ animation: bot-shove var(--duration-slow) var(--ease-out); }
+@keyframes bot-shove{
+  30%{ transform: translateX(var(--space-1-5)); }
+}
+@media (prefers-reduced-motion: reduce){
+  [data-bot-hit] :is(.home-case__media, .pg-card__media, .blog-item__media){ animation: none; }
+}

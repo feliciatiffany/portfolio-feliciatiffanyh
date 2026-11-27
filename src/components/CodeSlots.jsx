@@ -360,7 +360,8 @@ export default function CodeSlots({
   }, [status]);
   useEffect(() => () => clearTimeout(drainTimer.current), []);
   useEffect(() => {
-    if (autoFocus) inputRef.current?.focus();
+    // never let autofocus scroll the page; it opens wherever the page opens
+    if (autoFocus) inputRef.current?.focus({ preventScroll: true });
   }, [autoFocus]);
 
   const view = slots.length === length ? slots : Array.from({ length }, (_, i) => slots[i] ?? "");

@@ -20,7 +20,7 @@
 
 .resume-h {
   margin: clamp(10px, 1.6vw, 18px) 0 clamp(6px, 1vw, 12px) 0;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-h3);
   font-size: var(--text-subtitle);
   letter-spacing: .02em;
   color: var(--color-accent-graphic);

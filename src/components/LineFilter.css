@@ -72,9 +72,9 @@
   .line-filter__label{ transform: none !important; transition: none; }
 }
 
-/* ── Vertical nav, quieter: muted heading, items in muted ink; switched-off items just fade (no strike) ── */
+/* ── Vertical nav, quieter: muted heading; switched-off items are struck through, not faded ── */
 .line-filter--column .line-filter__h{ font-weight: var(--font-weight-regular); color: var(--muted-foreground); margin-bottom: var(--space-2); }
-.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ text-decoration: none; opacity: calc(.35 + var(--effect, 0) * .45); filter: none; }
+.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ opacity: 1; filter: none; text-decoration: line-through; text-decoration-thickness: 1px; }
 .line-filter--column .line-filter__item[aria-pressed="true"] .line-filter__label::before{
   content: "";
   position: absolute;
@@ -86,3 +86,32 @@
   transform: translateY(-50%) scale(var(--effect, 0));
   transition: transform var(--duration-fast) ease;
 }
+
+/* Side menus everywhere follow the homepage nav: same size, grey items, the pressed ones
+   near-black, the shared spacing, and the small square beside an item on hover */
+.line-filter--column .line-filter__list{ gap: var(--space-nav-gap); }
+.line-filter--column .line-filter__item{ padding: 0; font-size: var(--text-ui); line-height: var(--leading-none); }
+.line-filter--column .line-filter__label{ transform: none; } /* stays put on hover, like the homepage nav */
+.line-filter--column .line-filter__h{ font-size: var(--text-ui); line-height: var(--leading-none); margin-bottom: var(--space-nav-gap); }
+.line-filter--column .line-filter__item[aria-pressed="true"] .line-filter__label{ color: var(--foreground); }
+.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ color: var(--muted-foreground); }
+.line-filter--column .line-filter__item:hover .line-filter__label,
+.line-filter--column .line-filter__item:focus-visible .line-filter__label{ color: var(--foreground); }
+
+/* Selected items get a small dot beside them (no more crossing out): "All" while nothing is
+   picked, otherwise each picked item. Unpicked items are simply grey. */
+.line-filter--column .line-filter__item[aria-pressed="false"] .line-filter__label{ text-decoration: none; }
+.line-filter--column .line-filter__label{ position: relative; }
+.line-filter--column .line-filter__item .line-filter__label::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--space-3) * -1);
+  width: var(--space-1-5);
+  height: var(--space-1-5);
+  border-radius: var(--radius-round);
+  background: var(--foreground);
+  transform: translateY(-50%) scale(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.line-filter--column .line-filter__item[aria-pressed="true"] .line-filter__label::before{ transform: translateY(-50%) scale(1); }

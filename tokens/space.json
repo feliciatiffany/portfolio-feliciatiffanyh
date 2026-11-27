@@ -164,6 +164,68 @@
       "$type": "dimension",
       "$value": "{space.8}",
       "$description": "Hairline at the top of a section → its heading"
+    },
+    "case": {
+      "h1-h2": {
+        "$type": "dimension",
+        "$value": "{space.2}",
+        "$description": "Case study h1 label → h2 headline"
+      },
+      "h2-body": {
+        "$type": "dimension",
+        "$value": "{space.3}",
+        "$description": "Case study h2 headline → its body text"
+      },
+      "h3-body": {
+        "$type": "dimension",
+        "$value": "{space.2}",
+        "$description": "Case study h3 sub-headline → its body text"
+      },
+      "paragraph": {
+        "$type": "dimension",
+        "$value": "{space.4}",
+        "$description": "Case study paragraph → paragraph"
+      },
+      "group": {
+        "$type": "dimension",
+        "$value": "{space.12}",
+        "$description": "Case study: between one headline group and the next"
+      },
+      "columns": {
+        "$type": "dimension",
+        "$value": "{space.8}",
+        "$description": "Case study: gap between columns, and space above and below a row of columns"
+      }
+    },
+    "bot-gap": {
+      "$type": "dimension",
+      "$value": "{space.5}",
+      "$description": "Fany bot: the air between the bot and whatever it sits on (text, the photo, a line, the links)"
+    },
+    "bot-perch": {
+      "$type": "dimension",
+      "$value": "{space.frame}",
+      "$description": "Fany bot: the space between it and the profile photo it sits above on the homepage. The same gap the photo keeps to the line under it"
+    },
+    "bot-wall": {
+      "$type": "dimension",
+      "$value": "{space.10}",
+      "$description": "Fany bot: the least distance it keeps from the edge of the page, so its turning head never touches the side of the screen"
+    },
+    "bot-size": {
+      "$type": "dimension",
+      "$value": "{space.12}",
+      "$description": "Fany bot: how big it is on every page but the homepage, where it matches the photo"
+    },
+    "frame": {
+      "$type": "dimension",
+      "$value": "{space.8}",
+      "$description": "The default gap (32px): from the photo and the intro to the grid lines, between the case study images, and the default space between things inside the homepage frame"
+    },
+    "nav-gap": {
+      "$type": "dimension",
+      "$value": "{space.4}",
+      "$description": "Space between the lines of every side menu (homepage nav and links, blog filters, case study chapters)"
     }
   }
 }

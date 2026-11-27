@@ -12,7 +12,7 @@
 .story__cover img,
 .story__cover video{ display: block; width: 100%; height: auto; border-radius: var(--radius-media); background: var(--color-surface-soft); }
 .story__head{ width: var(--story-text); margin-inline: auto; text-align: center; padding-bottom: var(--space-10); }
-.story__title{ margin: 0; font-size: var(--text-page-title); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
+.story__title{ margin: 0; font-size: var(--text-page-title); font-weight: var(--font-weight-h1); line-height: var(--leading-title); }
 .story__hook{ margin: var(--space-5) 0 0; font-family: var(--font-family-body); font-size: var(--text-body-lg); line-height: var(--leading-body); color: var(--muted-foreground); }
 .story__meta{
   display: grid;
@@ -41,7 +41,7 @@
   color: var(--accent);
   scroll-margin-top: var(--space-18);
 }
-.story__h{ margin-block: 0 var(--space-6); font-size: var(--text-section-title); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
+.story__h{ margin-block: 0 var(--space-6); font-size: var(--text-section-title); font-weight: var(--font-weight-h2); line-height: var(--leading-title); }
 .story__p{ margin-block: 0 var(--space-paragraph); font-family: var(--font-family-body); font-size: var(--text-body); line-height: var(--leading-loose); }
 
 .story__aside{ margin-block: var(--space-5); padding-left: var(--space-5); border-left: 2px solid var(--accent); font-family: var(--font-family-body); }
@@ -220,3 +220,19 @@
 @keyframes story-notes-in{ from{ opacity: 0; filter: blur(2px); } to{ opacity: 1; filter: none; } }
 @media (max-width: 800px){ .story__notes-cols{ grid-template-columns: 1fr; gap: var(--space-3); } }
 @media (prefers-reduced-motion: reduce){ .story__carousel-slide, .story__notes-set.is-on{ transition: none; animation: none; } }
+
+/* Case studies: nothing bold anywhere; hierarchy comes from size and colour, like the reference:
+   title biggest → section statement → sub-heading; labels and reading text in a quiet grey,
+   names, facts and small titles in the near-black */
+.story .story__title{ font-size: var(--text-case-title); line-height: var(--leading-h1); }
+.story .story__h{ font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+.story .story__sub{ font-size: var(--text-case-sub); line-height: var(--leading-h3); }
+.story .story__label{ color: var(--muted-foreground); font-size: var(--text-case-label); }
+.story .story__p,
+.story .story__hook,
+.story .story__aside p,
+.story .story__card p,
+.story li{ color: var(--muted-foreground); font-size: var(--text-case-read); }
+.story .story__aside{ border-left-color: var(--border); }
+.story,
+.story *{ font-weight: var(--font-weight-regular) !important; }

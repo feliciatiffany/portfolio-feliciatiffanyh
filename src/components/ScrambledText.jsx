@@ -70,7 +70,8 @@ const ScrambledText = ({
     const textEl = textRef.current;
     if (!root || !textEl || !fontsReady) return;
 
-    const split = SplitText.create(textEl, { type: "chars", smartWrap: true, aria: "none" });
+    // (each letter gets a class, so the homepage's opening can type them in one by one)
+    const split = SplitText.create(textEl, { type: "chars", smartWrap: true, aria: "none", charsClass: "scrambled-text__char" });
     const chars = split.chars;
     const originals = chars.map((char) => char.textContent ?? "");
     const glyphs = chars.map((char, i) => {

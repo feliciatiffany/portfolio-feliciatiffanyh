@@ -367,7 +367,10 @@ export default function StudyStory() {
           {story.meta.map((m) => (
             <div key={m.label}>
               <dt>{m.label}</dt>
-              <dd>{m.value}</dd>
+              {/* a list value gets one line per item, no separators */}
+              {(Array.isArray(m.value) ? m.value : [m.value]).map((v) => (
+                <dd key={v}>{v}</dd>
+              ))}
             </div>
           ))}
         </dl>

@@ -1,20 +1,21 @@
 /* Section list on the left: grey names, the current one in the accent with a small square beside it */
 .section-nav{
   position: fixed;
-  top: 50%;
+  top: 25dvh; /* the same height as the homepage's side nav */
   left: var(--space-5);
   z-index: 30;
-  transform: translateY(-50%);
-  max-width: calc((100vw - 640px) / 2 - var(--space-10)); /* stays clear of the centred column */
+  /* stays clear of the centred column and of wide cover images; long names wrap */
+  max-width: min(12rem, calc((100vw - 640px) / 2 - var(--space-10)));
   font-family: var(--font-family-body);
   font-size: var(--text-ui);
-  line-height: var(--leading-snug);
+  line-height: var(--leading-tight); /* close to the homepage nav; long names still wrap cleanly */
 }
-.section-nav ol{ list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2-5); }
+/* the same look as the homepage nav: grey items, the current one near-black with its square */
+.section-nav ol{ list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-nav-gap); } /* the shared side-menu spacing */
 .section-nav button{
   position: relative;
   display: block;
-  padding: 0 0 0 var(--space-4);
+  padding: 0; /* text on the same left edge as the homepage nav; the square sits outside it */
   border: 0;
   background: none;
   color: var(--muted-foreground);
@@ -26,17 +27,19 @@
 .section-nav button::before{
   content: "";
   position: absolute;
-  left: 0;
+  left: calc(var(--space-3) * -1);
   top: 0.5lh;
   width: var(--space-1-5);
   height: var(--space-1-5);
-  background: var(--accent);
+  background: var(--foreground);
   transform: translateY(-50%) scale(0);
   transition: transform var(--duration-base) var(--ease-out);
 }
 .section-nav button:hover,
 .section-nav button:focus-visible{ color: var(--foreground); outline: none; }
-.section-nav button.is-active{ color: var(--accent); }
+.section-nav button.is-active{ color: var(--foreground); }
+.section-nav button:hover::before,
+.section-nav button:focus-visible::before{ transform: translateY(-50%) scale(1); }
 .section-nav button.is-active::before{ transform: translateY(-50%) scale(1); }
 
 /* Headings land below the fixed breadcrumb when jumped to */

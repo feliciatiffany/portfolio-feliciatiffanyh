@@ -56,7 +56,7 @@
 }
 
 .project-template .proj-head__text{
-  font-size: var(--text-subtitle);
+  font-size: var(--text-subtitle); font-weight: var(--font-weight-h3);
   line-height: var(--leading-title);
   padding: 0 var(--space-2-5);
 }
@@ -73,7 +73,7 @@
   justify-self: start;
 
   font-size: var(--text-subtitle);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-h3);
 
   background-color: color-mix(in srgb, var(--background) 70%, transparent);
   border-left: 1px solid var(--border);
@@ -254,6 +254,18 @@
   }
 }
 
+/* One image filling the whole content column (className: "proj-fullImage") */
+.project-template .proj-fullImage .proj-gallery__cell,
+.project-template .proj-fullImage .proj-media-btn{
+  height: auto;
+  width: 100%;
+}
+.project-template .proj-fullImage .proj-gallery__cell img,
+.project-template .proj-fullImage .proj-media{
+  width: 100%;
+  height: auto;
+}
+
 /* ========= ROW 5 ========= */
 .project-template .proj-row5{
   display: grid;
@@ -370,7 +382,7 @@
   color: var(--color-action-hover);
   width: 44px;
   height: 44px;
-  font-size: var(--text-heading-sm);
+  font-size: var(--text-heading-sm); font-weight: var(--font-weight-nav);
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -536,7 +548,7 @@
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--background) 92%, transparent);
   cursor: pointer;
-  font-size: var(--text-heading-sm);
+  font-size: var(--text-heading-sm); font-weight: var(--font-weight-h3);
   line-height: var(--leading-none);
   display: grid;
   place-items: center;
@@ -715,6 +727,17 @@
   border-radius: 0;
 }
 
+/* Two clips per row, cropped to one shape so the rows line up (videoGridClassName: "proj-videoGrid--pair") */
+.project-template .proj-videoGrid--pair{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.project-template .proj-videoGrid--pair .proj-videoWide__video{
+  aspect-ratio: 4 / 3;
+}
+@media (max-width: 560px){
+  .project-template .proj-videoGrid--pair{ grid-template-columns: 1fr; }
+}
+
 /* Blossom layout hooks */
 .project-template[data-layout="blossom-grid"] .proj-body{
   gap: var(--space-7);
@@ -791,7 +814,7 @@ gap: var(--space-3);
 }
 .project-template .proj-page-title{
   margin: 0;
-  font-size: var(--text-page-title);
+  font-size: var(--text-page-title); font-weight: var(--font-weight-h1);
   line-height: var(--leading-title);
 }
 
@@ -818,7 +841,7 @@ gap: var(--space-3);
 
 /* =========================================================
    PROJECT PAGE — centered title, hero, Date/Stacks/Category row,
-   body copy in Montserrat (mockup layout)
+   body copy in the site sans (mockup layout)
    ========================================================= */
 .project-template .proj-body{
   max-width: 640px;
@@ -830,7 +853,7 @@ gap: var(--space-3);
 }
 .project-template .proj-page-title{
   font-family: var(--font-family-title);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-h1);
   text-align: center;
   font-size: var(--text-page-title);
   margin: var(--space-2) 0 var(--space-3);
@@ -839,6 +862,16 @@ gap: var(--space-3);
 .proj-hero{ margin: 0; border-radius: var(--radius-media); overflow: hidden; background: var(--color-surface-soft); }
 .proj-hero img,
 .proj-hero video{ display: block; width: 100%; height: auto; max-height: 70vh; object-fit: cover; }
+
+.project-template .proj-body[data-wide-cover]{
+  max-width: 1100px;
+  grid-template-columns: 1fr min(640px, 100%) 1fr;
+  column-gap: 0;
+}
+.proj-body[data-wide-cover] > *{ grid-column: 2; }
+.proj-body[data-wide-cover] > .proj-hero{ grid-column: 1 / -1; }
+.proj-body[data-wide-cover] > .proj-hero video,
+.proj-body[data-wide-cover] > .proj-hero img{ max-height: none; }
 
 .proj-metarow{
   display: grid;
@@ -858,7 +891,7 @@ gap: var(--space-3);
 .project-template .proj-intro{ display: grid; gap: var(--space-3); }
 .project-template .proj-text{ white-space: normal; line-height: var(--leading-prose); }
 
-/* Section headings: Montserrat bold instead of tiny caps */
+/* Section headings: bold sans instead of tiny caps */
 .project-template .proj-minihead{
   font-family: var(--font-family-body);
   font-size: var(--text-body-lg);
@@ -905,10 +938,104 @@ gap: var(--space-3);
 /* write-up */
 .project-template .proj-intro{ gap: var(--space-paragraph); }
 
+.project-template .proj-body[data-wide-cover]{
+  row-gap: 0;
+}
+.project-template .proj-body[data-wide-cover] > .proj-hero{
+  margin-bottom: var(--space-8);
+}
+.proj-body[data-wide-cover] > .proj-metarow{
+  gap: var(--space-5);
+  margin-top: var(--space-10);
+  padding: var(--space-5) 0 var(--space-10);
+  border-top: 1px solid var(--border);
+  border-bottom: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body);
+}
+.proj-body[data-wide-cover] .proj-metarow__col{ justify-self: start; }
+.proj-body[data-wide-cover] .proj-metarow dt{
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: inherit;
+}
+.proj-body[data-wide-cover] .proj-metarow dd{
+  margin-top: var(--space-1);
+  color: inherit;
+  font-size: inherit;
+}
+.project-template .proj-body[data-wide-cover] > :is(.proj-section, .proj-slider, .proj-row5, .proj-row6){
+  border-top: 0;
+  padding-top: var(--space-10);
+}
+.proj-body[data-wide-cover] .proj-intro > .proj-minihead{
+  color: var(--accent);
+  font-size: var(--text-meta);
+  font-weight: var(--font-weight-regular);
+}
+.project-template .proj-body[data-wide-cover] .proj-intro > .proj-intro__question{
+  margin: 0;
+  margin-top: calc(var(--space-3) - var(--space-paragraph));
+  font-family: var(--font-family-title);
+  font-size: calc(var(--text-section-title) * 0.87);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-title);
+  text-wrap: pretty;
+}
+.project-template .proj-body[data-wide-cover] p.proj-text{
+  line-height: var(--leading-loose);
+}
+.proj-intro__subheading{
+  margin: 0;
+  font-family: var(--font-family-title);
+  font-size: var(--text-section-title);
+  font-weight: var(--font-weight-h2);
+  line-height: var(--leading-title);
+}
+.project-template .proj-desc-section .proj-desc-section__label{
+  color: var(--accent);
+  font-size: var(--text-meta);
+  font-weight: var(--font-weight-regular);
+}
+.proj-intro__questions{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.project-template .proj-dropdown{ padding-top: var(--space-3); }
+.project-template .proj-dropdown__summary{
+  list-style: none;
+  cursor: pointer;
+  color: var(--accent);
+  line-height: var(--leading-title);
+  transition: color var(--duration-fast) ease;
+}
+.project-template .proj-dropdown__summary::-webkit-details-marker{ display: none; }
+.project-template .proj-dropdown__summary::before{ content: "↳ "; }
+.project-template .proj-dropdown__summary:hover,
+.project-template .proj-dropdown__summary:focus-visible{ color: var(--color-action-hover); outline: none; }
+.project-template .proj-dropdown[open] > .proj-dropdown__summary{ color: var(--muted-foreground); }
+.project-template .proj-dropdown__body{ margin-top: var(--space-sub-body); }
+.project-template .proj-columns{ margin-top: var(--space-4); }
+.project-template .proj-columns > li{ display: grid; gap: var(--space-sub-body); align-content: start; }
+.project-template .proj-columns__title{ color: var(--accent); font-weight: var(--font-weight-regular); line-height: var(--leading-title); }
+.project-template .proj-columns__text{ margin: 0; line-height: var(--leading-body); color: var(--muted-foreground); }
+.project-template .proj-columns__steps{ margin: 0; padding-left: var(--space-4); display: grid; gap: var(--space-1-5); line-height: var(--leading-body); }
+@media (max-width: 640px){
+  .proj-intro__questions{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 360px){
+  .proj-intro__questions{ grid-template-columns: 1fr; }
+}
+
 /* Paper: the full write-up, overview first, the rest folded away */
 .project-template .proj-paper__doc{ display: grid; gap: var(--space-section); }
 .project-template .proj-paper__head{ display: grid; gap: var(--space-caption-media); }
-.project-template .proj-paper__title{ margin: 0; font-family: var(--font-family-title); font-size: var(--text-heading-sm); line-height: var(--leading-title); }
+.project-template .proj-paper__title{ margin: 0; font-family: var(--font-family-title); font-size: var(--text-heading-sm); font-weight: var(--font-weight-h3); line-height: var(--leading-title); }
 .project-template .proj-paper__by{ margin: 0; font-size: var(--text-meta); color: var(--muted-foreground); }
 .project-template .proj-paper__part{ display: grid; gap: var(--space-heading-content); }
 .project-template .proj-paper__h{ margin: 0; font-size: var(--text-ui); font-weight: var(--font-weight-bold); color: var(--color-accent-tech); }
@@ -929,3 +1056,99 @@ gap: var(--space-3);
 .project-template .proj-paper__more[open] > summary{ color: var(--muted-foreground); }
 .project-template .proj-paper__more[open] > .proj-paper__part + .proj-paper__part,
 .project-template .proj-paper__more[open] > summary + .proj-paper__part{ margin-top: var(--space-section); }
+
+/* A line between major sections (className: "proj-divider"), with room on both sides */
+.project-template .proj-divider{
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-section);
+}
+
+/* ===== Case study type system =====
+   Turned on by .case-study on the page body (projects with coverAboveTitle).
+   h1 = small accent label · h2 = big statement · h3 = sub-headline · column · body.
+   Sizes and spacing come from the text-case-* / space-case-* tokens (docs/tokens.md). */
+.project-template .case-study .case-h1{
+  margin: 0 0 var(--space-case-h1-h2);
+  font-family: var(--font-family-body);
+  font-size: var(--text-case-h1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-title);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--accent);
+}
+.project-template .case-study .case-h2,
+.project-template .case-study .case-h3{
+  margin: 0 0 var(--space-case-h3-body);
+  font-family: var(--font-family-title);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-title);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--foreground);
+}
+.project-template .case-study .case-h2{ font-size: var(--text-case-h2); font-weight: var(--font-weight-h2); margin-bottom: var(--space-case-h2-body); }
+.project-template .case-study .case-h3{ font-size: var(--text-case-h3); font-weight: var(--font-weight-h3); }
+.project-template .case-study .case-body{
+  margin: 0;
+  font-size: var(--text-case-body);
+  line-height: var(--leading-case-body);
+  color: var(--muted-foreground);
+}
+.project-template .case-study .case-body + .case-body{ margin-top: var(--space-case-paragraph); }
+.project-template .case-study .case-body strong{
+  color: var(--foreground);
+  font-weight: var(--font-weight-semibold);
+}
+.project-template .case-study .case-column{
+  color: var(--foreground);
+  font-size: var(--text-case-column);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-title);
+}
+
+/* rhythm between headline groups and around column rows */
+.project-template .case-study .proj-desc-section{ margin-bottom: 0; }
+.project-template .case-study .proj-desc-section + .proj-desc-section{ margin-top: var(--space-case-group); }
+.project-template .case-study .proj-columns{ gap: var(--space-case-columns); margin-top: var(--space-case-columns); }
+.project-template .case-study .proj-columns > li{ gap: var(--space-1); align-content: start; }
+.project-template .case-study .proj-columns__text{ line-height: var(--leading-prose); }
+.project-template .case-study .proj-columns + .case-body{ margin-top: var(--space-case-columns); }
+/* the overview's research questions are a column row too: same size and line height */
+.project-template .case-study .proj-intro__questions{ gap: var(--space-case-columns); }
+.project-template .case-study .proj-intro__questions li{
+  font-size: var(--text-case-body);
+  line-height: var(--leading-prose);
+}
+
+/* a row of four columns becomes a 2 × 2 grid */
+.project-template .case-study :is(.proj-columns, .proj-intro__questions):has(> li:nth-child(4):last-child){
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 360px){
+  .project-template .case-study :is(.proj-columns, .proj-intro__questions):has(> li:nth-child(4):last-child){
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Case study pages: a smaller title, and nothing bold anywhere (titles, headings, labels,
+   bold words in the text all use the regular weight; hierarchy comes from size and colour) */
+.project-template .proj-page-title{ font-size: var(--text-case-title); line-height: var(--leading-h1); }
+.project-template .case-study .case-h2{ font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+.project-template .case-study .case-h3{ font-size: var(--text-case-sub); line-height: var(--leading-h3); }
+.project-template .case-study .case-h1{ color: var(--muted-foreground); font-size: var(--text-case-label); }
+/* the overview: grey label with room under it, the question as a statement, then quiet grey text */
+.project-template .case-study .proj-minihead,
+.project-template .proj-body.case-study[data-wide-cover] .proj-intro > .proj-minihead{ font-size: var(--text-case-label); }
+.project-template .case-study .proj-intro > .proj-minihead{ color: var(--muted-foreground); margin-bottom: var(--space-4); }
+.project-template .proj-body.case-study[data-wide-cover] .proj-intro > .proj-intro__question,
+.project-template .case-study .proj-intro > .proj-intro__question{ margin-top: 0; font-size: var(--text-case-statement); line-height: var(--leading-h2); }
+/* reading text in a quiet grey; headings, column titles and facts stay near-black */
+.project-template .case-study .proj-text,
+.project-template .case-study .proj-intro__questions li,
+.project-template .case-study p:not([class*="minihead"]){ color: var(--muted-foreground); }
+.project-template .case-study .proj-text,
+.project-template .case-study .case-body,
+.project-template .case-study .proj-intro__questions li{ font-size: var(--text-case-read); }
+.project-template,
+.project-template *{ font-weight: var(--font-weight-regular) !important; }

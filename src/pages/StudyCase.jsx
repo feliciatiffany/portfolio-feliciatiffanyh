@@ -1,8 +1,6 @@
-// src/pages/StudyCase.jsx — case studies as a checkerboard of rounded tiles, the same shape as the
-// homepage dome: each case is a picture tile beside a text tile, and the next case swaps sides. The
-// status filter sits on the left. Nothing plays by itself: everything follows the scroll, both ways.
-// The vertical line grows down the page with a small coral light at its tip, and each picture comes
-// back like a memory, from sepia and soft to sharp, as its row comes up.
+// src/pages/StudyCase.jsx — case studies as two staggered columns of rounded picture cards, each with
+// "Title / Status Year" under it. The status filter sits on the left. Nothing plays by itself: each
+// card follows the scroll, rising into place while its picture comes back from sepia and soft to sharp.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { STUDY_CASES } from "../lib/studyCases.js";
@@ -14,17 +12,14 @@ const STATUSES = STATUS_ORDER.filter((s) => STUDY_CASES.some((c) => c.status ===
 
 const clamp01 = (n) => Math.min(1, Math.max(0, n));
 
-// Sets --lp on the list (how far the vertical line has grown) and --p on each box (0 = just entering
-// at the bottom of the screen, 1 = settled) from the scroll position.
+// Sets --p on each card (0 = just entering at the bottom of the screen, 1 = settled) from the scroll position.
 function useScrollProgress(deps) {
   const root = useRef(null);
   useEffect(() => {
     const el = root.current;
     if (!el) return;
-    const list = el.querySelector(".study__list");
     const items = [...el.querySelectorAll(".study-item")];
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      list?.style.setProperty("--lp", 1);
       items.forEach((it) => it.style.setProperty("--p", 1));
       return;
     }
@@ -32,10 +27,6 @@ function useScrollProgress(deps) {
     const update = () => {
       raf = 0;
       const vh = window.innerHeight;
-      if (list) {
-        const r = list.getBoundingClientRect();
-        list.style.setProperty("--lp", clamp01((vh * 0.6 - r.top) / r.height).toFixed(4)); // the tip sits 60% down the screen
-      }
       // rows near the end of the page can't scroll up as far, so they settle over the scroll that's left
       const left = document.documentElement.scrollHeight - vh - window.scrollY;
       items.forEach((it) => {
@@ -70,14 +61,28 @@ function Box({ c }) {
           <span className="study-item__soon">In progress</span>
         )}
       </span>
-      <span className="study-item__text">
-        <span className="study-item__body">
-          <span className="study-item__title">{c.title}</span>
-          {c.summary && <span className="study-item__sum">{c.summary}</span>}
-        </span>
-        <span className="study-item__meta">{c.year ? `${c.status} / ${c.year}` : c.status}</span>
+      <span className="study-item__caption">
+        <span className="study-item__title">{c.title}</span>
+        <span className="study-item__meta">{c.year ? `${c.status} ${c.year}` : c.status}</span>
       </span>
     </>
+  );
+}
+
+function Item({ c }) {
+  return (
+    <li className={`blog-item study-item${c.project ? "" : " is-pending"}`}>
+      {c.project ? (
+        <Link to={`/case-study/${c.project}`} className="blog-item__link" data-cursor="Read">
+          <Box c={c} />
+        </Link>
+      ) : (
+        /* still being written: nothing to open yet, the cursor says so */
+        <div className="blog-item__link" data-cursor="In progress" title="In progress">
+          <Box c={c} />
+        </div>
+      )}
+    </li>
   );
 }
 
@@ -109,22 +114,16 @@ export default function StudyCase() {
       </aside>
 
       {shown.length > 0 && (
-        <ol className="blog__list study__list">
-          {shown.map((c) => (
-            <li key={c.slug} className={`blog-item study-item${c.project ? "" : " is-pending"}`}>
-              {c.project ? (
-                <Link to={`/case-study/${c.project}`} className="blog-item__link" data-cursor="Read">
-                  <Box c={c} />
-                </Link>
-              ) : (
-                /* still being written: nothing to open yet, the cursor says so */
-                <div className="blog-item__link" data-cursor="In progress" title="In progress">
-                  <Box c={c} />
-                </div>
-              )}
-            </li>
+        /* two columns, filled left, right, left… so the reading order stays 1, 2, 3 */
+        <div className="blog__list study__list">
+          {[0, 1].map((col) => (
+            <ol key={col} className={`study__col study__col--${col ? "right" : "left"}`}>
+              {shown.filter((_, i) => i % 2 === col).map((c) => (
+                <Item key={c.slug} c={c} />
+              ))}
+            </ol>
           ))}
-        </ol>
+        </div>
       )}
       {shown.length === 0 && <p className="blog__empty">Pick a status to see case studies.</p>}
     </section>

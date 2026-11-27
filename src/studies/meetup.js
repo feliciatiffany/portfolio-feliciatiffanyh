@@ -11,9 +11,9 @@ export default {
   slug: "meetup",
   title: "How might Meetup turn a first RSVP into a lasting community?",
   meta: [
-    { label: "Timeline", value: "Sep – Oct 2026" },
-    { label: "Scope", value: "User research, product design, prototyping, user testing" },
-    { label: "Type", value: "Concept · class project, solo" },
+    { label: "Date", value: "Sep – Oct 2026" },
+    { label: "Stacks", value: "Figma" },
+    { label: "Category", value: ["Product Design", "Solo class concept"] },
   ],
   cover: {
     type: "video",
