@@ -202,6 +202,21 @@
       "$value": "{space.5}",
       "$description": "Fany bot: the air between the bot and whatever it sits on (text, the photo, a line, the links)"
     },
+    "bot-perch": {
+      "$type": "dimension",
+      "$value": "{space.frame}",
+      "$description": "Fany bot: the space between it and the profile photo it sits above on the homepage. The same gap the photo keeps to the line under it"
+    },
+    "bot-wall": {
+      "$type": "dimension",
+      "$value": "{space.10}",
+      "$description": "Fany bot: the least distance it keeps from the edge of the page, so its turning head never touches the side of the screen"
+    },
+    "bot-size": {
+      "$type": "dimension",
+      "$value": "{space.12}",
+      "$description": "Fany bot: how big it is on every page but the homepage, where it matches the photo"
+    },
     "frame": {
       "$type": "dimension",
       "$value": "{space.8}",

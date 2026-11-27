@@ -47,6 +47,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Socials from "./components/Socials.jsx";
 import FanyLLM from "./components/FanyLLM.jsx";
+import PageBot from "./components/PageBot.jsx";
 import { getProject } from "./lib/projects.js";
 import { BOOKS } from "./lib/books.js";
 
@@ -161,6 +162,12 @@ function useScrollToTop(pathname) {
   }, [pathname]);
 }
 
+// which set of lines Fany bot uses on this page (src/lib/botLines.js)
+function botPage(pathname) {
+  const first = pathname.split("/")[1]?.toLowerCase() || "";
+  return ["playground", "blog", "about", "case-study", "work"].includes(first) ? first : "other";
+}
+
 function Layout({ children }) {
   const { pathname } = useLocation();
   useEffect(() => void startSmoothScroll(), []);
@@ -182,6 +189,9 @@ function Layout({ children }) {
       )}
       <FanyLLM />
       <ThemeToggle />
+      {/* Fany bot follows along on every page (the homepage has its own, with the opening);
+          not in the flip book, where the arrow keys turn pages */}
+      {!onHome && !/^\/book\//i.test(pathname) && <PageBot key={pathname} page={botPage(pathname)} />}
 
       <main className={`main ${onProject ? "main--project" : ""}`}>
         <Suspense fallback={null}>{children}</Suspense>

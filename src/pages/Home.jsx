@@ -21,15 +21,6 @@ const ANYTHING = [
   "travels",
 ];
 
-// What Fany bot says, one line every 5 seconds nobody plays with it
-const BOT_LINES = [
-  "Tap me to ask anything about Fany.",
-  { text: "I can move around with the arrow keys", keys: ["←", "↑", "→", "↓"] },
-  "I don’t roll. I tip. It’s a lifestyle.",
-  "I used to be a placeholder. Then I got promoted.",
-  "Every line of text here is a floor. Jump on one.",
-];
-
 const RAIL = [
   { href: "#case-study", label: "Case Study", active: true },
   { to: "/playground", label: "Playground" },
@@ -113,8 +104,15 @@ export default function Home() {
     return () => window.clearTimeout(t);
   }, []);
 
-  // the opening plays in steps (BlockBot): 0 empty, 1 lines, 2 text, 3 photo, 4 done
+  // the opening plays in steps (BlockBot): 0 empty, 1 lines, 2 photo, 3 words, 4 done
   const [intro, setIntro] = useState(() => (introWillPlay() ? 0 : 4));
+  // once an opening has played, the intro is typed in by it (BlockBot), letter by letter;
+  // without one, the letters scramble in on their own like every other title
+  const [typedIn, setTypedIn] = useState(() => introWillPlay());
+  const onStep = (n) => {
+    if (n === 0) setTypedIn(true);
+    setIntro(n);
+  };
   // the links only show once the page has scrolled past the first screen's intro
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -129,18 +127,21 @@ export default function Home() {
 
   return (
     <div className="home-shell" ref={shellRef} data-intro={intro < 4 ? intro : undefined} data-scrolled={scrolled || undefined}>
-      <BlockBot shellRef={shellRef} avatarRef={avatarRef} heroRef={heroRef} lines={BOT_LINES} onStep={setIntro} />
+      <BlockBot shellRef={shellRef} avatarRef={avatarRef} heroRef={heroRef} onStep={onStep} />
       {/* Top-left cell: avatar centered on the hero band */}
       <div className="home-mark-cell">
         <Link
           to="/"
           className="home-rail__logo"
-          aria-label="Home"
+          aria-label="Play the opening again"
+          data-cursor="Replay"
           ref={avatarRef}
           onClick={(e) => {
-            // already home: just back to the top, nothing reloads or replays
+            // the photo plays the opening again (BlockBot.jsx takes this); where there is no
+            // opening (phones, reduced motion) it just goes back to the top
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            const taken = !window.dispatchEvent(new CustomEvent("fanybot:replay", { cancelable: true }));
+            if (!taken) window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
           <DitherImage
@@ -156,8 +157,8 @@ export default function Home() {
       <header className="home-hero" aria-label="Intro" ref={heroRef}>
         <h1 className="home-intro">
           {/* letters near the cursor scramble into dots, like every page title */}
-          {/* re-mounted when the opening reveals it, so the scramble plays then */}
-          <ScrambledText key={intro >= 2 ? "shown" : "waiting"} as="span" className="home-intro__lines" {...historyTitle}>
+          {/* re-mounted when the opening reveals it, so it starts fresh for the typing */}
+          <ScrambledText key={intro >= 3 ? "shown" : "waiting"} as="span" className="home-intro__lines" {...historyTitle} intro={!typedIn}>
             Hi, I’m{" "}
             <Link to="/about" className="home-mark" data-role="fany">
               Fany
@@ -174,7 +175,8 @@ export default function Home() {
             who also{" "}
           </ScrambledText>
           <span className="scrambled-text-sr">{ANYTHING.join(", ")}</span>
-          <Typewriter words={ANYTHING} />
+          {/* while the opening types the line above, these wait; then they start from the first word */}
+          <Typewriter key={intro === 3 ? "waiting" : "going"} words={ANYTHING} />
         </h1>
       </header>
 

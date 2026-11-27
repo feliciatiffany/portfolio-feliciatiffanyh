@@ -764,10 +764,16 @@ html:has(.page-grid--home), body:has(.page-grid--home){ height: auto; }
 .home-rail__nav,
 .home-rail__foot{ transition: opacity var(--duration-slow) ease; }
 .home-shell[data-intro="0"] :is(.home-mark-cell, .home-hero, .home-rail, .home-edge){ border-color: transparent; }
-.home-shell:is([data-intro="0"], [data-intro="1"]) .home-intro{ opacity: 0; }
+.home-shell:is([data-intro="0"], [data-intro="1"], [data-intro="2"]) .home-intro{ opacity: 0; }
 .home-shell[data-intro] :is(.home-rail__logo, .home-rail__nav, .home-rail__foot){ opacity: 0; }
 .home-shell[data-intro] .home-scroll{ visibility: hidden; } /* its own fades are ScrollHint's (GSAP) */
-.home-shell[data-intro="3"] .home-rail__logo{ opacity: 1; }
+.home-shell:is([data-intro="2"], [data-intro="3"]) .home-rail__logo{ opacity: 1; }
+/* the intro is typed in by the opening, letter by letter: nothing of it shows early, and the
+   words that retype themselves wait until it is done */
+.home-shell[data-typing] .home-intro{ transition: none; }
+.home-shell[data-typing="wait"] .home-intro__lines,
+.home-shell[data-typing] .home-typed,
+.home-intro__lines [data-unseen]{ visibility: hidden; }
 
 /* "Scroll ↓" in the bottom-right corner of the first screen; it scrolls away with the page */
 .home-shell{ position: relative; }

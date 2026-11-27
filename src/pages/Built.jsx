@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { TIMELINE_TYPES as TYPES, TIMELINE as ENTRIES, groupByYear } from "../lib/timeline";
 import LineFilter from "../components/LineFilter.jsx";
 import ScrambledText, { historyTitle } from "../components/ScrambledText.jsx";
-import CodeSlots from "../components/CodeSlots.jsx";
 import useReveal from "../lib/useReveal.js";
 import LazyVideo from "../components/LazyVideo.jsx";
 
@@ -123,29 +122,16 @@ function useMasonry(root, deps) {
   }, deps);
 }
 
-const PASSWORD = "matcha";
-const UNLOCK_KEY = "built-unlocked";
-
-function readUnlocked() {
-  try {
-    return sessionStorage.getItem(UNLOCK_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
 export default function Built({ embedded = false }) {
   const [active, setActive] = useState(() => new Set(TYPES.map((t) => t.key)));
-  const [unlocked, setUnlocked] = useState(readUnlocked);
-  const [status, setStatus] = useState("idle");
 
   const groups = useMemo(
     () => groupByYear(ENTRIES.filter((e) => active.has(e.type))),
     [active]
   );
 
-  const root = useReveal([groups, unlocked]);
-  useMasonry(root, [groups, unlocked]);
+  const root = useReveal([groups]);
+  useMasonry(root, [groups]);
 
   const toggle = (key) =>
     setActive((prev) => {
@@ -153,20 +139,6 @@ export default function Built({ embedded = false }) {
       next.has(key) ? next.delete(key) : next.add(key);
       return next;
     });
-
-  const onPassword = (code) => {
-    if (code !== PASSWORD) {
-      setStatus("error");
-      return;
-    }
-    setStatus("success");
-    try {
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-    } catch {
-      /* private mode can block storage; the page still opens */
-    }
-    window.setTimeout(() => setUnlocked(true), 900);
-  };
 
   const TitleTag = embedded ? "h2" : "h1";
 
@@ -181,8 +153,6 @@ export default function Built({ embedded = false }) {
         </p>
       </header>
 
-      {unlocked ? (
-      <>
       <LineFilter
         direction="row"
         className="tl-filters"
@@ -243,28 +213,6 @@ export default function Built({ embedded = false }) {
           with my eyes and mind wide open.
         </p>
       </footer>
-      </>
-      ) : (
-        <div className="built-lock">
-          <p className="built-lock__note">Password</p>
-          <CodeSlots
-            letters
-            length={PASSWORD.length}
-            status={status}
-            autoFocus
-            ariaLabel="Password"
-            onChange={() => setStatus("idle")}
-            onComplete={onPassword}
-            slotSize={44}
-            gap={8}
-            radius={12}
-            bounce={0.2}
-            settle={0.3}
-            rise={8}
-            cascade={20}
-          />
-        </div>
-      )}
     </section>
   );
 }

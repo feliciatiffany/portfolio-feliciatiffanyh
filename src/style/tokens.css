@@ -162,6 +162,9 @@
   --space-case-group: var(--space-12);
   --space-case-columns: var(--space-8);
   --space-bot-gap: var(--space-5);
+  --space-bot-perch: var(--space-frame);
+  --space-bot-wall: var(--space-10);
+  --space-bot-size: var(--space-12);
   --space-frame: var(--space-8);
   --space-nav-gap: var(--space-4);
   /* type.json */
